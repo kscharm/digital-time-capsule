@@ -96,7 +96,7 @@
     border: 1px solid transparent;
 }
 
-.ph-btn-tertiary:disabled {
+.our-btn-tertiary:disabled {
     color: rgba(0, 0, 0, 0.87);
     border: solid 1px transparent;
     background-color: transparent;
