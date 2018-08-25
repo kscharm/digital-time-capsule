@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactLink from '../../components/ReactLink';
+import './style.css'
 
 export default class WelcomePage extends Component {
   constructor(props) {
@@ -8,14 +9,16 @@ export default class WelcomePage extends Component {
 
   render() {
     return (
-        <div id='welcomePage'>
+        <div className='welcomePage'>
+          <div className='login'>
             <ReactLink 
                 to={{
                 pathname: '/personalCapsule',
                 state: { prev: true },
                 }}
-                linkText='WELCOME'
+                linkText='LOGIN'
             />
+          </div>
         </div>
     );
   };

@@ -1,0 +1,12 @@
+.login {
+    position: absolute;
+    bottom: 35%;
+    left: 50%;
+}
+.welcomePage {
+    background-image: url(../../images/rsz_cork.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

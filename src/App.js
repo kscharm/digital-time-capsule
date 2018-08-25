@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { 
   Route, 
   Switch, 
@@ -7,11 +6,9 @@ import {
 } from 'react-router-dom';
 import PersonalCapsule from './pages/PersonalCapsule';
 import WelcomePage from './pages/Welcome';
+import BottomBar from './components/BottomBar';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     // Check for browser compatibility
@@ -40,6 +37,7 @@ class App extends Component {
           }
           />
         </BrowserRouter>
+        <BottomBar/>
       </div>
     );
   }
