@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     // Check for browser compatibility
     const supportsHistory = 'pushState' in window.history;
-
+    // Render each page based on the path
     return (
       <div className="App">
         <BrowserRouter forceRefresh={!supportsHistory}>
