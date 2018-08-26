@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactLink from '../../components/ReactLink';
+import Background from '../../images/cork.jpg';
 import './style.css'
 
 export default class WelcomePage extends Component {
@@ -9,7 +10,11 @@ export default class WelcomePage extends Component {
 
   render() {
     return (
-        <div className='welcomePage'>
+        <div className='bgDiv' >
+          <div className='welcomeMessage' >
+            <span className='mainMessage'> Welcome! </span>
+            <span className='subMessage'> This is your hell, and mine. </span>
+          </div>
           <div className='login'>
             <ReactLink 
                 to={{

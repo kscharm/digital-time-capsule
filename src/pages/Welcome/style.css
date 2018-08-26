@@ -1,12 +1,29 @@
 .login {
-    position: absolute;
-    bottom: 35%;
-    left: 50%;
+    text-align: center;
+    position: relative;
+    top: 45%;
 }
-.welcomePage {
-    background-image: url(../../images/rsz_cork.jpg);
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+.welcomeMessage {
+    text-align: center;
+    position: relative;
+    top: 35%;
+}
+.mainMessage {
+    font-size: 2.5em;
+    color: black;
+    font-weight: bold;
+    display: block;
+}
+.subMessage {
+    font-size: 1em;
+    color: black;
+    font-style: oblique;
+    display: block;
+}
+.bgDiv {
+    width: 100%;
+    height: -webkit-fill-available;
+    background: url(../../images/cork.jpg);
     background-size: cover;
+    position: relative;
 }
