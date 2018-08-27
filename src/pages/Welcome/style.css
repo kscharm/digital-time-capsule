@@ -23,7 +23,7 @@
 .bgDiv {
     width: 100%;
     height: -webkit-fill-available;
-    background: url(../../images/cork.jpg);
+    /* background: url(../../images/cork.jpg); */
     background-size: cover;
     position: relative;
 }

@@ -10,7 +10,7 @@ export default class WelcomePage extends Component {
 
   render() {
     return (
-        <div className='bgDiv' >
+        <div className='bgDiv' style={{background: `url(${Background})`}} >
           <div className='welcomeMessage' >
             <span className='mainMessage'> Welcome! </span>
             <span className='subMessage'> This is your hell, and mine. </span>
