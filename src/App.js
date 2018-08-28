@@ -1,56 +1,43 @@
 import React, { Component } from 'react';
-import './App.css';
-import OurButton from './components/OurButton';
-import Spinner from './components/Spinner';
+import { 
+  Route, 
+  Switch, 
+  BrowserRouter,
+} from 'react-router-dom';
+import PersonalCapsule from './pages/PersonalCapsule';
+import WelcomePage from './pages/Welcome';
+import BottomBar from './components/BottomBar';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  state = {
-    currentPage: 'personalCapsule',
-    isLoading: false,
-    forceRefresh: false,
-  }
-
-  handlePageChange = (page, forceRefresh) => {
-    this.setSate({
-      currentPage: page,
-      forceRefresh: forceRefresh,
-    });
-  }
-  handleLoading = (isLoading) => {
-    this.setState({isLoading: isLoading});
-  }
-
-  resetForceRefresh = () => {
-    this.setState({
-      forceRefresh: false,
-    });
-  }
-
-  hello = () => {
-    console.log('hello');
-    this.setState({isLoading: true});
-  }
 
   render() {
-    let personalCapsule = null;
-    if (this.state.currentPage === 'personalCapsule') {
-      personalCapsule = 
-        <div id='capsulePage'>
-          <OurButton 
-            buttonAction={() => { this.hello() }} 
-            buttonText='CLICK ME' >
-          </OurButton>
-          <Spinner isLoading={this.state.isLoading} handleLoading={this.handleLoading} />
-        </div>
-    }
-
+    // Check for browser compatibility
+    const supportsHistory = 'pushState' in window.history;
+    // Render each page based on the path
     return (
       <div className="App">
-        {personalCapsule}
+        <BrowserRouter forceRefresh={!supportsHistory}>
+          <Route
+            render={({ location }) => {
+              const { pathname } = location;
+              return (
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    component={WelcomePage}
+                  />
+                  <Route
+                    path="/personalCapsule"
+                    component={PersonalCapsule}
+                  />
+                </Switch>
+              );
+            }
+          }
+          />
+        </BrowserRouter>
+        <BottomBar/>
       </div>
     );
   }
