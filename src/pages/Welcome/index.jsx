@@ -10,12 +10,8 @@ export default class WelcomePage extends Component {
 
   render() {
 
-    var windowHeight = window.innerHeight;
-    console.log(windowHeight);
-    console.log("hello");
-
     return (
-        <div className='bgDiv' style={{background: `url(${Background})`, height: windowHeight}} >
+        <div className='bgDiv' style={{background: `url(${Background})`}} >
           <div className='welcomeMessage' >
             <span className='mainMessage'> Welcome! </span>
             <span className='subMessage'> This is your hell, and mine. </span>
