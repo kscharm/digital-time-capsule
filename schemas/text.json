@@ -1,0 +1,42 @@
+{
+    "bsonType": "object",
+    "title": "Text Object schema",
+    "required": [
+        "username",
+        "media_id",
+        "capsules",
+        "text",
+        "settings",
+        "metadata"
+    ],
+    "properties": {
+        "username": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "media_id": {
+            "bsonType": "string",
+            "description": "unique key for media object"
+        },
+        "capsules": {
+            "bsonType": "array",
+            "description": "array of time capsule ids"
+        },
+        "text": {
+            "bsonType": "string",
+            "description": "Content of text object"
+        },
+        "settings": {
+            "bsonType": "object",
+            "description": "settings for text itself",
+            "properties": {
+                "font": "string",
+                "description": "name of font"
+            }
+        },
+        "metadata": {
+            "bsonType": "object",
+            "description": "object containing all media metadata"
+        }
+    }
+}
