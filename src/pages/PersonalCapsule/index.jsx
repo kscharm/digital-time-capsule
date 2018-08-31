@@ -30,7 +30,6 @@ export default class PersonalCapsule extends Component {
               buttonAction={() => { this.hello() }} 
               buttonText='CLICK ME' >
             </OurButton>
-            <Spinner isLoading={this.state.isLoading} handleLoading={this.handleLoading} />
             <div className='login'>
               <OurButton //this button needs to be in the bottom left corner and be scalable to the screen size
                 buttonAction={() => { this.hello() }} 
@@ -39,6 +38,7 @@ export default class PersonalCapsule extends Component {
               />
             </div>
           </div>
+          <Spinner isLoading={this.state.isLoading} handleLoading={this.handleLoading} />
         </div>
     );
   };
