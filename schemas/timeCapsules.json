@@ -1,0 +1,59 @@
+{
+    "bsonType": "object",
+    "title": "Time Capsule Schema",
+    "required": [
+        "ownerId",
+        "title",
+        "contributors",
+        "photoArr",
+        "textArr",
+        "musicArr",
+        "settings",
+        "metadata"
+    ],
+    "properties": {
+       "ownerId": {
+          "bsonType": "string",
+          "description": "Owner id (uuid) of the time capsule"
+        },
+        "title": {
+            "bsonType": "string",
+            "description": "The title of the time capsule"
+        },
+       "contributors": {
+          "bsonType": "array",
+          "description": "Array of user ids who have contributed to the"
+        },
+       "photoArr": {
+          "bsonType": "array",
+          "description": "Array of photo objects within the time capsule"
+        },
+       "textArr": {
+          "bsonType": "array",
+         "description": "Array of text objects within the time capsule"
+        },
+       "musicArr": {
+          "bsonType": "array",
+          "description": "Array of music objects within the time capsule"
+        },
+        "settings": {
+            "bsonType": "object",
+            "description": "Settings associated with a time capsule",
+            "properties": {
+                "group": "string",
+                "privacy": {
+                    "bsonType": "object",
+                    "description": "Privacy settings"
+                },
+                "theme": {
+                    "bsonType": "object",
+                    "description": "The theme of the time capsule"
+                }
+            }
+        },
+        "metadata": {
+            "bsonType": "object",
+            "description": "All metadata associated with a time capsule"
+        }
+    }
+}
