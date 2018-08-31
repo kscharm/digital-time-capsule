@@ -1,0 +1,42 @@
+{
+    "bsonType": "object",
+    "title": "Song Media Object schema",
+    "required": [
+        "username",
+        "media_id",
+        "capsules",
+        "title",
+        "settings",
+        "metadata"
+    ],
+    "properties": {
+        "username": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "media_id": {
+            "bsonType": "string",
+            "description": "unique key for media object"
+        },
+        "capsules": {
+            "bsonType": "array",
+            "description": "array of time capsule ids"
+        },
+        "title": {
+            "bsonType": "string",
+            "description": "name of song"
+        },
+        "caption": {
+            "bsonType": "string",
+            "description": "caption of the song"
+        },
+        "settings": {
+            "bsonType": "object",
+            "description": "settings for song itself"
+        },
+        "metadata": {
+            "bsonType": "object",
+            "description": "object containing all media metadata"
+        }
+    }
+}

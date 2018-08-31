@@ -1,12 +1,12 @@
 {
     "bsonType": "object",
+    "title": "Photo Media Object schema",
     "required": [
         "username",
-        "email",
-        "friends",
-        "media",
+        "media_id",
         "capsules",
-        "user_id",
+        "title",
+        "settings",
         "metadata"
     ],
     "properties": {
@@ -14,29 +14,29 @@
             "bsonType": "string",
             "description": "must be a string and is required"
         },
-        "email": {
+        "media_id": {
             "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "friends": {
-            "bsonType": "array",
-            "description": "array of friend ids"
-        },
-        "media": {
-            "bsonType": "array",
-            "description": "array of media objects"
+            "description": "unique key for media object"
         },
         "capsules": {
             "bsonType": "array",
             "description": "array of time capsule ids"
         },
-        "user_id": {
+        "title": {
             "bsonType": "string",
-            "description": "key for the user"
+            "description": "name of photo file"
+        },
+        "caption": {
+            "bsonType": "string",
+            "description": "caption of the photo"
+        },
+        "settings": {
+            "bsonType": "object",
+            "description": "settings for photo itself"
         },
         "metadata": {
             "bsonType": "object",
-            "description": 
+            "description": "object containing all media metadata"
         }
     }
 }
