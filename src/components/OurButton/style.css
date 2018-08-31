@@ -158,3 +158,18 @@
     background-color: rgba(0, 0, 0, 0.38);
     opacity: .38;
 }
+
+/*add button*/
+
+.our-btn-add {
+    font-size: 40px;
+    background-color: #003057;
+    color: white;
+    padding: 0px 0px;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 100%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
