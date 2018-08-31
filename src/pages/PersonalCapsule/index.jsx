@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import OurButton from '../../components/OurButton';
 import Spinner from '../../components/Spinner';
 import Background from '../../images/cork.jpg';
-import NavBar from '../../components/NavBar';
 import './style.css';
 
 export default class PersonalCapsule extends Component {
