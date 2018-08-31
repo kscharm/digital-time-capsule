@@ -1,0 +1,42 @@
+{
+    "bsonType": "object",
+    "required": [
+        "username",
+        "email",
+        "friends",
+        "media",
+        "capsules",
+        "user_id",
+        "metadata"
+    ],
+    "properties": {
+        "username": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "email": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "friends": {
+            "bsonType": "array",
+            "description": "array of friend ids"
+        },
+        "media": {
+            "bsonType": "array",
+            "description": "array of media objects"
+        },
+        "capsules": {
+            "bsonType": "array",
+            "description": "array of time capsule ids"
+        },
+        "user_id": {
+            "bsonType": "string",
+            "description": "key for the user"
+        },
+        "metadata": {
+            "bsonType": "object",
+            "description": 
+        }
+    }
+}
