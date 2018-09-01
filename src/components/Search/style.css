@@ -1,9 +1,6 @@
 /* Style the search box inside the navigation bar */
 input[type=text] {
-    float: left;
     padding: 6px;
     border: none;
-    margin-left: 16px;
     font-size: 17px;
-    opacity: .55;
 }
