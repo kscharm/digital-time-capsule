@@ -8,6 +8,16 @@
     position: fixed;
     top: 0;
 }
+.dropDown-content {
+    position: absolute;
+    background-color: rgb(0, 48, 87, .65);
+    right: 0;
+    margin-top: .15em;
+    border:1.5px solid rgb(0, 48, 87, .65);
+}
+.dropDown {
+    display: inline-block;
+}
 .search {
     float: left;
     margin-left: .25em;
@@ -22,4 +32,10 @@
 .icon {
     opacity: .75;
     margin-right: .5em;
+}
+.icon:hover {
+    opacity: .85;
+}
+.icon:active {
+    opacity: 1;
 }
