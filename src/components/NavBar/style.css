@@ -1,0 +1,45 @@
+.navBar {
+    display: block;
+    background-color: rgb(0, 48, 87, .65);
+    width: 100%;
+    color: white;
+    padding-bottom: .25em;
+    padding-top: .5em;
+    position: fixed;
+    top: 0;
+}
+.dropDown-content {
+    position: absolute;
+    background-color: rgb(0, 48, 87, .65);
+    right: 0;
+    margin-top: .15em;
+    border:1.5px solid rgb(0, 48, 87, .65);
+}
+.dropDown {
+    display: inline-block;
+}
+.search {
+    float: left;
+    margin-left: .25em;
+    opacity: .75;
+}
+.icons {
+    float: right;
+    margin-top: .15em;
+    font-size: 25px;
+    cursor: pointer;
+}
+.icon {
+    opacity: .75;
+    margin-right: .5em;
+}
+.icon:hover {
+    opacity: .85;
+}
+.icon:active {
+    opacity: 1;
+}
+.menuItem {
+    display: block;
+    padding: .25em;
+}

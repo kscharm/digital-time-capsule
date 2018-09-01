@@ -4,7 +4,7 @@ import Link from 'react-router-dom/Link';
 
 const ReactLink = (props) => {
   return (
-      <Link className='reactLink' to={props.to} > {props.linkText} </Link>
+      <Link className={ `reactLink-default reactLink-${props.linkType}` } to={props.to} > {props.linkText} </Link>
   );
 };
 

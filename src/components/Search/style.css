@@ -1,0 +1,6 @@
+/* Style the search box inside the navigation bar */
+input[type=text] {
+    padding: 6px;
+    border: none;
+    font-size: 17px;
+}

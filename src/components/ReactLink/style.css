@@ -1,4 +1,4 @@
-.reactLink {
+.reactLink-default {
     background-color: #003057;
     box-shadow: 0 5px 0 #F9F6E5;
     color: white;
@@ -8,12 +8,12 @@
     text-transform: uppercase;
 }
 
-.reactLink:hover {
+.reactLink-default:hover {
     background-color: #002233;
     cursor: pointer;
 }
 
-.reactLink:active {
+.reactLink-default:active {
     box-shadow: none;
     top: 5px;
 }
