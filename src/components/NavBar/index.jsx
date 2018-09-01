@@ -54,7 +54,6 @@ export default class NavBar extends Component {
   }
 
   dropMenu = (icon) => {
-    console.log('hello');
     if (icon==='home') {
       this.setState({homeClicked: true, userClicked: false, menuClicked: false});
       this.setState({showMenu: false});
