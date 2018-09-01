@@ -26,10 +26,6 @@ export default class PersonalCapsule extends Component {
     return (
         <div id='capsulePage'>
           <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
-            <OurButton 
-              buttonAction={() => { this.hello() }} 
-              buttonText='CLICK ME' >
-            </OurButton>
             <div className='login'>
               <OurButton //this button needs to be in the bottom left corner and be scalable to the screen size
                 buttonAction={() => { this.hello() }} 
