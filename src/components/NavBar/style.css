@@ -39,3 +39,6 @@
 .icon:active {
     opacity: 1;
 }
+.menuItem {
+    display: block;
+}

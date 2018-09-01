@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
 import './style.css';
 import Search from '../Search'
-import { FaHome, FaCloudUploadAlt, FaUserCircle, FaBars } from 'react-icons/fa';
+import { 
+  FaHome,
+  FaCloudUploadAlt,
+  FaUserCircle,
+  FaBars,
+  FaUsers,
+  FaCog,
+  FaMusic,
+  FaArchive
+} from 'react-icons/fa';
 
-const OurButtons = (props) => {
+const Menu = (props) => {
+  let contents = [];
+  if (props.options) {
+    contents = props.options.map(option => (
+      <span className="menuItem" key={option}>{option}</span>
+    ));
+  }
+
   return (
-      <button onClick={props.buttonAction} className={ `our-btn-default our-btn-${props.buttonType}` }>{props.buttonText}</button>
+      <div>
+        {contents}
+      </div>
   );
 };
 
@@ -15,16 +33,12 @@ export default class NavBar extends Component {
   }
 
   state = {
-    showDropDown: false,
-  }
-
-  handleLoading = (isLoading) => {
-    this.setState({isLoading: isLoading});
+    showMenu: false,
   }
 
   dropMenu = () => {
     console.log('hello');
-    this.setState({showDropDown: true});
+    this.setState({showMenu: !this.state.showMenu});
   }
 
   render() {
@@ -40,8 +54,8 @@ export default class NavBar extends Component {
               <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} />
               <div className='dropDown'>
                 <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} />
-                <div className='dropDown-content'>
-                  {this.state.showDropDown ? <OurButtons/> : null}
+                <div className='dropDown-content' style={this.state.showMenu ? {display: 'block'} : {display: 'none'}} >
+                  {this.state.showMenu ? <Menu options={['Settings', 'Capsules', 'Playlists', 'Friends']} /> : null }
                 </div>
               </div>
             </div>
