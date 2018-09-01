@@ -14,10 +14,24 @@ import {
 
 const Menu = (props) => {
   let contents = [];
+  let icon = '';
   if (props.options) {
-    contents = props.options.map(option => (
-      <span className="menuItem" key={option}>{option}</span>
-    ));
+    contents = props.options.map(option => {
+      if (option==='Settings') {
+        icon = <FaCog/>
+      } else if (option==='Capsules') {
+        icon = <FaArchive/>
+      } else if (option==='Playlists') {
+        icon = <FaMusic/>
+      } else if (option==='Friends') {
+        icon = <FaUsers/>
+      }
+      return (
+        <div>
+          <span className="menuItem" key={option}>{icon} {option}</span>
+        </div>
+      );
+    });
   }
 
   return (
@@ -34,11 +48,22 @@ export default class NavBar extends Component {
 
   state = {
     showMenu: false,
+    homeClicked: false,
+    userClicked:false,
+    menuClicked:false,
   }
 
-  dropMenu = () => {
-    console.log('hello');
-    this.setState({showMenu: !this.state.showMenu});
+  dropMenu = (icon) => {
+    if (icon==='home') {
+      this.setState({homeClicked: true, userClicked: false, menuClicked: false});
+      this.setState({showMenu: false});
+    } else if (icon==='user') {
+      this.setState({homeClicked: false, userClicked: true, menuClicked: false});
+      this.setState({showMenu: false});
+    } else if (icon==='menu') {
+      this.setState({homeClicked: false, userClicked: false, menuClicked: true});
+      this.setState({showMenu: !this.state.showMenu});
+    }
   }
 
   render() {
@@ -49,11 +74,11 @@ export default class NavBar extends Component {
                 <Search />
             </div>
             <div className='icons'>
-              <FaHome className='icon' onClick={() => { this.dropMenu('home')}} />
+              <FaHome className='icon' onClick={() => { this.dropMenu('home')}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
-              <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} />
+              <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
               <div className='dropDown'>
-                <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} />
+                <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} style={this.state.menuClicked ? {opacity: 1} : {opacity: .75}}/>
                 <div className='dropDown-content' style={this.state.showMenu ? {display: 'block'} : {display: 'none'}} >
                   {this.state.showMenu ? <Menu options={['Settings', 'Capsules', 'Playlists', 'Friends']} /> : null }
                 </div>

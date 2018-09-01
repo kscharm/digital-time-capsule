@@ -41,4 +41,5 @@
 }
 .menuItem {
     display: block;
+    padding: .25em;
 }
