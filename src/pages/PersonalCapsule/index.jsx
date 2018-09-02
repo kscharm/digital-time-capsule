@@ -1,8 +1,42 @@
 import React, { Component } from 'react';
 import AddButton from '../../components/AddButton';
-import Spinner from '../../components/Spinner';
 import Background from '../../images/cork.jpg';
 import './style.css';
+import {
+  FaCamera,
+  FaMusic,
+  FaFont,
+  FaQuoteLeft,
+} from 'react-icons/fa';
+
+const Add = (props) => {
+  let contents = [];
+  let icon = '';
+  if (props.options) {
+    contents = props.options.map(option => {
+      if (option==='Photo') {
+        icon = <FaCamera/>
+      } else if (option==='Text') {
+        icon = <FaFont/>
+      } else if (option==='Quote') {
+        icon = <FaQuoteLeft/>
+      } else if (option==='Music') {
+        icon = <FaMusic/>
+      }
+      return (
+        <div>
+          <span className="menuItem" key={option}>{icon}</span>
+        </div>
+      );
+    });
+  }
+
+  return (
+      <div>
+        {contents}
+      </div>
+  );
+}
 
 export default class PersonalCapsule extends Component {
   constructor(props) {
@@ -10,16 +44,11 @@ export default class PersonalCapsule extends Component {
   }
 
   state = {
-    isLoading: false,
+    addPop: false,
   }
 
-  handleLoading = (isLoading) => {
-    this.setState({isLoading: isLoading});
-  }
-
-  hello = () => {
-    console.log('hello');
-    this.setState({isLoading: true});
+  handlePop = () => {
+    this.setState({addPop: !this.state.addPop});
   }
 
   render() {
@@ -29,12 +58,14 @@ export default class PersonalCapsule extends Component {
           <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
             <div className='addButton'>
               <AddButton
-                buttonAction={() => { this.hello() }}
+                buttonAction={() => { this.handlePop() }}
                 buttonType='add'
               />
+              <div className='addPop'>
+                {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
+              </div>
             </div>
           </div>
-          <Spinner isLoading={this.state.isLoading} handleLoading={this.handleLoading} />
         </div>
     );
   };

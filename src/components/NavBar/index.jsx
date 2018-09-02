@@ -9,7 +9,8 @@ import {
   FaUsers,
   FaCog,
   FaMusic,
-  FaArchive
+  FaArchive,
+  FaSignOutAlt,
 } from 'react-icons/fa';
 
 const Menu = (props) => {
@@ -25,6 +26,8 @@ const Menu = (props) => {
         icon = <FaMusic/>
       } else if (option==='Friends') {
         icon = <FaUsers/>
+      } else if (option==='Logout') {
+        icon = <FaSignOutAlt/>
       }
       return (
         <div>
@@ -80,7 +83,7 @@ export default class NavBar extends Component {
               <div className='dropDown'>
                 <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} style={this.state.menuClicked ? {opacity: 1} : {opacity: .75}}/>
                 <div className='dropDown-content' style={this.state.showMenu ? {display: 'block'} : {display: 'none'}} >
-                  {this.state.showMenu ? <Menu options={['Settings', 'Capsules', 'Playlists', 'Friends']} /> : null }
+                  {this.state.showMenu ? <Menu options={['Settings', 'Capsules', 'Playlists', 'Friends', 'Logout']} /> : null }
                 </div>
               </div>
             </div>

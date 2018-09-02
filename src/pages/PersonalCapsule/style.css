@@ -5,3 +5,15 @@
     background-size: cover;
     position: relative;
 }
+.menuItem {
+    display: block;
+    padding: .25em;
+    opacity: .75;
+}
+.menuItem:hover {
+    opacity: 1;
+}
+.addPop {
+    position: absolute;
+    bottom: 8em;
+}
