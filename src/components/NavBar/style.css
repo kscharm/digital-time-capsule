@@ -42,4 +42,8 @@
 .menuItem {
     display: block;
     padding: .25em;
+    opacity: .75;
+}
+.menuItem:hover {
+    opacity: 1;
 }
