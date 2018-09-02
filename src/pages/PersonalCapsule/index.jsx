@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import OurButton from '../../components/OurButton';
+import AddButton from '../../components/AddButton';
 import Spinner from '../../components/Spinner';
 import Background from '../../images/cork.jpg';
 import './style.css';
@@ -23,13 +23,13 @@ export default class PersonalCapsule extends Component {
   }
 
   render() {
+
     return (
         <div id='capsulePage'>
           <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
-            <div className='login'>
-              <OurButton //this button needs to be in the bottom left corner and be scalable to the screen size
-                buttonAction={() => { this.hello() }} 
-                buttonText='+'
+            <div className='addButton'>
+              <AddButton
+                buttonAction={() => { this.hello() }}
                 buttonType='add'
               />
             </div>
