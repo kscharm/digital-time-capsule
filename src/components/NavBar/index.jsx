@@ -83,7 +83,7 @@ export default class NavBar extends Component {
             </div>
             <div className='icons'>
               <Link to="/personalCapsule" style={{color: 'white'}}>
-                <FaHome className='icon' onClick={() => {console.log("redirecting to personal time capsule page")}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
+                <FaHome className='icon' onClick={() => {console.log("redirecting to personal time capsule page"); this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>{' '}
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
               <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
