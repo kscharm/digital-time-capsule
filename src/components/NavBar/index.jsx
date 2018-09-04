@@ -13,6 +13,11 @@ import {
   FaSignOutAlt,
 } from 'react-icons/fa';
 
+import {
+  BrowserRouter as Router,
+  Link,
+} from 'react-router-dom';
+
 const Menu = (props) => {
   let contents = [];
   let icon = '';
@@ -69,6 +74,11 @@ export default class NavBar extends Component {
     }
   }
 
+  // returnToHome = () => {
+  //   <Link to='/' ></Link>
+  //   console.log("did the thing");
+  // }
+
   render() {
     return (
       <div>
@@ -77,7 +87,9 @@ export default class NavBar extends Component {
                 <Search />
             </div>
             <div className='icons'>
-              <FaHome className='icon' onClick={() => { this.dropMenu('home')}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
+              <Link to="/personalCapsule">
+                <FaHome className='icon' onClick={() => {console.log("im in")}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
+              </Link>{' '}
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
               <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
               <div className='dropDown'>
