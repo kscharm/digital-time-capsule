@@ -8,6 +8,7 @@ import {
   FaFont,
   FaQuoteLeft,
 } from 'react-icons/fa';
+import NavBar from '../../components/NavBar';
 
 const Add = (props) => {
   let contents = [];
@@ -61,11 +62,12 @@ export default class PersonalCapsule extends Component {
               buttonAction={() => { this.handlePop() }}
               buttonType='add'
             />
-            <div className='addPop'>
+            <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
               {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
             </div>
           </div>
         </div>
+        <NavBar/>
       </div>
     );
   };

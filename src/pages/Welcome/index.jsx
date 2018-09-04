@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import ReactLink from '../../components/ReactLink';
 import Background from '../../images/cork.jpg';
-import './style.css'
+import './style.css';
 
 export default class WelcomePage extends Component {
   constructor(props) {
     super(props);
+  }
+
+  login() {
+    console.log('hello');
   }
 
   render() {
@@ -13,7 +17,7 @@ export default class WelcomePage extends Component {
         <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
           <div className='welcomeMessage' >
             <span className='mainMessage'> Welcome! </span>
-            <span className='subMessage'> This is your hell, and mine. </span>
+            <span className='subMessage'> Go Jackets! </span>
           </div>
           <div className='login'>
             <ReactLink 
@@ -25,6 +29,7 @@ export default class WelcomePage extends Component {
             />
           </div>
         </div>
+        
     );
   };
 }

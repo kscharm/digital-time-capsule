@@ -6,11 +6,9 @@ import {
 } from 'react-router-dom';
 import PersonalCapsule from './pages/PersonalCapsule';
 import WelcomePage from './pages/Welcome';
-import NavBar from './components/NavBar';
 import BottomBar from './components/BottomBar';
 
-class App extends Component {
-
+class App extends Component {  
   render() {
     // Check for browser compatibility
     const supportsHistory = 'pushState' in window.history;
@@ -38,7 +36,6 @@ class App extends Component {
           }
           />
         </BrowserRouter>
-        <NavBar/>
         <BottomBar/>
       </div>
     );
