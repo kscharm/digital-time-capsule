@@ -1,19 +1,24 @@
 {
-  "name": "digital-time-capsule",
-  "version": "0.1.0",
+  "name": "digital-time-capsule-server",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "mongodb": "^3.1.4",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-icons": "^3.0.5",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "babel-core": "6.14.0",
+    "express": "4.13.3",
+    "mongodb": "^3.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run server\" \"npm run app\"",
+    "server": "node server.js",
+    "app": "node launchApp.js",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "concurrently": "3.1.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.9.0"
   }
 }
