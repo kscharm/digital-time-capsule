@@ -9,11 +9,29 @@
     display: block;
     padding: .25em;
     opacity: .75;
+    color: white;
+    opacity: .75;
 }
 .menuItem:hover {
     opacity: 1;
 }
 .addPop {
+    display: inline-block;
     position: absolute;
     bottom: 8em;
+    background-color: rgb(0, 48, 87);
+    opacity: .65;
+    left: 10px;
+    margin-bottom: -3.85em;
+    border: 1.5px solid rgb(0, 48, 87);
+    font-size: 30px;
 }
+
+/* .addPop-content {
+    position: absolute;
+    background-color: rgb(0, 48, 87);
+    opacity: .65;
+    right: 0;
+    margin-top: .15em;
+    border:1.5px solid rgb(0, 48, 87);
+} */

@@ -8,6 +8,7 @@ import {
   FaFont,
   FaQuoteLeft,
 } from 'react-icons/fa';
+import NavBar from '../../components/NavBar';
 
 const Add = (props) => {
   let contents = [];
@@ -25,7 +26,7 @@ const Add = (props) => {
       }
       return (
         <div>
-          <span className="menuItem" key={option}>{icon}</span>
+          <span className="menuItem" key={option}>{icon} {option}</span>
         </div>
       );
     });
@@ -54,19 +55,20 @@ export default class PersonalCapsule extends Component {
   render() {
 
     return (
-        <div id='capsulePage'>
-          <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
-            <div className='addButton'>
-              <AddButton
-                buttonAction={() => { this.handlePop() }}
-                buttonType='add'
-              />
-              <div className='addPop'>
-                {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
-              </div>
+      <div id='capsulePage'>
+        <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
+          <div className='addButton'>
+            <AddButton
+              buttonAction={() => { this.handlePop() }}
+              buttonType='add'
+            />
+            <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
+              {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
             </div>
           </div>
         </div>
+        <NavBar/>
+      </div>
     );
   };
 }

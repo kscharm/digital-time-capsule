@@ -13,9 +13,16 @@ import {
   FaSignOutAlt,
 } from 'react-icons/fa';
 
+import {
+  BrowserRouter as Router,
+  Link,
+} from 'react-router-dom';
+
 const Menu = (props) => {
   let contents = [];
   let icon = '';
+  let clicks = () => {};
+  let toPage = '';
   if (props.options) {
     contents = props.options.map(option => {
       if (option==='Settings') {
@@ -28,10 +35,18 @@ const Menu = (props) => {
         icon = <FaUsers/>
       } else if (option==='Logout') {
         icon = <FaSignOutAlt/>
+        clicks = () => {
+          console.log('IM LOGGING OUT');
+        }
+        toPage = '/';
       }
       return (
         <div>
-          <span className="menuItem" key={option}>{icon} {option}</span>
+          <Link to={toPage} style={{color: 'white', textDecoration: 'none'}}>
+            <span className="menuItem" key={option} onClick={clicks} >
+              {icon} {option}
+            </span>
+          </Link>
         </div>
       );
     });
@@ -77,7 +92,9 @@ export default class NavBar extends Component {
                 <Search />
             </div>
             <div className='icons'>
-              <FaHome className='icon' onClick={() => { this.dropMenu('home')}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
+              <Link to="/personalCapsule" style={{color: 'white'}}>
+                <FaHome className='icon' onClick={() => {console.log("redirecting to personal time capsule page"); this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
+              </Link>
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
               <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
               <div className='dropDown'>
