@@ -20,7 +20,10 @@
         },
         "capsules": {
             "bsonType": "array",
-            "description": "array of time capsule ids"
+            "description": "array of time capsule ids",
+            "items": [{
+                "type": "string"
+            }]
         },
         "title": {
             "bsonType": "string",
