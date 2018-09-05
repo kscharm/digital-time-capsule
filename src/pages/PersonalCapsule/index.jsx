@@ -67,7 +67,7 @@ export default class PersonalCapsule extends Component {
             </div>
           </div>
         </div>
-        <NavBar/>
+        <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
       </div>
     );
   };

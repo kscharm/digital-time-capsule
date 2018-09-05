@@ -69,12 +69,20 @@ export default class NavBar extends Component {
     homeClicked: false,
     userClicked:false,
     menuClicked:false,
+    addPop: false,
+  }
+
+  componentWillReceiveProps (newProps) {
+    if (newProps.hasOwnProperty('addPop')) {
+      this.setState({addPop: newProps.addPop});
+    }
   }
 
   dropMenu = (icon) => {
     if (icon==='home') {
       this.setState({homeClicked: true, userClicked: false, menuClicked: false});
       this.setState({showMenu: false});
+      this.props.handlePop(false);
     } else if (icon==='user') {
       this.setState({homeClicked: false, userClicked: true, menuClicked: false});
       this.setState({showMenu: false});
