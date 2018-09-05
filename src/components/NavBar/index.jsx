@@ -21,6 +21,8 @@ import {
 const Menu = (props) => {
   let contents = [];
   let icon = '';
+  let clicks = () => {};
+  let toPage = '';
   if (props.options) {
     contents = props.options.map(option => {
       if (option==='Settings') {
@@ -33,10 +35,18 @@ const Menu = (props) => {
         icon = <FaUsers/>
       } else if (option==='Logout') {
         icon = <FaSignOutAlt/>
+        clicks = () => {
+          console.log('IM LOGGING OUT');
+        }
+        toPage = '/';
       }
       return (
         <div>
-          <span className="menuItem" key={option}>{icon} {option}</span>
+          <Link to={toPage} style={{color: 'white', textDecoration: 'none'}}>
+            <span className="menuItem" key={option} onClick={clicks} >
+              {icon} {option}
+            </span>
+          </Link>
         </div>
       );
     });
