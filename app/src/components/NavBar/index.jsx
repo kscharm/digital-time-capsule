@@ -14,7 +14,6 @@ import {
 } from 'react-icons/fa';
 
 import {
-  BrowserRouter as Router,
   Link,
 } from 'react-router-dom';
 

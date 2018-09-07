@@ -40,9 +40,9 @@ const Add = (props) => {
 }
 
 export default class PersonalCapsule extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     addPop: false,
