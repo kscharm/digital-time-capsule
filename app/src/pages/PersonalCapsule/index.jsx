@@ -48,8 +48,8 @@ export default class PersonalCapsule extends Component {
     addPop: false,
   }
 
-  handlePop = () => {
-    this.setState({addPop: !this.state.addPop});
+  handlePop = (pop) => {
+    this.setState({addPop: pop});
   }
 
   render() {
@@ -59,7 +59,7 @@ export default class PersonalCapsule extends Component {
         <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
           <div className='addButton'>
             <AddButton
-              buttonAction={() => { this.handlePop() }}
+              buttonAction={() => { this.handlePop(!this.state.addPop) }}
               buttonType='add'
             />
             <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
