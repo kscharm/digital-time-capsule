@@ -9,35 +9,7 @@ import {
   FaQuoteLeft,
 } from 'react-icons/fa';
 import NavBar from '../../components/NavBar';
-
-const Add = (props) => {
-  let contents = [];
-  let icon = '';
-  if (props.options) {
-    contents = props.options.map(option => {
-      if (option==='Photo') {
-        icon = <FaCamera/>
-      } else if (option==='Text') {
-        icon = <FaFont/>
-      } else if (option==='Quote') {
-        icon = <FaQuoteLeft/>
-      } else if (option==='Music') {
-        icon = <FaMusic/>
-      }
-      return (
-        <div>
-          <span className="menuItem" key={option}>{icon} {option}</span>
-        </div>
-      );
-    });
-  }
-
-  return (
-      <div>
-        {contents}
-      </div>
-  );
-}
+import AddPhoto from '../../components/Cards/AddPhoto';
 
 export default class PersonalCapsule extends Component {
   // constructor(props) {
@@ -46,13 +18,51 @@ export default class PersonalCapsule extends Component {
 
   state = {
     addPop: false,
+    showAddPhoto: false,
   }
 
   handlePop = (pop) => {
     this.setState({addPop: pop});
   }
+  handleShowAddPhoto = (show) => {
+    this.setState({showAddPhoto: show});
+  }
 
   render() {
+
+    const Add = (props) => {
+      let contents = [];
+      let icon = '';
+      let onClicks = () => {};
+      if (props.options) {
+        contents = props.options.map(option => {
+          if (option==='Photo') {
+            icon = <FaCamera/>
+            onClicks = () => {
+              this.handleShowAddPhoto(!this.state.showAddPhoto);
+              console.log('ADDING PHOTO!!!!');
+            }
+          } else if (option==='Text') {
+            icon = <FaFont/>
+          } else if (option==='Quote') {
+            icon = <FaQuoteLeft/>
+          } else if (option==='Music') {
+            icon = <FaMusic/>
+          }
+          return (
+            <div>
+              <span onClick={onClicks} className="menuItem" key={option}>{icon} {option}</span>
+            </div>
+          );
+        });
+      }
+    
+      return (
+          <div>
+            {contents}
+          </div>
+      );
+    }
 
     return (
       <div id='capsulePage'>
@@ -68,6 +78,7 @@ export default class PersonalCapsule extends Component {
           </div>
         </div>
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
+        {this.state.showAddPhoto ? <AddPhoto handleShowAddPhoto={this.handleShowAddPhoto}/> : null}
       </div>
     );
   };
