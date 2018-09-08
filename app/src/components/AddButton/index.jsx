@@ -5,7 +5,7 @@ import {FaPlus} from 'react-icons/fa';
 const AddButton = (props) => {
   return (
       <div className='add'>     
-        <button onClick={props.buttonAction} className={ `our-btn-default our-btn-${props.buttonType}` }>
+        <button onClick={props.buttonAction} className={ `our-btn-${props.buttonType}` }>
           <FaPlus className='addIcon' size={32}/>
         </button>
       </div>

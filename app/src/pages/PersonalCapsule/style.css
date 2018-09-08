@@ -11,6 +11,7 @@
     opacity: .75;
     color: white;
     opacity: .75;
+    cursor: pointer;
 }
 .menuItem:hover {
     opacity: 1;
