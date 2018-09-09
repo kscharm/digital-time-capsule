@@ -25,7 +25,7 @@ const Add = (props) => {
         icon = <FaMusic/>
       }
       return (
-        <div>
+        <div key={option}>
           <span className="menuItem" key={option}>{icon} {option}</span>
         </div>
       );
