@@ -4,9 +4,9 @@ import Background from '../../images/cork.jpg';
 import './style.css';
 
 export default class WelcomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   login() {
     console.log('hello');

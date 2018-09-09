@@ -59,9 +59,9 @@ const Menu = (props) => {
 };
 
 export default class NavBar extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     showMenu: false,
