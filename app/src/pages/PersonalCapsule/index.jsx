@@ -40,6 +40,7 @@ export default class PersonalCapsule extends Component {
             icon = <FaCamera/>
             onClicks = () => {
               this.handleShowAddPhoto(!this.state.showAddPhoto);
+              this.handlePop(false);
               console.log('ADDING PHOTO!!!!');
             }
           } else if (option==='Text') {
