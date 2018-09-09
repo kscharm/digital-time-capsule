@@ -17,15 +17,21 @@ export default class AddPhoto extends Component {
 
   render() {
     return (
-      <div>
-        <div className='addPhoto'>
+    <div className='addPhoto'>
+        <div className='addPhotoBack'/>
+        <div className='addPhotoCard'>
+            <OurButton
+                buttonText='Add'
+                buttonAction={() => {this.closeAddPhoto()}}
+                buttonType='primary'
+            />
             <OurButton
                 buttonText='Cancel'
                 buttonAction={() => {this.closeAddPhoto()}}
                 buttonType='secondary'
             />
         </div>
-      </div>
+    </div>
     );
   };
 }
