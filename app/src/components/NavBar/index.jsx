@@ -21,7 +21,7 @@ const Menu = (props) => {
   let contents = [];
   let icon = '';
   let clicks = () => {};
-  let toPage = '#';
+  let toPage = '';
   if (props.options) {
     contents = props.options.map(option => {
       if (option==='Settings') {
@@ -40,7 +40,7 @@ const Menu = (props) => {
         toPage = '/';
       }
       return (
-        <div>
+        <div key={option}>
           <Link to={toPage} style={{color: 'white', textDecoration: 'none'}}>
             <span className="menuItem" key={option} onClick={clicks} >
               {icon} {option}
@@ -59,9 +59,9 @@ const Menu = (props) => {
 };
 
 export default class NavBar extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     showMenu: false,

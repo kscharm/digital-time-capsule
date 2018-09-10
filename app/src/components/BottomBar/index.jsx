@@ -6,7 +6,7 @@ const BottomBar = (props) => {
   return (
     <div className='bottomBar'>
         <div className='logo'>
-            <img src={logo} className='logoImage' />
+            <img src={logo} className='logoImage' alt="Georgia Tech logo" />
             <span className='copyright' > © Georgia Institute of Technology </span>
         </div>
     </div>

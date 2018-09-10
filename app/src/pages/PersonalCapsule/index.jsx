@@ -51,7 +51,7 @@ export default class PersonalCapsule extends Component {
             icon = <FaMusic/>
           }
           return (
-            <div>
+            <div key={option}>
               <span onClick={onClicks} className="menuItem" key={option}>{icon} {option}</span>
             </div>
           );
