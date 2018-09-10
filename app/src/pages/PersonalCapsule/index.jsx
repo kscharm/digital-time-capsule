@@ -45,10 +45,13 @@ export default class PersonalCapsule extends Component {
             }
           } else if (option==='Text') {
             icon = <FaFont/>
+            onClicks = () => {console.log('mom else')};
           } else if (option==='Quote') {
             icon = <FaQuoteLeft/>
+            onClicks = () => {console.log('your else')};
           } else if (option==='Music') {
             icon = <FaMusic/>
+            onClicks = () => {console.log('dumb else')};
           }
           return (
             <div key={option}>
