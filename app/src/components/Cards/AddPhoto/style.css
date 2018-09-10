@@ -50,22 +50,22 @@
     width: 15em;
 }
 /*For Inputs*/
-input {
+.addPhotoCard input {
     border: 0;
     outline: 0;
     background: transparent;
     border-bottom: 2px solid white;
     width: 100%;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.addPhotoCard ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     opacity: .75; /* Firefox */
 }
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.addPhotoCard :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: white;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
+.addPhotoCard ::-ms-input-placeholder { /* Microsoft Edge */
     color: white;
 }
-input:focus { color: white; }
+.addPhotoCard input:focus { color: white; }

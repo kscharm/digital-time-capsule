@@ -31,7 +31,7 @@ export default class AddPhoto extends Component {
                 </div>
             </div>
             <span className='sectionLabels'> Add Caption: </span>
-            <input id='caption' placeholder='Caption...' style={{marginBottom: '1em'}}/>
+            <input className='caption' placeholder='Caption...' style={{marginBottom: '1em'}}/>
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
                 <img className="frameImg" src={addPhotoBase} alt="" />
