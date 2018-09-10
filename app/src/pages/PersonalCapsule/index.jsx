@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fa';
 import NavBar from '../../components/NavBar';
 import AddPhoto from '../../components/Cards/AddPhoto';
+import AddText from '../../components/Cards/AddText';
 
 export default class PersonalCapsule extends Component {
   // constructor(props) {
@@ -19,6 +20,7 @@ export default class PersonalCapsule extends Component {
   state = {
     addPop: false,
     showAddPhoto: false,
+    showAddText: false,
   }
 
   handlePop = (pop) => {
@@ -26,6 +28,9 @@ export default class PersonalCapsule extends Component {
   }
   handleShowAddPhoto = (show) => {
     this.setState({showAddPhoto: show});
+  }
+  handleShowAddText = (show) => {
+    this.setState({showAddText: show});
   }
 
   render() {
@@ -45,7 +50,11 @@ export default class PersonalCapsule extends Component {
             }
           } else if (option==='Text') {
             icon = <FaFont/>
-            onClicks = () => {console.log('mom else')};
+            onClicks = () => {
+              this.handleShowAddText(!this.state.showAddText);
+              this.handlePop(false);
+              console.log('mom else');
+            };
           } else if (option==='Quote') {
             icon = <FaQuoteLeft/>
             onClicks = () => {console.log('your else')};
@@ -83,6 +92,7 @@ export default class PersonalCapsule extends Component {
         </div>
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
         {this.state.showAddPhoto ? <AddPhoto handleShowAddPhoto={this.handleShowAddPhoto}/> : null}
+        {this.state.showAddText ? <AddText handleShowAddText={this.handleShowAddText}/> : null}
       </div>
     );
   };
