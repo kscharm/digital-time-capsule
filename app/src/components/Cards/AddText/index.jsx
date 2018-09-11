@@ -1,9 +1,42 @@
 import React, { Component } from 'react';
 import './style.css';
-import '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+  CodeButton,
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  HeadlineThreeButton,
+  UnorderedListButton,
+  OrderedListButton,
+  BlockquoteButton,
+  CodeBlockButton,
+} from 'draft-js-buttons';
+import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
+
+const toolbarPlugin = createToolbarPlugin({
+    structure: [
+      BoldButton,
+      ItalicButton,
+      UnderlineButton,
+      CodeButton,
+      Separator,
+      HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton,
+      Separator,
+      UnorderedListButton,
+      OrderedListButton,
+      BlockquoteButton,
+      CodeBlockButton
+    ]
+  });
+const { Toolbar } = toolbarPlugin;
+const plugins = [toolbarPlugin];
+const text = '';
 
 export default class AddText extends Component {
     constructor(props) {
@@ -11,49 +44,40 @@ export default class AddText extends Component {
     }
 
     state = {
-        editorState: EditorState.createEmpty()
-    }
+        editorState: createEditorStateWithText(text),
+    };
+
+    onChange = (editorState) => {
+        this.setState({
+            editorState,
+        });
+    };
+
+    focus = () => {
+        this.editor.focus();
+    };
 
     closeAddText = () => {
         this.props.handleShowAddText(false);
     }
 
-    // The following methods are for The text editor
-    onChange = editorState => {this.setState({editorState})};
-    handleKeyCommand(command, editorState) {
-        const newState = RichUtils.handleKeyCommand(editorState, command);
-        if (newState) {
-        this.onChange(newState);
-        return 'handled';
-        }
-        return 'not-handled';
-    }
-    // When a user clicks a button, Change the style
-    _onClick = (e) => {
-        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, e.target.name));
-    }
-
 
   render() {
-    // A list of possible styles that conforms with RichUtils abilities
-    const styles = ['BOLD', 'ITALIC', 'UNDERLINE', 'CODE'];
-    const buttons = styles.map(style => {
-      return <button key={style} onClick={this._onClick} name={style}>{style}</button>
-    })
     return (
     <div className='addText'>
         <div className='addTextBack'/>
         <div className='addTextCard'>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
-            <div className='textDiv'>
-                <div className='toolbar'>
-                    {buttons}
-                </div>
-                <Editor 
+            <div className={editorStyles.editor} onClick={this.focus}>
+                <Editor
                     editorState={this.state.editorState}
-                    handleKeyCommand={this.handleKeyCommand}
                     onChange={this.onChange}
+                    plugins={plugins}
+                    ref={(element) => { this.editor = element; }}
                 />
+                <div  className='toolbar'>
+                    <Toolbar />
+                </div>
             </div>
             <div className='actionButtons'>
                 <OurButton

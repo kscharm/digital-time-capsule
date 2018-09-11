@@ -37,10 +37,8 @@
 
 div.DraftEditor-root {
     background-color: #fffef7;
-    width:80%;
-    margin:auto;
-    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
     height:300px;
+    width: 500px;
     overflow-y: auto;
     padding:20px;
     font-size: 18px;
@@ -48,21 +46,5 @@ div.DraftEditor-root {
 }
 
 div.DraftEditor-editorContainer {
-    margin-top:40px;
-  }
-  div.toolbar {
-    position: relative;
-    width: 80%;
-    background-color: lightsteelblue;
-    padding: 10px 20px;
-    margin: auto;
-    top: 45px;
-    text-align: right;
-  }
-  div.toolbar button {
-    border: 1px solid black;
-    padding:5px;
-    margin-right:4px;
-    background-color:black;
-    color:white;
-  }
+    margin-top:.5em;
+}
