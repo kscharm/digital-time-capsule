@@ -4,50 +4,26 @@ import '../../OurButton';
 import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
 
-import ImageUploader from 'react-images-upload';
+import ImageDropZone from 'react-image-dropzone';
 
 export default class AddPhoto extends Component {
   constructor(props) {
     super(props);
-    this.state = { pictures: [addPhotoBase] };
-    this.onDrop = this.onDrop.bind(this);
-    console.log(this.state.pictures);
   }
 
   state = {
     filePop: false,
   }
 
-  handleFilePop = (pop) => {
-    this.setState({filePop: pop});
-  }
-
   closeAddPhoto = () => {
     this.props.handleShowAddPhoto(false);
   }
 
-  onDrop(picture) {
-    console.log(this.state.pictures);
-    this.setState({
-        pictures: this.state.pictures = picture,
-    });
-    console.log(this.state.pictures);
-}
-
   render() {
-      const FileExplorer = (/*props*/) => {
-        return (
-            <div>
-              <ImageUploader
-                withIcon={true}
-                buttonText='Choose file'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
-            />
-            </div>
-        );
-      }
+    //   const pic = '../../../images/addPhoto.png'
+      const imagePicked = image => console.log(image)
+    //   const imageDefault = pic
+
     return (
     <div className='addPhoto'>
         <div className='addPhotoBack'/>
@@ -55,13 +31,18 @@ export default class AddPhoto extends Component {
             {/* <span className='sectionLabels'> Add Photo: </span> */}
             <div className='photo'>
                 {/* <img className="photoImg" src={this.state.pictures} alt=""/> */}
-                <div>
-                    <ImageUploader
-                        withIcon={true}
-                        buttonText='Choose file'
-                        onChange={this.onDrop}
-                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                        maxFileSize={5242880}
+                
+                {/*the div dropzone is what causese the localhost error*/}
+                <div className="dropzone">
+                    <ImageDropZone
+                        anySize
+                        showButton
+                        width={475}
+                        height={300}
+                        imageWidth={512}
+                        imageHeight={512}
+                        // imageDefault={imageDefault}
+                        imagePicked={imagePicked}
                     />
                 </div>
             </div>
@@ -72,13 +53,6 @@ export default class AddPhoto extends Component {
                 <div>
                     or drag a photo to add.
                 </div>
-                {/* <div className="fileButton" style={{paddingLeft: '37%', paddingRight: '37%'}}>
-                    <OurButton
-                        buttonText='Upload File'
-                        buttonAction={() => {this.handleFilePop(!this.state.filePop)}}
-                        buttonType='primary'
-                    />
-                </div> */}
             </div>
             <span className='sectionLabels'> Add Caption: </span>
             <input className='caption' placeholder='Caption...' style={{marginBottom: '1em'}}/>
@@ -100,9 +74,6 @@ export default class AddPhoto extends Component {
                     buttonType='secondary'
                 />
             </div>
-        </div>
-        <div className='filePop'  style={this.state.filePop ? {display: 'block', position: 'absolute'} : {display: 'none'}}>
-            {this.state.filePop ? <FileExplorer/> : null}
         </div>
     </div>
     );
