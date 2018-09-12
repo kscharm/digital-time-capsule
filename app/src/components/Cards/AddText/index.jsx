@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import OurButton from '../../OurButton';
+import addPhotoBase from '../../../images/addPhoto.png'
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
@@ -68,8 +69,7 @@ export default class AddText extends Component {
     <div className={ `addType addText` }>
       <div className={ `addTypeBack addTextBack` }/>
         <div className={ `addTypeCard addTextCard` }>
-            {/* <span className='sectionLabels'> Add Photo: </span> */}
-            <div className={editorStyles.editor} onClick={this.focus}>
+            <div className={`${editorStyles.editor} textBoxHeight`} onClick={this.focus}>
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}
@@ -79,6 +79,12 @@ export default class AddText extends Component {
                 <div  className='toolbar'>
                     <Toolbar />
                 </div>
+            </div>
+            <span className='sectionLabels'> Choose Frame: </span>
+            <div>
+                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className="frameImg" src={addPhotoBase} alt="" />
             </div>
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton
