@@ -44,6 +44,7 @@ app.listen(app.get("port"), () => {
       }
     }, (err) => {
       if (err) throw err;
+      console.log("Text collection created!");
     });
     digitalCapsule.createCollection("timeCapsules", {
       validator: {
