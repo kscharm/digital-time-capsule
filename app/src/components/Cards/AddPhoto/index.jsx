@@ -23,10 +23,6 @@ export default class AddPhoto extends Component {
   }
 
   render() {
-    //   const pic = '../../../images/addPhoto.png'
-      const imagePicked = image => console.log(image)
-    //   const imageDefault = pic
-
     const componentConfig = {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         showFiletypeIcon: true,
