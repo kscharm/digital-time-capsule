@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
   MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
-    const digitalCapsule = db.db("digitalCapsule");
+    const database = db.db("digitalCapsule");
     if (err) throw err;
     console.log("Database created!");
     const music = JSON.parse(fs.readFileSync("schemas/music.json"));
@@ -22,7 +22,7 @@ app.listen(app.get("port"), () => {
     const text = JSON.parse(fs.readFileSync("schemas/text.json"));
     const timeCapsules = JSON.parse(fs.readFileSync("schemas/timeCapsules.json"));
     const users = JSON.parse(fs.readFileSync("schemas/users.json"));
-    digitalCapsule.createCollection("music", {
+    database.createCollection("music", {
       validator: {
         $jsonSchema: music
       }
@@ -30,7 +30,7 @@ app.listen(app.get("port"), () => {
       if (err) throw err;
       console.log("Music collection created!");
     });
-    digitalCapsule.createCollection("photos", {
+    database.createCollection("photos", {
       validator: {
         $jsonSchema: photos
       }
@@ -38,7 +38,7 @@ app.listen(app.get("port"), () => {
       if (err) throw err;
       console.log("Photos collection created!");
     });
-    digitalCapsule.createCollection("text", {
+    database.createCollection("text", {
       validator: {
         $jsonSchema: text
       }
@@ -46,7 +46,7 @@ app.listen(app.get("port"), () => {
       if (err) throw err;
       console.log("Text collection created!");
     });
-    digitalCapsule.createCollection("timeCapsules", {
+    database.createCollection("timeCapsules", {
       validator: {
         $jsonSchema: timeCapsules
       }
@@ -54,7 +54,7 @@ app.listen(app.get("port"), () => {
       if (err) throw err;
       console.log("TimeCapsules collection created!");
     });
-    digitalCapsule.createCollection("users", {
+    database.createCollection("users", {
       validator: {
         $jsonSchema: users
       }
@@ -62,5 +62,6 @@ app.listen(app.get("port"), () => {
       if (err) throw err;
       console.log("Users collection created!");
     });
+    db.close();
   });
 });
