@@ -49,6 +49,9 @@
     margin: auto;
     width: 15em;
 }
+.addPhotoCard {
+    overflow-y: auto;
+}
 /*For Inputs*/
 .addPhotoCard input {
     border: 0;
