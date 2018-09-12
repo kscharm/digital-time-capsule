@@ -11,6 +11,7 @@ import {
 import NavBar from '../../components/NavBar';
 import AddPhoto from '../../components/Cards/AddPhoto';
 import AddText from '../../components/Cards/AddText';
+import AddQuote from '../../components/Cards/AddQuote';
 
 export default class PersonalCapsule extends Component {
   // constructor(props) {
@@ -21,6 +22,7 @@ export default class PersonalCapsule extends Component {
     addPop: false,
     showAddPhoto: false,
     showAddText: false,
+    showAddQuote: false,
   }
 
   handlePop = (pop) => {
@@ -31,6 +33,9 @@ export default class PersonalCapsule extends Component {
   }
   handleShowAddText = (show) => {
     this.setState({showAddText: show});
+  }
+  handleShowAddQuote = (show) => {
+    this.setState({showAddQuote: show});
   }
 
   render() {
@@ -57,7 +62,11 @@ export default class PersonalCapsule extends Component {
             };
           } else if (option==='Quote') {
             icon = <FaQuoteLeft/>
-            onClicks = () => {console.log('your else')};
+            onClicks = () => {
+              this.handleShowAddQuote(!this.state.showAddQuote);
+              this.handlePop(false);
+              console.log('your else');
+            };
           } else if (option==='Music') {
             icon = <FaMusic/>
             onClicks = () => {console.log('dumb else')};
@@ -93,6 +102,7 @@ export default class PersonalCapsule extends Component {
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
         {this.state.showAddPhoto ? <AddPhoto handleShowAddPhoto={this.handleShowAddPhoto}/> : null}
         {this.state.showAddText ? <AddText handleShowAddText={this.handleShowAddText}/> : null}
+        {this.state.showAddQuote ? <AddQuote handleShowAddQuote={this.handleShowAddQuote}/> : null}
       </div>
     );
   };

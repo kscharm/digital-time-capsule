@@ -58,16 +58,16 @@ export default class AddText extends Component {
         this.editor.focus();
     };
 
-    closeAddText = () => {
-        this.props.handleShowAddText(false);
+    closeAddQuote = () => {
+        this.props.handleShowAddQuote(false);
     }
 
 
   render() {
     return (
-    <div className={ `addType addText` }>
-      <div className={ `addTypeBack addTextBack` }/>
-        <div className={ `addTypeCard addTextCard` }>
+    <div className={ `addType addQuote` }>
+      <div className={ `addTypeBack addQuoteBack` }/>
+        <div className={ `addTypeCard addQuoteCard` }>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
             <div className={editorStyles.editor} onClick={this.focus}>
                 <Editor
@@ -80,15 +80,15 @@ export default class AddText extends Component {
                     <Toolbar />
                 </div>
             </div>
-            <div className={ `actionButtons actionButtonsText` }>
+            <div className={ `actionButtons actionButtonsQuote` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddText()}}
+                    buttonAction={() => {this.closeAddQuote()}}
                     buttonType='primary'
                 />
                 <OurButton
                     buttonText='Cancel'
-                    buttonAction={() => {this.closeAddText()}}
+                    buttonAction={() => {this.closeAddQuote()}}
                     buttonType='secondary'
                 />
             </div>
