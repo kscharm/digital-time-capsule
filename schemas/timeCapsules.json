@@ -52,7 +52,10 @@
             "bsonType": "object",
             "description": "Settings associated with a time capsule",
             "properties": {
-                "group": "string",
+                "group": {
+                    "bsonType": "string",
+                    "description": "The group this capsule belongs to"
+                },
                 "privacy": {
                     "bsonType": "object",
                     "description": "Privacy settings"
