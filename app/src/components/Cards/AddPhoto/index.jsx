@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import '../generic.css'
 import '../../OurButton';
 import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
@@ -31,9 +32,10 @@ export default class AddPhoto extends Component {
     };
 
     return (
-    <div className='addPhoto'>
-        <div className='addPhotoBack'/>
-        <div className='addPhotoCard'>
+    <div className={ `addType addPhoto` }>
+        <div className={ `addTypeBack addPhotoBack` }/>
+        <div className={ `addTypeCard addPhotoCard` }>
+            {/* <span className='sectionLabels'> Add Photo: </span> */}
             <div className='photo'>
                 <div className="dropzone">
                 <DropzoneComponent
@@ -49,7 +51,7 @@ export default class AddPhoto extends Component {
                 <img className="frameImg" src={addPhotoBase} alt="" />
                 <img className="frameImg" src={addPhotoBase} alt="" />
             </div>
-            <div className='actionButtons'>
+            <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton
                     buttonText='Add'
                     buttonAction={() => {this.closeAddPhoto}}
