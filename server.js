@@ -27,7 +27,7 @@ app.listen(app.get("port"), () => {
         $jsonSchema: music
       }
     }, (err) => {
-      if (err) throw err;
+      if (err) throw new Error("Error creating music collection: " + err.message);
       console.log("Music collection created!");
     });
     database.createCollection("photos", {
@@ -35,7 +35,7 @@ app.listen(app.get("port"), () => {
         $jsonSchema: photos
       }
     }, (err) => {
-      if (err) throw err;
+      if (err) throw new Error("Error creating photos collection: " + err.message);
       console.log("Photos collection created!");
     });
     database.createCollection("text", {
@@ -43,7 +43,7 @@ app.listen(app.get("port"), () => {
         $jsonSchema: text
       }
     }, (err) => {
-      if (err) throw err;
+      if (err) throw new Error("Error creating text collection: " + err.message);
       console.log("Text collection created!");
     });
     database.createCollection("timeCapsules", {
@@ -51,7 +51,7 @@ app.listen(app.get("port"), () => {
         $jsonSchema: timeCapsules
       }
     }, (err) => {
-      if (err) throw err;
+      if (err) throw new Error("Error creating timeCapsules collection: " + err.message);
       console.log("TimeCapsules collection created!");
     });
     database.createCollection("users", {
@@ -59,9 +59,9 @@ app.listen(app.get("port"), () => {
         $jsonSchema: users
       }
     }, (err) => {
-      if (err) throw err;
+      if (err) throw new Error("Error creating users collection: " + err.message);
       console.log("Users collection created!");
     });
-    db.close();
+    // db.close();
   });
 });
