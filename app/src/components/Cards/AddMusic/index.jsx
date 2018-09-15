@@ -3,6 +3,7 @@ import './style.css';
 import '../generic.css'
 import '../../OurButton';
 import OurButton from '../../OurButton';
+import Select from '../../Select';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -43,8 +44,7 @@ export default class AddMusic extends Component {
         <div className={ `addTypeBack addMusicBack` }/>
         <div className={ `addTypeCard addMusicCard` }>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
-            <div className='photo'>
-                <section>
+            <div className='music'>
                 <div className="dropzone">
                     <DropzoneComponent
                         config={componentConfig}
@@ -52,10 +52,11 @@ export default class AddMusic extends Component {
                         eventHandlers={eventHandlers}
                     />
                 </div>
-            </section>
             </div>
-            <span className='sectionLabels'> Add Caption: </span>
-            <input className='caption' placeholder='Caption...' style={{marginBottom: '1em'}}/>
+            <span className='sectionLabels'> Music Title: </span>
+            <input className='caption' placeholder='Title...' style={{marginBottom: '1em'}}/>
+            <span className='sectionLabels'> Choose Playlist: </span>
+            <Select choose={'Choose Playlist'} options={['Playlist 1', 'Playlist 2']} />
             <div className={ `actionButtons actionButtonsMusic` }>
                 <OurButton
                     buttonText='Add'

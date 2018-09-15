@@ -4,31 +4,29 @@
     margin-bottom: .5em;
     text-align: center;
 }
-.photoImg {
-    display: block;
-    margin: auto;
-    width: 15em;
-}
-.addPhotoCard {
+.addMusicCard {
     overflow-y: auto;
 }
+.music {
+    margin-bottom: .75em;
+}
 /*For Inputs*/
-.addPhotoCard input {
+.addMusicCard input {
     border: 0;
     outline: 0;
     background: transparent;
     border-bottom: 2px solid white;
     width: 100%;
 }
-.addPhotoCard ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.addMusicCard ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     opacity: .75; /* Firefox */
 }
-.addPhotoCard :-ms-input-placeholder { /* Internet Explorer 10-11 */
+.addMusicCard :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: white;
 }
 
-.addPhotoCard ::-ms-input-placeholder { /* Microsoft Edge */
+.addMusicCard ::-ms-input-placeholder { /* Microsoft Edge */
     color: white;
 }
-.addPhotoCard input:focus { color: white; }
+.addMusicCard input:focus { color: white; }

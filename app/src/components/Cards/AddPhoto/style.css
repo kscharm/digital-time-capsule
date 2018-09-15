@@ -12,6 +12,9 @@
 .addPhotoCard {
     overflow-y: auto;
 }
+.photo {
+    margin-bottom: .75em;
+}
 /*For Inputs*/
 .addPhotoCard input {
     border: 0;
