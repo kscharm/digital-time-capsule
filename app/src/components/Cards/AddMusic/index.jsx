@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
 import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 
-export default class AddPhoto extends Component {
+export default class AddMusic extends Component {
 //   constructor(props) {
 //     super(props);
 //   }
@@ -19,14 +18,14 @@ export default class AddPhoto extends Component {
     files: [],
   }
 
-  closeAddPhoto = () => {
-    this.props.handleShowAddPhoto(false);
+  closeAddMusic = () => {
+    this.props.handleShowAddMusic(false);
   }
 
   render() {
     const componentConfig = {
-        iconFiletypes: ['.jpg', '.png', '.gif'],
-        allowedFiletypes: ['.jpg', '.png', '.gif'],
+        iconFiletypes: ['.mp3'],
+        allowedFiletypes: ['.mp3'],
         showFiletypeIcon: true,
         postUrl: '/uploadHandler',
     };
@@ -40,36 +39,32 @@ export default class AddPhoto extends Component {
     };
 
     return (
-    <div className={ `addType addPhoto` }>
-        <div className={ `addTypeBack addPhotoBack` }/>
-        <div className={ `addTypeCard addPhotoCard` }>
+    <div className={ `addType addMusic` }>
+        <div className={ `addTypeBack addMusicBack` }/>
+        <div className={ `addTypeCard addMusicCard` }>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
             <div className='photo'>
+                <section>
                 <div className="dropzone">
-                <DropzoneComponent
-                    config={componentConfig}
-                    djsConfig={djsConfig}
-                    eventHandlers={eventHandlers}
-                />
+                    <DropzoneComponent
+                        config={componentConfig}
+                        djsConfig={djsConfig}
+                        eventHandlers={eventHandlers}
+                    />
                 </div>
+            </section>
             </div>
             <span className='sectionLabels'> Add Caption: </span>
             <input className='caption' placeholder='Caption...' style={{marginBottom: '1em'}}/>
-            <span className='sectionLabels'> Choose Frame: </span>
-            <div>
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
-            </div>
-            <div className={ `actionButtons actionButtonsPhoto` }>
+            <div className={ `actionButtons actionButtonsMusic` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddPhoto()}}
+                    buttonAction={() => {this.closeAddMusic()}}
                     buttonType='primary'
                 />
                 <OurButton
                     buttonText='Cancel'
-                    buttonAction={() => {this.closeAddPhoto()}}
+                    buttonAction={() => {this.closeAddMusic()}}
                     buttonType='secondary'
                 />
             </div>
