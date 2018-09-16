@@ -12,15 +12,15 @@
     "properties": {
         "username": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "Must be a string and is required"
         },
         "media_id": {
             "bsonType": "string",
-            "description": "unique key for media object"
+            "description": "Unique key for media object"
         },
         "capsules": {
             "bsonType": "array",
-            "description": "array of time capsule ids",
+            "description": "Array of time capsule ids",
             "items": [{
                 "type": "string"
             }]
@@ -31,15 +31,17 @@
         },
         "settings": {
             "bsonType": "object",
-            "description": "settings for text itself",
+            "description": "Settings for text itself",
             "properties": {
-                "font": "string",
-                "description": "name of font"
+                "font": {
+                    "bsonType": "string",
+                    "description": "Name of font"
+                }
             }
         },
         "metadata": {
             "bsonType": "object",
-            "description": "object containing all media metadata"
+            "description": "Object containing all media metadata"
         }
     }
 }

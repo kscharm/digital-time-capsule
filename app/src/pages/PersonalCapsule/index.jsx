@@ -10,6 +10,8 @@ import {
 } from 'react-icons/fa';
 import NavBar from '../../components/NavBar';
 import AddPhoto from '../../components/Cards/AddPhoto';
+import AddText from '../../components/Cards/AddText';
+import AddQuote from '../../components/Cards/AddQuote';
 
 import Draggable from 'react-draggable';
 import addPhotoBase from '../../images/addPhoto.png'
@@ -22,6 +24,8 @@ export default class PersonalCapsule extends Component {
   state = {
     addPop: false,
     showAddPhoto: false,
+    showAddText: false,
+    showAddQuote: false,
   }
 
   // handleDrag(e, ui) {
@@ -49,6 +53,12 @@ export default class PersonalCapsule extends Component {
   handleShowAddPhoto = (show) => {
     this.setState({showAddPhoto: show});
   }
+  handleShowAddText = (show) => {
+    this.setState({showAddText: show});
+  }
+  handleShowAddQuote = (show) => {
+    this.setState({showAddQuote: show});
+  }
 
   render() {
 
@@ -70,10 +80,21 @@ export default class PersonalCapsule extends Component {
             }
           } else if (option==='Text') {
             icon = <FaFont/>
+            onClicks = () => {
+              this.handleShowAddText(!this.state.showAddText);
+              this.handlePop(false);
+              console.log('mom else');
+            };
           } else if (option==='Quote') {
             icon = <FaQuoteLeft/>
+            onClicks = () => {
+              this.handleShowAddQuote(!this.state.showAddQuote);
+              this.handlePop(false);
+              console.log('your else');
+            };
           } else if (option==='Music') {
             icon = <FaMusic/>
+            onClicks = () => {console.log('dumb else')};
           }
           return (
             <div key={option}>
@@ -122,6 +143,8 @@ export default class PersonalCapsule extends Component {
         </div>
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
         {this.state.showAddPhoto ? <AddPhoto handleShowAddPhoto={this.handleShowAddPhoto}/> : null}
+        {this.state.showAddText ? <AddText handleShowAddText={this.handleShowAddText}/> : null}
+        {this.state.showAddQuote ? <AddQuote handleShowAddQuote={this.handleShowAddQuote}/> : null}
       </div>
     );
   };

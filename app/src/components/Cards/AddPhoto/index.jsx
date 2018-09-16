@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './style.css';
+import '../generic.css'
 import '../../OurButton';
 import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
 
-import ImageDropZone from 'react-image-dropzone';
+import DropzoneComponent from 'react-dropzone-component';
+import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
+import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 
 export default class AddPhoto extends Component {
   constructor(props) {
@@ -13,6 +16,7 @@ export default class AddPhoto extends Component {
 
   state = {
     filePop: false,
+    files: [],
   }
 
   closeAddPhoto = () => {
@@ -20,38 +24,23 @@ export default class AddPhoto extends Component {
   }
 
   render() {
-    //   const pic = '../../../images/addPhoto.png'
-      const imagePicked = image => console.log(image)
-    //   const imageDefault = pic
+    const componentConfig = {
+        iconFiletypes: ['.jpg', '.png', '.gif'],
+        showFiletypeIcon: true,
+        postUrl: '/uploadHandler',
+        addRemoveLinks: true
+    };
 
     return (
-    <div className='addPhoto'>
-        <div className='addPhotoBack'/>
-        <div className='addPhotoCard'>
+    <div className={ `addType addPhoto` }>
+        <div className={ `addTypeBack addPhotoBack` }/>
+        <div className={ `addTypeCard addPhotoCard` }>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
             <div className='photo'>
-                {/* <img className="photoImg" src={this.state.pictures} alt=""/> */}
-                
-                {/*the div dropzone is what causese the localhost error*/}
                 <div className="dropzone">
-                    <ImageDropZone
-                        anySize
-                        showButton
-                        width={475}
-                        height={300}
-                        imageWidth={512}
-                        imageHeight={512}
-                        // imageDefault={imageDefault}
-                        imagePicked={imagePicked}
-                    />
-                </div>
-            </div>
-            <div className='info'>
-                <div>
-                    Click the icon to open file explorer,
-                </div>
-                <div>
-                    or drag a photo to add.
+                <DropzoneComponent
+                    config={componentConfig}
+                />
                 </div>
             </div>
             <span className='sectionLabels'> Add Caption: </span>
@@ -62,7 +51,7 @@ export default class AddPhoto extends Component {
                 <img className="frameImg" src={addPhotoBase} alt="" />
                 <img className="frameImg" src={addPhotoBase} alt="" />
             </div>
-            <div className='actionButtons'>
+            <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton
                     buttonText='Add'
                     buttonAction={() => {this.closeAddPhoto}}
