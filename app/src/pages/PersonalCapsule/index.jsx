@@ -114,23 +114,21 @@ export default class PersonalCapsule extends Component {
     return (
       <div id='capsulePage'>
         <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
-          {/* <div style={{height: '500px', width: '500px', padding: '10px'}}> */}
-            <Draggable
-            //there's something very fucky about bounds. if you comment it, all of a sudden you can move the item in every direction
-              // bounds="body"
-              handle=".handle"
-              defaultPosition={{x: 0, y: 100}}
-              position={null}
-              onStart={this.handleStart}
-              onDrag={this.handleDrag}
-              onStop={this.handleStop}
-              >
-              <div>
-                <div className="handle">Imagine that this is the frame.</div>
-                <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
-              </div>
-            </Draggable>
-          {/* </div> */}
+          <Draggable
+            bounds="parent"
+            handle=".handle"
+            defaultPosition={{x: 0, y: 100}}
+            position={null}
+            onStart={this.handleStart}
+            onDrag={this.handleDrag}
+            onStop={this.handleStop}
+            className='dragPic'
+            >
+            <div style={{display: 'inline-block'}}>
+              <div className="handle">Imagine that this is the frame.</div>
+              <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
+            </div>
+          </Draggable>
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}
