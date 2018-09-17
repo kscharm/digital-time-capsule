@@ -6,6 +6,7 @@
     "babel-core": "6.14.0",
     "express": "4.13.3",
     "mongodb": "^3.1.4",
+    "react-draggable": "^3.0.5",
     "react-dropzone-component": "^3.2.0",
     "react-image-dropzone": "^1.11.0",
     "react-images-upload": "^1.2.3"
