@@ -40,9 +40,9 @@ const plugins = [toolbarPlugin];
 const text = '';
 
 export default class AddText extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     state = {
         editorState: createEditorStateWithText(text),

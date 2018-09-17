@@ -10,9 +10,9 @@ import '../../../../node_modules/react-dropzone-component/styles/filepicker.css'
 import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 
 export default class AddPhoto extends Component {
-  constructor(props) {
-    super(props);
-  }
+//   constructor(props) {
+//     super(props);
+//   }
 
   state = {
     filePop: false,
@@ -26,9 +26,17 @@ export default class AddPhoto extends Component {
   render() {
     const componentConfig = {
         iconFiletypes: ['.jpg', '.png', '.gif'],
+        allowedFiletypes: ['.jpg', '.png', '.gif'],
         showFiletypeIcon: true,
         postUrl: '/uploadHandler',
-        addRemoveLinks: true
+    };
+    const djsConfig = {
+        maxFiles: 1,
+        addRemoveLinks: true,
+    };
+    const eventHandlers = {
+        init: (dropzone) => { this.dropzone = dropzone; },
+        maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
     };
 
     return (
@@ -40,6 +48,8 @@ export default class AddPhoto extends Component {
                 <div className="dropzone">
                 <DropzoneComponent
                     config={componentConfig}
+                    djsConfig={djsConfig}
+                    eventHandlers={eventHandlers}
                 />
                 </div>
             </div>
@@ -54,7 +64,7 @@ export default class AddPhoto extends Component {
             <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddPhoto}}
+                    buttonAction={() => {this.closeAddPhoto()}}
                     buttonType='primary'
                 />
                 <OurButton

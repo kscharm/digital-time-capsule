@@ -12,6 +12,7 @@ import NavBar from '../../components/NavBar';
 import AddPhoto from '../../components/Cards/AddPhoto';
 import AddText from '../../components/Cards/AddText';
 import AddQuote from '../../components/Cards/AddQuote';
+import AddMusic from '../../components/Cards/AddMusic';
 
 import Draggable from 'react-draggable';
 import addPhotoBase from '../../images/addPhoto.png'
@@ -26,6 +27,7 @@ export default class PersonalCapsule extends Component {
     showAddPhoto: false,
     showAddText: false,
     showAddQuote: false,
+    showAddMusic: false,
   }
 
   // handleDrag(e, ui) {
@@ -58,6 +60,9 @@ export default class PersonalCapsule extends Component {
   }
   handleShowAddQuote = (show) => {
     this.setState({showAddQuote: show});
+  }
+  handleShowAddMusic = (show) => {
+    this.setState({showAddMusic: show});
   }
 
   render() {
@@ -94,7 +99,11 @@ export default class PersonalCapsule extends Component {
             };
           } else if (option==='Music') {
             icon = <FaMusic/>
-            onClicks = () => {console.log('dumb else')};
+            onClicks = () => {
+              this.handleShowAddMusic(!this.state.showAddMusic);
+              this.handlePop(false);
+              console.log('dumb else')
+            };
           }
           return (
             <div key={option}>
@@ -143,6 +152,7 @@ export default class PersonalCapsule extends Component {
         {this.state.showAddPhoto ? <AddPhoto handleShowAddPhoto={this.handleShowAddPhoto}/> : null}
         {this.state.showAddText ? <AddText handleShowAddText={this.handleShowAddText}/> : null}
         {this.state.showAddQuote ? <AddQuote handleShowAddQuote={this.handleShowAddQuote}/> : null}
+        {this.state.showAddMusic ? <AddMusic handleShowAddMusic={this.handleShowAddMusic}/> : null}
       </div>
     );
   };
