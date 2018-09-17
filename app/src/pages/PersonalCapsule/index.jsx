@@ -131,7 +131,6 @@ export default class PersonalCapsule extends Component {
             onStart={this.handleStart}
             onDrag={this.handleDrag}
             onStop={this.handleStop}
-            className='dragPic'
             >
             <div style={{display: 'inline-block'}}>
               <div className="handle">Imagine that this is the frame.</div>

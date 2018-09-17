@@ -19,6 +19,10 @@ export default class AddPhoto extends Component {
     files: [],
   }
 
+  savePhoto = () => {
+      console.log("SAVING PHOTO");
+      this.closeAddPhoto();
+  }
   closeAddPhoto = () => {
     this.props.handleShowAddPhoto(false);
   }
@@ -64,7 +68,7 @@ export default class AddPhoto extends Component {
             <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddPhoto()}}
+                    buttonAction={() => {this.savePhoto()}}
                     buttonType='primary'
                 />
                 <OurButton
