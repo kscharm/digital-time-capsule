@@ -2,6 +2,10 @@
     "bsonType": "object",
     "required": [
         "user_id",
+        "username",
+        "password",
+        "university",
+        "major",
         "name",
         "email",
         "friends",
@@ -13,12 +17,28 @@
     ],
     "properties": {
         "user_id": {
-            "bsonType":"string",
-            "description":"user id (a uuid)"
+            "bsonType": "string",
+            "description": "User id (a uuid)"
+        },
+        "username": {
+            "bsonType": "string",
+            "description": "The username for identification purposes"
+        },
+        "password": {
+            "bsonType": "string",
+            "description": "The encrypted password associated with the user"
+        },
+        "university": {
+            "bsonType": "string",
+            "description": "The university associated with the user"
+        },
+        "major": {
+            "bsonType": "string",
+            "description": "The major associated with the user"
         },
         "name": {
-            "bsonType":"string",
-            "description":"name of the user"
+            "bsonType": "string",
+            "description": "Name of the user"
         },
         "email": {
             "bsonType": "string",
@@ -26,7 +46,7 @@
         },
         "friends": {
             "bsonType": "array",
-            "description": "array of friend ids",
+            "description": "Array of friend ids",
             "items": {
               "type":"string"
             } 
@@ -54,7 +74,7 @@
         },
         "capsules": {
             "bsonType": "array",
-            "description": "array of time capsule ids user created",
+            "description": "Array of time capsule ids user created",
             "items": {
               "type":"string"
             } 
