@@ -36,7 +36,6 @@ class App extends Component {
           }
           />
         </BrowserRouter>
-        <BottomBar/>
       </div>
     );
   }

@@ -13,8 +13,9 @@
     border: none;
     cursor: pointer;
     /* puts button on bottom part of the screen */
-    bottom: 60px;
-    left: 10px;
+    bottom: 0px;
+    left: 0px;
+    margin: .25em;
     position: fixed;
 }
 
