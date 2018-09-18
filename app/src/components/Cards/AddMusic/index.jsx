@@ -9,6 +9,8 @@ import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
 import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 
+import axios from 'axios'
+
 export default class AddMusic extends Component {
 //   constructor(props) {
 //     super(props);
@@ -21,26 +23,31 @@ export default class AddMusic extends Component {
 
   saveMusic = () => {
     // Save music to database
-    axios.post('/music', {
-        username: "kenny",
-        media_id: "abc123",
-        capsules: "myCapsule",
-        title: "bestSongEver",
-        settings: {
-            privacy: "public"
-        },
-        metadata: {
-            x: 12,
-            y: 15
-        }
-    })
-    .then((res) => {
-        // Close window
-        this.closeAddMusic();
-    })
-    .catch((err) => {
-        console.log('Error saving music: ', err.message);
-    });
+    if (this.state.files.length !== 0) {
+        axios.post('http://localhost:3001/music', {
+            musicFiles: this.state.files,
+            username: "kenny",
+            mediaId: "abc123",
+            capsules: ["myCapsule"],
+            title: "bestSongEver",
+            settings: {
+                privacy: "public"
+            },
+            metadata: {
+                x: null,
+                y: null
+            }
+        })
+        .then((res) => {
+            // Close window
+            this.closeAddMusic();
+        })
+        .catch((err) => {
+            console.log('Error saving music: ', err.message);
+        });
+    } else {
+        console.log('Please select a song first');
+    }
   }
 
   closeAddMusic = () => {
@@ -52,15 +59,18 @@ export default class AddMusic extends Component {
         iconFiletypes: ['.mp3'],
         allowedFiletypes: ['.mp3'],
         showFiletypeIcon: true,
-        postUrl: '/uploadHandler',
+        postUrl: 'no-url',
     };
     const djsConfig = {
         maxFiles: 1,
         addRemoveLinks: true,
+        autoProcessQueue: false,
     };
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
+        addedfile: (file) => { this.state.files.push(file.upload); },
+        removedfile: (file) => { this.state.files.shift(); }
     };
 
     return (
