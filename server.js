@@ -3,6 +3,7 @@ const fs = require("fs");
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const url = "mongodb://localhost:27017/digitalCapsule";
+const router = express.Router();
 
 app.set("port", process.env.PORT || 3001);
 
@@ -63,5 +64,14 @@ app.listen(app.get("port"), () => {
       console.log("Users collection created!");
     });
     // db.close();
+    router.post('/music', (req, res, next) => {
+      const music = req.body;
+      database.collection("music").insertOne(music, (err, res) => {
+        if (err) {
+          console.log('Error inserting music into database: ', err.message);
+        }
+        console.log('Music saved');
+      });
+    });
   });
 });

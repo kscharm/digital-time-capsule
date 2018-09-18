@@ -19,6 +19,30 @@ export default class AddMusic extends Component {
     files: [],
   }
 
+  saveMusic = () => {
+    // Save music to database
+    axios.post('/music', {
+        username: "kenny",
+        media_id: "abc123",
+        capsules: "myCapsule",
+        title: "bestSongEver",
+        settings: {
+            privacy: "public"
+        },
+        metadata: {
+            x: 12,
+            y: 15
+        }
+    })
+    .then((res) => {
+        // Close window
+        this.closeAddMusic();
+    })
+    .catch((err) => {
+        console.log('Error saving music: ', err.message);
+    });
+  }
+
   closeAddMusic = () => {
     this.props.handleShowAddMusic(false);
   }
@@ -60,7 +84,7 @@ export default class AddMusic extends Component {
             <div className={ `actionButtons actionButtonsMusic` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddMusic()}}
+                    buttonAction={() => {this.saveMusic()}}
                     buttonType='primary'
                 />
                 <OurButton
