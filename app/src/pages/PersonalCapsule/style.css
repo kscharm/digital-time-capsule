@@ -19,11 +19,10 @@
 .addPop {
     display: inline-block;
     position: absolute;
-    bottom: 8em;
     background-color: rgb(0, 48, 87);
     opacity: .65;
-    left: 10px;
-    margin-bottom: -3.85em;
+    bottom: 2em;
+    margin: .25em;
     border: 1.5px solid rgb(0, 48, 87);
     font-size: 30px;
 }
