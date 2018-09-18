@@ -28,7 +28,7 @@ export default class AddMusic extends Component {
         iconFiletypes: ['.mp3'],
         allowedFiletypes: ['.mp3'],
         showFiletypeIcon: true,
-        postUrl: '/uploadHandler',
+        postUrl: 'no-url',
     };
     const djsConfig = {
         maxFiles: 1,
@@ -37,6 +37,9 @@ export default class AddMusic extends Component {
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
+        addedfile: (file) => {
+            console.log(file);
+        },
     };
 
     return (

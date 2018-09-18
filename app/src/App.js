@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import PersonalCapsule from './pages/PersonalCapsule';
 import WelcomePage from './pages/Welcome';
-import BottomBar from './components/BottomBar';
 
 class App extends Component {  
   render() {
