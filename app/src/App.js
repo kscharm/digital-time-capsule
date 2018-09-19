@@ -17,7 +17,6 @@ class App extends Component {
         <BrowserRouter forceRefresh={!supportsHistory}>
           <Route
             render={({ location }) => {
-              const { pathname } = location;
               return (
                 <Switch>
                   <Route

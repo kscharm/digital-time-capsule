@@ -2,18 +2,17 @@
     "bsonType": "object",
     "title": "Music Media Object Schema",
     "required": [
-        "musicFiles",
+        "music",
         "username",
         "mediaId",
         "capsules",
-        "title",
         "settings",
         "metadata"
     ],
     "properties": {
-        "musicFiles": {
-            "bsonType": "array",
-            "description": "array of music files to upload"
+        "music": {
+            "bsonType": "string",
+            "description": "base64 encoding of the music to be uploaded"
         },
         "username": {
             "bsonType": "string",
@@ -41,6 +40,10 @@
         "settings": {
             "bsonType": "object",
             "description": "settings for song itself"
+        },
+        "playlist": {
+            "bsonType": "string",
+            "description": "the playlist this song belongs to"
         },
         "metadata": {
             "bsonType": "object",

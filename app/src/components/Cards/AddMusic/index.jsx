@@ -20,20 +20,19 @@ export default class AddMusic extends Component {
 
   state = {
     filePop: false,
-    files: [],
+    file: "",
+    fileName: "",
   }
 
   saveMusic = () => {
     // Save music to database
-    if (this.state.files.length !== 0) {
-        const file = this.state.files[0];
-        console.log(file);
+    if (this.state.file !== "") {
         axios.post('http://localhost:3001/music', {
-            musicFiles: this.state.files,
+            music: this.state.file,
             username: "kenny",
             mediaId: "abc123",
             capsules: ["myCapsule"],
-            title: file.filename,
+            title: this.state.fileName,
             settings: {
                 privacy: "public"
             },
@@ -43,8 +42,6 @@ export default class AddMusic extends Component {
             }
         })
         .then((res) => {
-            console.log("HELLOEEOEO" + res);
-            // Close window
             this.closeAddMusic();
         })
         .catch((err) => {
@@ -70,18 +67,28 @@ export default class AddMusic extends Component {
         maxFiles: 1,
         addRemoveLinks: true,
         autoProcessQueue: false,
+        uploadMultiple: false,
     };
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
         addedfile: (file) => {
             if (file.type === 'audio/mp3') {
-                this.state.files.push(file.upload);
+                this.setState({fileName: file.name});
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    this.setState({file: reader.result});
+                }
             } else {
                 this.dropzone.removeFile(file);
             }
         },
+<<<<<<< HEAD
+        removedfile: (file) => { this.setState({file: ""}) },
+=======
         removedfile: (file) => { this.state.files.shift(); },
+>>>>>>> 00f8b2f99350c5144e48e17161d06482fc7402b1
     };
 
     return (
