@@ -69,7 +69,14 @@ export default class AddMusic extends Component {
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
-        addedfile: (file) => { this.state.files.push(file.upload); },
+        addedfile: (file) => {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                console.log(event.target.result);
+            };
+            reader.readAsDataURL(file);
+            this.state.files.push(file);
+        },
         removedfile: (file) => { this.state.files.shift(); }
     };
 
