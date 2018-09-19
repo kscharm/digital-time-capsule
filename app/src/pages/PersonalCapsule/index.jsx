@@ -30,25 +30,6 @@ export default class PersonalCapsule extends Component {
     showAddMusic: false,
   }
 
-  // handleDrag(e, ui) {
-  //   const {x, y} = this.state.deltaPosition;
-  //   this.setState({
-  //     deltaPosition: {
-  //       x: x + ui.deltaX,
-  //       y: y + ui.deltaY,
-  //     }
-  //   });
-  // }
-
-  // handleStart() {
-  //   this.setState({activeDrags: ++this.state.activeDrags});
-  // }
-
-  // handleStop() {
-  //   this.setState({activeDrags: --this.state.activeDrags});
-  // }
-
-
   handlePop = (pop) => {
     this.setState({addPop: pop});
   }
@@ -66,9 +47,6 @@ export default class PersonalCapsule extends Component {
   }
 
   render() {
-
-    // const dragHandlers = {handleStart: this.onStart, handleStop: this.handleStop};
-    // const {deltaPosition, controlledPosition} = this.state;
 
     const Add = (props) => {
       let contents = [];
@@ -123,20 +101,22 @@ export default class PersonalCapsule extends Component {
     return (
       <div id='capsulePage'>
         <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
-          <Draggable
-            bounds="parent"
-            handle=".handle"
-            defaultPosition={{x: 0, y: 100}}
-            position={null}
-            onStart={this.handleStart}
-            onDrag={this.handleDrag}
-            onStop={this.handleStop}
-            >
-            <div style={{display: 'inline-block'}}>
-              <div className="handle">Imagine that this is the frame.</div>
-              <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
-            </div>
-          </Draggable>
+          <div className='photoSpace' style={{top: '50px', bottom: '5px', position: 'absolute', width: '100%'}}>
+            <Draggable
+              bounds="parent"
+              handle=".handle"
+              defaultPosition={{x: 0, y: 100}}
+              position={null}
+              onStart={this.handleStart}
+              onDrag={this.handleDrag}
+              onStop={this.handleStop}
+              >
+              <div style={{display: 'inline-block'}}>
+                <div className="handle">Imagine that this is the frame.</div>
+                <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
+              </div>
+            </Draggable>
+          </div>
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}
