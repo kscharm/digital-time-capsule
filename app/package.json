@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "draft-js": "^0.10.5",
+    "draft-js-counter-plugin": "^2.0.1",
     "draft-js-plugins-editor": "^2.1.1",
     "draft-js-static-toolbar-plugin": "^2.0.2",
     "react": "^16.5.0",

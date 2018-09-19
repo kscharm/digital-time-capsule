@@ -1,0 +1,20 @@
+/*For Inputs*/
+.addQuoteCard input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid white;
+    width: 100%;
+}
+.addQuoteCard ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: .75; /* Firefox */
+}
+.addQuoteCard :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+}
+
+.addQuoteCard ::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+}
+.addQuoteCard input:focus { color: white; }
