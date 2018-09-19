@@ -18,18 +18,19 @@ export default class AddMusic extends Component {
 
   state = {
     filePop: false,
-    files: [],
+    file: "",
+    fileName: "",
   }
 
   saveMusic = () => {
     // Save music to database
-    if (this.state.files.length !== 0) {
+    if (this.state.file !== "") {
         axios.post('http://localhost:3001/music', {
-            musicFiles: this.state.files,
+            music: this.state.file,
             username: "kenny",
             mediaId: "abc123",
             capsules: ["myCapsule"],
-            title: "bestSongEver",
+            title: this.state.fileName,
             settings: {
                 privacy: "public"
             },
@@ -39,14 +40,13 @@ export default class AddMusic extends Component {
             }
         })
         .then((res) => {
-            // Close window
             this.closeAddMusic();
         })
         .catch((err) => {
-            console.log('Error saving music: ', err.message);
+           alert('Error saving music: ', err.message);
         });
     } else {
-        console.log('Please select a song first');
+        alert('Please select a song first');
     }
   }
 
@@ -65,19 +65,24 @@ export default class AddMusic extends Component {
         maxFiles: 1,
         addRemoveLinks: true,
         autoProcessQueue: false,
+        uploadMultiple: false,
     };
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
         addedfile: (file) => {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                console.log(event.target.result);
-            };
-            reader.readAsDataURL(file);
-            this.state.files.push(file);
+            if (file.type === 'audio/mp3') {
+                this.setState({fileName: file.name});
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    this.setState({file: reader.result});
+                }
+            } else {
+                this.dropzone.removeFile(file);
+            }
         },
-        removedfile: (file) => { this.state.files.shift(); }
+        removedfile: (file) => { this.setState({file: ""}) },
     };
 
     return (

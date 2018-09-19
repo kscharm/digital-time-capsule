@@ -11,10 +11,10 @@ let database;
 app.set("port", process.env.PORT || 3001);
 
 // Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ limit: '25mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '16mb', extended: true }))
 
 // Parse application/json
-app.use(bodyParser.json( {limit: '25mb'} ))
+app.use(bodyParser.json( {limit: '16mb'} ))
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -84,9 +84,10 @@ app.post('/music', (req, res) => {
   const musicDoc = req.body;
   cog.addMusic(database, musicDoc, (data, err) => {
     if (err) {
-      return err;
+      res.status(500).send({ error: err.message });
+    } else {
+      res.sendStatus(200);
     }
-    return data;
   });
 });
 
