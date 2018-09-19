@@ -5,6 +5,7 @@ const fs = require("fs");
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const url = "mongodb://localhost:27017/digitalCapsule";
+const cog = require("./cog.js");
 let database;
 
 app.set("port", process.env.PORT || 3001);
@@ -81,13 +82,11 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
 
 app.post('/music', (req, res) => {
   const musicDoc = req.body;
-  database.collection("music").insertOne(musicDoc, (err, res) => {
+  cog.addMusic(musicDoc, (data, err) => {
     if (err) {
-      console.log('Error inserting music into database: ', err.message);
-      return null;
+      return err;
     }
-    console.log('Music saved');
-    return musicDoc;
+    return data;
   });
 });
 
