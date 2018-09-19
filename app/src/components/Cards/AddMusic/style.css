@@ -30,3 +30,6 @@
     color: white;
 }
 .addMusicCard input:focus { color: white; }
+.dz-progress {
+    display: none;
+}

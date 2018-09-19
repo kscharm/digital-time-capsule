@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import './style.css';
-import '../generic.css'
 import '../../OurButton';
 import OurButton from '../../OurButton';
 import Select from '../../Select';
+import ReactDOMServer from 'react-dom/server';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
 import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
+
+import './style.css';
+import '../generic.css'
 
 import axios from 'axios'
 
@@ -82,7 +84,11 @@ export default class AddMusic extends Component {
                 this.dropzone.removeFile(file);
             }
         },
+<<<<<<< HEAD
         removedfile: (file) => { this.setState({file: ""}) },
+=======
+        removedfile: (file) => { this.state.files.shift(); },
+>>>>>>> 00f8b2f99350c5144e48e17161d06482fc7402b1
     };
 
     return (
