@@ -41,14 +41,15 @@ export default class AddMusic extends Component {
             }
         })
         .then((res) => {
+            console.log("HELLOEEOEO" + res);
             // Close window
             this.closeAddMusic();
         })
         .catch((err) => {
-            console.log('Error saving music: ', err.message);
+           alert('Error saving music: ', err.message);
         });
     } else {
-        console.log('Please select a song first');
+        alert('Please select a song first');
     }
   }
 
