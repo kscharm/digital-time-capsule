@@ -1,20 +1,25 @@
 {
     "bsonType": "object",
-    "title": "Song Media Object schema",
+    "title": "Music Media Object Schema",
     "required": [
+        "musicFiles",
         "username",
-        "media_id",
+        "mediaId",
         "capsules",
         "title",
         "settings",
         "metadata"
     ],
     "properties": {
+        "musicFiles": {
+            "bsonType": "array",
+            "description": "array of music files to upload"
+        },
         "username": {
             "bsonType": "string",
             "description": "must be a string and is required"
         },
-        "media_id": {
+        "mediaId": {
             "bsonType": "string",
             "description": "unique key for media object"
         },
