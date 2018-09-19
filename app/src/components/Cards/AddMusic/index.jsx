@@ -24,12 +24,14 @@ export default class AddMusic extends Component {
   saveMusic = () => {
     // Save music to database
     if (this.state.files.length !== 0) {
+        const file = this.state.files[0];
+        console.log(file);
         axios.post('http://localhost:3001/music', {
             musicFiles: this.state.files,
             username: "kenny",
             mediaId: "abc123",
             capsules: ["myCapsule"],
-            title: "bestSongEver",
+            title: file.filename,
             settings: {
                 privacy: "public"
             },
@@ -69,7 +71,13 @@ export default class AddMusic extends Component {
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
-        addedfile: (file) => { this.state.files.push(file.upload); },
+        addedfile: (file) => {
+            if (file.type === 'audio/mp3') {
+                this.state.files.push(file.upload);
+            } else {
+                this.dropzone.removeFile(file);
+            }
+        },
         removedfile: (file) => { this.state.files.shift(); }
     };
 
