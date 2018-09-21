@@ -3,6 +3,7 @@
     "title": "Music Media Object Schema",
     "required": [
         "music",
+        "title",
         "username",
         "mediaId",
         "capsules",
@@ -13,6 +14,10 @@
         "music": {
             "bsonType": "string",
             "description": "base64 encoding of the music to be uploaded"
+        },
+        "title": {
+            "bsonType": "string",
+            "description": "title of the song"
         },
         "username": {
             "bsonType": "string",
