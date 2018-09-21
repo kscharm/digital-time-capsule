@@ -102,7 +102,6 @@ export default class PersonalCapsule extends Component {
     return (
       <div id='capsulePage'>
         <div className='capsuleDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
-          {/* <div className='photoSpace' style={{top: '50px', height: '100vh', position: 'absolute', width: '100%'}}> */}
             <Draggable
               bounds= {{left: 0, top: 50, right: (w - 256)}}
               handle=".handle"
@@ -117,7 +116,6 @@ export default class PersonalCapsule extends Component {
                 <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
               </div>
             </Draggable>
-          {/* </div> */}
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}
