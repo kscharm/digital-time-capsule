@@ -1,5 +1,6 @@
 .musicPlayer {
     background-color: rgb(0, 48, 87);
     padding: 1em;
-    height: 100px;
+    min-height: 100px;
+    width: 200px;
 }
