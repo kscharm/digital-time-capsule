@@ -97,13 +97,14 @@ export default class PersonalCapsule extends Component {
           </div>
       );
     }
-
+    const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    console.log(w);
     return (
       <div id='capsulePage'>
-        <div className='capsuleDiv' style={{background: `url(${Background})`, backgroundSize:'cover'}} >
-          <div className='photoSpace' style={{top: '50px', bottom: '5px', position: 'absolute', width: '100%'}}>
+        <div className='capsuleDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
+          {/* <div className='photoSpace' style={{top: '50px', height: '100vh', position: 'absolute', width: '100%'}}> */}
             <Draggable
-              bounds="parent"
+              bounds= {{left: 0, top: 50, right: (w - 256)}}
               handle=".handle"
               defaultPosition={{x: 0, y: 100}}
               position={null}
@@ -111,12 +112,12 @@ export default class PersonalCapsule extends Component {
               onDrag={this.handleDrag}
               onStop={this.handleStop}
               >
-              <div style={{display: 'inline-block'}}>
+              <div style={{ width: '256px', height: '356px'}} >
                 <div className="handle">Imagine that this is the frame.</div>
                 <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
               </div>
             </Draggable>
-          </div>
+          {/* </div> */}
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}
