@@ -3,7 +3,7 @@
     "title": "Photo Media Object schema",
     "required": [
         "username",
-        "media_id",
+        "mediaId",
         "capsules",
         "title",
         "settings",
@@ -14,7 +14,7 @@
             "bsonType": "string",
             "description": "must be a string and is required"
         },
-        "media_id": {
+        "mediaId": {
             "bsonType": "string",
             "description": "unique key for media object"
         },

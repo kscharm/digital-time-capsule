@@ -67,7 +67,7 @@ export default class AddText extends Component {
         if (a.getPlainText('') !== '') {
             axios.post('http://localhost:3001/text', {
                 username: "kenny",
-                media_id: "abc123",
+                mediaId: "abc123",
                 capsules: ["myCapsule"],
                 text: a.getPlainText(''),
                 settings: {
