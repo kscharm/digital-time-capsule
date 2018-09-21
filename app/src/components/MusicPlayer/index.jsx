@@ -22,7 +22,7 @@ export default class MusicPlayer extends Component {
         return (
                 <Draggable
                 bounds={{left: 0, top: -310, right: (w - 216)}}
-                defaultPosition={{x: 0, y: 0}}
+                defaultPosition={{x: this.props.xPos, y: this.props.yPos}}
                 position={null}
                 onStart={this.handleStart}
                 onDrag={this.handleDrag}

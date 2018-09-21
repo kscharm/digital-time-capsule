@@ -49,6 +49,22 @@ export default class PersonalCapsule extends Component {
     this.setState({showAddMusic: show});
   }
 
+  getAllMusic = (user) => {
+    // Get and display the music for the user
+    console.log('I will get all musics');
+  }
+
+  handleAddMusic = (music) => {
+    // Update personal capsule to have the new music that was added.
+    console.log('I will handle your ' + music);
+  }
+
+  componentDidMount() {
+    // When the component has loaded for the first time
+    // Show user data
+    this.getAllMusic();
+  }
+
   render() {
 
     const Add = (props) => {
@@ -120,7 +136,7 @@ export default class PersonalCapsule extends Component {
               </div>
             </Draggable>
             <div className='musicPlayers' style={{display:'inline-block'}}>
-              <MusicPlayer/>
+              <MusicPlayer xPos={0} yPos={0} />
             </div>
           <div className='addButton'>
             <AddButton
@@ -136,7 +152,9 @@ export default class PersonalCapsule extends Component {
         {this.state.showAddPhoto ? <AddPhoto handleShowAddPhoto={this.handleShowAddPhoto}/> : null}
         {this.state.showAddText ? <AddText handleShowAddText={this.handleShowAddText}/> : null}
         {this.state.showAddQuote ? <AddQuote handleShowAddQuote={this.handleShowAddQuote}/> : null}
-        {this.state.showAddMusic ? <AddMusic handleShowAddMusic={this.handleShowAddMusic}/> : null}
+        {this.state.showAddMusic ? <AddMusic 
+                                      handleShowAddMusic={this.handleShowAddMusic}
+                                      handleAddMusic={this.handleAddMusic}/> : null}
       </div>
     );
   };

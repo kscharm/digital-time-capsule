@@ -36,12 +36,14 @@ export default class AddMusic extends Component {
                 privacy: "public"
             },
             metadata: {
-                x: null,
-                y: null
+                x: 1,
+                y: 1
             }
         })
         .then((res) => {
+            console.log(res);
             this.closeAddMusic();
+            this.props.handleAddMusic('NAME');
         })
         .catch((err) => {
            alert('Error saving music: ', err.message);
