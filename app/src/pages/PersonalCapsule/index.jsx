@@ -51,7 +51,7 @@ export default class PersonalCapsule extends Component {
 
   getAllMusic = (user) => {
     // Get and display the music for the user
-    console.log('I will get all musics');
+    console.log('I will get all musics for ' + user);
   }
 
   handleAddMusic = (music) => {
@@ -60,9 +60,10 @@ export default class PersonalCapsule extends Component {
   }
 
   componentDidMount() {
+    const user = 'kenny'
     // When the component has loaded for the first time
     // Show user data
-    this.getAllMusic();
+    this.getAllMusic(user);
   }
 
   render() {
