@@ -91,6 +91,16 @@ app.post('/music', (req, res) => {
   });
 });
 
+app.post('/text', (req, res) => {
+  const textDoc = req.body;
+  cog.addText(database, textDoc, (data, err) => {
+    if (err) {
+      res.status(500).send({error: err.message});
+    } else {
+      res.sendStatus(200);
+    }
+  })
+})
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
 });
