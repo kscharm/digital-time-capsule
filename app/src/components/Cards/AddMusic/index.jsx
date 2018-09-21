@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../OurButton';
 import OurButton from '../../OurButton';
 import Select from '../../Select';
 import ReactDOMServer from 'react-dom/server';
@@ -84,11 +83,7 @@ export default class AddMusic extends Component {
                 this.dropzone.removeFile(file);
             }
         },
-<<<<<<< HEAD
         removedfile: (file) => { this.setState({file: ""}) },
-=======
-        removedfile: (file) => { this.state.files.shift(); },
->>>>>>> 00f8b2f99350c5144e48e17161d06482fc7402b1
     };
 
     return (
