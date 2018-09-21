@@ -84,7 +84,7 @@ export default class AddMusic extends Component {
                 this.dropzone.removeFile(file);
             }
         },
-        removedfile: (file) => { this.state.files.shift(); },
+        removedfile: (file) => { this.setState({file: ""}) },
     };
 
     return (
