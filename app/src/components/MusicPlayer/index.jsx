@@ -21,7 +21,7 @@ export default class MusicPlayer extends Component {
         console.log(w);
         return (
                 <Draggable
-                bounds={{left: 0, top: 50, right: (w - 216)}}
+                bounds={{left: 0, top: -310, right: (w - 216)}}
                 defaultPosition={{x: 0, y: 0}}
                 position={null}
                 onStart={this.handleStart}
