@@ -116,6 +116,22 @@ export default class PersonalCapsule extends Component {
                 <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
               </div>
             </Draggable>
+            <div className="player">
+              <Draggable
+                bounds="parent"
+                handle=".handle"
+                defaultPosition={{x: 200, y: 100}}
+                position={null}
+                onStart={this.handleStart}
+                onDrag={this.handleDrag}
+                onStop={this.handleStop}
+                >
+                <div style={{display: 'inline-block'}}>
+                  <div className="handle">Imagine that this is the frame.</div>
+                  <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
+                </div>
+              </Draggable>
+            </div>
           </div>
           <div className='addButton'>
             <AddButton
