@@ -21,3 +21,14 @@ exports.addMusic = function(database, music, callback) {
         return callback(music);
     });
 }
+
+exports.addText = function(database, text, callback) {
+    database.collection("text").insertOne(text, (err, res) => {
+        if (err) {
+            console.log('Error inserting text into database: ', err. message);
+            return callback(null, err);
+        }
+        console.log('Text saved');
+        return callback(text);
+    })
+}
