@@ -74,8 +74,8 @@ export default class AddText extends Component {
                     privacy: "public"
                 },
                 metadata: {
-                    x: null,
-                    y: null
+                    x: 0,
+                    y: 0
                 }
             })
             .then((res) => {

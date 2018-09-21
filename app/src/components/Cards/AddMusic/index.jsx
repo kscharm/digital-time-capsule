@@ -21,6 +21,7 @@ export default class AddMusic extends Component {
     filePop: false,
     file: "",
     fileGenre: "",
+    fileName: "",
   }
 
   saveMusic = () => {
@@ -28,6 +29,7 @@ export default class AddMusic extends Component {
     if (this.state.file !== "") {
         axios.post('http://localhost:3001/music', {
             music: this.state.file,
+            title: this.state.fileName,
             username: "kenny",
             mediaId: "abc123",
             capsules: ["myCapsule"],
@@ -36,11 +38,12 @@ export default class AddMusic extends Component {
                 privacy: "public"
             },
             metadata: {
-                x: null,
-                y: null
+                x: 0,
+                y: 0
             }
         })
         .then((res) => {
+            console.log(res.data);
             this.closeAddMusic();
         })
         .catch((err) => {
@@ -77,6 +80,7 @@ export default class AddMusic extends Component {
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
         addedfile: (file) => {
             if (file.type === 'audio/mp3') {
+                this.setState({ fileName: file.name });
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = () => {
