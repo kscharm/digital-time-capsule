@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-
 import Draggable from 'react-draggable';
-
 import OurButton from '../OurButton';
 
 import music from '../../music/test_music.mp3'
@@ -14,25 +12,23 @@ export default class MusicPlayer extends Component {
     // }
 
     state = {
-        // soundState: {
-            playStatus: Sound.status.STOPPED,
-            position: 300
-        // }
+        playStatus: Sound.status.STOPPED,
+        position: 0,
     }
 
     render () {
+        const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        console.log(w);
         return (
-            <div className="musicPlayer">
                 <Draggable
-                bounds="parent"
-                handle=".handle"
+                bounds={{left: 0, top: 50, right: (w - 256)}}
                 defaultPosition={{x: 0, y: 0}}
                 position={null}
                 onStart={this.handleStart}
                 onDrag={this.handleDrag}
                 onStop={this.handleStop}
                 >
-                <div style={{display: 'inline-block'}}>
+                <div className='musicPlayer'>
                     <Sound
                         url={music}
                         playStatus={this.state.playStatus}
@@ -55,7 +51,6 @@ export default class MusicPlayer extends Component {
                     </div>
                 </div>
                 </Draggable>
-            </div>
         );
     }
 }

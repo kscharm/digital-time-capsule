@@ -119,21 +119,11 @@ export default class PersonalCapsule extends Component {
                 <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
               </div>
             </Draggable>
-            <Draggable
-              bounds="parent"
-              handle=".handle"
-              defaultPosition={{x: 200, y: 200}}
-              position={null}
-              onStart={this.handleStart}
-              onDrag={this.handleDrag}
-              onStop={this.handleStop}
-              >
-              <div style={{display: 'inline-block'}}>
-                <div className="handle">Imagine that this is the frame.</div>
-                <MusicPlayer></MusicPlayer>
-              </div>
-            </Draggable>
+            <div className='musicPlayers' style={{display: 'inline-block'}}>
+              <MusicPlayer/>
+            </div>
           </div>
+
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}
