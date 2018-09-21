@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../OurButton';
 import OurButton from '../../OurButton';
 import Select from '../../Select';
 import ReactDOMServer from 'react-dom/server';

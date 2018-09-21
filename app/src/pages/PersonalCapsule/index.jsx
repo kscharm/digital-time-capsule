@@ -17,6 +17,9 @@ import AddMusic from '../../components/Cards/AddMusic';
 import Draggable from 'react-draggable';
 import addPhotoBase from '../../images/addPhoto.png'
 
+import '../../components/MusicPlayer';
+import MusicPlayer from '../../components/MusicPlayer';
+
 export default class PersonalCapsule extends Component {
   // constructor(props) {
   //   super(props);
@@ -116,6 +119,9 @@ export default class PersonalCapsule extends Component {
                 <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
               </div>
             </Draggable>
+            <div className='musicPlayers' style={{display:'inline-block'}}>
+              <MusicPlayer/>
+            </div>
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}
