@@ -21,6 +21,8 @@ import {
 } from 'draft-js-buttons';
 import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
 
+import axios from 'axios';
+
 const toolbarPlugin = createToolbarPlugin({
     structure: [
       BoldButton,
@@ -59,6 +61,32 @@ export default class AddText extends Component {
         this.editor.focus();
     };
 
+    addText = () => {
+        this.props.handleShowAddText(true)
+        var a = this.state.editorState.getCurrentContent();
+        if (a.getPlainText('') !== '') {
+            axios.post('http://localhost:3001/text', {
+                username: "kenny",
+                media_id: "abc123",
+                capsules: ["myCapsule"],
+                text: a.getPlainText(''),
+                settings: {
+                    privacy: "public"
+                },
+                metadata: {
+                    x: null,
+                    y: null
+                }
+            })
+            .then((res) => {
+                this.closeAddText();
+            })
+            .catch((err) => {
+            alert('Error saving text: ', err.message);
+            });
+        }
+    }
+
     closeAddText = () => {
         this.props.handleShowAddText(false);
     }
@@ -89,7 +117,7 @@ export default class AddText extends Component {
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddText()}}
+                    buttonAction={() => {this.addText()}}
                     buttonType='primary'
                 />
                 <OurButton
