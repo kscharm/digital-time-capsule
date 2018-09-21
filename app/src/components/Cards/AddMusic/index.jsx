@@ -21,7 +21,7 @@ export default class AddMusic extends Component {
   state = {
     filePop: false,
     file: "",
-    fileName: "",
+    fileGenre: "",
   }
 
   saveMusic = () => {
@@ -32,7 +32,7 @@ export default class AddMusic extends Component {
             username: "kenny",
             mediaId: "abc123",
             capsules: ["myCapsule"],
-            title: this.state.fileName,
+            genre: this.state.fileGenre,
             settings: {
                 privacy: "public"
             },
@@ -56,6 +56,10 @@ export default class AddMusic extends Component {
     this.props.handleShowAddMusic(false);
   }
 
+  updateFileGenre = (evt) => {
+      this.setState({fileGenre: evt.target.value})
+  }
+
   render() {
     const componentConfig = {
         iconFiletypes: ['.mp3'],
@@ -74,7 +78,6 @@ export default class AddMusic extends Component {
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
         addedfile: (file) => {
             if (file.type === 'audio/mp3') {
-                this.setState({fileName: file.name});
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = () => {
@@ -101,9 +104,15 @@ export default class AddMusic extends Component {
                     />
                 </div>
             </div>
-            <span className='sectionLabels'> Music Title: </span>
-            <input className='caption' placeholder='Title...' style={{marginBottom: '1em'}}/>
-            <span className='sectionLabels'> Choose Playlist: </span>
+            <span className='sectionLabels'> Genre: </span>
+            <input 
+                value={this.state.fileGenre}
+                className='caption'
+                placeholder='Genre...'
+                style={{marginBottom: '1em'}}
+                onChange={evt => this.updateFileGenre(evt)}
+            />
+            <span className='sectionLabels'> Playlist: </span>
             <Select choose={'Choose Playlist'} options={['Playlist 1', 'Playlist 2']} />
             <div className={ `actionButtons actionButtonsMusic` }>
                 <OurButton

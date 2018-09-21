@@ -29,13 +29,9 @@
                 "type": "string"
             }]
         },
-        "title": {
+        "genre": {
             "bsonType": "string",
-            "description": "name of song"
-        },
-        "caption": {
-            "bsonType": "string",
-            "description": "caption of the song"
+            "description": "genre of song"
         },
         "settings": {
             "bsonType": "object",
