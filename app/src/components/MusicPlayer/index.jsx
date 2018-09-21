@@ -32,7 +32,7 @@ export default class MusicPlayer extends Component {
                     <Sound
                         url={music}
                         playStatus={this.state.playStatus}
-                        playFromPosition={this.state.position}
+                        //playFromPosition={this.state.position}
                         onLoading={this.handleSongLoading}
                         onPlaying={this.handleSongPlaying}
                         onFinishedPlaying={this.handleSongFinishedPlaying}
