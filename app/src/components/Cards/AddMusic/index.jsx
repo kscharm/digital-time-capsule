@@ -81,6 +81,7 @@ export default class AddMusic extends Component {
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
         addedfile: (file) => {
             if (file.type === 'audio/mp3') {
+                console.log(file);
                 this.setState({ fileName: file.name });
                 const reader = new FileReader();
                 reader.readAsDataURL(file);

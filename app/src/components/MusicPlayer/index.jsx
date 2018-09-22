@@ -19,7 +19,6 @@ export default class MusicPlayer extends Component {
     render () {
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         console.log(w);
-        console.log(this.props.song);
         return (
                 <Draggable
                 bounds={{left: 0, top: -310, right: (w - 216)}}

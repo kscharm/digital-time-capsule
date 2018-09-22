@@ -61,6 +61,12 @@ export default class PersonalCapsule extends Component {
     const musicWithNew = this.state.musicList.concat(music);
     this.setState({musicList: musicWithNew});
   }
+  urltoFile = (url, filename, mimeType) => {
+    return (fetch(url)
+        .then(function(res){return res.arrayBuffer();})
+        .then(function(buf){return new File([buf], filename, {type:mimeType});})
+    );
+  }
 
   componentDidMount() {
     const user = 'kenny'
@@ -143,15 +149,21 @@ export default class PersonalCapsule extends Component {
             <div className='musicPlayers' style={{display:'inline-block'}}>
               <MusicPlayer xPos={0} yPos={0} />
               {this.state.musicList.map((music) => {
-                return (
-                    <MusicPlayer
-                        xPos={music.metadata.x}
-                        yPos={music.metadata.y}
-                        genre={music.genre}
-                        title={music.title}
-                        song={music.music}
-                    />
-                )
+                this.urltoFile('data:audio/mp3;base64,aGVsbG8gd29ybGQ=', music.music, 'audio/mp3')
+                .then((file) => {
+                    console.log('hello');
+                    console.log(file);
+                    console.log('goodbye');
+                    return (
+                      <MusicPlayer
+                          xPos={music.metadata.x}
+                          yPos={music.metadata.y}
+                          genre={music.genre}
+                          title={music.title}
+                          song={file}
+                      />
+                  )
+                })
             })}
             </div>
           <div className='addButton'>
