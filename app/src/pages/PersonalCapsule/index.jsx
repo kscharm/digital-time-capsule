@@ -31,6 +31,7 @@ export default class PersonalCapsule extends Component {
     showAddText: false,
     showAddQuote: false,
     showAddMusic: false,
+    musicList: [],
   }
 
   handlePop = (pop) => {
@@ -57,6 +58,8 @@ export default class PersonalCapsule extends Component {
   handleAddMusic = (music) => {
     // Update personal capsule to have the new music that was added.
     console.log('I will handle your ' + music);
+    const musicWithNew = this.state.musicList.concat(music);
+    this.setState({musicList: musicWithNew});
   }
 
   componentDidMount() {
@@ -117,6 +120,7 @@ export default class PersonalCapsule extends Component {
           </div>
       );
     }
+
     const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     console.log(w);
     return (
@@ -138,6 +142,17 @@ export default class PersonalCapsule extends Component {
             </Draggable>
             <div className='musicPlayers' style={{display:'inline-block'}}>
               <MusicPlayer xPos={0} yPos={0} />
+              {this.state.musicList.map((music) => {
+                return (
+                    <MusicPlayer
+                        xPos={music.metadata.x}
+                        yPos={music.metadata.y}
+                        genre={music.genre}
+                        title={music.title}
+                        song={music.music}
+                    />
+                )
+            })}
             </div>
           <div className='addButton'>
             <AddButton

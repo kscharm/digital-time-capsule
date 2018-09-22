@@ -45,7 +45,7 @@ export default class AddMusic extends Component {
         .then((res) => {
             console.log(res.data);
             this.closeAddMusic();
-            this.props.handleAddMusic('NAME');
+            this.props.handleAddMusic(res.data);
         })
         .catch((err) => {
            alert('Error saving music: ', err.message);
