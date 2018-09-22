@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './style.css';
 import Draggable from 'react-draggable';
 import OurButton from '../OurButton';
+import {
+    FaPlayCircle,
+    FaPauseCircle
+  } from 'react-icons/fa';
 
 import music from '../../music/test_music.mp3'
 import Sound from 'react-sound';
@@ -59,23 +63,35 @@ export default class MusicPlayer extends Component {
                         onPlaying={this.handleSongPlaying}
                         onFinishedPlaying={this.handleSongFinishedPlaying}
                         />
-                    <div>
+                    <div className='musicTitle'>
                         {this.props.title}
                     </div>
-                    <div>
-                        {this.props.genre}
+                    <div className='musicGenre'>
+                        Genre: {this.props.genre}
                     </div>
-                    <div>
-                    <OurButton
-                        buttonText='Play'
+                    <div className='musicControls'>
+                    <button 
+                        onClick={() => {this.setState({playStatus: 'PLAYING'})}}
+                        className='iconButtons'
+                    >
+                        <FaPlayCircle className='testIcon' size={40}/>
+                    </button>
+                    <button
+                        onClick={() => {this.setState({playStatus: 'PAUSED'})}}
+                        className='iconButtons'
+                    >
+                        <FaPauseCircle className='testIcon' size={40}/>
+                    </button>
+                    {/* <OurButton
+                        buttonText={<FaPlayCircle className='addIcon' size={32}/>}
                         buttonAction={() => {this.setState({playStatus: 'PLAYING'})}}
                         buttonType='primary'
-                    />
-                    <OurButton
-                        buttonText='Pause'
+                    /> */}
+                    {/* <OurButton
+                        buttonText={<FaPauseCircle className='addIcon' size={32}/>}
                         buttonAction={() => {this.setState({playStatus: 'PAUSED'})}}
                         buttonType='secondary'
-                    />
+                    /> */}
                     </div>
                 </div>
                 </Draggable>
