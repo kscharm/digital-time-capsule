@@ -18,7 +18,8 @@ export default class AddPhoto extends Component {
   state = {
     filePop: false,
     file: "",
-    fileName: ""
+    fileName: "",
+    fileCaption: '',
   }
 
   savePhoto = () => {
@@ -30,7 +31,7 @@ export default class AddPhoto extends Component {
             username: "kenny",
             mediaId: "abc123",
             capsules: ["myCapsule"],
-            caption: "hello",
+            caption: this.state.fileCaption,
             settings: {
                 privacy: "public"
             },
@@ -44,11 +45,11 @@ export default class AddPhoto extends Component {
             this.closeAddPhoto();
         })
         .catch((err) => {
-           alert('Error saving music: ', err.message);
+           alert('Error saving photo: ', err.message);
         });
     } else {
         console.log(this.state);
-        alert('Please select a song first');
+        alert('Please select a photo first');
     }
       this.closeAddPhoto();
   }
@@ -56,23 +57,29 @@ export default class AddPhoto extends Component {
     this.props.handleShowAddPhoto(false);
   }
 
+  updateFileCaption = (evt) => {
+    this.setState({fileCaption: evt.target.value})
+  }
+
   render() {
     const componentConfig = {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         allowedFiletypes: ['.jpg', '.png', '.gif'],
         showFiletypeIcon: true,
-        postUrl: '/uploadHandler',
+        postUrl: 'no-url',
     };
     const djsConfig = {
         maxFiles: 1,
         addRemoveLinks: true,
+        autoProcessQueue: false,
+        uploadMultiple: false,
     };
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file) },
         addedfile: (file) => {
             console.log(file.type);
-            if (file.type === 'image/jpeg') {
+            if (file.type === 'image/jpeg' || file.type === 'image/png') {
                 this.setState({ fileName: file.name });
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
@@ -101,7 +108,13 @@ export default class AddPhoto extends Component {
                 </div>
             </div>
             <span className='sectionLabels'> Add Caption: </span>
-            <input className='caption' placeholder='Caption...' style={{marginBottom: '1em'}}/>
+            <input 
+                className='caption'
+                placeholder='Caption...' 
+                style={{marginBottom: '1em'}}
+                value={this.state.fileCaption}
+                onChange={evt => this.updateFileCaption(evt)}
+            />
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
                 <img className="frameImg" src={addPhotoBase} alt="" />
