@@ -4,6 +4,7 @@ import '../generic.css'
 import '../../OurButton';
 import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
+import axios from 'axios';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -16,15 +17,48 @@ export default class AddPhoto extends Component {
 
   state = {
     filePop: false,
-    files: [],
+    file: "",
+    fileName: "",
+    fileCaption: '',
   }
 
   savePhoto = () => {
-      console.log("SAVING PHOTO");
+    if (this.state.file != '') {
+        console.log(this.state);
+        axios.post('http://localhost:3001/photo', {
+            photo: this.state.file,
+            title: this.state.fileName,
+            username: "kenny",
+            mediaId: "abc123",
+            capsules: ["myCapsule"],
+            caption: this.state.fileCaption,
+            settings: {
+                privacy: "public"
+            },
+            metadata: {
+                x: 0,
+                y: 0
+            }
+        })
+        .then((res) => {
+            console.log(res.data);
+            this.closeAddPhoto();
+        })
+        .catch((err) => {
+           alert('Error saving photo: ', err.message);
+        });
+    } else {
+        console.log(this.state);
+        alert('Please select a photo first');
+    }
       this.closeAddPhoto();
   }
   closeAddPhoto = () => {
     this.props.handleShowAddPhoto(false);
+  }
+
+  updateFileCaption = (evt) => {
+    this.setState({fileCaption: evt.target.value})
   }
 
   render() {
@@ -32,16 +66,32 @@ export default class AddPhoto extends Component {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         allowedFiletypes: ['.jpg', '.png', '.gif'],
         showFiletypeIcon: true,
-        postUrl: '/uploadHandler',
+        postUrl: 'no-url',
     };
     const djsConfig = {
         maxFiles: 1,
         addRemoveLinks: true,
+        autoProcessQueue: false,
+        uploadMultiple: false,
     };
     const eventHandlers = {
         init: (dropzone) => { this.dropzone = dropzone; },
-        maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
-    };
+        maxfilesexceeded: (file) => { this.dropzone.removeFile(file) },
+        addedfile: (file) => {
+            console.log(file.type);
+            if (file.type === 'image/jpeg' || file.type === 'image/png') {
+                this.setState({ fileName: file.name });
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    this.setState({file: reader.result});
+                }
+            } else {
+                this.dropzone.removeFile(file);
+            }
+        },
+        removedfile: (file) => { this.setState({file: ""}) }
+    }
 
     return (
     <div className={ `addType addPhoto` }>
@@ -58,7 +108,13 @@ export default class AddPhoto extends Component {
                 </div>
             </div>
             <span className='sectionLabels'> Add Caption: </span>
-            <input className='caption' placeholder='Caption...' style={{marginBottom: '1em'}}/>
+            <input 
+                className='caption'
+                placeholder='Caption...' 
+                style={{marginBottom: '1em'}}
+                value={this.state.fileCaption}
+                onChange={evt => this.updateFileCaption(evt)}
+            />
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
                 <img className="frameImg" src={addPhotoBase} alt="" />

@@ -91,6 +91,17 @@ app.post('/music', (req, res) => {
   });
 });
 
+app.post('/photo', (req, res) => {
+  const photos = req.body;
+  cog.addPhoto(database, photos, (data, err) => {
+    if (err) {
+      res.status(500).send({error: err.message});
+    } else {
+      res.sendStatus(200);
+    }
+  })
+})
+
 app.post('/text', (req, res) => {
   const textDoc = req.body;
   cog.addText(database, textDoc, (data, err) => {

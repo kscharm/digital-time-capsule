@@ -10,6 +10,10 @@
         "metadata"
     ],
     "properties": {
+        "photo": {
+            "bsonType": "string",
+            "description": "base64 encoding of the music to be uploaded"
+        },
         "username": {
             "bsonType": "string",
             "description": "must be a string and is required"

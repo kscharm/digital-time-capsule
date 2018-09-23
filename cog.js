@@ -32,3 +32,20 @@ exports.addText = function(database, text, callback) {
         return callback(text);
     })
 }
+
+exports.addPhoto = function(database, photo, callback) {
+    // let photoObjects = [];
+    // for (let i = 0; i < photos.photos.length; i+=1) {
+    //     photoObjects.push(photos);
+    //     delete photoObjects[i].photos;
+    //     photoObjects[i].photo = photos.photos[i];
+    // }
+    database.collection("photos").insertOne(photo, (err, res) => {
+        if (err) {
+            console.log('Error inserting photo into database: ', err. message);
+            return callback(null, err);
+        }
+        console.log('Photo saved');
+        return callback(photo);
+    });
+}
