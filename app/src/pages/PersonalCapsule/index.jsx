@@ -17,8 +17,8 @@ import AddMusic from '../../components/Cards/AddMusic';
 import Draggable from 'react-draggable';
 import addPhotoBase from '../../images/addPhoto.png'
 
-import '../../components/MusicPlayer';
 import MusicPlayer from '../../components/MusicPlayer';
+import PhotoDisplay from '../../components/PhotoDisplay';
 
 export default class PersonalCapsule extends Component {
   // constructor(props) {
@@ -32,6 +32,7 @@ export default class PersonalCapsule extends Component {
     showAddQuote: false,
     showAddMusic: false,
     musicList: [],
+    photoList: [],
   }
 
   handlePop = (pop) => {
@@ -54,12 +55,19 @@ export default class PersonalCapsule extends Component {
     // Get and display the music for the user
     console.log('I will get all musics for ' + user);
   }
-
   handleAddMusic = (music) => {
     // Update personal capsule to have the new music that was added.
-    console.log('I will handle your ' + music);
     const musicWithNew = this.state.musicList.concat(music);
     this.setState({musicList: musicWithNew});
+  }
+  getAllPhotos = (user) => {
+    // Get and display the photo for the user
+    console.log('I will get all photos for ' + user);
+  }
+  handleAddPhoto = (photo) => {
+    // Update personal capsule to have the new photo that was added.
+    const photoWithNew = this.state.photoList.concat(photo);
+    this.setState({photoList: photoWithNew});
   }
 
   componentDidMount() {
@@ -67,6 +75,7 @@ export default class PersonalCapsule extends Component {
     // When the component has loaded for the first time
     // Show user data
     this.getAllMusic(user);
+    this.getAllPhotos(user);
   }
 
   render() {
@@ -82,28 +91,24 @@ export default class PersonalCapsule extends Component {
             onClicks = () => {
               this.handleShowAddPhoto(!this.state.showAddPhoto);
               this.handlePop(false);
-              console.log('ADDING PHOTO!!!!');
             }
           } else if (option==='Text') {
             icon = <FaFont/>
             onClicks = () => {
               this.handleShowAddText(!this.state.showAddText);
               this.handlePop(false);
-              console.log('mom else');
             };
           } else if (option==='Quote') {
             icon = <FaQuoteLeft/>
             onClicks = () => {
               this.handleShowAddQuote(!this.state.showAddQuote);
               this.handlePop(false);
-              console.log('your else');
             };
           } else if (option==='Music') {
             icon = <FaMusic/>
             onClicks = () => {
               this.handleShowAddMusic(!this.state.showAddMusic);
               this.handlePop(false);
-              console.log('dumb else')
             };
           }
           return (
@@ -122,38 +127,33 @@ export default class PersonalCapsule extends Component {
     }
 
     const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    console.log(w);
     return (
       <div id='capsulePage'>
         <div className='capsuleDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
-            <Draggable
-              bounds= {{left: 0, top: 50, right: (w - 256)}}
-              handle=".handle"
-              defaultPosition={{x: 0, y: 100}}
-              position={null}
-              onStart={this.handleStart}
-              onDrag={this.handleDrag}
-              onStop={this.handleStop}
-              >
-              <div style={{ width: '256px', height: '356px'}} >
-                <div className="handle">Imagine that this is the frame.</div>
-                <img className="tempPhoto" src={addPhotoBase} alt="temp photo"></img>
-              </div>
-            </Draggable>
-            <div className='musicPlayers' style={{display:'inline-block'}}>
-              <MusicPlayer xPos={0} yPos={0} />
-              {this.state.musicList.map((music) => {
+            {this.state.photoList.map((photo) => {
                 return (
-                  <MusicPlayer
-                      xPos={music.metadata.x}
-                      yPos={music.metadata.y}
-                      genre={music.genre}
-                      title={music.title}
-                      song={music.music}
+                  <PhotoDisplay
+                      // xPos={photo.metadata.x}
+                      // yPos={photo.metadata.y}
+                      // genre={photo.caption}
+                      // title={photo.title}
+                      // photo={photo.photo}
+                      style={{display:'inline-block'}}
                   />
               )
             })}
-            </div>
+            {this.state.musicList.map((music) => {
+              return (
+                <MusicPlayer
+                    xPos={music.metadata.x}
+                    yPos={music.metadata.y}
+                    genre={music.genre}
+                    title={music.title}
+                    song={music.music}
+                    style={{display:'inline-block'}}
+                />
+            )
+            })}
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}
@@ -165,7 +165,9 @@ export default class PersonalCapsule extends Component {
           </div>
         </div>
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
-        {this.state.showAddPhoto ? <AddPhoto handleShowAddPhoto={this.handleShowAddPhoto}/> : null}
+        {this.state.showAddPhoto ? <AddPhoto 
+                                      handleShowAddPhoto={this.handleShowAddPhoto}
+                                      handleAddPhoto={this.handleAddPhoto}/> : null}
         {this.state.showAddText ? <AddText handleShowAddText={this.handleShowAddText}/> : null}
         {this.state.showAddQuote ? <AddQuote handleShowAddQuote={this.handleShowAddQuote}/> : null}
         {this.state.showAddMusic ? <AddMusic 

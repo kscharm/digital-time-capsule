@@ -36,7 +36,6 @@ export default class MusicPlayer extends Component {
 
     render () {
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        console.log(w);
         let songy = '';
         this.urltoFile('data:audio/mp3;base64,aGVsbG8gd29ybGQ=', this.props.song, 'audio/mp3')
             .then((file) => {
@@ -47,7 +46,7 @@ export default class MusicPlayer extends Component {
             })
         return (
                 <Draggable
-                bounds={{left: 0, top: -310, right: (w - 216)}}
+                bounds='parent'
                 defaultPosition={{x: this.props.xPos, y: this.props.yPos}}
                 position={null}
                 onStart={this.handleStart}

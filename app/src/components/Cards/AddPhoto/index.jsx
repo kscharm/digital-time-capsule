@@ -24,7 +24,6 @@ export default class AddPhoto extends Component {
 
   savePhoto = () => {
     if (this.state.file != '') {
-        console.log(this.state);
         axios.post('http://localhost:3001/photo', {
             photo: this.state.file,
             title: this.state.fileName,
@@ -41,8 +40,10 @@ export default class AddPhoto extends Component {
             }
         })
         .then((res) => {
-            console.log(res.data);
+            console.log("DATA");
+            console.log(res);
             this.closeAddPhoto();
+            this.props.handleAddPhoto(res.data);
         })
         .catch((err) => {
            alert('Error saving photo: ', err.message);
@@ -78,7 +79,6 @@ export default class AddPhoto extends Component {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file) },
         addedfile: (file) => {
-            console.log(file.type);
             if (file.type === 'image/jpeg' || file.type === 'image/png') {
                 this.setState({ fileName: file.name });
                 const reader = new FileReader();
