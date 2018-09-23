@@ -40,8 +40,6 @@ export default class AddPhoto extends Component {
             }
         })
         .then((res) => {
-            console.log("DATA");
-            console.log(res);
             this.closeAddPhoto();
             this.props.handleAddPhoto(res.data);
         })

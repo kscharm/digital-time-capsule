@@ -133,11 +133,11 @@ export default class PersonalCapsule extends Component {
             {this.state.photoList.map((photo) => {
                 return (
                   <PhotoDisplay
-                      // xPos={photo.metadata.x}
-                      // yPos={photo.metadata.y}
-                      // genre={photo.caption}
-                      // title={photo.title}
-                      // photo={photo.photo}
+                      xPos={photo.metadata.x}
+                      yPos={photo.metadata.y}
+                      genre={photo.caption}
+                      title={photo.title}
+                      photo={photo.photo}
                       style={{display:'inline-block'}}
                   />
               )

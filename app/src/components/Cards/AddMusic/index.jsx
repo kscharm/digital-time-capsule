@@ -43,7 +43,6 @@ export default class AddMusic extends Component {
             }
         })
         .then((res) => {
-            console.log(res.data);
             this.closeAddMusic();
             this.props.handleAddMusic(res.data);
         })
