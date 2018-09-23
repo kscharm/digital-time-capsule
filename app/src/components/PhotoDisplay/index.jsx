@@ -29,7 +29,7 @@ export default class PhotoDisplay extends Component {
 
         return (
             <Draggable
-              bounds= 'parent'
+              bounds= {{left:0}}
               handle=".handle"
               defaultPosition={{x: 0, y: 100}}
               position={null}
