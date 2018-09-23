@@ -15,6 +15,8 @@ export default class PhotoDisplay extends Component {
         );
     }
 
+    handleStart(e, ui){ e.stopPropagation(); } 
+
     // this.urltoFile('data:audio/mp3;base64,aGVsbG8gd29ybGQ=', this.props.song, 'audio/mp3')
     // .then((file) => {
     //     console.log('hello');
