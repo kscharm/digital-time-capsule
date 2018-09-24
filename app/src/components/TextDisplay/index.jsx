@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import './style.css';
 
-export default class PhotoDisplay extends Component {
+export default class TextDisplay extends Component {
     // constructor(props) {
     //   super(props)
     // }
@@ -10,6 +10,7 @@ export default class PhotoDisplay extends Component {
     handleStart(e, ui){ e.stopPropagation(); } 
 
     render () {
+        console.log("made it to the textdisplay");
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         return (
             <Draggable
@@ -22,8 +23,8 @@ export default class PhotoDisplay extends Component {
               onStop={this.handleStop}
               >
               <div style={{ width: '256px', height: '356px'}} >
-                <div className="handle">Imagine that this is the frame.</div>
-                <img className="photo" src={this.props.photo} alt={this.props.title} />
+                <div className="handle">TEXT FRAMEEEEEEEEEEEEEEEEEE.</div>
+                <p className="text" src={this.props.text} alt={this.props.title} />
               </div>
             </Draggable>
         );
