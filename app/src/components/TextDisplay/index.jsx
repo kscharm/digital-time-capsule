@@ -12,6 +12,7 @@ export default class TextDisplay extends Component {
     render () {
         console.log("made it to the textdisplay");
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        const actualText = this.props.text;
         return (
             <Draggable
               bounds= {{left:0, right:(w), top:0}}
@@ -24,7 +25,7 @@ export default class TextDisplay extends Component {
               >
               <div style={{ width: '256px', height: '356px'}} >
                 <div className="handle">TEXT FRAMEEEEEEEEEEEEEEEEEE.</div>
-                <p className="text" src={this.props.text} alt={this.props.title} />
+                <p className="text" alt={this.props.title}>{actualText}</p>
               </div>
             </Draggable>
         );
