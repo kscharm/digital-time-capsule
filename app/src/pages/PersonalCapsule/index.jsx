@@ -137,6 +137,7 @@ export default class PersonalCapsule extends Component {
                       title={photo.title}
                       photo={photo.photo}
                       style={{display:'inline-block'}}
+                      key={photo.photo}
                   />
               )
             })}
@@ -149,6 +150,7 @@ export default class PersonalCapsule extends Component {
                     title={music.title}
                     song={music.music}
                     style={{display:'inline-block'}}
+                    key={music.music}
                 />
             )
             })}
