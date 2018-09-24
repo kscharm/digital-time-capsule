@@ -86,7 +86,7 @@ app.post('/music', (req, res) => {
     if (err) {
       res.status(500).send({ error: err.message });
     } else {
-      res.status(200).send(musicDoc);
+      res.status(200).send(data);
     }
   });
 });
@@ -97,7 +97,7 @@ app.post('/photo', (req, res) => {
     if (err) {
       res.status(500).send({error: err.message});
     } else {
-      res.status(200).send(photos);
+      res.status(200).send(data);
     }
   })
 })
@@ -108,10 +108,22 @@ app.post('/text', (req, res) => {
     if (err) {
       res.status(500).send({error: err.message});
     } else {
-      res.status(200).send(textDoc);
+      res.status(200).send(data);
     }
   })
-})
+});
+
+app.post('/capsule', (req, res) => {
+  const capsuleDoc = req.body;
+  cog.addTimeCapsule(database,capsuleDoc, (data, err) => {
+    if (err) {
+      res.status(500).send({error: err.message});
+    } else {
+      res.status(200).send(data);
+    }
+  })
+});
+
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
 });
