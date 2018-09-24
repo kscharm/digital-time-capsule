@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import './style.css';
 import Draggable from 'react-draggable';
-import OurButton from '../OurButton';
 import {
     FaPlayCircle,
     FaPauseCircle
   } from 'react-icons/fa';
-
-import music from '../../music/test_music.mp3'
+  import './style.css';
 import Sound from 'react-sound';
 
 export default class MusicPlayer extends Component {
@@ -20,18 +17,11 @@ export default class MusicPlayer extends Component {
         position: 0,
     }
 
-    urltoFile = (url, filename, mimeType) => {
-        return (fetch(url)
-            .then(function(res){return res.arrayBuffer();})
-            .then(function(buf){return new File([buf], filename, {type:mimeType});})
-        );
-    }
-
     render () {
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         return (
                 <Draggable
-                bounds= {{left:0}}
+                bounds= {{left:0, right:(w), top:0}}
                 defaultPosition={{x: this.props.xPos, y: this.props.yPos}}
                 position={null}
                 onStart={this.handleStart}
@@ -46,6 +36,8 @@ export default class MusicPlayer extends Component {
                         onLoading={this.handleSongLoading}
                         onPlaying={this.handleSongPlaying}
                         onFinishedPlaying={this.handleSongFinishedPlaying}
+                        debugMode={false}
+                        useConsole={false}
                         />
                     <div className='musicTitle'>
                         {this.props.title}

@@ -14,9 +14,6 @@ import AddText from '../../components/Cards/AddText';
 import AddQuote from '../../components/Cards/AddQuote';
 import AddMusic from '../../components/Cards/AddMusic';
 
-import Draggable from 'react-draggable';
-import addPhotoBase from '../../images/addPhoto.png'
-
 import MusicPlayer from '../../components/MusicPlayer';
 import PhotoDisplay from '../../components/PhotoDisplay';
 
@@ -126,10 +123,11 @@ export default class PersonalCapsule extends Component {
       );
     }
 
-    const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     return (
       <div id='capsulePage'>
         <div className='capsuleDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
+            <div style={{height:'50px'}}/>
+            <div>
             {this.state.photoList.map((photo) => {
                 return (
                   <PhotoDisplay
@@ -154,6 +152,7 @@ export default class PersonalCapsule extends Component {
                 />
             )
             })}
+            </div>
           <div className='addButton'>
             <AddButton
               buttonAction={() => { this.handlePop(!this.state.addPop) }}

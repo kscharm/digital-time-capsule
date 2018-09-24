@@ -41,3 +41,6 @@
 .testIcon:active {
     opacity: 1;
 }
+.react-draggable {
+    display: inline-block;
+}

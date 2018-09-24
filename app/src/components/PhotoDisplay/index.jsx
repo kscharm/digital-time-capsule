@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './style.css';
 import Draggable from 'react-draggable';
-import addPhotoBase from '../../images/addPhoto.png'
+import './style.css';
 
 export default class PhotoDisplay extends Component {
     // constructor(props) {
@@ -14,7 +13,7 @@ export default class PhotoDisplay extends Component {
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         return (
             <Draggable
-              bounds= {{left:0}}
+              bounds= {{left:0, right:(w), top:0}}
               handle=".handle"
               defaultPosition={{x: 0, y: 100}}
               position={null}
@@ -24,7 +23,7 @@ export default class PhotoDisplay extends Component {
               >
               <div style={{ width: '256px', height: '356px'}} >
                 <div className="handle">Imagine that this is the frame.</div>
-                <img className="tempPhoto" src={this.props.photo} alt="temp photo"></img>
+                <img className="tempPhoto" src={this.props.photo} alt={this.props.title} />
               </div>
             </Draggable>
         );

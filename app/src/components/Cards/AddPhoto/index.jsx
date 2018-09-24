@@ -23,7 +23,7 @@ export default class AddPhoto extends Component {
   }
 
   savePhoto = () => {
-    if (this.state.file != '') {
+    if (this.state.file !== '') {
         axios.post('http://localhost:3001/photo', {
             photo: this.state.file,
             title: this.state.fileName,
@@ -47,7 +47,6 @@ export default class AddPhoto extends Component {
            alert('Error saving photo: ', err.message);
         });
     } else {
-        console.log(this.state);
         alert('Please select a photo first');
     }
       this.closeAddPhoto();

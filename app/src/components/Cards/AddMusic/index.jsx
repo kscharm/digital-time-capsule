@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import OurButton from '../../OurButton';
 import Select from '../../Select';
-import ReactDOMServer from 'react-dom/server';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -80,7 +79,6 @@ export default class AddMusic extends Component {
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file); },
         addedfile: (file) => {
             if (file.type === 'audio/mp3') {
-                console.log(file);
                 this.setState({ fileName: file.name });
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
