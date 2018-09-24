@@ -108,7 +108,7 @@ app.post('/text', (req, res) => {
     if (err) {
       res.status(500).send({error: err.message});
     } else {
-      res.sendStatus(200);
+      res.status(200).send(textDoc);
     }
   })
 })

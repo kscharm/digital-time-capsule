@@ -46,7 +46,6 @@ export default class AddText extends Component {
           const startSelectedTextLength = startBlockTextLength - currentSelection.getStartOffset();
           const endSelectedTextLength = currentSelection.getEndOffset();
           const keyAfterEnd = currentContent.getKeyAfter(endKey);
-          console.log(currentSelection)
           if (isStartAndEndBlockAreTheSame) {
             length += currentSelection.getEndOffset() - currentSelection.getStartOffset();
           } else {
@@ -73,7 +72,7 @@ export default class AddText extends Component {
         const currentContentLength = currentContent.getPlainText('').length;
         const selectedTextLength = this._getLengthOfSelectedText();
         if (currentContentLength - selectedTextLength > MAX_LENGTH - 1) {
-          console.log('you can type max 200 characters');
+          alert('you can type max 200 characters');
           return 'handled';
         }
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import OurButton from '../../OurButton';
 import Select from '../../Select';
-import ReactDOMServer from 'react-dom/server';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -38,13 +37,13 @@ export default class AddMusic extends Component {
                 privacy: "public"
             },
             metadata: {
-                x: 0,
-                y: 0
+                x: 1,
+                y: 1
             }
         })
         .then((res) => {
-            console.log(res.data);
             this.closeAddMusic();
+            this.props.handleAddMusic(res.data);
         })
         .catch((err) => {
            alert('Error saving music: ', err.message);

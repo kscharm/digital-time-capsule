@@ -3,4 +3,44 @@
     padding: 1em;
     min-height: 100px;
     width: 200px;
+    opacity: .85;
+}
+.musicControls {
+    text-align: center;
+    margin: .5em;
+}
+.musicTitle {
+    color: white;
+    text-align: center;
+    margin: .5em;
+    font-weight: bold;
+}
+.musicGenre {
+    color: white;
+    text-align: center;
+}
+
+.iconButtons {
+    background-color: #003057;
+    opacity: 0.6;
+    color: white;
+    border-radius: 100%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.testIcon {
+    opacity: .75;
+    margin-right: .5em;
+    color: white;
+}
+.testIcon:hover {
+    opacity: .85;
+}
+.testIcon:active {
+    opacity: 1;
+}
+.react-draggable {
+    display: inline-block;
 }
