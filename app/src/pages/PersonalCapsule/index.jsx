@@ -17,6 +17,8 @@ import AddMusic from '../../components/Cards/AddMusic';
 import MusicPlayer from '../../components/MusicPlayer';
 import PhotoDisplay from '../../components/PhotoDisplay';
 
+//just putting this here so I can push
+
 export default class PersonalCapsule extends Component {
   // constructor(props) {
   //   super(props);
