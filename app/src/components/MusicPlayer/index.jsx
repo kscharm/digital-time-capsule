@@ -58,16 +58,6 @@ export default class MusicPlayer extends Component {
                     >
                         <FaPauseCircle className='testIcon' size={40}/>
                     </button>
-                    {/* <OurButton
-                        buttonText={<FaPlayCircle className='addIcon' size={32}/>}
-                        buttonAction={() => {this.setState({playStatus: 'PLAYING'})}}
-                        buttonType='primary'
-                    /> */}
-                    {/* <OurButton
-                        buttonText={<FaPauseCircle className='addIcon' size={32}/>}
-                        buttonAction={() => {this.setState({playStatus: 'PAUSED'})}}
-                        buttonType='secondary'
-                    /> */}
                     </div>
                 </div>
                 </Draggable>
