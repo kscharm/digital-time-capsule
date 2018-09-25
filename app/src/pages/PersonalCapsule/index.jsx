@@ -73,7 +73,7 @@ export default class PersonalCapsule extends Component {
     console.log('I will get all text for ' + user);
   }
   handleAddText = (text) => {
-    // Update personal capsule to have the new photo that was added.
+    // Update personal capsule to have the new text that was added.
     const textWithNew = this.state.textList.concat(text);
     this.setState({textList: textWithNew});
   }
@@ -164,6 +164,7 @@ export default class PersonalCapsule extends Component {
             )
             })}
             {this.state.textList.map((text) => {
+              console.log("Text: " + text.text.length);
                 return (
                   <TextDisplay
                       xPos={text.metadata.x}
