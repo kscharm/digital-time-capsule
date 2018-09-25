@@ -80,6 +80,7 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
+                this.props.handleAddText(res.data);
             })
             .catch((err) => {
             alert('Error saving text: ', err.message);

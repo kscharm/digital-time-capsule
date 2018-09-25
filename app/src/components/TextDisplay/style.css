@@ -1,0 +1,22 @@
+.react-draggable {
+    display: inline-block;
+}
+
+.handle {
+    background-color: wheat;
+}
+
+.textSpace {
+    background-color: rgb(0, 48, 87);
+    padding: 1em;
+    min-height: 80px;
+    width: 200px;
+    opacity: .85;
+}
+
+.text {
+    color: white;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    table-layout: fixed;
+}
