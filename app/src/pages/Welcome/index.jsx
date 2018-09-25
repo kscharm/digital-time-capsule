@@ -22,7 +22,7 @@ export default class WelcomePage extends Component {
           <div className='login'>
             <ReactLink 
                 to={{
-                pathname: '/personalCapsule',
+                pathname: '/currentCapsule',
                 state: { prev: true },
                 }}
                 linkText='LOGIN'

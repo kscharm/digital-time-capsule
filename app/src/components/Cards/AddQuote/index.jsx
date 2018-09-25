@@ -16,7 +16,7 @@ const { CharCounter } = counterPlugin;
 const text = '';
 const MAX_LENGTH = 200;
 
-export default class AddText extends Component {
+export default class AddQuote extends Component {
     // constructor(props) {
     //     super(props);
     // }
