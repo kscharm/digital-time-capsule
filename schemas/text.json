@@ -29,6 +29,10 @@
             "bsonType": "string",
             "description": "Content of text object"
         },
+        "author": {
+            "bsonType": "string",
+            "description": "Author of quote"
+        },
         "settings": {
             "bsonType": "object",
             "description": "Settings for text itself",
