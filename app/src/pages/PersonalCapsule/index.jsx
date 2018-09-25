@@ -164,7 +164,6 @@ export default class PersonalCapsule extends Component {
             )
             })}
             {this.state.textList.map((text) => {
-              console.log("Text: " + text.text.length);
                 return (
                   <TextDisplay
                       xPos={text.metadata.x}
