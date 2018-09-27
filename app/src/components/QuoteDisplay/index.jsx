@@ -10,6 +10,7 @@ export default class QuoteDisplay extends Component {
     render () {
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const actualText = this.props.text;
+        const author = this.props.author;
         return (
             <Draggable
               bounds= {{left:0, right:(w), top:0}}
@@ -20,7 +21,8 @@ export default class QuoteDisplay extends Component {
               onStop={this.handleStop}
               >
               <div className="quoteSpace">
-                <p className="quote" alt={this.props.title}>{actualText}</p>
+                <p className="quote">{actualText}</p>
+                <p className="author">~{author}</p>
               </div>
             </Draggable>
         );

@@ -20,8 +20,7 @@ export default class TextDisplay extends Component {
               onStop={this.handleStop}
               >
               <div className="textSpace">
-                {/* <div className="handle">TEXT FRAMEEEEEEEEEEEEEEEEEE.</div> */}
-                <p className="text" alt={this.props.title}>{actualText}</p>
+                <p className="text">{actualText}</p>
               </div>
             </Draggable>
         );

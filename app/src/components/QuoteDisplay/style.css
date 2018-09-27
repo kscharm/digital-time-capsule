@@ -20,3 +20,10 @@
     word-wrap: break-word;
     table-layout: fixed;
 }
+
+.author {
+    color: white;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    table-layout: fixed;
+}
