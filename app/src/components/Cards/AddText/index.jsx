@@ -62,7 +62,6 @@ export default class AddText extends Component {
     };
 
     addText = () => {
-        this.props.handleShowAddText(true)
         var a = this.state.editorState.getCurrentContent();
         if (a.getPlainText('') !== '') {
             axios.post('http://localhost:3001/text', {

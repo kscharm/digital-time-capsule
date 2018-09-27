@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import './style.css';
 
-export default class TextDisplay extends Component {
+export default class QuoteDisplay extends Component {
     // constructor(props) {
     //   super(props)
     // }
@@ -10,6 +10,7 @@ export default class TextDisplay extends Component {
     render () {
         const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const actualText = this.props.text;
+        const author = this.props.author;
         return (
             <Draggable
               bounds= {{left:0, right:(w), top:0}}
@@ -19,8 +20,9 @@ export default class TextDisplay extends Component {
               onDrag={this.handleDrag}
               onStop={this.handleStop}
               >
-              <div className="textSpace">
-                <p className="text">{actualText}</p>
+              <div className="quoteSpace">
+                <p className="quote">{actualText}</p>
+                <p className="author">~{author}</p>
               </div>
             </Draggable>
         );
