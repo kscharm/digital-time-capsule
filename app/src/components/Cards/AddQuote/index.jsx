@@ -7,6 +7,8 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import '../../../../node_modules/draft-js-counter-plugin/lib/plugin.css';
 import createCounterPlugin from 'draft-js-counter-plugin';
+import axios from 'axios';
+
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
 const counterPlugin = createCounterPlugin();
@@ -91,6 +93,33 @@ export default class AddQuote extends Component {
         this.editor.focus();
     };
 
+    addQuote = () => {
+        this.props.handleShowAddQuote(true);
+        var editor = this.state.editorState.getCurrentContent();
+        if (editor.getPlainText('') != '') {
+            axios.post('http://localhost:3001/text', {
+                username: "madison",
+                mediaId: "42069",
+                capsules: ["myCapsule"],
+                text: editor.getPlainText(''),
+                author: "Madison",
+                settings: {
+                    privacy: "public"
+                },
+                metadata: {
+                    x: null,
+                    y: null
+                }
+            })
+            .then((res) => {
+                this.closeAddQuote();
+            })
+            .catch((err) => {
+                alert('Error saving text: ', err.message);
+            });
+        }
+    }
+
     closeAddQuote = () => {
         this.props.handleShowAddQuote(false);
     }
@@ -119,7 +148,7 @@ export default class AddQuote extends Component {
             <div className={ `actionButtons actionButtonsQuote` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddQuote()}}
+                    buttonAction={() => {this.addQuote()}}
                     buttonType='primary'
                 />
                 <OurButton
