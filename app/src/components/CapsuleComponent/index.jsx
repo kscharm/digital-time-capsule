@@ -17,8 +17,9 @@ import AddCapsule from '../../components/Cards/AddCapsule';
 
 import MusicPlayer from '../../components/MusicPlayer';
 import PhotoDisplay from '../../components/PhotoDisplay';
-import OurButton from '../OurButton';
 import TextDisplay from '../../components/TextDisplay';
+import QuoteDisplay from '../../components/QuoteDisplay';
+import OurButton from '../OurButton';
 
 export default class CapsuleComponent extends Component {
   // constructor(props) {
@@ -33,8 +34,9 @@ export default class CapsuleComponent extends Component {
     showAddMusic: false,
     musicList: [],
     photoList: [],
-    showAddCapsule: false,
     textList: [],
+    quoteList: [],
+    showAddCapsule: false,
   }
 
   handlePop = (pop) => {
@@ -81,6 +83,15 @@ export default class CapsuleComponent extends Component {
     // Update personal capsule to have the new text that was added.
     const textWithNew = this.state.textList.concat(text);
     this.setState({textList: textWithNew});
+  }
+  getAllQuotes = (user) => {
+    // Get and display the photo for the user
+    console.log('I will get all text for ' + user);
+  }
+  handleAddQuote = (quote) => {
+    // Update personal capsule to have the new text that was added.
+    const quoteWithNew = this.state.quoteList.concat(quote);
+    this.setState({quoteList: quoteWithNew});
   }
 
   handleShowAddCapsule = (show) => {
@@ -182,10 +193,21 @@ export default class CapsuleComponent extends Component {
                   <TextDisplay
                       xPos={text.metadata.x}
                       yPos={text.metadata.y}
-                      genre={text.caption}
-                      title={text.title}
                       text={text.text}
                       style={{display:'inline-block'}}
+                      key={text.text}
+                  />
+              )
+            })}
+            {this.state.quoteList.map((quote) => {
+                return (
+                  <QuoteDisplay
+                      xPos={quote.metadata.x}
+                      yPos={quote.metadata.y}
+                      author={quote.author}
+                      text={quote.text}
+                      style={{display:'inline-block'}}
+                      key={quote.text}
                   />
               )
             })}
@@ -214,7 +236,9 @@ export default class CapsuleComponent extends Component {
         {this.state.showAddText ? <AddText 
                                       handleShowAddText={this.handleShowAddText}
                                       handleAddText={this.handleAddText}/> : null}
-        {this.state.showAddQuote ? <AddQuote handleShowAddQuote={this.handleShowAddQuote}/> : null}
+        {this.state.showAddQuote ? <AddQuote
+                                      handleShowAddQuote={this.handleShowAddQuote}
+                                      handleAddQuote={this.handleAddQuote}/> : null}
         {this.state.showAddMusic ? <AddMusic 
                                       handleShowAddMusic={this.handleShowAddMusic}
                                       handleAddMusic={this.handleAddMusic}/> : null}

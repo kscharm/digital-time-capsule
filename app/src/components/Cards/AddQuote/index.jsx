@@ -25,6 +25,7 @@ export default class AddQuote extends Component {
 
     state = {
         editorState: createEditorStateWithText(text),
+        quoteAuthor: '',
     };
 
     onChange = (editorState) => {
@@ -94,7 +95,6 @@ export default class AddQuote extends Component {
     };
 
     addQuote = () => {
-        this.props.handleShowAddQuote(true);
         var editor = this.state.editorState.getCurrentContent();
         if (editor.getPlainText('') != '') {
             axios.post('http://localhost:3001/text', {
@@ -102,7 +102,7 @@ export default class AddQuote extends Component {
                 mediaId: "42069",
                 capsules: ["myCapsule"],
                 text: editor.getPlainText(''),
-                author: "Madison",
+                author: this.state.quoteAuthor,
                 settings: {
                     privacy: "public"
                 },
@@ -113,15 +113,19 @@ export default class AddQuote extends Component {
             })
             .then((res) => {
                 this.closeAddQuote();
+                this.props.handleAddQuote(res.data);
             })
             .catch((err) => {
-                alert('Error saving text: ', err.message);
+                alert('Error saving quote: ', err.message);
             });
         }
     }
 
     closeAddQuote = () => {
         this.props.handleShowAddQuote(false);
+    }
+    updateQuoteAuthor = (evt) => {
+        this.setState({quoteAuthor: evt.target.value})
     }
 
 
@@ -144,7 +148,13 @@ export default class AddQuote extends Component {
                 <CharCounter editorState={this.state.editorState} limit={200} />
             </div>
             <span className='sectionLabels' style={{marginTop: '.5em'}}> Quote Author: </span>
-            <input className='caption' placeholder='Author...' style={{marginBottom: '1em'}}/>
+            <input
+                className='caption'
+                placeholder='Author...'
+                style={{marginBottom: '1em'}}
+                value={this.state.quoteAuthor}
+                onChange={evt => this.updateQuoteAuthor(evt)}
+            />
             <div className={ `actionButtons actionButtonsQuote` }>
                 <OurButton
                     buttonText='Add'
