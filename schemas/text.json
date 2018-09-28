@@ -43,6 +43,10 @@
                 }
             }
         },
+        "quote": {
+            "bsonType": "boolean",
+            "description": "Whether or not this text object is a quote"
+        },
         "metadata": {
             "bsonType": "object",
             "description": "Object containing all media metadata"
