@@ -128,6 +128,7 @@ blockquote{
     color: #333;
     text-align: left;
     box-shadow: 1px 1px 1px #999, 2px 2px 1px #999, 3px 3px 1px #999;
+    max-width: 350px;
   }
   .raised blockquote span.author {
     position: relative;
