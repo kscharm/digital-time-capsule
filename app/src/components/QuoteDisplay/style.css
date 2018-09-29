@@ -131,6 +131,8 @@ blockquote{
     max-width: 350px;
     overflow-wrap: break-word;
     word-break: break-all;
+    padding-top: 4em;
+    padding-bottom: 2em;
   }
   .raised blockquote span.author {
     position: relative;
