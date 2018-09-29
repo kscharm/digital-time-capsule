@@ -6,24 +6,161 @@
     background-color: wheat;
 }
 
-.quoteSpace {
+blockquote{
+    border-left:none
+}
+
+.quoteSpace{
+    
+    overflow: hidden;
+    border-radius: 17px;
     background-color: rgb(0, 48, 87);
-    padding: 1em;
-    min-height: 80px;
-    width: 200px;
     opacity: .85;
+    color:white;
+    width: 325px;
+    
 }
 
-.quote {
-    color: white;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    table-layout: fixed;
+.quoteMark{
+    
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size:100px;
+    color:white;
+    font-family: "Times New Roman", Georgia, Serif;
+    
 }
 
-.author {
-    color: white;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    table-layout: fixed;
+.quoteSpecial {
+    font-size: 19px;
+    margin-top: -50px;
+    padding: 1em;
+    font-style: oblique;
 }
+  
+  .notepaper {
+    position: relative;
+    padding: 29px 20px 20px 45px;
+    max-width: 350px;
+    line-height: 25px;
+    color: #6a5f49;
+    background-color: #f2f6c1;
+    background-image: -webkit-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    background-image: -moz-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    background-image: -o-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
+  .notepaper:before, .notepaper:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .notepaper:before {
+    left: 28px;
+    width: 2px;
+    border: solid #efcfad;
+    border-color: rgba(239, 207, 173, 0.9);
+    border-width: 0 1px;
+  }
+  
+  .notepaper:after {
+    z-index: -1;
+    left: 0;
+    right: 0;
+    background: rgba(242, 246, 193, 0.9);
+    border: 1px solid rgba(170, 157, 134, 0.7);
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+  
+  .quote {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    margin : 0;
+  }
+  
+  .curly-quotes:before, .curly-quotes:after {
+    display: inline-block;
+    vertical-align: top;
+    height: 30px;
+    line-height: 48px;
+    font-size: 50px;
+    opacity: .2;
+  }
+  
+  .curly-quotes:before {
+    content: '\201C';
+  }
+  
+  .curly-quotes:after {
+    content: '\201D';
+  }
+  
+  .quote-by {
+    display: block;
+    padding-right: 10px;
+    text-align: right;
+    font-size: 13px;
+    font-style: italic;
+    color: #84775c;
+  }
+  
+  .lt-ie8 .notepaper {
+    padding: 15px 25px;
+  }
+
+  .raised blockquote {
+    position: relative;
+    display: inline-block;
+    background: #eee;
+    padding: 40px 30px 30px 60px;
+    border-radius: 10px;
+    color: #333;
+    text-align: left;
+    box-shadow: 1px 1px 1px #999, 2px 2px 1px #999, 3px 3px 1px #999;
+  }
+  .raised blockquote span.author {
+    position: relative;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    color: #999;
+  }
+  .raised blockquote span.author i {
+    position: relative;
+    background: #eee;
+    padding-left: 5px;
+    font-style: italic;
+    z-index: 5;
+  }
+  .raised blockquote span.author::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    z-index: 1;
+  }
+  .raised blockquote::before {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    content: "\"";
+    font-family: 'Bitter', serif;
+    font-size: 120px;
+    color: #999;
+  }
