@@ -11,25 +11,23 @@ blockquote{
 }
 
 .quoteSpace{
-    
     overflow: hidden;
     border-radius: 17px;
     background-color: rgb(0, 48, 87);
     opacity: .85;
     color:white;
     width: 325px;
-    
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .quoteMark{
-    
     margin: 0;
     padding: 0;
     font-weight: bold;
     font-size:100px;
     color:white;
     font-family: "Times New Roman", Georgia, Serif;
-    
 }
 
 .quoteSpecial {
@@ -53,6 +51,8 @@ blockquote{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
+    overflow-wrap: break-word;
+    word-break: break-all;
   }
   
   .notepaper:before, .notepaper:after {
@@ -129,6 +129,8 @@ blockquote{
     text-align: left;
     box-shadow: 1px 1px 1px #999, 2px 2px 1px #999, 3px 3px 1px #999;
     max-width: 350px;
+    overflow-wrap: break-word;
+    word-break: break-all;
   }
   .raised blockquote span.author {
     position: relative;
@@ -160,8 +162,9 @@ blockquote{
     position: absolute;
     top: 10px;
     left: 10px;
-    content: "\"";
-    font-family: 'Bitter', serif;
-    font-size: 120px;
+    content: "\201C";
+    font-family: 'Georgia', serif;
+    font-size: 100px;
+    font-weight: bold;
     color: #999;
   }
