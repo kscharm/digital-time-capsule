@@ -1,3 +1,4 @@
 .react-draggable {
     display: inline-block;
+    position: absolute;
 }

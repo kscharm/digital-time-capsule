@@ -1,3 +1,8 @@
+.react-draggable {
+    display: inline-block;
+    position: absolute;
+}
+
 .musicPlayer {
     background-color: rgb(0, 48, 87);
     padding: 1em;
@@ -35,12 +40,11 @@
     margin-right: .5em;
     color: white;
 }
+
 .testIcon:hover {
     opacity: .85;
 }
+
 .testIcon:active {
     opacity: 1;
-}
-.react-draggable {
-    display: inline-block;
 }
