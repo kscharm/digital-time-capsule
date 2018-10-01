@@ -21,25 +21,12 @@ export default class QuoteDisplay extends Component {
               onStop={this.handleStop}
               >
               <div>
-              <blockquote className="quoteSpace">
-                <p className="quoteMark">“</p>
-                <p className="quoteSpecial">{actualText}</p>
-                <div className='blog-post-actions'>
-                    <p className="blog-post-bottom pull-right">- {author}</p>
+                <div className='raised'>
+                    <blockquote>
+                        {actualText}
+                        <span class="author"><i>{author}</i></span>
+                    </blockquote>
                 </div>
-              </blockquote>
-              <div class="notepaper">
-                <figure class="quote">
-                    <blockquote class="curly-quotes">{actualText}</blockquote>
-                    <figcaption class="quote-by">— {author}</figcaption>
-                </figure>
-            </div>
-            <div className='raised'>
-                <blockquote>
-                    {actualText}
-                    <span class="author"><i>{author}</i></span>
-                </blockquote>
-            </div>
             </div>
             </Draggable>
         );

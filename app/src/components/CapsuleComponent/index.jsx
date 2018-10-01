@@ -196,6 +196,7 @@ export default class CapsuleComponent extends Component {
                       text={text.text}
                       style={{display:'inline-block'}}
                       key={text.text}
+                      frame={text.frame}
                   />
               )
             })}
