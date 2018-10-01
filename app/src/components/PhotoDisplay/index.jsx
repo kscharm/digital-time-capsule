@@ -10,10 +10,10 @@ export default class PhotoDisplay extends Component {
     handleStart(e, ui){ e.stopPropagation(); } 
 
     render () {
-        const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         return (
             <Draggable
-              bounds= {{left:0, right:(w), top:0}}
+              bounds= {{left:0, top:0}}
               handle=".handle"
               defaultPosition={{x: 0, y: 100}}
               position={null}

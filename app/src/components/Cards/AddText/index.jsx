@@ -79,6 +79,8 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
+                const frame='notepaper';
+                res.data["frame"] = frame;
                 this.props.handleAddText(res.data);
             })
             .catch((err) => {
