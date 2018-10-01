@@ -22,7 +22,6 @@ blockquote{
     box-shadow: 1px 1px 1px #999, 2px 2px 1px #999, 3px 3px 1px #999;
     max-width: 350px;
     overflow-wrap: break-word;
-    word-break: break-all;
     padding-top: 4em;
     padding-bottom: 2em;
     margin: 0;
