@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import './style.css';
+import {
+    FaTrash
+  } from 'react-icons/fa';
 
 export default class PhotoDisplay extends Component {
     // constructor(props) {
@@ -24,6 +27,12 @@ export default class PhotoDisplay extends Component {
               <div style={{ width: '256px', height: '356px'}} >
                 <div className="handle">Imagine that this is the frame.</div>
                 <img className="photo" src={this.props.photo} alt={this.props.title} />
+                <button
+                    onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
+                    className='iconButtons'
+                >
+                    <FaTrash className='testIcon' size={40}/>
+                </button>
               </div>
             </Draggable>
         );

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import {
     FaPlayCircle,
-    FaPauseCircle
+    FaPauseCircle,
+    FaTrash
   } from 'react-icons/fa';
   import './style.css';
 import Sound from 'react-sound';
@@ -57,6 +58,12 @@ export default class MusicPlayer extends Component {
                         className='iconButtons'
                     >
                         <FaPauseCircle className='testIcon' size={40}/>
+                    </button>
+                    <button
+                        onClick={() => {this.props.handleDeleteMusic(this.props.music)}}
+                        className='iconButtons'
+                    >
+                        <FaTrash className='testIcon' size={40}/>
                     </button>
                     </div>
                 </div>

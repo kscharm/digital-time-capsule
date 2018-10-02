@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import './style.css';
+import {
+    FaTrash
+  } from 'react-icons/fa';
 
 export default class TextDisplay extends Component {
     // constructor(props) {
@@ -22,6 +25,12 @@ export default class TextDisplay extends Component {
               >
               <div className={`textSpace ${this.props.frame}`}>
                 <p className={`text`}>{actualText}</p>
+                <button
+                    onClick={() => {this.props.handleDeleteText(this.props.textObj)}}
+                    className='iconButtons'
+                >
+                    <FaTrash className='testIcon' size={40}/>
+                </button>
               </div>
             </Draggable>
         );
