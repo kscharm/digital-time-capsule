@@ -10,6 +10,7 @@ import './style.css';
 import '../generic.css'
 
 import axios from 'axios'
+import uuidv4 from 'uuid/v4'
 
 export default class AddCapsule extends Component {
 //   constructor(props) {

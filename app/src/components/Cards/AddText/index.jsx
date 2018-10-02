@@ -22,6 +22,7 @@ import {
 import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
 
 import axios from 'axios';
+import uuidv4 from 'uuid/v4'
 
 const toolbarPlugin = createToolbarPlugin({
     structure: [
@@ -66,7 +67,7 @@ export default class AddText extends Component {
         if (a.getPlainText('') !== '') {
             axios.post('http://localhost:3001/text', {
                 username: "kenny",
-                mediaId: "abc123",
+                mediaId: uuidv4(),
                 capsules: ["myCapsule"],
                 text: a.getPlainText(''),
                 settings: {
