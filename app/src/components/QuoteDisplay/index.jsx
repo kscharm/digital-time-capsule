@@ -28,14 +28,14 @@ export default class QuoteDisplay extends Component {
                     <blockquote>
                         {actualText}
                         <span class="author"><i>{author}</i></span>
+                        <button
+                            onClick={() => {this.props.handleDeleteQuote(this.props.quoteObj)}}
+                            className='deleteButton'
+                        >
+                            <FaTrash className='deleteIcon' size={20}/>
+                        </button>
                     </blockquote>
                 </div>
-                <button
-                    onClick={() => {this.props.handleDeleteQuote(this.props.quoteObj)}}
-                    className='iconButtons'
-                >
-                    <FaTrash className='testIcon' size={40}/>
-                </button>
             </div>
             </Draggable>
         );

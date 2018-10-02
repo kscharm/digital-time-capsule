@@ -29,9 +29,9 @@ export default class PhotoDisplay extends Component {
                 <img className="photo" src={this.props.photo} alt={this.props.title} />
                 <button
                     onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
-                    className='iconButtons'
+                    className='deleteButton'
                 >
-                    <FaTrash className='testIcon' size={40}/>
+                    <FaTrash className='deleteIcon' size={40}/>
                 </button>
               </div>
             </Draggable>
