@@ -5,6 +5,7 @@ import '../../OurButton';
 import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
 import axios from 'axios';
+import uuidv4 from 'uuid/v4'
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -28,7 +29,7 @@ export default class AddPhoto extends Component {
             photo: this.state.file,
             title: this.state.fileName,
             username: "kenny",
-            mediaId: "abc123",
+            mediaId: uuidv4(),
             capsules: ["myCapsule"],
             caption: this.state.fileCaption,
             settings: {

@@ -8,6 +8,7 @@ import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import '../../../../node_modules/draft-js-counter-plugin/lib/plugin.css';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import axios from 'axios';
+import uuidv4 from 'uuid/v4'
 
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
@@ -99,7 +100,7 @@ export default class AddQuote extends Component {
         if (editor.getPlainText('') != '') {
             axios.post('http://localhost:3001/text', {
                 username: "madison",
-                mediaId: "42069",
+                mediaId: uuidv4(),
                 capsules: ["myCapsule"],
                 text: editor.getPlainText(''),
                 author: this.state.quoteAuthor,
