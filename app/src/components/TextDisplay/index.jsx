@@ -29,7 +29,7 @@ export default class TextDisplay extends Component {
                     onClick={() => {this.props.handleDeleteText(this.props.textObj)}}
                     className='deleteButton'
                 >
-                    <FaTrash className='deleteIcon' size={40}/>
+                    <FaTrash className='deleteIcon' size={20}/>
                 </button>
               </div>
             </Draggable>
