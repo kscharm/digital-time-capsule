@@ -65,6 +65,21 @@ export default class CapsuleComponent extends Component {
     const musicWithNew = this.state.musicList.concat(music);
     this.setState({musicList: musicWithNew});
   }
+  handleDeleteMusic = (music) => {
+    const confirmed = window.confirm(`Are you sure you want to delete ${music.title}?`);
+    if (confirmed) {
+      const index = this.state.musicList.indexOf(music);
+      if (index > -1) {
+        let musicWithOut = this.state.musicList;
+        musicWithOut.splice(index, 1);
+        this.setState({musicList: musicWithOut});
+      } else {
+        console.log('Error deleting music: this music does not exist.');
+      }
+    } else {
+      console.log('Music was not deleted.');
+    }
+  }
   getAllPhotos = () => {
     // Get and display the photo for the user
     console.log('I will get all photos for ' + this.props.user);
@@ -75,6 +90,21 @@ export default class CapsuleComponent extends Component {
     const photoWithNew = this.state.photoList.concat(photo);
     this.setState({photoList: photoWithNew});
   }
+  handleDeletePhoto = (photo) => {
+    const confirmed = window.confirm(`Are you sure you want to delete ${photo.title}?`);
+    if (confirmed) {
+      const index = this.state.photoList.indexOf(photo);
+      if (index > -1) {
+        let photoWithOut = this.state.photoList;
+        photoWithOut.splice(index, 1);
+        this.setState({photoList: photoWithOut});
+      } else {
+        console.log('Error deleting photo: this photo does not exist.');
+      }
+    } else {
+      console.log('Photo was not deleted.');
+    }
+  }
   getAllText = (user) => {
     // Get and display the photo for the user
     console.log('I will get all text for ' + user);
@@ -84,6 +114,21 @@ export default class CapsuleComponent extends Component {
     const textWithNew = this.state.textList.concat(text);
     this.setState({textList: textWithNew});
   }
+  handleDeleteText = (text) => {
+    const confirmed = window.confirm(`Are you sure you want to delete this text?`);
+    if (confirmed) {
+      const index = this.state.textList.indexOf(text);
+      if (index > -1) {
+        let textWithOut = this.state.textList;
+        textWithOut.splice(index, 1);
+        this.setState({textList: textWithOut});
+      } else {
+        console.log('Error deleting text: this text does not exist.');
+      }
+    } else {
+      console.log('Text was not deleted.');
+    }
+  }
   getAllQuotes = (user) => {
     // Get and display the photo for the user
     console.log('I will get all text for ' + user);
@@ -92,6 +137,21 @@ export default class CapsuleComponent extends Component {
     // Update personal capsule to have the new text that was added.
     const quoteWithNew = this.state.quoteList.concat(quote);
     this.setState({quoteList: quoteWithNew});
+  }
+  handleDeleteQuote = (quote) => {
+    const confirmed = window.confirm(`Are you sure you want to delete this quote?`);
+    if (confirmed) {
+      const index = this.state.quoteList.indexOf(quote);
+      if (index > -1) {
+        let quoteWithOut = this.state.quoteList;
+        quoteWithOut.splice(index, 1);
+        this.setState({quoteList: quoteWithOut});
+      } else {
+        console.log('Error deleting quote: this quote does not exist.');
+      }
+    } else {
+      console.log('Quote was not deleted.');
+    }
   }
 
   handleShowAddCapsule = (show) => {
@@ -172,6 +232,8 @@ export default class CapsuleComponent extends Component {
                       photo={photo.photo}
                       style={{display:'inline-block'}}
                       key={photo.photo}
+                      photoObj={photo}
+                      handleDeletePhoto={this.handleDeletePhoto}
                   />
               )
             })}
@@ -185,6 +247,8 @@ export default class CapsuleComponent extends Component {
                     song={music.music}
                     style={{display:'inline-block'}}
                     key={music.music}
+                    music={music}
+                    handleDeleteMusic={this.handleDeleteMusic}
                 />
             )
             })}
@@ -197,6 +261,8 @@ export default class CapsuleComponent extends Component {
                       style={{display:'inline-block'}}
                       key={text.text}
                       frame={text.frame}
+                      handleDeleteText={this.handleDeleteText}
+                      textObj={text}
                   />
               )
             })}
@@ -209,6 +275,8 @@ export default class CapsuleComponent extends Component {
                       text={quote.text}
                       style={{display:'inline-block'}}
                       key={quote.text}
+                      handleDeleteQuote={this.handleDeleteQuote}
+                      quoteObj={quote}
                   />
               )
             })}

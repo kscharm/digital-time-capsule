@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import './style.css';
+import {
+    FaTrash
+  } from 'react-icons/fa';
 
 export default class QuoteDisplay extends Component {
     // constructor(props) {
@@ -25,6 +28,12 @@ export default class QuoteDisplay extends Component {
                     <blockquote>
                         {actualText}
                         <span class="author"><i>{author}</i></span>
+                        <button
+                            onClick={() => {this.props.handleDeleteQuote(this.props.quoteObj)}}
+                            className='deleteButton'
+                        >
+                            <FaTrash className='deleteIcon' size={20}/>
+                        </button>
                     </blockquote>
                 </div>
             </div>

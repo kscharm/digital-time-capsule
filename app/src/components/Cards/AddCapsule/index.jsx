@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import OurButton from '../../OurButton';
-import Select from '../../Select';
-
-import DropzoneComponent from 'react-dropzone-component';
-import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
-import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 
 import './style.css';
 import '../generic.css'
-
-import axios from 'axios'
-import uuidv4 from 'uuid/v4'
 
 export default class AddCapsule extends Component {
 //   constructor(props) {

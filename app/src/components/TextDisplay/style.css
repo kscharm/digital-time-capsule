@@ -70,8 +70,34 @@
     font-family: Georgia, serif;
     font-size: 14px;
     margin : 0;
+    padding-bottom: .75em;
   }
   
   .lt-ie8 .notepaper {
     padding: 15px 25px;
   }
+
+.textSpace .deleteButton {
+  background: none;
+  opacity: 0.6;
+  border-radius: 100%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.textSpace .deleteIcon {
+  opacity: .5;
+  margin-right: .5em;
+}
+
+.textSpace .deleteIcon:hover {
+  opacity: .85;
+}
+
+.textSpace .deleteIcon:active {
+  opacity: 1;
+}
