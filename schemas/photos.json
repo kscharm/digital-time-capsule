@@ -2,6 +2,7 @@
     "bsonType": "object",
     "title": "Photo Media Object schema",
     "required": [
+        "photo",
         "username",
         "mediaId",
         "capsules",
@@ -13,6 +14,10 @@
         "photo": {
             "bsonType": "string",
             "description": "base64 encoding of the music to be uploaded"
+        },
+        "frame": {
+            "bsonType": "string",
+            "description": "base64 encoding of the photo frame"
         },
         "username": {
             "bsonType": "string",

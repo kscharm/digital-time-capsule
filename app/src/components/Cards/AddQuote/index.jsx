@@ -97,7 +97,7 @@ export default class AddQuote extends Component {
 
     addQuote = () => {
         var editor = this.state.editorState.getCurrentContent();
-        if (editor.getPlainText('') != '') {
+        if (editor.getPlainText('') !== '') {
             axios.post('http://localhost:3001/text', {
                 username: "madison",
                 mediaId: uuidv4(),
@@ -118,7 +118,7 @@ export default class AddQuote extends Component {
                 this.props.handleAddQuote(res.data);
             })
             .catch((err) => {
-                alert('Error saving quote: ', err.message);
+                alert('Error saving quote: ' + err.message);
             });
         }
     }

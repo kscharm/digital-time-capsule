@@ -47,7 +47,7 @@ export default class AddMusic extends Component {
             this.props.handleAddMusic(res.data);
         })
         .catch((err) => {
-           alert('Error saving music: ', err.message);
+           alert('Error saving music: ' + err.message);
         });
     } else {
         alert('Please select a song first');
