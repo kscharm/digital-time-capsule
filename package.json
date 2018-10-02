@@ -10,7 +10,8 @@
     "react-draggable": "^3.0.5",
     "react-dropzone-component": "^3.2.0",
     "react-image-dropzone": "^1.11.0",
-    "react-images-upload": "^1.2.3"
+    "react-images-upload": "^1.2.3",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run app\"",

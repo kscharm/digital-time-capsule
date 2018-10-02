@@ -1,15 +1,3 @@
-// exports.addText = function(text, callback) {
-//     MongoClient.connect(url, function(err, db) {
-//         if (err) throw err;
-//         object = {
-//             "user": '1',
-//             "text": text,
-//             "time": Date.time(),
-//             "metadata": {}
-//         }
-//     });
-// };
-
 
 exports.addMusic = function(database, music, callback) {
     database.collection("music").insertOne(music, (err, res) => {
@@ -25,7 +13,7 @@ exports.addMusic = function(database, music, callback) {
 exports.addText = function(database, text, callback) {
     database.collection("text").insertOne(text, (err, res) => {
         if (err) {
-            console.log('Error inserting text into database: ', err. message);
+            console.log('Error inserting text into database: ', err.message);
             return callback(null, err);
         }
         console.log('Text saved');
@@ -42,10 +30,21 @@ exports.addPhoto = function(database, photo, callback) {
     // }
     database.collection("photos").insertOne(photo, (err, res) => {
         if (err) {
-            console.log('Error inserting photo into database: ', err. message);
+            console.log('Error inserting photo into database: ', err.message);
             return callback(null, err);
         }
         console.log('Photo saved');
         return callback(photo);
     });
+}
+
+exports.addTimeCapsule = function(database, capsule, callback) {
+    database.collection("timeCapsules").insertOne(capsule, (err, res) => {
+        if (err) {
+            console.log('Error creating time capsule in database: ', err.message);
+            return callback(null, err);
+        }
+        console.log('Time capsule saved');
+        return callback(capsule);
+    })
 }

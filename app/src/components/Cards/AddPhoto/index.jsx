@@ -5,6 +5,7 @@ import '../../OurButton';
 import addPhotoBase from '../../../images/addPhoto.png'
 import OurButton from '../../OurButton';
 import axios from 'axios';
+import uuidv4 from 'uuid/v4'
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -17,18 +18,20 @@ export default class AddPhoto extends Component {
 
   state = {
     filePop: false,
-    file: "",
-    fileName: "",
+    file: '',
+    fileName: '',
     fileCaption: '',
+    frame: '',
   }
 
   savePhoto = () => {
     if (this.state.file !== '') {
         axios.post('http://localhost:3001/photo', {
             photo: this.state.file,
+            frame: this.state.frame,
             title: this.state.fileName,
             username: "kenny",
-            mediaId: "abc123",
+            mediaId: uuidv4(),
             capsules: ["myCapsule"],
             caption: this.state.fileCaption,
             settings: {
@@ -44,7 +47,7 @@ export default class AddPhoto extends Component {
             this.props.handleAddPhoto(res.data);
         })
         .catch((err) => {
-           alert('Error saving photo: ', err.message);
+            alert('Error saving photo: ' + err.message);
         });
     } else {
         alert('Please select a photo first');

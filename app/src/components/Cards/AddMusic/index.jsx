@@ -10,6 +10,7 @@ import './style.css';
 import '../generic.css'
 
 import axios from 'axios'
+import uuidv4 from 'uuid/v4'
 
 export default class AddMusic extends Component {
 //   constructor(props) {
@@ -30,7 +31,7 @@ export default class AddMusic extends Component {
             music: this.state.file,
             title: this.state.fileName,
             username: "kenny",
-            mediaId: "abc123",
+            mediaId: uuidv4(),
             capsules: ["myCapsule"],
             genre: this.state.fileGenre,
             settings: {
@@ -46,7 +47,7 @@ export default class AddMusic extends Component {
             this.props.handleAddMusic(res.data);
         })
         .catch((err) => {
-           alert('Error saving music: ', err.message);
+           alert('Error saving music: ' + err.message);
         });
     } else {
         alert('Please select a song first');
