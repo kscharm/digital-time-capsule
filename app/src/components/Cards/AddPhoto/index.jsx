@@ -18,15 +18,17 @@ export default class AddPhoto extends Component {
 
   state = {
     filePop: false,
-    file: "",
-    fileName: "",
+    file: '',
+    fileName: '',
     fileCaption: '',
+    frame: '',
   }
 
   savePhoto = () => {
     if (this.state.file !== '') {
         axios.post('http://localhost:3001/photo', {
             photo: this.state.file,
+            frame: this.state.frame,
             title: this.state.fileName,
             username: "kenny",
             mediaId: uuidv4(),
@@ -45,7 +47,7 @@ export default class AddPhoto extends Component {
             this.props.handleAddPhoto(res.data);
         })
         .catch((err) => {
-           alert('Error saving photo: ', err.message);
+            alert('Error saving photo: ' + err.message);
         });
     } else {
         alert('Please select a photo first');

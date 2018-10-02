@@ -84,7 +84,7 @@ app.post('/music', (req, res) => {
   const musicDoc = req.body;
   cog.addMusic(database, musicDoc, (data, err) => {
     if (err) {
-      res.status(500).send({ error: err.message });
+      res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
@@ -95,7 +95,7 @@ app.post('/photo', (req, res) => {
   const photos = req.body;
   cog.addPhoto(database, photos, (data, err) => {
     if (err) {
-      res.status(500).send({error: err.message});
+      res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
@@ -106,7 +106,7 @@ app.post('/text', (req, res) => {
   const textDoc = req.body;
   cog.addText(database, textDoc, (data, err) => {
     if (err) {
-      res.status(500).send({error: err.message});
+      res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
@@ -117,7 +117,7 @@ app.post('/capsule', (req, res) => {
   const capsuleDoc = req.body;
   cog.addTimeCapsule(database,capsuleDoc, (data, err) => {
     if (err) {
-      res.status(500).send({error: err.message});
+      res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
