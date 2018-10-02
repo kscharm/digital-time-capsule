@@ -1,0 +1,77 @@
+.react-draggable {
+    display: inline-block;
+    position: absolute;
+}
+
+.handle {
+    background-color: wheat;
+}
+
+/* .textSpace {
+    background-color: rgb(0, 48, 87);
+    padding: 1em;
+    min-height: 80px;
+    width: 200px;
+    opacity: .85;
+}
+
+.text {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    table-layout: fixed;
+} */
+
+.notepaper {
+    position: relative;
+    padding: 29px 20px 20px 45px;
+    max-width: 350px;
+    line-height: 25px;
+    color: #6a5f49;
+    background-color: #f2f6c1;
+    background-image: -webkit-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    background-image: -moz-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    background-image: -o-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    overflow-wrap: break-word;
+  }
+  
+  .notepaper:before, .notepaper:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .notepaper:before {
+    left: 28px;
+    width: 2px;
+    border: solid #efcfad;
+    border-color: rgba(239, 207, 173, 0.9);
+    border-width: 0 1px;
+  }
+  
+  .notepaper:after {
+    z-index: -1;
+    left: 0;
+    right: 0;
+    background: rgba(242, 246, 193, 0.9);
+    border: 1px solid rgba(170, 157, 134, 0.7);
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+  
+  .text {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    margin : 0;
+  }
+  
+  .lt-ie8 .notepaper {
+    padding: 15px 25px;
+  }

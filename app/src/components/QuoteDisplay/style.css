@@ -1,0 +1,64 @@
+.react-draggable {
+    display: inline-block;
+    position: absolute;
+}
+
+.handle {
+    background-color: wheat;
+}
+
+blockquote{
+    border-left:none
+}
+
+  .raised blockquote {
+    position: relative;
+    display: inline-block;
+    background: #eee;
+    padding: 40px 30px 30px 60px;
+    border-radius: 10px;
+    color: #333;
+    text-align: left;
+    box-shadow: 1px 1px 1px #999, 2px 2px 1px #999, 3px 3px 1px #999;
+    max-width: 350px;
+    overflow-wrap: break-word;
+    padding-top: 4em;
+    padding-bottom: 2em;
+    margin: 0;
+  }
+  .raised blockquote span.author {
+    position: relative;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    color: #999;
+  }
+  .raised blockquote span.author i {
+    position: relative;
+    background: #eee;
+    padding-left: 5px;
+    font-style: italic;
+    z-index: 5;
+  }
+  .raised blockquote span.author::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    z-index: 1;
+  }
+  .raised blockquote::before {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    content: "\201C";
+    font-family: 'Georgia', serif;
+    font-size: 100px;
+    font-weight: bold;
+    color: #999;
+  }

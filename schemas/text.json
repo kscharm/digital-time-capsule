@@ -29,6 +29,10 @@
             "bsonType": "string",
             "description": "Content of text object"
         },
+        "author": {
+            "bsonType": "string",
+            "description": "Author of quote"
+        },
         "settings": {
             "bsonType": "object",
             "description": "Settings for text itself",
@@ -38,6 +42,10 @@
                     "description": "Name of font"
                 }
             }
+        },
+        "quote": {
+            "bsonType": "boolean",
+            "description": "Whether or not this text object is a quote"
         },
         "metadata": {
             "bsonType": "object",

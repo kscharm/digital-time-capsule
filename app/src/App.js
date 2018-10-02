@@ -4,7 +4,7 @@ import {
   Switch, 
   BrowserRouter,
 } from 'react-router-dom';
-import PersonalCapsule from './pages/PersonalCapsule';
+import CurrentCapsule from './pages/CurrentCapsule';
 import WelcomePage from './pages/Welcome';
 
 class App extends Component {  
@@ -25,8 +25,8 @@ class App extends Component {
                     component={WelcomePage}
                   />
                   <Route
-                    path="/personalCapsule"
-                    component={PersonalCapsule}
+                    path="/currentCapsule"
+                    component={CurrentCapsule}
                   />
                 </Switch>
               );

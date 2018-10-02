@@ -62,7 +62,6 @@ export default class AddText extends Component {
     };
 
     addText = () => {
-        this.props.handleShowAddText(true)
         var a = this.state.editorState.getCurrentContent();
         if (a.getPlainText('') !== '') {
             axios.post('http://localhost:3001/text', {
@@ -80,6 +79,9 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
+                const frame='notepaper';
+                res.data["frame"] = frame;
+                this.props.handleAddText(res.data);
             })
             .catch((err) => {
             alert('Error saving text: ', err.message);

@@ -7,6 +7,8 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import '../../../../node_modules/draft-js-counter-plugin/lib/plugin.css';
 import createCounterPlugin from 'draft-js-counter-plugin';
+import axios from 'axios';
+
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
 const counterPlugin = createCounterPlugin();
@@ -16,13 +18,14 @@ const { CharCounter } = counterPlugin;
 const text = '';
 const MAX_LENGTH = 200;
 
-export default class AddText extends Component {
+export default class AddQuote extends Component {
     // constructor(props) {
     //     super(props);
     // }
 
     state = {
         editorState: createEditorStateWithText(text),
+        quoteAuthor: '',
     };
 
     onChange = (editorState) => {
@@ -91,8 +94,39 @@ export default class AddText extends Component {
         this.editor.focus();
     };
 
+    addQuote = () => {
+        var editor = this.state.editorState.getCurrentContent();
+        if (editor.getPlainText('') != '') {
+            axios.post('http://localhost:3001/text', {
+                username: "madison",
+                mediaId: "42069",
+                capsules: ["myCapsule"],
+                text: editor.getPlainText(''),
+                author: this.state.quoteAuthor,
+                settings: {
+                    privacy: "public"
+                },
+                quote: true,
+                metadata: {
+                    x: null,
+                    y: null
+                }
+            })
+            .then((res) => {
+                this.closeAddQuote();
+                this.props.handleAddQuote(res.data);
+            })
+            .catch((err) => {
+                alert('Error saving quote: ', err.message);
+            });
+        }
+    }
+
     closeAddQuote = () => {
         this.props.handleShowAddQuote(false);
+    }
+    updateQuoteAuthor = (evt) => {
+        this.setState({quoteAuthor: evt.target.value})
     }
 
 
@@ -115,11 +149,17 @@ export default class AddText extends Component {
                 <CharCounter editorState={this.state.editorState} limit={200} />
             </div>
             <span className='sectionLabels' style={{marginTop: '.5em'}}> Quote Author: </span>
-            <input className='caption' placeholder='Author...' style={{marginBottom: '1em'}}/>
+            <input
+                className='caption'
+                placeholder='Author...'
+                style={{marginBottom: '1em'}}
+                value={this.state.quoteAuthor}
+                onChange={evt => this.updateQuoteAuthor(evt)}
+            />
             <div className={ `actionButtons actionButtonsQuote` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.closeAddQuote()}}
+                    buttonAction={() => {this.addQuote()}}
                     buttonType='primary'
                 />
                 <OurButton
