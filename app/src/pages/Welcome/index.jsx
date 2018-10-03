@@ -39,7 +39,7 @@ export default class WelcomePage extends Component {
             <span className='subMessage'> Go Jackets! </span>
           </div>
           <div className='login'>
-            <form className="login-form" action={this.login} target="_self">
+            <form className="login-form" onSubmit={this.login} target="_self">
               <input type="text" placeholder="username" onChange={evt => this.updateUsername(evt)}/>
               <input type="password" placeholder="password" onChange={evt => this.updatePass(evt)}/>
               <button>login</button>
