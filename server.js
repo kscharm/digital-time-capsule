@@ -80,7 +80,7 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
   });
 });
 
-app.post('/music', (req, res) => {
+app.post('/addMusic', (req, res) => {
   const musicDoc = req.body;
   cog.addMusic(database, musicDoc, (data, err) => {
     if (err) {
@@ -91,7 +91,7 @@ app.post('/music', (req, res) => {
   });
 });
 
-app.post('/photo', (req, res) => {
+app.post('/addPhoto', (req, res) => {
   const photos = req.body;
   cog.addPhoto(database, photos, (data, err) => {
     if (err) {
@@ -100,9 +100,20 @@ app.post('/photo', (req, res) => {
       res.status(200).send(data);
     }
   })
-})
+});
 
-app.post('/text', (req, res) => {
+app.delete('/deletePhoto', (req, res) => {
+  const photoId = req.query;
+  cog.deletePhoto(database, photoId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+});
+
+app.post('/addText', (req, res) => {
   const textDoc = req.body;
   cog.addText(database, textDoc, (data, err) => {
     if (err) {
@@ -113,7 +124,7 @@ app.post('/text', (req, res) => {
   })
 });
 
-app.post('/capsule', (req, res) => {
+app.post('/addCapsule', (req, res) => {
   const capsuleDoc = req.body;
   cog.addTimeCapsule(database,capsuleDoc, (data, err) => {
     if (err) {

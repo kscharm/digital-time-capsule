@@ -98,7 +98,7 @@ export default class AddQuote extends Component {
     addQuote = () => {
         var editor = this.state.editorState.getCurrentContent();
         if (editor.getPlainText('') !== '') {
-            axios.post('http://localhost:3001/text', {
+            axios.post('http://localhost:3001/addText', {
                 _id: uuidv4(),
                 username: "madison",
                 capsules: ["myCapsule"],

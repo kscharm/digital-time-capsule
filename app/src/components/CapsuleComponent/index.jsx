@@ -21,6 +21,8 @@ import TextDisplay from '../../components/TextDisplay';
 import QuoteDisplay from '../../components/QuoteDisplay';
 import OurButton from '../OurButton';
 
+import axios from 'axios';
+
 export default class CapsuleComponent extends Component {
   // constructor(props) {
   //   super(props);
@@ -95,9 +97,17 @@ export default class CapsuleComponent extends Component {
     if (confirmed) {
       const index = this.state.photoList.indexOf(photo);
       if (index > -1) {
-        let photoWithOut = this.state.photoList;
-        photoWithOut.splice(index, 1);
-        this.setState({photoList: photoWithOut});
+        axios.delete('http://localhost:3001/deletePhoto', {
+          params: { _id: photo._id }
+        })
+        .then((res) => {
+          let photoWithOut = this.state.photoList;
+          photoWithOut.splice(index, 1);
+          this.setState({photoList: photoWithOut});
+        })
+        .catch((err) => {
+            alert('Error deleting photo: ' + err.message);
+        });
       } else {
         console.log('Error deleting photo: this photo does not exist.');
       }
