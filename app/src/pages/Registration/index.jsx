@@ -17,17 +17,52 @@ export default class Registration extends Component {
     return (
         <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
           <div className='welcomeMessage' >
-            <span className='mainMessage'> Welcome! </span>
-            <span className='subMessage'> Go Jackets! </span>
+            <span className='mainMessage'> Registration! </span>
+            <span className='subMessage'> Input your information below! </span>
           </div>
           <div className='register'>
-            <ReactLink 
-                to={{
-                pathname: '/currentCapsule',
-                state: { prev: true },
-                }}
-                linkText='REGISTER'
-            />
+            <div className="registrationForm">
+              <form action={'/currentCapsule'} target="_self">
+                <label>
+                  First Name:
+                  <input type="text" name="email" />
+                </label>
+                <div></div>
+                <label>
+                  Last Name:
+                  <input type="text" name="email" />
+                </label>
+                <div></div>
+                <label>
+                  Major:
+                  <input type="text" name="email" />
+                </label>
+                <div></div>
+                <label>
+                  Minor:
+                  <input type="text" name="email" />
+                </label>
+                <div></div>
+                <label>
+                  Email:
+                  <input type="text" name="email" />
+                </label>
+                <div></div>
+                <label>
+                  Password:
+                  <input type="password" name="password" />
+                </label>
+                <div></div>
+                <label>
+                  Confirm Password:
+                  <input type="password" name="password" />
+                </label>
+                <div></div>
+                <label>
+                  <input type="submit" name="submit" action={'/currentCapsule'}></input>
+                </label>
+              </form>
+            </div>
           </div>
         </div>
         

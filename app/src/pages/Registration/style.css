@@ -1,3 +1,10 @@
+.register {
+    text-align: right;
+    position: relative;
+    top: 40%;
+    right: 42%;
+}
+
 .welcomeMessage {
     text-align: center;
     position: relative;
@@ -21,4 +28,19 @@
     /* background: url(../../images/cork.jpg); */
     background-size: cover;
     position: relative;
+}
+
+/*styling forms*/
+input {
+    /* text-align: right; */
+    width : 150px;
+    margin: 5px;
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+          box-sizing: border-box;
+  }
+
+  
+a {
+    margin: 5px;
 }
