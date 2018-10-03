@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactLink from '../../components/ReactLink';
 import Background from '../../images/cork.jpg';
 import './style.css';
 
@@ -15,18 +14,32 @@ export default class WelcomePage extends Component {
   render() {
     return (
         <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
-          <div className='welcomeMessage' >
+          <div className='welcomeMessage'>
             <span className='mainMessage'> Welcome! </span>
             <span className='subMessage'> Go Jackets! </span>
           </div>
           <div className='login'>
-            <ReactLink 
-                to={{
-                pathname: '/registration',
-                state: { prev: true },
-                }}
-                linkText='LOGIN'
-            />
+            <div className='loginForm'>
+              <form action={'/currentCapsule'} target="_self">
+                <label>
+                  Email:
+                  <input type="text" name="email" />
+                </label>
+                <div></div>
+                <label>
+                  Password:
+                  <input type="password" name="password" />
+                </label>
+                <div></div>
+                <label>
+                  <input type="submit" name="submit" action={'/currentCapsule'}></input>
+                </label>
+                <div></div>
+                <div>
+                  <a href={'/registration'}>Don't have an account? Click here!</a>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
         
