@@ -1,0 +1,29 @@
+.login {
+    text-align: center;
+    position: relative;
+    top: 45%;
+}
+.welcomeMessage {
+    text-align: center;
+    position: relative;
+    top: 35%;
+}
+.mainMessage {
+    font-size: 2.5em;
+    color: black;
+    font-weight: bold;
+    display: block;
+}
+.subMessage {
+    font-size: 1em;
+    color: black;
+    font-style: oblique;
+    display: block;
+}
+.bgDiv {
+    width: 100%;
+    height: 100vh;
+    /* background: url(../../images/cork.jpg); */
+    background-size: cover;
+    position: relative;
+}

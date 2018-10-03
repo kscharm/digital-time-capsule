@@ -3,7 +3,7 @@ import ReactLink from '../../components/ReactLink';
 import Background from '../../images/cork.jpg';
 import './style.css';
 
-export default class WelcomePage extends Component {
+export default class Registration extends Component {
   // constructor(props) {
   //   super(props);
   // }
@@ -13,19 +13,20 @@ export default class WelcomePage extends Component {
   }
 
   render() {
+    console.log('hello');
     return (
         <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
           <div className='welcomeMessage' >
             <span className='mainMessage'> Welcome! </span>
             <span className='subMessage'> Go Jackets! </span>
           </div>
-          <div className='login'>
+          <div className='register'>
             <ReactLink 
                 to={{
-                pathname: '/registration',
+                pathname: '/currentCapsule',
                 state: { prev: true },
                 }}
-                linkText='LOGIN'
+                linkText='REGISTER'
             />
           </div>
         </div>

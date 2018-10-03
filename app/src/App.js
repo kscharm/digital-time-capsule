@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import CurrentCapsule from './pages/CurrentCapsule';
 import WelcomePage from './pages/Welcome';
+import RegistrationPage from './pages/Registration';
 
 class App extends Component {  
   render() {
@@ -27,6 +28,10 @@ class App extends Component {
                   <Route
                     path="/currentCapsule"
                     component={CurrentCapsule}
+                  />
+                  <Route
+                    path="/registration"
+                    component={RegistrationPage}
                   />
                 </Switch>
               );
