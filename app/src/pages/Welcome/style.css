@@ -1,11 +1,11 @@
 .login {
     position: relative;
-    top: 40%;
+    top: 25%;
 }
 .welcomeMessage {
     text-align: center;
-    position: relative;
-    top: 35%;
+    margin-bottom: 3em;
+    font-size: 1.5em;
 }
 .mainMessage {
     font-size: 2.5em;
@@ -37,8 +37,7 @@
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     font-size:10px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 0;
   }
   .login-form input {
     font-family: "Roboto", sans-serif;

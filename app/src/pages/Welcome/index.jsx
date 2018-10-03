@@ -34,12 +34,12 @@ export default class WelcomePage extends Component {
   render() {
     return (
         <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
-          <div className='welcomeMessage'>
-            <span className='mainMessage'> Welcome! </span>
-            <span className='subMessage'> Go Jackets! </span>
-          </div>
           <div className='login'>
             <form className="login-form" onSubmit={this.login} target="_self">
+              <div className='welcomeMessage'>
+                <span className='mainMessage'> Welcome! </span>
+                <span className='subMessage'> Go Jackets! </span>
+              </div>
               <input type="text" placeholder="username" onChange={evt => this.updateUsername(evt)}/>
               <input type="password" placeholder="password" onChange={evt => this.updatePass(evt)}/>
               <button>login</button>

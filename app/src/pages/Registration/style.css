@@ -1,7 +1,6 @@
 .bgDiv {
     width: 100%;
     height: 100vh;
-    background: url(../../images/cork.jpg);
     background-size: cover;
     position: relative;
 }
@@ -10,9 +9,13 @@ form {
   background: #fff;
   padding: 4em 4em 2em;
   max-width: 400px;
-  margin: 50px auto 0; /* this is partially what's causing the issues with the white space on the top and bottom of the screen?*/
   box-shadow: 0 0 1em #222;
   border-radius: 2px;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  margin-left:auto;
+  margin-right:auto;
+  font-size: 10px;
 }
 
   h2 {

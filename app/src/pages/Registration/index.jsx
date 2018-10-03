@@ -6,59 +6,83 @@ export default class Registration extends Component {
   // constructor(props) {
   //   super(props);
   // }
+  state = {
+    toCapsule: false,
+    firstName: '',
+    lastName: '',
+    email:'',
+    university: '',
+    major: '',
+    user: '',
+    pass: '',
+    confirmPass: '',
+  }
 
   login() {
     console.log('hello');
   }
 
+  updateFirst = (evt) => {
+    this.setState({firstName: evt.target.value})
+  }
+  updateLast = (evt) => {
+    this.setState({lastName: evt.target.value})
+  }
+  updateEmail = (evt) => {
+    this.setState({email: evt.target.value})
+  }
+  updateUniversity = (evt) => {
+    this.setState({university: evt.target.value})
+  }
+  updateMajor = (evt) => {
+    this.setState({major: evt.target.value})
+  }
+  updateConfirmPass = (evt) => {
+    this.setState({confirmPass: evt.target.value})
+  }
+  updateUsername = (evt) => {
+    this.setState({user: evt.target.value})
+  }
+  updatePass = (evt) => {
+    this.setState({pass: evt.target.value})
+  }
+
   render() {
     console.log('hello');
     return (
-      <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
-        {/* <div className='welcomeMessage' >
-          <span className='mainMessage'> Registration! </span>
-          <span className='subMessage'> Input your information below! </span>
-        </div> */}
+      <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div className='register'>
           <form action="#" method="post">
-          <h2>Registration</h2>
-              <p>
-                <label for="firstName" class="floatLabel">First Name</label>
-                <input id="firstName" name="firstName" type="text"></input>
-              </p>
-              <p>
-                <label for="lastName" class="floatLabel">Last Name</label>
-                <input id="lastName" name="lastName" type="text"></input>
-              </p>
-              <p>
-                <label for="email" class="floatLabel">Email</label>
-                <input id="Email" name="Email" type="text"></input>
-              </p>
-              <p>
-                <label for="university" class="floatLabel">University</label>
-                <input id="university" name="university" type="text"></input>
-              </p>
-              <p>
-                <label for="major" class="floatLabel">Major</label>
-                <input id="major" name="major" type="text"></input>
-              </p>
-              <p>
-                <label for="userID" class="floatLabel">Username</label>
-                <input id="userId" name="userId" type="text"></input>
-              </p>
-              <p>
-                <label for="password" class="floatLabel">Password</label>
-                <input id="password" name="password" type="password"></input>
-                <span>Enter a password longer than 8 characters.</span>
-              </p>
-              <p>
-                <label for="confirm_password" class="floatLabel">Confirm Password</label>
-                <input id="confirm_password" name="confirm_password" type="password"></input>
-                <span>Your passwords do not match.</span>
-              </p>
-              <p>
-                <input type="submit" value="Create My Account" id="submit"></input>
-              </p>
+            <h2>Registration</h2>
+            <p>
+              <input placeholder='First Name' id="firstName" name="firstName" type="text" onChange={evt => this.updateFirst(evt)}/>
+            </p>
+            <p>
+              <input placeholder='Last Name' id="lastName" name="lastName" type="text" onChange={evt => this.updateLast(evt)}/>
+            </p>
+            <p>
+              <input placeholder='Email' id="Email" name="Email" type="text" onChange={evt => this.updateEmail(evt)}/>
+            </p>
+            <p>
+              <input placeholder='University' id="university" name="university" type="text" onChange={evt => this.updateUniversity(evt)}/>
+            </p>
+            <p>
+              <input placeholder='Major' id="major" name="major" type="text" onChange={evt => this.updateMajor(evt)}/>
+            </p>
+            <p>
+              <input placeholder='Username' id="userId" name="userId" type="text" onChange={evt => this.updateUsername(evt)}/>
+            </p>
+            <p>
+              <input placeholder='Password' id="password" name="password" type="password" onChange={evt => this.updatePass(evt)}/>
+              {/* <span>Enter a password longer than 8 characters.</span> */}
+            </p>
+            <p>
+              <input placeholder='Confirm Password' id="confirm_password" name="confirm_password" type="password" onChange={evt => this.updateConfirmPass(evt)}/>
+              {/* <span>Your passwords do not match.</span> */}
+            </p>
+            <p>
+              <input type="submit" value="Create My Account" id="submit"/>
+            </p>
           </form>
         </div>
       </div>
