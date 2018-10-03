@@ -1,8 +1,6 @@
 .login {
-    text-align: right;
     position: relative;
-    top: 45%;
-    right: 42%;
+    top: 40%;
 }
 .welcomeMessage {
     text-align: center;
@@ -30,16 +28,53 @@
 }
 
 /*styling forms*/
-input {
-    /* text-align: right; */
-    width : 150px;
-    margin: 5px;
-    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
-     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
-          box-sizing: border-box;
+.login-form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
-
-  
-a {
-    margin: 5px;
-}
+  .login-form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .login-form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: rgb(0, 48, 87);
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .login-form button:hover,.login-form button:active,.login-form button:focus {
+    background: rgb(0, 69, 125);
+  }
+  .login-form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+  }
+  .login-form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  .login-form .register-form {
+    display: none;
+  }

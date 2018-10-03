@@ -7,8 +7,28 @@ export default class WelcomePage extends Component {
   //   super(props);
   // }
 
+  state = {
+    toCapsule: false,
+    user: '',
+    pass: '',
+  }
+
   login() {
+    //check if valid login
+    const valid = true;
+    //change path to capsule
+    if (valid) {
+      this.props.history.push('/currentCapsule');
+      console.log('/currentCapsule');
+    }
     console.log('hello');
+  }
+
+  updateUsername = (evt) => {
+    this.setState({user: evt.target.value})
+  }
+  updatePass = (evt) => {
+    this.setState({pass: evt.target.value})
   }
 
   render() {
@@ -19,27 +39,12 @@ export default class WelcomePage extends Component {
             <span className='subMessage'> Go Jackets! </span>
           </div>
           <div className='login'>
-            <div className='loginForm'>
-              <form action={'/currentCapsule'} target="_self">
-                <label>
-                  Email:
-                  <input type="text" name="email" />
-                </label>
-                <div></div>
-                <label>
-                  Password:
-                  <input type="password" name="password" />
-                </label>
-                <div></div>
-                <label>
-                  <input type="submit" name="submit" action={'/currentCapsule'}></input>
-                </label>
-                <div></div>
-                <div>
-                  <a href={'/registration'}>Don't have an account? Click here!</a>
-                </div>
-              </form>
-            </div>
+            <form className="login-form" action={this.login} target="_self">
+              <input type="text" placeholder="username" onChange={evt => this.updateUsername(evt)}/>
+              <input type="password" placeholder="password" onChange={evt => this.updatePass(evt)}/>
+              <button>login</button>
+              <p className="message">Not registered? <a href="/registration">Create an account</a></p>
+            </form>
           </div>
         </div>
         
