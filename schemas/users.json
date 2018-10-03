@@ -1,7 +1,6 @@
 {
     "bsonType": "object",
     "required": [
-        "user_id",
         "username",
         "password",
         "university",
@@ -16,10 +15,6 @@
         "metadata"
     ],
     "properties": {
-        "user_id": {
-            "bsonType": "string",
-            "description": "User id (a uuid)"
-        },
         "username": {
             "bsonType": "string",
             "description": "The username for identification purposes"

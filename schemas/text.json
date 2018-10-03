@@ -3,7 +3,6 @@
     "title": "Text Object schema",
     "required": [
         "username",
-        "mediaId",
         "capsules",
         "text",
         "settings",
@@ -13,10 +12,6 @@
         "username": {
             "bsonType": "string",
             "description": "Must be a string and is required"
-        },
-        "mediaId": {
-            "bsonType": "string",
-            "description": "Unique key for media object"
         },
         "capsules": {
             "bsonType": "array",

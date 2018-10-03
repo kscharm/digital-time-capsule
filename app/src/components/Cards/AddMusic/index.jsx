@@ -28,10 +28,10 @@ export default class AddMusic extends Component {
     // Save music to database
     if (this.state.file !== "") {
         axios.post('http://localhost:3001/music', {
+            _id: uuidv4(),
             music: this.state.file,
             title: this.state.fileName,
             username: "kenny",
-            mediaId: uuidv4(),
             capsules: ["myCapsule"],
             genre: this.state.fileGenre,
             settings: {
