@@ -1,0 +1,100 @@
+body {
+  /* background: #384047; */
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+.bgDiv {
+    width: 100%;
+    height: 100vh;
+    background: url(../../images/cork.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+form {
+  background: #fff;
+  padding: 4em 4em 2em;
+  max-width: 400px;
+  margin: 50px auto 0; /* this is partially what's causing the issues with the white space on the top and bottom of the screen?*/
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+}
+
+  h2 {
+    margin:0 0 50px 0;
+    padding: '10px';
+    text-align:center;
+    font-size:30px;
+    color:darken(#e5e5e5, 50%);
+    border-bottom:solid 1px #e5e5e5;
+  }
+  p {
+    margin: 0 0 3em 0;
+    position: relative;
+  }
+
+  input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    margin:0;
+  }
+  input[type="text"],
+  input[type="password"] {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    font-size: 1.6em;
+    padding: .8em .5em;
+    border-radius: 2px;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    background: #fff
+  }
+  
+  input[type="submit"] {
+    background: rgb(0, 48, 87, 0.7);
+    box-shadow: 0 3px 0 0 darken(rgb(0, 48, 87, 0.7), 10%);
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 2em 0 0;
+    outline: none;
+    padding: .8em 0;
+    text-shadow: 0 1px #68B25B;
+  }
+  input[type="submit"]:hover {
+    background: rgb(0, 48, 87, 1);
+    text-shadow:0 1px 3px darken(rgb(0, 48, 87, 0.7), 30%);
+  }
+
+  span {
+    display:block;
+    /* background: #F9A5A5; */
+    padding: 2px 5px;
+    color: #666;
+  }
+
+  label{
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    color: #999;
+    font-size: 16px;
+    display: inline-block;
+    padding: 4px 10px;
+    font-weight: 400;
+    background-color: rgba(255,255,255,0);
+}
+
+.register {
+    /* text-align: center; */
+    position: relative;
+    /* top: 15%; */
+}
