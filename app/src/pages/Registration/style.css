@@ -1,0 +1,102 @@
+.bgDiv {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    position: relative;
+}
+
+.register form {
+  background: #fff;
+  padding: 4em 4em 2em;
+  max-width: 400px;
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  margin-left:auto;
+  margin-right:auto;
+  font-size: 10px;
+}
+
+.register h2 {
+    margin:0 0 50px 0;
+    padding: '10px';
+    text-align:center;
+    font-size:30px;
+    color:darken(#e5e5e5, 50%);
+    border-bottom:solid 1px #e5e5e5;
+  }
+.register p {
+    margin: 0 0 3em 0;
+    position: relative;
+  }
+
+.register input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    margin:0;
+  }
+.register input[type="text"],
+.register input[type="password"] {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    font-size: 1.6em;
+    padding: .8em .5em;
+    border-radius: 2px;
+  }
+.register input[type="text"]:focus,
+.register input[type="password"]:focus {
+    background: #fff
+  }
+  
+.register button {
+    background: rgb(0, 48, 87, 0.7);
+    box-shadow: 0 3px 0 0 darken(rgb(0, 48, 87, 0.7), 10%);
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 2em 0 0;
+    outline: none;
+    padding: .8em 0;
+    text-shadow: 0 1px #68B25B;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    margin:0;
+  }
+.register button:hover {
+    background: rgb(0, 48, 87, 1);
+    text-shadow:0 1px 3px darken(rgb(0, 48, 87, 0.7), 30%);
+  }
+
+.register span {
+    display:block;
+    /* background: #F9A5A5; */
+    padding: 2px 5px;
+    color: #666;
+  }
+
+.register label{
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    color: #999;
+    font-size: 16px;
+    display: inline-block;
+    padding: 4px 10px;
+    font-weight: 400;
+    background-color: rgba(255,255,255,0);
+}
+
+.register {
+    /* text-align: center; */
+    position: relative;
+    /* top: 15%; */
+}
