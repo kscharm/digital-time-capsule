@@ -26,7 +26,7 @@ export default class AddPhoto extends Component {
 
   savePhoto = () => {
     if (this.state.file !== '') {
-        axios.post('http://localhost:3001/photo', {
+        axios.post('http://localhost:3001/addPhoto', {
             _id: uuidv4(),
             photo: this.state.file,
             frame: this.state.frame,

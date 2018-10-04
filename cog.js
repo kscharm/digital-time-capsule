@@ -38,6 +38,17 @@ exports.addPhoto = function(database, photo, callback) {
     });
 }
 
+exports.deletePhoto = function(database, photoId, callback) {
+    database.collection("photos").deleteOne(photoId, (err, res) => {
+        if (err) {
+            console.log('Error deleting photo: ', err.message);
+            return callback(null, err);
+        }
+        console.log('Photo ' + photoId._id + ' deleted');
+        return callback(res);
+    });
+}
+
 exports.addTimeCapsule = function(database, capsule, callback) {
     database.collection("timeCapsules").insertOne(capsule, (err, res) => {
         if (err) {

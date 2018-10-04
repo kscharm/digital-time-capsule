@@ -39,7 +39,7 @@
             }
         },
         "quote": {
-            "bsonType": "boolean",
+            "bsonType": "bool",
             "description": "Whether or not this text object is a quote"
         },
         "metadata": {
