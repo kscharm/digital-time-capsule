@@ -28,6 +28,7 @@ class App extends Component {
                   <Route
                     path="/currentCapsule"
                     component={CurrentCapsule}
+                    
                   />
                   <Route
                     path="/registration"

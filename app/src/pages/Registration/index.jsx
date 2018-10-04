@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
+import { withRouter } from 'react-router-dom';
 
 export default class Registration extends Component {
   // constructor(props) {
@@ -18,7 +19,15 @@ export default class Registration extends Component {
     confirmPass: '',
   }
 
-  login() {
+  register = (historys) => {
+    //check if valid registration
+    const valid = true;
+    //change path to capsule
+    if (valid) {
+      //window.sessionStorage.token;
+      historys.push('/currentCapsule');
+      console.log(this.context);
+    }
     console.log('hello');
   }
 
@@ -48,11 +57,17 @@ export default class Registration extends Component {
   }
 
   render() {
-    console.log('hello');
+    const Register = withRouter(({ history }) => (
+      <button
+        onClick={() => {this.register(history)}}
+      >
+      Create My Account
+      </button>
+    ))
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div className='register'>
-          <form action="#" method="post">
+          <form>
             <h2>Registration</h2>
             <p>
               <input placeholder='First Name' id="firstName" name="firstName" type="text" onChange={evt => this.updateFirst(evt)}/>
@@ -81,7 +96,7 @@ export default class Registration extends Component {
               {/* <span>Your passwords do not match.</span> */}
             </p>
             <p>
-              <input type="submit" value="Create My Account" id="submit"/>
+              <Register/>
             </p>
           </form>
         </div>
