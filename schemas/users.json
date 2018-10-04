@@ -5,14 +5,10 @@
         "password",
         "university",
         "major",
-        "name",
+        "firstName",
+        "lastName",
         "email",
-        "friends",
-        "photoArr",
-        "textArr",
-        "musicArr",
-        "capsules",
-        "metadata"
+        "capsules"
     ],
     "properties": {
         "username": {
@@ -31,9 +27,13 @@
             "bsonType": "string",
             "description": "The major associated with the user"
         },
-        "name": {
+        "firstName": {
             "bsonType": "string",
-            "description": "Name of the user"
+            "description": "First name of the user"
+        },
+        "lastName": {
+            "bsonType": "string",
+            "description": "Last name of the user"
         },
         "email": {
             "bsonType": "string",

@@ -57,5 +57,16 @@ exports.addTimeCapsule = function(database, capsule, callback) {
         }
         console.log('Time capsule saved');
         return callback(capsule);
-    })
+    });
+}
+
+exports.addUser = function(database, user, callback) {
+    database.collection("users").insertOne(user, (err, res) => {
+        if (err) {
+            console.log('Error inserting user in database: ', err.message);
+            return callback(null, err);
+        }
+        console.log('User saved');
+        return callback(user);
+    });
 }

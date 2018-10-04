@@ -2,33 +2,53 @@ import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import uuidv4 from 'uuid/v4';
+import bcrypt from 'bcryptjs';
 
 export default class Registration extends Component {
   // constructor(props) {
   //   super(props);
   // }
   state = {
-    toCapsule: false,
+    _id: uuidv4(),
     firstName: '',
     lastName: '',
     email:'',
     university: '',
     major: '',
-    user: '',
-    pass: '',
+    username: '',
+    password: '',
     confirmPass: '',
+    capsules: []
   }
 
-  register = (historys) => {
-    //check if valid registration
-    const valid = true;
-    //change path to capsule
-    if (valid) {
-      //window.sessionStorage.token;
-      historys.push('/currentCapsule');
-      console.log(this.context);
+  register = (histories) => {
+    // Check if all fields are filled
+    if (this.state.firstName === '' || this.state.lastName === '' || this.state.email === ''
+      || this.state.username === '' || this.state.password === '' || this.state.confirmPass === '') {
+      alert('You are missing one or more required fields.');
+    // Check if passwords match
+    } else if (this.state.password !== this.state.confirmPass) {
+      alert('Your passwords do not match.');
+    } else {
+      // Generate password hash for safe storage
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(this.state.password, salt, (err, hash) => {
+          this.setState({password: hash});
+          axios.post('http://localhost:3001/registerUser', this.state)
+            .then((res) => {
+                //change path to capsule
+                //window.sessionStorage.token;
+                histories.push('/currentCapsule');
+                console.log(this.context);
+            })
+            .catch((err) => {
+               alert('Error saving user: ' + err.message);
+            });
+        });
+      });
     }
-    console.log('hello');
   }
 
   updateFirst = (evt) => {
@@ -50,10 +70,10 @@ export default class Registration extends Component {
     this.setState({confirmPass: evt.target.value})
   }
   updateUsername = (evt) => {
-    this.setState({user: evt.target.value})
+    this.setState({username: evt.target.value})
   }
   updatePass = (evt) => {
-    this.setState({pass: evt.target.value})
+    this.setState({password: evt.target.value})
   }
 
   render() {
