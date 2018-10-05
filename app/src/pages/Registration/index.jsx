@@ -11,6 +11,7 @@ export default class Registration extends Component {
   //   super(props);
   // }
   state = {
+    toCapsule: false,
     _id: uuidv4(),
     firstName: '',
     lastName: '',
@@ -36,12 +37,16 @@ export default class Registration extends Component {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.state.password, salt, (err, hash) => {
           this.setState({password: hash});
-          axios.post('http://localhost:3001/registerUser', this.state)
+          // Copy the state
+          const doc = this.state;
+          // Delete unnecessary fields
+          delete doc.toCapsule;
+          // Add personal time capsule id to list of capsules
+          doc.capsules.push(doc._id);
+          axios.post('http://localhost:3001/registerUser', doc)
             .then((res) => {
                 //change path to capsule
-                //window.sessionStorage.token;
-                histories.push('/currentCapsule');
-                console.log(this.context);
+                histories.push('/');
             })
             .catch((err) => {
                alert('Error saving user: ' + err.message);
