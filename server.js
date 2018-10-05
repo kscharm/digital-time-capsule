@@ -99,7 +99,7 @@ app.post('/addPhoto', (req, res) => {
     } else {
       res.status(200).send(data);
     }
-  })
+  });
 });
 
 app.delete('/deletePhoto', (req, res) => {
@@ -110,7 +110,7 @@ app.delete('/deletePhoto', (req, res) => {
     } else {
       res.status(200).send(data);
     }
-  })
+  });
 });
 
 app.post('/addText', (req, res) => {
@@ -121,18 +121,29 @@ app.post('/addText', (req, res) => {
     } else {
       res.status(200).send(data);
     }
-  })
+  });
 });
 
 app.post('/addCapsule', (req, res) => {
   const capsuleDoc = req.body;
-  cog.addTimeCapsule(database,capsuleDoc, (data, err) => {
+  cog.addTimeCapsule(database, capsuleDoc, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
-  })
+  });
+});
+
+app.post('/registerUser', (req, res) => {
+  const user = req.body;
+  cog.addUser(database, user, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
 });
 
 app.listen(app.get("port"), () => {
