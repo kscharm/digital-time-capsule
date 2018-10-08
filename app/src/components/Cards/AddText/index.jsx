@@ -3,6 +3,7 @@ import './style.css';
 import '../generic.css'
 import OurButton from '../../OurButton';
 import addPhotoBase from '../../../images/addPhoto.png'
+import { convertToRaw } from 'draft-js'
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
@@ -64,12 +65,38 @@ export default class AddText extends Component {
 
     addText = () => {
         var a = this.state.editorState.getCurrentContent();
+        var raw = convertToRaw(a);
+        var text = '';
+        var styles = [];
+        for (var i = 0; i < raw.blocks.length; i++) {
+            var block = raw.blocks[i].inlineStyleRanges;
+            for (var k = 0; k < block.length; k++) {
+                var offset = block[k].offset + text.length;
+                var lengthy = block[k].length + text.length;
+                var style = block[k].style;
+                var obj = {
+                    offset: offset,
+                    length: lengthy,
+                    style: style
+                }
+                if (!styles.includes(obj)) {
+                    styles.push(obj);
+                }
+            }
+            if (i != 0) {
+                text += '\n' + raw.blocks[i].text;
+            }
+        }
+
+
+
         if (a.getPlainText('') !== '') {
             axios.post('http://localhost:3001/text', {
                 username: "kenny",
                 mediaId: uuidv4(),
                 capsules: ["myCapsule"],
-                text: a.getPlainText(''),
+                text: text,
+                styles: styles,
                 settings: {
                     privacy: "public"
                 },

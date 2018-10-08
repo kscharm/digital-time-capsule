@@ -43,8 +43,15 @@
                 }
             }
         },
+        "style": {
+            "bsonType": "array",
+            "description": "Array of styles",
+            "items": [{
+                "type": "object"
+            }]
+        },
         "quote": {
-            "bsonType": "boolean",
+            "bsonType": "bool",
             "description": "Whether or not this text object is a quote"
         },
         "metadata": {
