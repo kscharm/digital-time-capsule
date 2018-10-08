@@ -20,8 +20,7 @@ export default class WelcomePage extends Component {
     //change path to capsule
     if (valid) {
       //window.sessionStorage.token;
-      historys.push('/currentCapsule');
-      console.log(this.context);
+      window.location='/currentCapsule';
     }
     console.log('hello');
   }

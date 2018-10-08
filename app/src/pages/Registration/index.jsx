@@ -24,7 +24,7 @@ export default class Registration extends Component {
     capsules: []
   }
 
-  register = (histories) => {
+  register = () => {
     // Check if all fields are filled
     if (this.state.firstName === '' || this.state.lastName === '' || this.state.email === ''
       || this.state.username === '' || this.state.password === '' || this.state.confirmPass === '') {
@@ -45,8 +45,8 @@ export default class Registration extends Component {
           doc.capsules.push(doc._id);
           axios.post('http://localhost:3001/registerUser', doc)
             .then((res) => {
-                //change path to capsule
-                histories.push('/');
+                //change path to login
+                window.location='/';
             })
             .catch((err) => {
                alert('Error saving user: ' + err.message);
@@ -82,13 +82,15 @@ export default class Registration extends Component {
   }
 
   render() {
-    const Register = withRouter(({ history }) => (
+    const Register = () => {
+      return(
       <button
-        onClick={() => {this.register(history)}}
+        onClick={() => {this.register()}}
       >
       Create My Account
       </button>
-    ))
+      );
+    }
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div className='register'>
