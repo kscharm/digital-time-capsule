@@ -24,7 +24,7 @@ export default class Registration extends Component {
     capsules: []
   }
 
-  register = () => {
+  register = (histories) => {
     // Check if all fields are filled
     if (this.state.firstName === '' || this.state.lastName === '' || this.state.email === ''
       || this.state.username === '' || this.state.password === '' || this.state.confirmPass === '') {
@@ -82,15 +82,13 @@ export default class Registration extends Component {
   }
 
   render() {
-    const Register = () => {
-      return(
+    const Register = withRouter(({ history }) => (
       <button
-        onClick={() => {this.register()}}
+        onClick={() => {this.register(history)}}
       >
       Create My Account
       </button>
-      );
-    }
+      ))
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div className='register'>
