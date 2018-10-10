@@ -143,7 +143,6 @@ export default class AddQuote extends Component {
                     onChange={this.onChange}
                     ref={(element) => { this.editor = element; }}
                     plugins={[counterPlugin]}
-                    placeholder='Quote...'
                     handleBeforeInput={this._handleBeforeInput}
                     handlePastedText={this._handlePastedText}
                 />
