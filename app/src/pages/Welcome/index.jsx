@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
 export default class WelcomePage extends Component {
   // constructor(props) {
@@ -14,16 +16,21 @@ export default class WelcomePage extends Component {
     pass: '',
   }
 
-  login = (historys) => {
-    //check if valid login
-    const valid = true;
-    //change path to capsule
-    if (valid) {
-      //window.sessionStorage.token;
-      historys.push('/currentCapsule');
-      console.log(this.context);
-    }
-    console.log('hello');
+  login = (histories) => {
+    axios.get('http://localhost:3001/validateUser?username=' + this.state.user)
+      .then((res) => {
+        const user = res.data;
+        bcrypt.compare(this.state.pass, user.password)
+          .then((res) => {
+            window.location='/currentCapsule';
+          })
+          .catch((err) => {
+            alert('Invalid username and password combination');
+          });
+        })
+      .catch((err) => {
+          alert('Error validating user: ' + err.message);
+      });
   }
 
   updateUsername = (evt) => {

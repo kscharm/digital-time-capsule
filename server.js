@@ -146,6 +146,17 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
+app.get('/validateUser', (req, res) => {
+  const username = req.query;
+  cog.validateUser(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
 });
