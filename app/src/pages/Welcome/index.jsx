@@ -17,13 +17,12 @@ export default class WelcomePage extends Component {
   }
 
   login = (histories) => {
-    console.log('Getting user');
     axios.get('http://localhost:3001/validateUser?username=' + this.state.user)
       .then((res) => {
         const user = res.data;
         bcrypt.compare(this.state.pass, user.password)
           .then((res) => {
-            histories.push('/currentCapsule');
+            window.location='/currentCapsule';
           })
           .catch((err) => {
             alert('Invalid username and password combination');
