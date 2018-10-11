@@ -77,3 +77,12 @@ exports.addUser = function(database, user, callback) {
     }
   });
 }
+
+exports.validateUser = function(database, username, callback) {
+  database.collection("users").findOne(username).then((user, err) => {
+    if (err) {
+      return callback(null, err);
+    }
+    return callback(user);
+  });
+}
