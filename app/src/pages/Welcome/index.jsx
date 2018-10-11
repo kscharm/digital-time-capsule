@@ -49,8 +49,16 @@ export default class WelcomePage extends Component {
                 <span className='mainMessage'> Welcome! </span>
                 <span className='subMessage'> Go Jackets! </span>
               </div>
-              <input type="text" placeholder="username" onChange={evt => this.updateUsername(evt)}/>
-              <input type="password" placeholder="password" onChange={evt => this.updatePass(evt)}/>
+              <ul>
+                <li>
+                    <label for="user"> Username</label>
+                    <input type="text" id='user' name="user" maxlength="100" onChange={evt => this.updateUsername(evt)}/>
+                </li>
+                <li>
+                  <label for="pass"> Password</label>
+                  <input type="password" id='pass' name="pass" maxlength="100" onChange={evt => this.updatePass(evt)}/>
+                </li>
+              </ul>
               <Login/>
               <p className="message">Not registered? <a href="/registration">Create an account</a></p>
             </form>

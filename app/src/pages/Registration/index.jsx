@@ -94,32 +94,48 @@ export default class Registration extends Component {
         <div className='register'>
           <form>
             <h2>Registration</h2>
-            <p>
-              <input placeholder='First Name' id="firstName" name="firstName" type="text" onChange={evt => this.updateFirst(evt)}/>
-            </p>
-            <p>
-              <input placeholder='Last Name' id="lastName" name="lastName" type="text" onChange={evt => this.updateLast(evt)}/>
-            </p>
-            <p>
-              <input placeholder='Email' id="Email" name="Email" type="text" onChange={evt => this.updateEmail(evt)}/>
-            </p>
-            <p>
-              <input placeholder='University' id="university" name="university" type="text" onChange={evt => this.updateUniversity(evt)}/>
-            </p>
-            <p>
-              <input placeholder='Major' id="major" name="major" type="text" onChange={evt => this.updateMajor(evt)}/>
-            </p>
-            <p>
-              <input placeholder='Username' id="userId" name="userId" type="text" onChange={evt => this.updateUsername(evt)}/>
-            </p>
-            <p>
-              <input placeholder='Password' id="password" name="password" type="password" onChange={evt => this.updatePass(evt)}/>
-              {/* <span>Enter a password longer than 8 characters.</span> */}
-            </p>
-            <p>
-              <input placeholder='Confirm Password' id="confirm_password" name="confirm_password" type="password" onChange={evt => this.updateConfirmPass(evt)}/>
-              {/* <span>Your passwords do not match.</span> */}
-            </p>
+            <ul>
+              <li>
+                  <label for="firstName"> First Name</label>
+                  <input type="text" id='firstName' name="firstName" maxlength="100" onChange={evt => this.updateFirst(evt)}/>
+                  <span>Enter your first name</span>
+              </li>
+              <li>
+                  <label for="lastName"> Last Name</label>
+                  <input type="text" id='lastName' name="lastName" maxlength="100" onChange={evt => this.updateLast(evt)}/>
+                  <span>Enter your last name</span>
+              </li>
+              <li>
+                  <label for="email"> Email</label>
+                  <input type="email" id='email' name="email" maxlength="100" onChange={evt => this.updateEmail(evt)}/>
+                  <span>Enter your email</span>
+              </li>
+              <li>
+                  <label for="university"> University</label>
+                  <input type="text" id='university' name="university" maxlength="100" onChange={evt => this.updateUniversity(evt)}/>
+                  <span>Enter your university</span>
+              </li>
+              <li>
+                  <label for="major"> Major</label>
+                  <input type="text" id='major' name="major" maxlength="100" onChange={evt => this.updateMajor(evt)}/>
+                  <span>Enter your major</span>
+              </li>
+              <li>
+                  <label for="username"> Username</label>
+                  <input type="text" id='username' name="username" maxlength="100" onChange={evt => this.updateUsername(evt)}/>
+                  <span>Enter your username</span>
+              </li>
+              <li>
+                  <label for="pass1"> Password</label>
+                  <input type="password" id='pass1' name="pass1" maxlength="100" onChange={evt => this.updatePass(evt)}/>
+                  <span>Enter your password</span>
+              </li>
+              <li>
+                  <label for="pass2"> Confirm Password</label>
+                  <input type="password" id='pass2' name="pass2" maxlength="100" onChange={evt => this.updateConfirmPass(evt)}/>
+                  <span>Confirm your password</span>
+              </li>
+            </ul>
             <p>
               <Register/>
             </p>
