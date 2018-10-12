@@ -31,7 +31,7 @@ export default class AddPhoto extends Component {
             photo: this.state.file,
             frame: this.state.frame,
             title: this.state.fileName,
-            username: "kenny",
+            username: this.props.user,
             capsules: ["myCapsule"],
             caption: this.state.fileCaption,
             settings: {
@@ -59,7 +59,11 @@ export default class AddPhoto extends Component {
   }
 
   updateFileCaption = (evt) => {
-    this.setState({fileCaption: evt.target.value})
+    this.setState({fileCaption: evt.target.value});
+  }
+  updateFrame = (frame) => {
+      this.setState({frame: frame});
+      console.log('FRAMEMY' + frame);
   }
 
   render() {
@@ -117,7 +121,7 @@ export default class AddPhoto extends Component {
             />
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('basicFrame')}/>
                 <img className="frameImg" src={addPhotoBase} alt="" />
                 <img className="frameImg" src={addPhotoBase} alt="" />
             </div>

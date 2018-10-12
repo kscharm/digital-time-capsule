@@ -100,7 +100,7 @@ export default class AddQuote extends Component {
         if (editor.getPlainText('') !== '') {
             axios.post('http://localhost:3001/addText', {
                 _id: uuidv4(),
-                username: "madison",
+                username: this.props.user,
                 capsules: ["myCapsule"],
                 text: editor.getPlainText(''),
                 author: this.state.quoteAuthor,

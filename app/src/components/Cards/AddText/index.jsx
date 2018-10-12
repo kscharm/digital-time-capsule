@@ -67,7 +67,7 @@ export default class AddText extends Component {
         if (a.getPlainText('') !== '') {
             axios.post('http://localhost:3001/addText', {
                 _id: uuidv4(),
-                username: "kenny",
+                username: this.props.user,
                 capsules: ["myCapsule"],
                 text: a.getPlainText(''),
                 settings: {

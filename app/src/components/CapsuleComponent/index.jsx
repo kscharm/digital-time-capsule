@@ -237,7 +237,8 @@ export default class CapsuleComponent extends Component {
                   <PhotoDisplay
                       xPos={photo.metadata.x}
                       yPos={photo.metadata.y}
-                      genre={photo.caption}
+                      caption={photo.caption}
+                      frame={photo.frame}
                       title={photo.title}
                       photo={photo.photo}
                       style={{display:'inline-block'}}

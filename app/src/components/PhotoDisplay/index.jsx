@@ -17,7 +17,7 @@ export default class PhotoDisplay extends Component {
         return (
             <Draggable
               bounds= {{left:0, top:0}}
-              handle=".handle"
+              handle=".frame"
               defaultPosition={{x: 0, y: 100}}
               position={null}
               onStart={this.handleStart}
@@ -25,8 +25,11 @@ export default class PhotoDisplay extends Component {
               onStop={this.handleStop}
               >
               <div style={{ width: '256px', height: '356px'}} >
-                <div className="handle">Imagine that this is the frame.</div>
-                <img className="photo" src={this.props.photo} alt={this.props.title} />
+                <div className={this.props.frame}>
+                    Imagine that this is the frame.
+                    <img className="photo" src={this.props.photo} alt={this.props.title} />
+                    <p className='caption'>{this.props.caption}</p>
+                </div>
                 <button
                     onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
                     className='deleteButton'

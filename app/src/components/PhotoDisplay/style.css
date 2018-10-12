@@ -2,3 +2,44 @@
     display: inline-block;
     position: absolute;
 }
+.basicFrame {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    position: relative;
+    z-index: 1;
+    width: 322px;
+    height: 242px;
+    border: 1px solid #f6f4f3;
+    border-top-color: #fff;
+    border-radius: 3px;
+    background-color: #ebe8e5;
+    padding:18px;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.15);
+  }
+
+  .basicFrame:after {
+    position: absolute;
+    z-index: 10;
+    left: 18px;
+    top: 18px;
+    content: "";
+    width: 320px;
+    height: 240px;
+    box-shadow: inset 1px 0 3px 2px rgba(0,0,0,.4);
+  }
+  
+  .basicFrame img {
+    border: 1px solid #f2f0ee;
+    border-bottom-color: #fff;
+    background: #fff;
+  }
+  
+  .basicFrame caption {
+    position: absolute;
+    left: 18px;
+    bottom: 0;
+    color: #a19181;
+    font: normal 14px/18px "Archivo Black";
+    text-shadow: 0 1px 0 #fff;  
+  }
