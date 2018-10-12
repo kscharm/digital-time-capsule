@@ -17,25 +17,24 @@ export default class PhotoDisplay extends Component {
         return (
             <Draggable
               bounds= {{left:0, top:0}}
-              handle=".frame"
+              handle='.handle'
               defaultPosition={{x: 0, y: 100}}
               position={null}
               onStart={this.handleStart}
               onDrag={this.handleDrag}
               onStop={this.handleStop}
               >
-              <div style={{ width: '256px', height: '356px'}} >
+              <div className="handle" style={{ width: '256px', height: '356px'}} >
                 <div className={this.props.frame}>
-                    Imagine that this is the frame.
                     <img className="photo" src={this.props.photo} alt={this.props.title} />
                     <p className='caption'>{this.props.caption}</p>
+                    <button
+                        onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
+                        className='deleteButton'
+                    >
+                        <FaTrash className='deleteIcon' size={40}/>
+                    </button>
                 </div>
-                <button
-                    onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
-                    className='deleteButton'
-                >
-                    <FaTrash className='deleteIcon' size={40}/>
-                </button>
               </div>
             </Draggable>
         );

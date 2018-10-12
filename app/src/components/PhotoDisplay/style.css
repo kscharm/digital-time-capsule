@@ -5,11 +5,9 @@
 .basicFrame {
     display: inline-block;
     vertical-align: top;
-    margin: 10px;
     position: relative;
     z-index: 1;
-    width: 322px;
-    height: 242px;
+    height: 100%;
     border: 1px solid #f6f4f3;
     border-top-color: #fff;
     border-radius: 3px;
@@ -24,8 +22,8 @@
     left: 18px;
     top: 18px;
     content: "";
-    width: 320px;
-    height: 240px;
+    width: 87%;
+    height: 89.5%;
     box-shadow: inset 1px 0 3px 2px rgba(0,0,0,.4);
   }
   
@@ -35,10 +33,10 @@
     background: #fff;
   }
   
-  .basicFrame caption {
+  .basicFrame p {
     position: absolute;
     left: 18px;
-    bottom: 0;
+    bottom: -10px;
     color: #a19181;
     font: normal 14px/18px "Archivo Black";
     text-shadow: 0 1px 0 #fff;  
