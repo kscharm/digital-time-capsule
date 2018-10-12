@@ -30,26 +30,6 @@
     margin: 0 0 3em 0;
     position: relative;
   }
-
-.register input {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    outline: none;
-    margin:0;
-  }
-.register input[type="text"],
-.register input[type="password"] {
-    background: #fff;
-    border: 1px solid #dbdbdb;
-    font-size: 1.6em;
-    padding: .8em .5em;
-    border-radius: 2px;
-  }
-.register input[type="text"]:focus,
-.register input[type="password"]:focus {
-    background: #fff
-  }
   
 .register button {
     background: rgb(0, 48, 87, 0.7);
@@ -76,27 +56,98 @@
     text-shadow:0 1px 3px darken(rgb(0, 48, 87, 0.7), 30%);
   }
 
-.register span {
-    display:block;
-    /* background: #F9A5A5; */
-    padding: 2px 5px;
-    color: #666;
-  }
-
-.register label{
-    position: absolute;
-    left: 8px;
-    top: 12px;
-    color: #999;
-    font-size: 16px;
-    display: inline-block;
-    padding: 4px 10px;
-    font-weight: 400;
-    background-color: rgba(255,255,255,0);
-}
-
 .register {
     /* text-align: center; */
     position: relative;
     /* top: 15%; */
+}
+
+.register ul{
+  list-style:none;
+  padding:0;
+  margin:0;   
+}
+.register li{
+  display: block;
+  padding: 9px;
+  border:1px solid #DDDDDD;
+  margin-bottom: 30px;
+  border-radius: 3px;
+}
+.register li > label{
+  display: block;
+  float: left;
+  margin-top: -19px;
+  background: #FFFFFF;
+  height: 14px;
+  padding: 2px 5px 2px 5px;
+  color: #B9B9B9;
+  font-size: 14px;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.register input[type="text"],
+.register input[type="date"],
+.register input[type="datetime"],
+.register input[type="email"],
+.register input[type="number"],
+.register input[type="search"],
+.register input[type="time"],
+.register input[type="url"],
+.register input[type="password"],
+.register textarea,
+.register select 
+{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  display: block;
+  outline: none;
+  border: none;
+  height: 25px;
+  line-height: 25px;
+  font-size: 16px;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.register input[type="text"]:focus,
+.register input[type="date"]:focus,
+.register input[type="datetime"]:focus,
+.register input[type="email"]:focus,
+.register input[type="number"]:focus,
+.register input[type="search"]:focus,
+.register input[type="time"]:focus,
+.register input[type="url"]:focus,
+.register input[type="password"]:focus,
+.register textarea:focus,
+.register select:focus 
+{
+}
+.register li > span{
+  background: #F3F3F3;
+  display: block;
+  padding: 3px;
+  margin: 0 -9px -9px -9px;
+  text-align: center;
+  color: #C0C0C0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.register textarea{
+  resize:none;
+}
+.register input[type="submit"],
+.register input[type="button"]{
+  background: #2471FF;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  border-bottom: 3px solid #5994FF;
+  border-radius: 3px;
+  color: #D2E2FF;
+}
+.register input[type="submit"]:hover,
+.register input[type="button"]:hover{
+  background: #6B9FFF;
+  color:#fff;
 }
