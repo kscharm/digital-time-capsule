@@ -59,11 +59,11 @@ export default class WelcomePage extends Component {
               <ul>
                 <li>
                     <label for="user"> Username</label>
-                    <input type="text" id='user' name="user" maxlength="100" onChange={evt => this.updateUsername(evt)}/>
+                    <input type="text" id='user' name="user" maxLength="100" onChange={evt => this.updateUsername(evt)}/>
                 </li>
                 <li>
                   <label for="pass"> Password</label>
-                  <input type="password" id='pass' name="pass" maxlength="100" onChange={evt => this.updatePass(evt)}/>
+                  <input type="password" id='pass' name="pass" maxLength="100" onChange={evt => this.updatePass(evt)}/>
                 </li>
               </ul>
               <Login/>
