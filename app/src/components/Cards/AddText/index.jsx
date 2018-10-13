@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './style.css';
-import '../generic.css'
+import '../generic.css';
 import OurButton from '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
+import textFrame1 from '../../../images/textFrame1.jpg';
+import textFrame2 from '../../../images/textFrame2.jpg';
+import textFrame3 from '../../../images/textFrame3.jpg';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
@@ -117,9 +119,9 @@ export default class AddText extends Component {
             </div>
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepaper')}/>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepad')}/>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('postit')}/>
+                <img className="tframeImg" src={textFrame1} alt="" onClick={() => this.updateFrame('notepaper')}/>
+                <img className="tframeImg" src={textFrame2} alt="" onClick={() => this.updateFrame('notepad')}/>
+                <img className="tframeImg" src={textFrame3} alt="" onClick={() => this.updateFrame('postit')}/>
             </div>
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
+import frame1 from '../../../images/frame1.jpg';
+import frame2 from '../../../images/frame2.jpg';
+import frame3 from '../../../images/frame3.jpg'
 import OurButton from '../../OurButton';
 import axios from 'axios';
-import uuidv4 from 'uuid/v4'
+import uuidv4 from 'uuid/v4';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -121,9 +123,9 @@ export default class AddPhoto extends Component {
             />
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('basicFrame')}/>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('polarFrame')}/>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('blackFrame')}/>
+                <img className="frameImg" src={frame1} alt="" onClick={() => this.updateFrame('basicFrame')}/>
+                <img className="frameImg" src={frame2} alt="" onClick={() => this.updateFrame('polarFrame')}/>
+                <img className="frameImg" src={frame3} alt="" onClick={() => this.updateFrame('blackFrame')}/>
             </div>
             <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton
