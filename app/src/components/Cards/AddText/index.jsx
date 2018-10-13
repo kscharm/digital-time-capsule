@@ -118,8 +118,8 @@ export default class AddText extends Component {
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
                 <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepaper')}/>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepaper')}/>
-                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepaper')}/>
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepad')}/>
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('postit')}/>
             </div>
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton
