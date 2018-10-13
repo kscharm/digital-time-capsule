@@ -50,6 +50,7 @@ export default class AddText extends Component {
 
     state = {
         editorState: createEditorStateWithText(text),
+        frame: '',
     };
 
     onChange = (editorState) => {
@@ -80,8 +81,7 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
-                const frame='notepaper';
-                res.data["frame"] = frame;
+                res.data["frame"] = this.state.frame;
                 this.props.handleAddText(res.data);
             })
             .catch((err) => {
@@ -92,6 +92,10 @@ export default class AddText extends Component {
 
     closeAddText = () => {
         this.props.handleShowAddText(false);
+    }
+    updateFrame = (frame) => {
+        this.setState({frame: frame});
+        console.log(frame);
     }
 
 
@@ -113,9 +117,9 @@ export default class AddText extends Component {
             </div>
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepaper')}/>
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepaper')}/>
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('notepaper')}/>
             </div>
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton

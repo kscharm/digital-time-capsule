@@ -63,7 +63,7 @@ export default class AddPhoto extends Component {
   }
   updateFrame = (frame) => {
       this.setState({frame: frame});
-      console.log('FRAMEMY' + frame);
+      console.log(frame);
   }
 
   render() {
@@ -122,8 +122,8 @@ export default class AddPhoto extends Component {
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
                 <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('basicFrame')}/>
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('polarFrame')}/>
+                <img className="frameImg" src={addPhotoBase} alt="" onClick={() => this.updateFrame('blackFrame')}/>
             </div>
             <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton

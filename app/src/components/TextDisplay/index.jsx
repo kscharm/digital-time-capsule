@@ -13,7 +13,6 @@ export default class TextDisplay extends Component {
     render () {
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const actualText = this.props.text;
-        console.log(this.props.frame);
         return (
             <Draggable
               bounds= {{left:0, top:0}}

@@ -17,15 +17,15 @@ export default class PhotoDisplay extends Component {
         return (
             <Draggable
               bounds= {{left:0, top:0}}
-              handle='.handle'
+              handle='.handle2'
               defaultPosition={{x: 0, y: 100}}
               position={null}
               onStart={this.handleStart}
               onDrag={this.handleDrag}
               onStop={this.handleStop}
               >
-              <div className="handle" style={{ width: '256px', height: '356px'}} >
-                <div className={this.props.frame}>
+              <div className="handle2" style={{ width: '256px', height: '356px'}} >
+                <div className={`base ${this.props.frame}`}>
                     <img className="photo" src={this.props.photo} alt={this.props.title} />
                     <p className='caption'>{this.props.caption}</p>
                     <button

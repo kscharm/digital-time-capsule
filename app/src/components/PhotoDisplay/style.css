@@ -2,12 +2,17 @@
     display: inline-block;
     position: absolute;
 }
+.base p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+}
 .basicFrame {
     display: inline-block;
     vertical-align: top;
     position: relative;
     z-index: 1;
-    height: 100%;
     border: 1px solid #f6f4f3;
     border-top-color: #fff;
     border-radius: 3px;
@@ -23,7 +28,7 @@
     top: 18px;
     content: "";
     width: 87%;
-    height: 89.5%;
+    height: 74.5%;
     box-shadow: inset 1px 0 3px 2px rgba(0,0,0,.4);
   }
   
@@ -34,10 +39,38 @@
   }
   
   .basicFrame p {
-    position: absolute;
-    left: 18px;
-    bottom: -10px;
     color: #a19181;
-    font: normal 14px/18px "Archivo Black";
-    text-shadow: 0 1px 0 #fff;  
+    text-shadow: 0 1px 0 #fff; 
+    font-weight: bolder;
+  }
+
+  .polarFrame {
+    display: block;
+    float: left;
+    padding: 30px 30px 50px 30px;
+    background-color: rgb(255, 255, 255);
+    border: thin solid #ddd;
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px rgba(190, 94, 0, 0.8); /* dark orange */
+  }
+  .polarFrame img {
+    background-color: rgb(125, 125, 125);
+  }
+
+  .blackFrame {
+    display: inline-block;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-style: solid;
+    border-width: 15px;
+    border-top-color: lighten(#000, 20%);
+    border-right-color: lighten(#000, 0%);
+    border-bottom-color: lighten(#000, 20%);
+    border-left-color: lighten(#000, 0%);
+    box-shadow: 2px 2px 4px rgba(0,0,0,.6);
+  }
+  .blackFrame img {
+  }
+  .blackFrame p {
   }
