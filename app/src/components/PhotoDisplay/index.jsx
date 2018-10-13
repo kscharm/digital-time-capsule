@@ -24,7 +24,7 @@ export default class PhotoDisplay extends Component {
               onDrag={this.handleDrag}
               onStop={this.handleStop}
               >
-              <div className="handle2" style={{ width: '256px', height: '356px'}} >
+              <div className="handle2" >
                 <div className={`base ${this.props.frame}`}>
                     <img className="photo" src={this.props.photo} alt={this.props.title} />
                     <p className='caption'>{this.props.caption}</p>
@@ -32,7 +32,7 @@ export default class PhotoDisplay extends Component {
                         onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
                         className='deleteButton'
                     >
-                        <FaTrash className='deleteIcon' size={40}/>
+                        <FaTrash className='deleteIcon' size={20}/>
                     </button>
                 </div>
               </div>

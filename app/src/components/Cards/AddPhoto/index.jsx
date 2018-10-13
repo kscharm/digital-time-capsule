@@ -102,7 +102,7 @@ export default class AddPhoto extends Component {
         <div className={ `addTypeBack addPhotoBack` }/>
         <div className={ `addTypeCard addPhotoCard` }>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
-            <div className='photo'>
+            <div className='photoThing'>
                 <div className="dropzone">
                 <DropzoneComponent
                     config={componentConfig}

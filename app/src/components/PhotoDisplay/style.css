@@ -8,6 +8,30 @@
   text-align: center;
   font-weight: bold;
 }
+.base button {
+  background: none;
+  opacity: 0.6;
+  border-radius: 100%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.base .deleteIcon {
+  opacity: .5;
+  margin-right: .5em;
+}
+
+.base .deleteIcon:hover {
+  opacity: .85;
+}
+
+.base .deleteIcon:active {
+  opacity: 1;
+}
+
 .basicFrame {
     display: inline-block;
     vertical-align: top;
@@ -20,22 +44,12 @@
     padding:18px;
     box-shadow: 0 0 2px 2px rgba(0,0,0,.15);
   }
-
-  .basicFrame:after {
-    position: absolute;
-    z-index: 10;
-    left: 18px;
-    top: 18px;
-    content: "";
-    width: 87%;
-    height: 74.5%;
-    box-shadow: inset 1px 0 3px 2px rgba(0,0,0,.4);
-  }
   
   .basicFrame img {
     border: 1px solid #f2f0ee;
     border-bottom-color: #fff;
     background: #fff;
+    box-shadow: inset 1px 0 3px 2px rgba(0,0,0,.4);
   }
   
   .basicFrame p {
@@ -73,4 +87,8 @@
   .blackFrame img {
   }
   .blackFrame p {
+  }
+  .blackFrame button {
+    bottom: 1em;
+    right: .5em;
   }
