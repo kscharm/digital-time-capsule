@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AddButton from '../../components/AddButton';
+import DeleteButton from '../../components/DeleteButton';
 import Background from '../../images/cork.jpg';
 import './style.css';
 import {
@@ -39,6 +40,7 @@ export default class CapsuleComponent extends Component {
     textList: [],
     quoteList: [],
     showAddCapsule: false,
+    showDelete: false,
   }
 
   handlePop = (pop) => {
@@ -55,6 +57,9 @@ export default class CapsuleComponent extends Component {
   }
   handleShowAddMusic = (show) => {
     this.setState({showAddMusic: show});
+  }
+  handleShowDelete = (show) => {
+    this.setState({showDelete: show});
   }
 
   getAllMusic = () => {
@@ -245,6 +250,7 @@ export default class CapsuleComponent extends Component {
                       key={photo.photo}
                       photoObj={photo}
                       handleDeletePhoto={this.handleDeletePhoto}
+                      showDelete={this.state.showDelete}
                   />
               )
             })}
@@ -260,6 +266,7 @@ export default class CapsuleComponent extends Component {
                     key={music.music}
                     music={music}
                     handleDeleteMusic={this.handleDeleteMusic}
+                    showDelete={this.state.showDelete}
                 />
             )
             })}
@@ -274,6 +281,7 @@ export default class CapsuleComponent extends Component {
                       frame={text.frame}
                       handleDeleteText={this.handleDeleteText}
                       textObj={text}
+                      showDelete={this.state.showDelete}
                   />
               )
             })}
@@ -288,6 +296,7 @@ export default class CapsuleComponent extends Component {
                       key={quote.text}
                       handleDeleteQuote={this.handleDeleteQuote}
                       quoteObj={quote}
+                      showDelete={this.state.showDelete}
                   />
               )
             })}
@@ -300,6 +309,12 @@ export default class CapsuleComponent extends Component {
             <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
               {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
             </div>
+          </div>
+          <div className='deleteButton'>
+            <DeleteButton
+              buttonAction={() => { this.handleShowDelete(!this.state.showDelete) }}
+              buttonType='delete'
+            />
           </div>
           <div className='tempAddCapsule'>
             <OurButton

@@ -13,6 +13,15 @@ export default class TextDisplay extends Component {
     render () {
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const actualText = this.props.text;
+        const DeleteButton = () => {
+            return (
+                <button
+                onClick={() => {this.props.handleDeleteText(this.props.textObj)}}
+                className='deleteButton'
+            >
+                <FaTrash className='deleteIcon' size={20}/>
+            </button>
+            )}
         return (
             <Draggable
               bounds= {{left:0, top:0}}
@@ -24,12 +33,7 @@ export default class TextDisplay extends Component {
               >
               <div className={`textSpace ${this.props.frame}`}>
                 <p className={`text`}>{actualText}</p>
-                <button
-                    onClick={() => {this.props.handleDeleteText(this.props.textObj)}}
-                    className='deleteButton'
-                >
-                    <FaTrash className='deleteIcon' size={20}/>
-                </button>
+                {this.props.showDelete ? <DeleteButton/> : null}
               </div>
             </Draggable>
         );

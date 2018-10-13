@@ -13,6 +13,15 @@ export default class PhotoDisplay extends Component {
     handleStart(e, ui){ e.stopPropagation(); } 
 
     render () {
+        const DeleteButton = () => {
+            return (
+            <button
+                onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
+                className='deleteButton'
+            >
+                <FaTrash className='deleteIcon' size={20}/>
+            </button>
+            )}
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         return (
             <Draggable
@@ -28,12 +37,7 @@ export default class PhotoDisplay extends Component {
                 <div className={`base ${this.props.frame}`}>
                     <img className="photo" src={this.props.photo} alt={this.props.title} />
                     <p className='caption'>{this.props.caption}</p>
-                    <button
-                        onClick={() => {this.props.handleDeletePhoto(this.props.photoObj)}}
-                        className='deleteButton'
-                    >
-                        <FaTrash className='deleteIcon' size={20}/>
-                    </button>
+                    {this.props.showDelete ? <DeleteButton/> : null}
                 </div>
               </div>
             </Draggable>
