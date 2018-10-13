@@ -71,8 +71,28 @@ exports.addUser = function(database, user, callback) {
           console.log('Error inserting user in database: ', err.message);
           return callback(null, err);
         }
-        console.log('User saved');
-        return callback(user);
+        let capsule = {
+          ownerId: user._id,
+          timeCapsuleId: user._id,
+          title: user.firstName + "'s Personal Capsule",
+          contributors: [user._id],
+          photoArr: [],
+          textArr: [],
+          musicArr: [],
+          metadata: {},
+          settings: {
+            group: user._id,
+            privacy: {},
+            theme: {}
+          }
+        }
+        this.addTimeCapsule(database, capsule, (err, res) => {
+          if (err) {
+            return callback(null, err);
+          }
+          console.log('User saved');
+          return callback(user);
+        })
       });
     }
   });
