@@ -14,6 +14,15 @@ export default class QuoteDisplay extends Component {
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const actualText = this.props.text;
         const author = this.props.author;
+        const DeleteButton = () => {
+            return (
+            <button
+                onClick={() => {this.props.handleDeleteQuote(this.props.quoteObj)}}
+                className='deleteButton'
+            >
+                <FaTrash className='deleteIcon' size={20}/>
+            </button>
+            )}
         return (
             <Draggable
               bounds= {{left:0, top:0}}
@@ -28,12 +37,7 @@ export default class QuoteDisplay extends Component {
                     <blockquote>
                         {actualText}
                         <span class="author"><i>{author}</i></span>
-                        <button
-                            onClick={() => {this.props.handleDeleteQuote(this.props.quoteObj)}}
-                            className='deleteButton'
-                        >
-                            <FaTrash className='deleteIcon' size={20}/>
-                        </button>
+                        {this.props.showDelete ? <DeleteButton/> : null}
                     </blockquote>
                 </div>
             </div>

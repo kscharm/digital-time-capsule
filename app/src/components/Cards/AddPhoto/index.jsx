@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
+import frame1 from '../../../images/frame1.jpg';
+import frame2 from '../../../images/frame2.jpg';
+import frame3 from '../../../images/frame3.jpg'
 import OurButton from '../../OurButton';
 import axios from 'axios';
-import uuidv4 from 'uuid/v4'
+import uuidv4 from 'uuid/v4';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -31,7 +33,7 @@ export default class AddPhoto extends Component {
             photo: this.state.file,
             frame: this.state.frame,
             title: this.state.fileName,
-            username: "kenny",
+            username: 'kenny',
             capsules: ["myCapsule"],
             caption: this.state.fileCaption,
             settings: {
@@ -59,7 +61,11 @@ export default class AddPhoto extends Component {
   }
 
   updateFileCaption = (evt) => {
-    this.setState({fileCaption: evt.target.value})
+    this.setState({fileCaption: evt.target.value});
+  }
+  updateFrame = (frame) => {
+      this.setState({frame: frame});
+      console.log(frame);
   }
 
   render() {
@@ -98,7 +104,7 @@ export default class AddPhoto extends Component {
         <div className={ `addTypeBack addPhotoBack` }/>
         <div className={ `addTypeCard addPhotoCard` }>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
-            <div className='photo'>
+            <div className='photoThing'>
                 <div className="dropzone">
                 <DropzoneComponent
                     config={componentConfig}
@@ -117,9 +123,9 @@ export default class AddPhoto extends Component {
             />
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className="frameImg" src={frame1} alt="" onClick={() => this.updateFrame('basicFrame')}/>
+                <img className="frameImg" src={frame2} alt="" onClick={() => this.updateFrame('polarFrame')}/>
+                <img className="frameImg" src={frame3} alt="" onClick={() => this.updateFrame('blackFrame')}/>
             </div>
             <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton
