@@ -5,19 +5,12 @@ exports.addMusic = function(database, music, callback) {
       console.log('Error inserting music into database: ', err.message);
       return callback(null, err);
     }
-    database.collection("timeCapsules").findOne({_id:music.capsules[0]}, (err, res) => {
+    database.collection("timeCapsules").updateOne({_id:music.capsules[0]}, {$push:{musicArr:{id:music._id}}}, (err, res) => {
       if (err) {
         console.log("Error retrieving time capsule", err.message);
         return callback(null, err);
       }
-      res.textArr.push({id: music._id});
-      database.collection("timeCapsules").replaceOne({_id:text.capsules[0]}, res, (err, res) => {
-        if (err) {
-          console.log("Error adding data to capsule", err.message);
-          return callback(null, err);
-        }
-        return callback(music);
-      });
+      return callback(music);
     });
   });
 }
@@ -28,19 +21,12 @@ exports.addText = function(database, text, callback) {
       console.log('Error inserting text into database: ', err.message);
       return callback(null, err);
     }
-    database.collection("timeCapsules").findOne({_id:text.capsules[0]}, (err, res) => {
+    database.collection("timeCapsules").updateOne({_id:text.capsules[0]}, {$push:{textArr:{id:text._id}}}, (err, res) => {
       if (err) {
         console.log("Error retrieving time capsule", err.message);
         return callback(null, err);
       }
-      res.textArr.push({id: text._id});
-      database.collection("timeCapsules").replaceOne({_id:text.capsules[0]}, res, (err, res) => {
-        if (err) {
-          console.log("Error adding data to capsule", err.message);
-          return callback(null, err);
-        }
-        return callback(text);
-      });
+      return callback(text);
     });
   });
 }
@@ -51,71 +37,51 @@ exports.addPhoto = function(database, photo, callback) {
       console.log('Error inserting photo into database: ', err.message);
       return callback(null, err);
     }
-    database.collection("timeCapsules").findOne({_id:photo.capsules[0]}, (err, res) => {
+    database.collection("timeCapsules").updateOne({_id:photo.capsules[0]}, {$push:{photoArr:{id:photo._id}}}, (err, res) => {
       if (err) {
         console.log("Error retrieving time capsule", err.message);
         return callback(null, err);
       }
-      res.photoArr.push({id: photo._id});
-      database.collection("timeCapsules").replaceOne({_id:photo.capsules[0]}, res, (err, res) => {
-        if (err) {
-          console.log("Error adding data to capsule", err.message);
-          return callback(null, err);
-        }
-        return callback(photo);
-      });
+      return callback(photo);
     });
   });
 }
 
 exports.deleteText = function(database, textId, capsuleId, callback) {
-  database.collection("timeCapsules").findOne(capsuleId, (err, res) => {
+  database.collection("timeCapsules").updateOne({_id:capsuleId}, {$pull:{textArr:{id:textId}}}, (err, res) => {
     if (err) {
       console.log("Capsule does not exist");
       return callback(null, err);
     }
-    let textArr =[];
-    for (let j = 0; j < res.textArr.length; j++) {
-      if (res.textArr[i].id == textId) {
-        textArr.push(res.textArr[i]);
-      }
-    }
-    res.textArr = textArr;
-    database.collection("timeCapsule").replaceOne({_id:capsuleId}, res, (err, res) => {
+    database.collection("text").findOne({_id: textId}, (err, res) => {
       if (err) {
-        console.log("Error removing text from time capsule", err.message);
+        console.log("Error deleting text: ", err.message);
         return callback(null, err);
       }
-      database.collection("text").findOne({_id: textId}, (err, res) => {
-        if (err) {
-          console.log("Error deleting text: ", err.message);
-          return callback(null, err);
+      let capArr = [];
+      for (let i = 0; i < res.capsules.length; i++) {
+        if (res.capsules[i] != capsuleId) {
+          capArr.push(res.capsules[i]);
         }
-        let capArr = [];
-        for (let i = 0; i < res.capsules.length; i++) {
-          if (res.capsules[i] != capsuleId) {
-            capArr.push(res.capsules[i]);
+      }
+      if (capArr.length == 0) {
+        database.collection("text").deleteOne({_id: textId}, (err, res) => {
+          if (err) {
+            console.log("Error deleting text object from database: ", err.message);
+            return callback(null, err);
           }
-        }
-        if (capArr.length == 0) {
-          database.collection("text").deleteOne({_id: textId}, (err, res) => {
-            if (err) {
-              console.log("Error deleting text object from database: ", err.message);
-              return callback(null, err);
-            }
-            return callback(res);
-          })
-        } else {
-          res.capsules = capArr;
-          database.collection("text").replaceOne({_id: textId}, res, (err, res) => {
-            if (err) {
-              console.log("Error deleting capsule from text object");
-              return callback(null, err);
-            }
-            return callback(res);
-          })
-        }
-      });
+          return callback(res);
+        })
+      } else {
+        res.capsules = capArr;
+        database.collection("text").replaceOne({_id: textId}, res, (err, res) => {
+          if (err) {
+            console.log("Error deleting capsule from text object");
+            return callback(null, err);
+          }
+          return callback(res);
+        })
+      }
     });
   });
 }
