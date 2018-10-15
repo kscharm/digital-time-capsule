@@ -5,6 +5,7 @@
         "username",
         "capsules",
         "text",
+        "frame",
         "settings",
         "metadata"
     ],
@@ -23,6 +24,10 @@
         "text": {
             "bsonType": "string",
             "description": "Content of text object"
+        },
+        "frame": {
+            "bsonType": "string",
+            "description": "Description of the frame"
         },
         "author": {
             "bsonType": "string",

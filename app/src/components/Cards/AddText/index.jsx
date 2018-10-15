@@ -52,7 +52,10 @@ export default class AddText extends Component {
 
     state = {
         editorState: createEditorStateWithText(text),
-        frame: '',
+        frame: 'notepaper',
+        selected_A: false,
+        selected_B: false,
+        selected_C: false,
     };
 
     onChange = (editorState) => {
@@ -72,6 +75,7 @@ export default class AddText extends Component {
                 _id: uuidv4(),
                 username: 'kenny',
                 capsules: ["myCapsule"],
+                frame: this.state.frame,
                 text: a.getPlainText(''),
                 settings: {
                     privacy: "public"
@@ -83,7 +87,6 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
-                res.data["frame"] = this.state.frame;
                 this.props.handleAddText(res.data);
             })
             .catch((err) => {
@@ -97,11 +100,33 @@ export default class AddText extends Component {
     }
     updateFrame = (frame) => {
         this.setState({frame: frame});
+        this.changeColor(frame);
         console.log(frame);
+    }
+
+    changeColor(frame) {
+        if (frame == 'notepaper') {
+          this.setState(this.setState({selected_A: !this.state.selected_A}));
+          this.setState(this.setState({selected_B: false}));
+          this.setState(this.setState({selected_C: false}));
+        } else if (frame == 'notepad') {
+          this.setState(this.setState({selected_B: !this.state.selected_B}));
+          this.setState(this.setState({selected_A: false}));
+          this.setState(this.setState({selected_C: false}));
+        } else if (frame == 'postit') {
+          this.setState(this.setState({selected_C: !this.state.selected_C}));
+          this.setState(this.setState({selected_B: false}));
+          this.setState(this.setState({selected_A: false}));
+        }
     }
 
 
   render() {
+
+    let text_frame_class_A = this.state.selected_A ? "text_selected" : "text_notSelected";
+    let text_frame_class_B = this.state.selected_B ? "text_selected" : "text_notSelected";
+    let text_frame_class_C = this.state.selected_C ? "text_selected" : "text_notSelected";
+
     return (
     <div className={ `addType addText` }>
       <div className={ `addTypeBack addTextBack` }/>
@@ -119,9 +144,9 @@ export default class AddText extends Component {
             </div>
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="tframeImg" src={textFrame1} alt="" onClick={() => this.updateFrame('notepaper')}/>
-                <img className="tframeImg" src={textFrame2} alt="" onClick={() => this.updateFrame('notepad')}/>
-                <img className="tframeImg" src={textFrame3} alt="" onClick={() => this.updateFrame('postit')}/>
+                <img className={text_frame_class_A} src={textFrame1} border="5" alt="" onClick={() => this.updateFrame('notepaper')}/>
+                <img className={text_frame_class_B} src={textFrame2} border="5" alt="" onClick={() => this.updateFrame('notepad')}/>
+                <img className={text_frame_class_C} src={textFrame3} border="5" alt="" onClick={() => this.updateFrame('postit')}/>
             </div>
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton
