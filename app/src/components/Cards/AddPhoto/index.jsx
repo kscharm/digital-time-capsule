@@ -36,8 +36,8 @@ export default class AddPhoto extends Component {
             photo: this.state.file,
             frame: this.state.frame,
             title: this.state.fileName,
-            username: 'kenny',
-            capsules: ["myCapsule"],
+            username: this.props.user,
+            capsules: [this.props.capsule],
             caption: this.state.fileCaption,
             settings: {
                 privacy: "public"
