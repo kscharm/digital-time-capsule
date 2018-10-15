@@ -75,6 +75,7 @@ export default class AddText extends Component {
                 _id: uuidv4(),
                 username: 'kenny',
                 capsules: ["myCapsule"],
+                frame: this.state.frame,
                 text: a.getPlainText(''),
                 settings: {
                     privacy: "public"
@@ -86,7 +87,6 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
-                res.data["frame"] = this.state.frame;
                 this.props.handleAddText(res.data);
             })
             .catch((err) => {
