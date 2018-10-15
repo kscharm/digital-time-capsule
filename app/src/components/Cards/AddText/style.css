@@ -17,3 +17,7 @@
     margin: 1em;
     border: transparent;
 }
+
+div.DraftEditor-root {
+    width: auto;
+}
