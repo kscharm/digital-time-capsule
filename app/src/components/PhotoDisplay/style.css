@@ -16,7 +16,6 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  bottom: 0;
   right: 0;
 }
 .base .deleteIcon {

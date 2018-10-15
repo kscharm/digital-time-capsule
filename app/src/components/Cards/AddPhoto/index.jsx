@@ -24,6 +24,9 @@ export default class AddPhoto extends Component {
     fileName: '',
     fileCaption: '',
     frame: '',
+    selected_A: false,
+    selected_B: false,
+    selected_C: false,
   }
 
   savePhoto = () => {
@@ -65,10 +68,32 @@ export default class AddPhoto extends Component {
   }
   updateFrame = (frame) => {
       this.setState({frame: frame});
+      this.changeColor(frame);
       console.log(frame);
   }
 
+  changeColor(frame) {
+      if (frame == 'basicFrame') {
+        this.setState(this.setState({selected_A: !this.state.selected_A}));
+        this.setState(this.setState({selected_B: false}));
+        this.setState(this.setState({selected_C: false}));
+      } else if (frame == 'polarFrame') {
+        this.setState(this.setState({selected_B: !this.state.selected_B}));
+        this.setState(this.setState({selected_A: false}));
+        this.setState(this.setState({selected_C: false}));
+      } else if (frame == 'blackFrame') {
+        this.setState(this.setState({selected_C: !this.state.selected_C}));
+        this.setState(this.setState({selected_B: false}));
+        this.setState(this.setState({selected_A: false}));
+      }
+  }
+
   render() {
+
+    let frame_class_A = this.state.selected_A ? "selected" : "notSelected";
+    let frame_class_B = this.state.selected_B ? "selected" : "notSelected";
+    let frame_class_C = this.state.selected_C ? "selected" : "notSelected";
+
     const componentConfig = {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         allowedFiletypes: ['.jpg', '.png', '.gif'],
@@ -123,9 +148,9 @@ export default class AddPhoto extends Component {
             />
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={frame1} alt="" onClick={() => this.updateFrame('basicFrame')}/>
-                <img className="frameImg" src={frame2} alt="" onClick={() => this.updateFrame('polarFrame')}/>
-                <img className="frameImg" src={frame3} alt="" onClick={() => this.updateFrame('blackFrame')}/>
+                <img className={frame_class_A} src={frame1} alt="" border="5" onClick={() => this.updateFrame('basicFrame')}/>
+                <img className={frame_class_B} src={frame2} alt="" border="5" onClick={() => this.updateFrame('polarFrame')}/>
+                <img className={frame_class_C} src={frame3} alt="" border="5" onClick={() => this.updateFrame('blackFrame')}/>
             </div>
             <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton
