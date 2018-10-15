@@ -190,10 +190,60 @@ exports.validateUser = function(database, username, callback) {
 }
 
 exports.getMedia = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").findOne(capsuleId).then((capsule, err) => {
+  database.collection("timeCapsules").findOne({_id: capsuleId}).then((capsule, err) => {
     if (err) {
       return callback(null, err);
     }
-    return callback(capsule);
+    let media = {};
+    let textArr = [];
+    let promises = [];
+    for (let i = 0; i < capsule.textArr.length; i++) {
+     let a = new Promise((resolve, reject) => {
+      database.collection("text").findOne({_id: capsule.textArr[i].id}).then((text, err) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(text);
+      });
+     })
+     promises.push(a);
+    }
+
+    Promise.all(promises).then((res, err) => {
+      media.text = res;
+      let photoArr = [];
+      promises = [];
+      for (let i = 0; i < capsule.photoArr.length; i++) {
+      let b = new Promise((resolve, reject) => {
+        database.collection("photos").findOne({_id: capsule.photoArr[i].id}).then((photo, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(photo);
+        });
+      })
+      promises.push(b);
+      }
+      Promise.all(promises).then((res, err) => {
+        media.photos = res;
+        let musicArr = [];
+        promises = [];
+        for (let i = 0; i < capsule.musicArr.length; i++) {
+          let b = new Promise((resolve, reject) => {
+            database.collection("music").findOne({_id: capsule.musicArr[i].id}).then((music, err) => {
+              if (err) {
+                reject(err);
+              }
+              resolve(music);
+            });
+          })
+            promises.push(b);
+        }
+        Promise.all(promises).then((res, err) => {
+          media.music = res;
+          return callback(media);
+        })
+      })
+    })
   })
 }

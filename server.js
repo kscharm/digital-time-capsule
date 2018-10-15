@@ -157,6 +157,17 @@ app.get('/validateUser', (req, res) => {
   });
 });
 
+app.get('/capsuleMedia', (req, res) => {
+  const capsule = req.query;
+  cog.getMedia(database, capsule.capsule, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
 });
