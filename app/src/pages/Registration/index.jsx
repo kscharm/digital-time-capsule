@@ -32,7 +32,11 @@ export default class Registration extends Component {
     // Check if passwords match
     } else if (this.state.password !== this.state.confirmPass) {
       alert('Your passwords do not match.');
-    } else {
+    // Check if email is valid
+    } else if ( !(/(.+)@(.+){2,}\.(.+){2,}/.test(this.state.email)) ){
+      alert('Invalid email address');
+    }
+    else {
       // Generate password hash for safe storage
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.state.password, salt, (err, hash) => {
