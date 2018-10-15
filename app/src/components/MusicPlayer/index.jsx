@@ -20,6 +20,15 @@ export default class MusicPlayer extends Component {
 
     render () {
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        const DeleteButton = () => {
+            return (
+                <button
+                        onClick={() => {this.props.handleDeleteMusic(this.props.music)}}
+                        className='iconButtons'
+                    >
+                        <FaTrash className='testIcon' size={40}/>
+                    </button>
+            )}
         return (
                 <Draggable
                 bounds= {{left:0, top:0}}
@@ -59,12 +68,7 @@ export default class MusicPlayer extends Component {
                     >
                         <FaPauseCircle className='testIcon' size={40}/>
                     </button>
-                    <button
-                        onClick={() => {this.props.handleDeleteMusic(this.props.music)}}
-                        className='iconButtons'
-                    >
-                        <FaTrash className='testIcon' size={40}/>
-                    </button>
+                    {this.props.showDelete ? <DeleteButton/> : null}
                     </div>
                 </div>
                 </Draggable>

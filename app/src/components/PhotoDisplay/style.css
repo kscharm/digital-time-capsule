@@ -2,3 +2,93 @@
     display: inline-block;
     position: absolute;
 }
+.base p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+}
+.base button {
+  background: none;
+  opacity: 0.6;
+  border-radius: 100%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.base .deleteIcon {
+  opacity: .5;
+  margin-right: .5em;
+}
+
+.base .deleteIcon:hover {
+  opacity: .85;
+}
+
+.base .deleteIcon:active {
+  opacity: 1;
+}
+
+.basicFrame {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    z-index: 1;
+    border: 1px solid #f6f4f3;
+    border-top-color: #fff;
+    border-radius: 3px;
+    background-color: #ebe8e5;
+    padding:18px;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.15);
+  }
+  
+  .basicFrame img {
+    border: 1px solid #f2f0ee;
+    border-bottom-color: #fff;
+    background: #fff;
+    box-shadow: inset 1px 0 3px 2px rgba(0,0,0,.4);
+  }
+  
+  .basicFrame p {
+    color: #a19181;
+    text-shadow: 0 1px 0 #fff; 
+    font-weight: bolder;
+  }
+
+  .polarFrame {
+    display: block;
+    float: left;
+    padding: 30px 30px 50px 30px;
+    background-color: rgb(255, 255, 255);
+    border: thin solid #ddd;
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px rgba(190, 94, 0, 0.8); /* dark orange */
+  }
+  .polarFrame img {
+    background-color: rgb(125, 125, 125);
+  }
+
+  .blackFrame {
+    display: inline-block;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-style: solid;
+    border-width: 15px;
+    border-top-color: lighten(#000, 20%);
+    border-right-color: lighten(#000, 0%);
+    border-bottom-color: lighten(#000, 20%);
+    border-left-color: lighten(#000, 0%);
+    box-shadow: 2px 2px 4px rgba(0,0,0,.6);
+  }
+  .blackFrame img {
+  }
+  .blackFrame p {
+  }
+  .blackFrame button {
+    bottom: 1em;
+    right: .5em;
+  }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './style.css';
-import '../generic.css'
+import '../generic.css';
 import OurButton from '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
+import textFrame1 from '../../../images/textFrame1.jpg';
+import textFrame2 from '../../../images/textFrame2.jpg';
+import textFrame3 from '../../../images/textFrame3.jpg';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
@@ -50,6 +52,7 @@ export default class AddText extends Component {
 
     state = {
         editorState: createEditorStateWithText(text),
+        frame: '',
     };
 
     onChange = (editorState) => {
@@ -67,7 +70,7 @@ export default class AddText extends Component {
         if (a.getPlainText('') !== '') {
             axios.post('http://localhost:3001/addText', {
                 _id: uuidv4(),
-                username: "kenny",
+                username: 'kenny',
                 capsules: ["myCapsule"],
                 text: a.getPlainText(''),
                 settings: {
@@ -80,8 +83,7 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
-                const frame='notepaper';
-                res.data["frame"] = frame;
+                res.data["frame"] = this.state.frame;
                 this.props.handleAddText(res.data);
             })
             .catch((err) => {
@@ -92,6 +94,10 @@ export default class AddText extends Component {
 
     closeAddText = () => {
         this.props.handleShowAddText(false);
+    }
+    updateFrame = (frame) => {
+        this.setState({frame: frame});
+        console.log(frame);
     }
 
 
@@ -113,9 +119,9 @@ export default class AddText extends Component {
             </div>
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className="tframeImg" src={textFrame1} alt="" onClick={() => this.updateFrame('notepaper')}/>
+                <img className="tframeImg" src={textFrame2} alt="" onClick={() => this.updateFrame('notepad')}/>
+                <img className="tframeImg" src={textFrame3} alt="" onClick={() => this.updateFrame('postit')}/>
             </div>
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton
