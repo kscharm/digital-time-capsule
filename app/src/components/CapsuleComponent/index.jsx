@@ -327,16 +327,24 @@ export default class CapsuleComponent extends Component {
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
         {this.state.showAddPhoto ? <AddPhoto 
                                       handleShowAddPhoto={this.handleShowAddPhoto}
-                                      handleAddPhoto={this.handleAddPhoto}/> : null}
+                                      handleAddPhoto={this.handleAddPhoto}
+                                      user={this.props.user}
+                                      capsule={this.props.capsule}/> : null}
         {this.state.showAddText ? <AddText 
                                       handleShowAddText={this.handleShowAddText}
-                                      handleAddText={this.handleAddText}/> : null}
+                                      handleAddText={this.handleAddText}
+                                      user={this.props.user}
+                                      capsule={this.props.capsule}/> : null}
         {this.state.showAddQuote ? <AddQuote
                                       handleShowAddQuote={this.handleShowAddQuote}
-                                      handleAddQuote={this.handleAddQuote}/> : null}
+                                      handleAddQuote={this.handleAddQuote}
+                                      user={this.props.user}
+                                      capsule={this.props.capsule}/> : null}
         {this.state.showAddMusic ? <AddMusic 
                                       handleShowAddMusic={this.handleShowAddMusic}
-                                      handleAddMusic={this.handleAddMusic}/> : null}
+                                      handleAddMusic={this.handleAddMusic}
+                                      user={this.props.user}
+                                      capsule={this.props.capsule}/> : null}
         {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
                                         handleAddCapsule={this.handleAddCapsule}

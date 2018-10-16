@@ -31,8 +31,8 @@ export default class AddMusic extends Component {
             _id: uuidv4(),
             music: this.state.file,
             title: this.state.fileName,
-            username: 'kenny',
-            capsules: ["myCapsule"],
+            username: this.props.user,
+            capsules: [this.props.capsule],
             genre: this.state.fileGenre,
             settings: {
                 privacy: "public"
