@@ -12,10 +12,6 @@
         "metadata"
     ],
     "properties": {
-        "timeCapsuleId": {
-            "bsonType": "string",
-            "description": "Unique id for time capsule (uuid)"
-        },
        "ownerId": {
             "bsonType": "string",
             "description": "Owner id (uuid) of the time capsule"

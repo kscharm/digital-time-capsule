@@ -5,36 +5,84 @@ exports.addMusic = function(database, music, callback) {
       console.log('Error inserting music into database: ', err.message);
       return callback(null, err);
     }
-    console.log('Music saved');
-    return callback(music);
+    database.collection("timeCapsules").updateOne({_id:music.capsules[0]}, {$push:{musicArr:{id:music._id}}}, (err, res) => {
+      if (err) {
+        console.log("Error retrieving time capsule", err.message);
+        return callback(null, err);
+      }
+      return callback(music);
+    });
   });
 }
 
 exports.addText = function(database, text, callback) {
   database.collection("text").insertOne(text, (err, res) => {
     if (err) {
-    console.log('Error inserting text into database: ', err.message);
-    return callback(null, err);
+      console.log('Error inserting text into database: ', err.message);
+      return callback(null, err);
     }
-    console.log('Text saved');
-    return callback(text);
+    database.collection("timeCapsules").updateOne({_id:text.capsules[0]}, {$push:{textArr:{id:text._id}}}, (err, res) => {
+      if (err) {
+        console.log("Error retrieving time capsule", err.message);
+        return callback(null, err);
+      }
+      return callback(text);
+    });
   });
 }
 
 exports.addPhoto = function(database, photo, callback) {
-  // let photoObjects = [];
-  // for (let i = 0; i < photos.photos.length; i+=1) {
-  //     photoObjects.push(photos);
-  //     delete photoObjects[i].photos;
-  //     photoObjects[i].photo = photos.photos[i];
-  // }
   database.collection("photos").insertOne(photo, (err, res) => {
     if (err) {
       console.log('Error inserting photo into database: ', err.message);
       return callback(null, err);
     }
-    console.log('Photo saved');
-    return callback(photo);
+    database.collection("timeCapsules").updateOne({_id:photo.capsules[0]}, {$push:{photoArr:{id:photo._id}}}, (err, res) => {
+      if (err) {
+        console.log("Error retrieving time capsule", err.message);
+        return callback(null, err);
+      }
+      return callback(photo);
+    });
+  });
+}
+
+exports.deleteText = function(database, textId, capsuleId, callback) {
+  database.collection("timeCapsules").updateOne({_id:capsuleId}, {$pull:{textArr:{id:textId}}}, (err, res) => {
+    if (err) {
+      console.log("Capsule does not exist");
+      return callback(null, err);
+    }
+    database.collection("text").findOne({_id: textId}, (err, res) => {
+      if (err) {
+        console.log("Error deleting text: ", err.message);
+        return callback(null, err);
+      }
+      let capArr = [];
+      for (let i = 0; i < res.capsules.length; i++) {
+        if (res.capsules[i] != capsuleId) {
+          capArr.push(res.capsules[i]);
+        }
+      }
+      if (capArr.length == 0) {
+        database.collection("text").deleteOne({_id: textId}, (err, res) => {
+          if (err) {
+            console.log("Error deleting text object from database: ", err.message);
+            return callback(null, err);
+          }
+          return callback(res);
+        })
+      } else {
+        res.capsules = capArr;
+        database.collection("text").replaceOne({_id: textId}, res, (err, res) => {
+          if (err) {
+            console.log("Error deleting capsule from text object");
+            return callback(null, err);
+          }
+          return callback(res);
+        })
+      }
+    });
   });
 }
 
@@ -73,7 +121,7 @@ exports.addUser = function(database, user, callback) {
         }
         let capsule = {
           ownerId: user._id,
-          timeCapsuleId: user._id,
+          _id: user._id,
           title: user.firstName + "'s Personal Capsule",
           contributors: [user._id],
           photoArr: [],
@@ -105,4 +153,63 @@ exports.validateUser = function(database, username, callback) {
     }
     return callback(user);
   });
+}
+
+exports.getMedia = function(database, capsuleId, callback) {
+  database.collection("timeCapsules").findOne({_id: capsuleId}).then((capsule, err) => {
+    if (err) {
+      return callback(null, err);
+    }
+    let media = {};
+    let textArr = [];
+    let promises = [];
+    for (let i = 0; i < capsule.textArr.length; i++) {
+     let a = new Promise((resolve, reject) => {
+      database.collection("text").findOne({_id: capsule.textArr[i].id}).then((text, err) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(text);
+      });
+     })
+     promises.push(a);
+    }
+
+    Promise.all(promises).then((res, err) => {
+      media.text = res;
+      let photoArr = [];
+      promises = [];
+      for (let i = 0; i < capsule.photoArr.length; i++) {
+      let b = new Promise((resolve, reject) => {
+        database.collection("photos").findOne({_id: capsule.photoArr[i].id}).then((photo, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(photo);
+        });
+      })
+      promises.push(b);
+      }
+      Promise.all(promises).then((res, err) => {
+        media.photos = res;
+        let musicArr = [];
+        promises = [];
+        for (let i = 0; i < capsule.musicArr.length; i++) {
+          let b = new Promise((resolve, reject) => {
+            database.collection("music").findOne({_id: capsule.musicArr[i].id}).then((music, err) => {
+              if (err) {
+                reject(err);
+              }
+              resolve(music);
+            });
+          })
+            promises.push(b);
+        }
+        Promise.all(promises).then((res, err) => {
+          media.music = res;
+          return callback(media);
+        })
+      })
+    })
+  })
 }
