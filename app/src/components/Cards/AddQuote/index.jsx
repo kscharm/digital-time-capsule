@@ -108,6 +108,7 @@ export default class AddQuote extends Component {
                 settings: {
                     privacy: "public"
                 },
+                styles: [],
                 quote: true,
                 metadata: {
                     x: null,

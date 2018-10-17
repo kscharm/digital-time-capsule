@@ -73,15 +73,15 @@ export default class AddPhoto extends Component {
   }
 
   changeColor(frame) {
-      if (frame == 'basicFrame') {
+      if (frame === 'basicFrame') {
         this.setState(this.setState({selected_A: !this.state.selected_A}));
         this.setState(this.setState({selected_B: false}));
         this.setState(this.setState({selected_C: false}));
-      } else if (frame == 'polarFrame') {
+      } else if (frame === 'polarFrame') {
         this.setState(this.setState({selected_B: !this.state.selected_B}));
         this.setState(this.setState({selected_A: false}));
         this.setState(this.setState({selected_C: false}));
-      } else if (frame == 'blackFrame') {
+      } else if (frame === 'blackFrame') {
         this.setState(this.setState({selected_C: !this.state.selected_C}));
         this.setState(this.setState({selected_B: false}));
         this.setState(this.setState({selected_A: false}));
