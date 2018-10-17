@@ -146,7 +146,7 @@ exports.addUser = function(database, user, callback) {
             theme: {}
           }
         }
-        this.addTimeCapsule(database, capsule, (err, res) => {
+        this.addTimeCapsule(database, capsule, (res, err) => {
           if (err) {
             return callback(null, err);
           }
