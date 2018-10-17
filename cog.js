@@ -15,6 +15,18 @@ exports.addMusic = function(database, music, callback) {
   });
 }
 
+exports.deleteMusic = function(database, musicId, callback) {
+  database.collection("music").deleteOne(musicId, (err, res) => {
+    if (err) {
+      console.log('Error deleting music: ', err.message);
+      return callback(null, err);
+  }
+    console.log('Music ' + musicId._id + ' deleted');
+    return callback(res);
+  });
+}
+
+
 exports.addText = function(database, text, callback) {
   database.collection("text").insertOne(text, (err, res) => {
     if (err) {
