@@ -76,9 +76,9 @@ export default class CapsuleComponent extends Component {
     const confirmed = window.confirm(`Are you sure you want to delete ${music.title}?`);
     if (confirmed) {
       const index = this.state.musicList.indexOf(music);
-      if (index > -1) { 
+      if (index > -1) {
         axios.delete('http://localhost:3001/deleteMusic', {
-          params: { _id:music._id }
+          params: { _id: music._id }
         })
         .then((res) => {
           let musicWithOut = this.state.musicList;

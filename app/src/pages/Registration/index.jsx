@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
 import bcrypt from 'bcryptjs';
@@ -21,7 +21,8 @@ export default class Registration extends Component {
     username: '',
     password: '',
     confirmPass: '',
-    capsules: []
+    capsules: [],
+    
   }
 
   register = (histories) => {
@@ -32,11 +33,10 @@ export default class Registration extends Component {
     // Check if passwords match
     } else if (this.state.password !== this.state.confirmPass) {
       alert('Your passwords do not match.');
-    }
     // Check if email is valid
-    // } else if ( !(/(.+)@(.+){2,}\.(.+){2,}/.test(this.state.email)) ){
-    //   alert('Invalid email address');
-    // }
+    } else if ( !(/(.+)@(.+){2,}\.(.+){2,}/.test(this.state.email)) ){
+      alert('Invalid email address');
+    }
     else {
       // Generate password hash for safe storage
       bcrypt.genSalt(10, (err, salt) => {
@@ -52,7 +52,8 @@ export default class Registration extends Component {
           axios.post('http://localhost:3001/registerUser', doc)
             .then((res) => {
                 //change path to login
-                window.location='/';
+                //window.location='/';
+                this.setState({ redirectToReferrer: true });
             })
             .catch((err) => {
                alert('Error saving user: ' + err.message);
@@ -88,17 +89,25 @@ export default class Registration extends Component {
   }
 
   render() {
-    const Register = withRouter(({ history }) => (
-      <button
-        onClick={() => {this.register(history)}}
-      >
-      Create My Account
-      </button>
-      ))
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
+    // const Register = withRouter(({ history }) => (
+    //   <button
+    //     onClick={() => {this.register(history)}}
+    //   >
+    //   Create My Account
+    //   </button>
+    //   ))
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div className='register'>
-          <form>
+          <div>
             <h2>Registration</h2>
             <ul>
               <li>
@@ -113,7 +122,7 @@ export default class Registration extends Component {
               </li>
               <li>
                   <label for="email"> Email</label>
-                  <input type="email" id='email' name="email" maxLength="100" onChange={evt => this.updateEmail(evt)}/>
+                  <input type="text" id='email' name="email" maxLength="100" onChange={evt => this.updateEmail(evt)}/>
                   <span>Enter your email</span>
               </li>
               <li>
@@ -143,9 +152,9 @@ export default class Registration extends Component {
               </li>
             </ul>
             <p>
-              <Register/>
+            <button onClick={() => {this.register()}}>Create My Account</button>
             </p>
-          </form>
+          </div>
         </div>
       </div>
     );

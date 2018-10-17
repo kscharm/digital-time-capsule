@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 
-export default class WelcomePage extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+/* A REAL authentication function */
+export const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated=true;
+    setTimeout(cb, 100);
+  }
+};
 
+class Login extends React.Component {
+
+  constructor() {
+    super();
+  }
   state = {
-    toCapsule: false,
+    redirectToReferrer: false,
+    capsuleID: '',
     user: '',
     pass: '',
   }
-
-  login = (histories) => {
+  login = ()=>{
     axios.get('http://localhost:3001/validateUser?username=' + this.state.user)
       .then((res) => {
         const user = res.data;
         bcrypt.compare(this.state.pass, user.password)
           .then((res) => {
-            window.location='/currentCapsule';
+            fakeAuth.authenticate(() => {
+              this.setState({ redirectToReferrer: true });
+              this.setState({ capsuleID: user.capsules[0] });
+            })
           })
           .catch((err) => {
             alert('Invalid username and password combination');
@@ -32,7 +44,6 @@ export default class WelcomePage extends Component {
           alert('Error validating user: ' + err.message);
       });
   }
-
   updateUsername = (evt) => {
     this.setState({user: evt.target.value})
   }
@@ -41,17 +52,19 @@ export default class WelcomePage extends Component {
   }
 
   render() {
-    const Login = withRouter(({ history }) => (
-      <button
-        onClick={() => {this.login(history)}}
-      >
-        Login
-      </button>
-    ))
+    const { from } = this.props.location.state || { from: { pathname: `/currentCapsule` } }
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
+
     return (
         <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
           <div className='login'>
-            <form className="login-form" target="_self">
+            <div className="login-form">
               <div className='welcomeMessage'>
                 <span className='mainMessage'> Welcome! </span>
                 <span className='subMessage'> Go Jackets! </span>
@@ -66,12 +79,13 @@ export default class WelcomePage extends Component {
                   <input type="password" id='pass' name="pass" maxLength="100" onChange={evt => this.updatePass(evt)}/>
                 </li>
               </ul>
-              <Login/>
+              <button onClick={this.login}>Login</button>
               <p className="message">Not registered? <a href="/registration">Create an account</a></p>
-            </form>
+            </div>
           </div>
         </div>
-        
     );
-  };
+  }
 }
+
+export default Login

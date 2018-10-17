@@ -3,9 +3,11 @@ import {
   Route, 
   Switch, 
   BrowserRouter,
+  Redirect,
+  Link,
 } from 'react-router-dom';
 import CurrentCapsule from './pages/CurrentCapsule';
-import WelcomePage from './pages/Welcome';
+import Login, {fakeAuth} from './pages/Welcome';
 import RegistrationPage from './pages/Registration';
 
 class App extends Component {  
@@ -23,9 +25,9 @@ class App extends Component {
                   <Route
                     exact
                     path="/"
-                    component={WelcomePage}
+                    component={Login}
                   />
-                  <Route
+                  <PrivateRoute
                     path="/currentCapsule"
                     component={CurrentCapsule}
                     
@@ -44,5 +46,22 @@ class App extends Component {
     );
   }
 }
+
+//Private router function
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        fakeAuth.isAuthenticated === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: "/", state: { from: props.location } }}
+          />
+        )}
+    />
+  );
+};
 
 export default App;
