@@ -52,7 +52,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: `/currentCapsule/${this.state.capsuleID}` } }
+    const { from } = this.props.location.state || { from: { pathname: `/currentCapsule` } }
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {

@@ -28,7 +28,7 @@ class App extends Component {
                     component={Login}
                   />
                   <PrivateRoute
-                    path="/currentCapsule/:id"
+                    path="/currentCapsule"
                     component={CurrentCapsule}
                     
                   />

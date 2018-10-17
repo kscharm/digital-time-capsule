@@ -5,6 +5,7 @@ import OurButton from '../../OurButton';
 import textFrame1 from '../../../images/textFrame1.jpg';
 import textFrame2 from '../../../images/textFrame2.jpg';
 import textFrame3 from '../../../images/textFrame3.jpg';
+import { convertToRaw } from 'draft-js'
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
@@ -69,14 +70,40 @@ export default class AddText extends Component {
     };
 
     addText = () => {
-        var a = this.state.editorState.getCurrentContent();
-        if (a.getPlainText('') !== '') {
+        var editor = this.state.editorState.getCurrentContent();
+        var raw = convertToRaw(editor);
+        var text = '';
+        var styles = [];
+        for (var i = 0; i < raw.blocks.length; i++) {
+            var block = raw.blocks[i].inlineStyleRanges;
+            for (var k = 0; k < block.length; k++) {
+                var offset = block[k].offset + text.length;
+                var lengthy = block[k].length + text.length;
+                var style = block[k].style;
+                var obj = {
+                    offset: offset,
+                    length: lengthy,
+                    style: style
+                }
+                if (!styles.includes(obj)) {
+                    styles.push(obj);
+                }
+            }
+            if (i !== 0) {
+                text += '\n' + raw.blocks[i].text;
+            } else {
+                text += raw.blocks[i].text;
+            }
+        }
+
+        if (text !== '') {
             axios.post('http://localhost:3001/addText', {
                 _id: uuidv4(),
                 username: this.props.user,
                 capsules: [this.props.capsule],
                 frame: this.state.frame,
-                text: a.getPlainText(''),
+                text: text,
+                styles: styles,
                 settings: {
                     privacy: "public"
                 },
@@ -105,15 +132,15 @@ export default class AddText extends Component {
     }
 
     changeColor(frame) {
-        if (frame == 'notepaper') {
+        if (frame === 'notepaper') {
           this.setState(this.setState({selected_A: !this.state.selected_A}));
           this.setState(this.setState({selected_B: false}));
           this.setState(this.setState({selected_C: false}));
-        } else if (frame == 'notepad') {
+        } else if (frame === 'notepad') {
           this.setState(this.setState({selected_B: !this.state.selected_B}));
           this.setState(this.setState({selected_A: false}));
           this.setState(this.setState({selected_C: false}));
-        } else if (frame == 'postit') {
+        } else if (frame === 'postit') {
           this.setState(this.setState({selected_C: !this.state.selected_C}));
           this.setState(this.setState({selected_B: false}));
           this.setState(this.setState({selected_A: false}));
