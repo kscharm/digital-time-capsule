@@ -1,38 +1,26 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 
-export default class WelcomePage extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+class Login extends React.Component {
 
+  constructor() {
+    super();
+  }
   state = {
+    redirectToReferrer: false,
     toCapsule: false,
     user: '',
     pass: '',
   }
-
-  login = (histories) => {
-    axios.get('http://localhost:3001/validateUser?username=' + this.state.user)
-      .then((res) => {
-        const user = res.data;
-        bcrypt.compare(this.state.pass, user.password)
-          .then((res) => {
-            window.location='/currentCapsule';
-          })
-          .catch((err) => {
-            alert('Invalid username and password combination');
-          });
-        })
-      .catch((err) => {
-          alert('Error validating user: ' + err.message);
-      });
+  login = ()=>{
+    fakeAuth.authenticate(() => {
+      this.setState({ redirectToReferrer: true })
+    })
   }
-
   updateUsername = (evt) => {
     this.setState({user: evt.target.value})
   }
@@ -41,37 +29,73 @@ export default class WelcomePage extends Component {
   }
 
   render() {
-    const Login = withRouter(({ history }) => (
-      <button
-        onClick={() => {this.login(history)}}
-      >
-        Login
-      </button>
-    ))
-    return (
-        <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
-          <div className='login'>
-            <form className="login-form" target="_self">
-              <div className='welcomeMessage'>
-                <span className='mainMessage'> Welcome! </span>
-                <span className='subMessage'> Go Jackets! </span>
-              </div>
-              <ul>
-                <li>
-                    <label htmlFor="user"> Username</label>
-                    <input type="text" id='user' name="user" maxLength="100" onChange={evt => this.updateUsername(evt)}/>
-                </li>
-                <li>
-                  <label htmlFor="pass"> Password</label>
-                  <input type="password" id='pass' name="pass" maxLength="100" onChange={evt => this.updatePass(evt)}/>
-                </li>
-              </ul>
-              <Login/>
-              <p className="message">Not registered? <a href="/registration">Create an account</a></p>
-            </form>
-          </div>
-        </div>
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
+
+    // return (
+    //     <div className='bgDiv' style={{background: `url(${Background})`, backgroundSize: 'cover'}} >
+    //       <div className='login'>
+    //         <form className="login-form" target="_self">
+    //           <div className='welcomeMessage'>
+    //             <span className='mainMessage'> Welcome! </span>
+    //             <span className='subMessage'> Go Jackets! </span>
+    //           </div>
+    //           <ul>
+    //             <li>
+    //                 <label htmlFor="user"> Username</label>
+    //                 <input type="text" id='user' name="user" maxLength="100" onChange={evt => this.updateUsername(evt)}/>
+    //             </li>
+    //             <li>
+    //               <label htmlFor="pass"> Password</label>
+    //               <input type="password" id='pass' name="pass" maxLength="100" onChange={evt => this.updatePass(evt)}/>
+    //             </li>
+    //           </ul>
+    //           <button onClick={this.login}>Login</button>
+    //           <p className="message">Not registered? <a href="/registration">Create an account</a></p>
+    //         </form>
+    //       </div>
+    //     </div>
         
-    );
-  };
+    // );
+    return (
+      <div>
+        <p>You must log in to view the page at {from.pathname}</p>
+        <button onClick={this.login}>Log in</button>
+      </div>
+    )
+  }
+
+
 }
+
+/* A fake authentication function */
+export const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    // axios.get('http://localhost:3001/validateUser?username=' + this.state.user)
+    //   .then((res) => {
+    //     const user = res.data;
+    //     bcrypt.compare(this.state.pass, user.password)
+    //       .then((res) => {
+    //         this.isAuthenticated=true;
+    //       })
+    //       .catch((err) => {
+    //         alert('Invalid username and password combination');
+    //       });
+    //     })
+    //   .catch((err) => {
+    //       alert('Error validating user: ' + err.message);
+    //   });
+    this.isAuthenticated=true;
+    setTimeout(cb, 100);
+  }
+};
+
+
+export default Login
