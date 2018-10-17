@@ -91,6 +91,17 @@ app.post('/addMusic', (req, res) => {
   });
 });
 
+app.delete('/deleteMusic', (req, res) => {
+  const musicId = req.query;
+  cog.deleteMusic(database, musicId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.post('/addPhoto', (req, res) => {
   const photos = req.body;
   cog.addPhoto(database, photos, (data, err) => {
