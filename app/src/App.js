@@ -27,7 +27,7 @@ class App extends Component {
                     path="/"
                     component={Login}
                   />
-                  <Route
+                  <PrivateRoute
                     path="/currentCapsule"
                     component={CurrentCapsule}
                     
@@ -36,7 +36,6 @@ class App extends Component {
                     path="/registration"
                     component={RegistrationPage}
                   />
-                  <PrivateRoute path="/admin" component={Admin} />
                 </Switch>
               );
             }
@@ -62,16 +61,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           />
         )}
     />
-  );
-};
-
-//Admin component
-const Admin = ({ match }) => {
-  return (
-    <div>
-      {" "}
-      <h2>Welcome admin </h2>
-    </div>
   );
 };
 

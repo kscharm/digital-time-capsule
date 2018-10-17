@@ -51,7 +51,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { from } = this.props.location.state || { from: { pathname: '/currentCapsule' } }
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {
@@ -83,17 +83,8 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-        
     );
-    // return (
-    //   <div>
-    //     <p>You must log in to view the page at {from.pathname}</p>
-    //     <button onClick={this.login}>Log in</button>
-    //   </div>
-    // )
   }
-
-
 }
 
 export default Login
