@@ -167,10 +167,7 @@ export default class CapsuleComponent extends Component {
   }
 
   getAllMedia = (capsule) => {
-    console.log("I get all the media" + capsule);
-    axios.get('http://localhost:3001/getMedia', {
-          params: { capsuleId: capsule }
-        })
+    axios.get('http://localhost:3001/getMedia?_id=' + capsule)
         .then((res) => {
           // Add each type to their respective arrays
           console.log(res);
