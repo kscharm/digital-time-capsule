@@ -62,19 +62,6 @@ export default class CapsuleComponent extends Component {
     this.setState({showDelete: show});
   }
 
-  getAllMedia = (capsule) => {
-    console.log("I get all the media" + capsule);
-    axios.get('http://localhost:3001/getMedia', {
-          params: { capsuleId: capsule }
-        })
-        .then((res) => {
-          // Add each type to their respective arrays
-          console.log(res);
-        })
-        .catch((err) => {
-            alert('Error getting media: ' + err.message);
-        });
-  }
   handleAddMusic = (music) => {
     // Update personal capsule to have the new music that was added.
     const musicWithNew = this.state.musicList.concat(music);
@@ -177,6 +164,20 @@ export default class CapsuleComponent extends Component {
   }
   handleAddCapsule = () => {
     console.log('handled add capsule');
+  }
+
+  getAllMedia = (capsule) => {
+    console.log("I get all the media" + capsule);
+    axios.get('http://localhost:3001/getMedia', {
+          params: { capsuleId: capsule }
+        })
+        .then((res) => {
+          // Add each type to their respective arrays
+          console.log(res);
+        })
+        .catch((err) => {
+            alert('Error getting media: ' + err.message);
+        });
   }
 
   // componentDidMount() {
