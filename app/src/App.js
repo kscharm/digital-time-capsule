@@ -4,7 +4,7 @@ import {
   Switch, 
   BrowserRouter,
   Redirect,
-  Link,
+  // Link,
 } from 'react-router-dom';
 import CurrentCapsule from './pages/CurrentCapsule';
 import Login, {fakeAuth} from './pages/Welcome';

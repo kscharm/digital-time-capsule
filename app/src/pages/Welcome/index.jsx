@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React/*, { Component }*/ from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
-import { withRouter, Redirect } from 'react-router-dom';
+import { /*withRouter,*/ Redirect } from 'react-router-dom';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 
@@ -16,9 +16,9 @@ export const fakeAuth = {
 
 class Login extends React.Component {
 
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   state = {
     redirectToReferrer: false,
     capsuleID: '',
