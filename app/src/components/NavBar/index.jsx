@@ -28,6 +28,10 @@ const Menu = (props) => {
         icon = <FaCog/>
       } else if (option==='Capsules') {
         icon = <FaArchive/>
+        clicks = () => {
+            console.log('TO MY CAPSULES');
+        }
+        toPage = '/myCapsules';
       } else if (option==='Playlists') {
         icon = <FaMusic/>
       } else if (option==='Friends') {

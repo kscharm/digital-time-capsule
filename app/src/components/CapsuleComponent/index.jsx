@@ -20,7 +20,6 @@ import MusicPlayer from '../../components/MusicPlayer';
 import PhotoDisplay from '../../components/PhotoDisplay';
 import TextDisplay from '../../components/TextDisplay';
 import QuoteDisplay from '../../components/QuoteDisplay';
-import OurButton from '../OurButton';
 
 import axios from 'axios';
 
@@ -322,13 +321,6 @@ export default class CapsuleComponent extends Component {
             <DeleteButton
               buttonAction={() => { this.handleShowDelete(!this.state.showDelete) }}
               buttonType='delete'
-            />
-          </div>
-          <div className='tempAddCapsule'>
-            <OurButton
-                buttonText='ADD CAPSULE'
-                buttonAction={() => {this.handleShowAddCapsule(true)}}
-                buttonType='secondary'
             />
           </div>
         </div>
