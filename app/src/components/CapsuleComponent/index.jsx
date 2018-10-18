@@ -180,13 +180,12 @@ export default class CapsuleComponent extends Component {
         });
   }
 
-  // componentDidMount() {
-  //   // When the component has loaded for the first time
-  //   this.getAllMedia(this.props.capsule);
-  // }
+  componentDidMount() {
+    // When the component has loaded for the first time
+    this.getAllMedia(this.props.capsule);
+  }
 
   render() {
-    this.getAllMedia(this.props.capsule);
     const Add = (props) => {
       let contents = [];
       let icon = '';
