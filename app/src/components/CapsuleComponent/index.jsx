@@ -180,8 +180,9 @@ export default class CapsuleComponent extends Component {
         });
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     // When the component has loaded for the first time
+    console.log(this.props.capsule)
     this.getAllMedia(this.props.capsule);
   }
 
