@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
-import { withRouter, Redirect } from 'react-router-dom';
+import { /*withRouter,*/ Redirect } from 'react-router-dom';
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
 import bcrypt from 'bcryptjs';
