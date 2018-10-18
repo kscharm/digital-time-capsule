@@ -9,8 +9,8 @@ export default class CurrentCapsule extends Component {
   // }
 
   state = {
-    currentCapsule: 'myCapsule',
-    currentUser: 'kenny',
+    currentCapsule: '',
+    currentUser: '',
     currentMessage: '',
   }
 
@@ -18,14 +18,18 @@ export default class CurrentCapsule extends Component {
     this.setState({currentCapsule: capsule});
   }
   handleUpdateUser = (user) => {
-    this.setState({currentUser: user});
+    this.props.changeUsername(user);
   }
   handleUpdateMessage = (message) => {
     this.setState({currentMessage: message});
   }
+
+  componentDidMount = () => {
+    this.setState({currentUser: this.props.username});
+    this.setState({currentCapsule: this.props.currentCapsuleID});
+  }
  
   render() {
-
     return (
       <div>
         <CapsuleComponent

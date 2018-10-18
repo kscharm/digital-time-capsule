@@ -25,9 +25,9 @@ import OurButton from '../OurButton';
 import axios from 'axios';
 
 export default class CapsuleComponent extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+  }
 
   state = {
     addPop: false,
@@ -62,10 +62,18 @@ export default class CapsuleComponent extends Component {
     this.setState({showDelete: show});
   }
 
-  getAllMusic = () => {
-    // Get and display the music for the user
-    console.log('I will get all musics for ' + this.props.user);
-    console.log('and for this capsule which is ' + this.props.capsule);
+  getAllMedia = (capsule) => {
+    console.log("I get all the media" + capsule);
+    axios.get('http://localhost:3001/getMedia', {
+          params: { capsuleId: capsule }
+        })
+        .then((res) => {
+          // Add each type to their respective arrays
+          console.log(res);
+        })
+        .catch((err) => {
+            alert('Error getting media: ' + err.message);
+        });
   }
   handleAddMusic = (music) => {
     // Update personal capsule to have the new music that was added.
@@ -95,11 +103,6 @@ export default class CapsuleComponent extends Component {
       console.log('Music was not deleted.');
     }
   }
-  getAllPhotos = () => {
-    // Get and display the photo for the user
-    console.log('I will get all photos for ' + this.props.user);
-    console.log('and for this capsule which is ' + this.props.capsule);
-  }
   handleAddPhoto = (photo) => {
     // Update personal capsule to have the new photo that was added.
     const photoWithNew = this.state.photoList.concat(photo);
@@ -128,10 +131,6 @@ export default class CapsuleComponent extends Component {
       console.log('Photo was not deleted.');
     }
   }
-  getAllText = (user) => {
-    // Get and display the photo for the user
-    console.log('I will get all text for ' + user);
-  }
   handleAddText = (text) => {
     // Update personal capsule to have the new text that was added.
     const textWithNew = this.state.textList.concat(text);
@@ -151,10 +150,6 @@ export default class CapsuleComponent extends Component {
     } else {
       console.log('Text was not deleted.');
     }
-  }
-  getAllQuotes = (user) => {
-    // Get and display the photo for the user
-    console.log('I will get all text for ' + user);
   }
   handleAddQuote = (quote) => {
     // Update personal capsule to have the new text that was added.
@@ -184,15 +179,13 @@ export default class CapsuleComponent extends Component {
     console.log('handled add capsule');
   }
 
-  componentDidMount() {
-    // When the component has loaded for the first time
-    // Show user data
-    this.getAllMusic();
-    this.getAllPhotos();
-  }
+  // componentDidMount() {
+  //   // When the component has loaded for the first time
+  //   this.getAllMedia(this.props.capsule);
+  // }
 
   render() {
-
+    this.getAllMedia(this.props.capsule);
     const Add = (props) => {
       let contents = [];
       let icon = '';
