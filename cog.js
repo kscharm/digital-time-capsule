@@ -230,7 +230,7 @@ exports.getMedia = function(database, capsuleId, callback) {
             media.photos.push(elements[i]);
           } else if (elements[i].text) {
             media.text.push(elements[i]);
-          } else if (elments[i].music) {
+          } else if (elements[i].music) {
             media.music.push(elements[i]);
           }
         }
