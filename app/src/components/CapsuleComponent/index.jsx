@@ -169,7 +169,8 @@ export default class CapsuleComponent extends Component {
 
   getAllMedia = (capsule) => {
     console.log(capsule);
-    axios.get('http://localhost:3001/getMedia?_id=' + capsule)
+    console.log(this.props.capsule);
+    axios.get('http://localhost:3001/getMedia?_id=' + this.props.capsule)
         .then((res) => {
           // Add each type to their respective arrays
           console.log(res);
@@ -183,18 +184,18 @@ export default class CapsuleComponent extends Component {
             alert('Error getting media: ' + err.message);
         });
   }
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.capsule){
-        this.setState({thisCapsuleID: nextProps.capsule});
+  componentWillReceiveProps = (newProps) => {
+    if(newProps.capsule){
+        console.log('hello');
+        this.setState({thisCapsuleID: newProps.capsule});
     }
+  }
+  componentDidMount = () => {
+    console.log(this.props);
+    this.getAllMedia(this.props.thisCapsuleID);
   }
 
   render() {
-    if (this.state.thisCapsuleID) {
-      this.getAllMedia(this.state.thisCapsuleID);
-    }
-
     const Add = (props) => {
       let contents = [];
       let icon = '';

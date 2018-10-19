@@ -36,8 +36,8 @@ export default class CurrentCapsule extends Component {
           handleUpdateCapsule={this.handleUpdateCapsule}
           handleUpdateUser={this.handleUpdateUser}
           handleUpdateMessage={this.handleUpdateMessage}
-          user={this.state.currentUser}
-          capsule={this.state.currentCapsule}
+          user={this.props.username}
+          capsule={this.props.currentCapsuleID}
           message={this.state.currentMessage}
         />
       </div>
