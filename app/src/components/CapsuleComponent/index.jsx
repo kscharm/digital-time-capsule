@@ -41,6 +41,7 @@ export default class CapsuleComponent extends Component {
     quoteList: [],
     showAddCapsule: false,
     showDelete: false,
+    thisCapsuleID: '',
   }
 
   handlePop = (pop) => {
@@ -167,6 +168,7 @@ export default class CapsuleComponent extends Component {
   }
 
   getAllMedia = (capsule) => {
+    console.log(capsule);
     axios.get('http://localhost:3001/getMedia?_id=' + capsule)
         .then((res) => {
           // Add each type to their respective arrays
@@ -182,13 +184,17 @@ export default class CapsuleComponent extends Component {
         });
   }
 
-  componentDidUpdate() {
-    // When the component has loaded for the first time
-    console.log(this.props.capsule)
-    this.getAllMedia(this.props.capsule);
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.capsule){
+        this.setState({thisCapsuleID: nextProps.capsule});
+    }
   }
 
   render() {
+    if (this.state.thisCapsuleID) {
+      this.getAllMedia(this.state.thisCapsuleID);
+    }
+
     const Add = (props) => {
       let contents = [];
       let icon = '';
