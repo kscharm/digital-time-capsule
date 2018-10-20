@@ -174,22 +174,15 @@ export default class CapsuleComponent extends Component {
         .then((res) => {
           // Add each type to their respective arrays
           console.log(res);
-          console.log(res.data.photos);
-          //this.setState({quoteList: res.data.quotes});
-          //this.setState({photoList: res.data.photos});
-          //this.setState({textList: res.data.text});
-          //this.setState({musicList: res.data.music});
+          this.setState({quoteList: res.data.quotes});
+          this.setState({photoList: res.data.photos});
+          this.setState({textList: res.data.text});
+          this.setState({musicList: res.data.music});
         })
         .catch((err) => {
             alert('Error getting media: ' + err.message);
         });
   }
-  // componentWillReceiveProps = (newProps) => {
-  //   if(newProps.capsule){
-  //       console.log('hello');
-  //       this.setState({thisCapsuleID: newProps.capsule});
-  //   }
-  // }
   componentDidMount = () => {
     //console.log(this.props);
     this.getAllMedia(this.props.thisCapsuleID);
