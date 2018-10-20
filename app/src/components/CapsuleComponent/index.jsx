@@ -184,14 +184,14 @@ export default class CapsuleComponent extends Component {
             alert('Error getting media: ' + err.message);
         });
   }
-  componentWillReceiveProps = (newProps) => {
-    if(newProps.capsule){
-        console.log('hello');
-        this.setState({thisCapsuleID: newProps.capsule});
-    }
-  }
+  // componentWillReceiveProps = (newProps) => {
+  //   if(newProps.capsule){
+  //       console.log('hello');
+  //       this.setState({thisCapsuleID: newProps.capsule});
+  //   }
+  // }
   componentDidMount = () => {
-    console.log(this.props);
+    //console.log(this.props);
     this.getAllMedia(this.props.thisCapsuleID);
   }
 
