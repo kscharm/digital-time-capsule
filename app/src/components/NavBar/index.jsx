@@ -36,6 +36,10 @@ const Menu = (props) => {
         icon = <FaMusic/>
       } else if (option==='Friends') {
         icon = <FaUsers/>
+        clicks = () => {
+          console.log('TO MY FRIENDS');
+        }
+        toPage = '/myFriends';
       } else if (option==='Logout') {
         icon = <FaSignOutAlt/>
         clicks = () => {
