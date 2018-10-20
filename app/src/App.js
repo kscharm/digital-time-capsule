@@ -9,6 +9,8 @@ import {
 import CurrentCapsule from './pages/CurrentCapsule';
 import Login, {fakeAuth} from './pages/Welcome';
 import RegistrationPage from './pages/Registration';
+import MyCapsulesPage from './pages/MyCapsules';
+import MyFriends from './pages/Friends';
 
 class App extends Component {  
   render() {
@@ -35,6 +37,14 @@ class App extends Component {
                   <Route
                     path="/registration"
                     component={RegistrationPage}
+                  />
+                  <Route
+                    path="/myCapsules"
+                    component={MyCapsulesPage}
+                  />
+                  <Route
+                    path="/myFriends"
+                    component={MyFriends}
                   />
                 </Switch>
               );
