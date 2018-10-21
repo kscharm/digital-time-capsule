@@ -32,8 +32,10 @@ class Login extends React.Component {
         bcrypt.compare(this.state.pass, user.password)
           .then((res) => {
             fakeAuth.authenticate(() => {
-              this.setState({ redirectToReferrer: true });
               this.setState({ capsuleID: user.capsules[0] });
+              this.props.changeUsername(this.state.user);
+              this.props.changeCapsuleID(user.capsules[0]);
+              this.setState({ redirectToReferrer: true });
             })
           })
           .catch((err) => {
@@ -53,9 +55,8 @@ class Login extends React.Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: `/currentCapsule` } }
-    const { redirectToReferrer } = this.state;
 
-    if (redirectToReferrer) {
+    if (this.state.redirectToReferrer) {
       return (
         <Redirect to={from} />
       )

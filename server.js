@@ -168,9 +168,9 @@ app.get('/validateUser', (req, res) => {
   });
 });
 
-app.get('/capsuleMedia', (req, res) => {
-  const capsule = req.query;
-  cog.getMedia(database, capsule.capsule, (data, err) => {
+app.get('/getMedia', (req, res) => {
+  const capsuleId = req.query;
+  cog.getMedia(database, capsuleId, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {

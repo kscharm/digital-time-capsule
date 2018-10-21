@@ -12,7 +12,18 @@ import RegistrationPage from './pages/Registration';
 import MyCapsulesPage from './pages/MyCapsules';
 import MyFriends from './pages/Friends';
 
-class App extends Component {  
+class App extends Component {
+  state = {
+    username: '',
+    currentCapsuleID: '',
+  }
+  changeUsername = (user) => {
+    this.setState({username: user});
+  }
+  changeCapsuleID = (id) => {
+    this.setState({currentCapsuleID: id});
+  }
+
   render() {
     // Check for browser compatibility
     const supportsHistory = 'pushState' in window.history;
@@ -27,12 +38,12 @@ class App extends Component {
                   <Route
                     exact
                     path="/"
-                    component={Login}
+                    render={(props) => <Login {...props} changeUsername={this.changeUsername} changeCapsuleID={this.changeCapsuleID} />}
                   />
-                  <PrivateRoute
+                  <Route
                     path="/currentCapsule"
-                    component={CurrentCapsule}
-                    
+                    //component={CurrentCapsule}
+                    render={(props) => <CurrentCapsule {...props} username={this.state.username} currentCapsuleID={this.state.currentCapsuleID} changeUsername={this.changeUsername} />}
                   />
                   <Route
                     path="/registration"
