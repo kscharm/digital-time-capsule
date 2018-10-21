@@ -4,3 +4,10 @@ input[type=text] {
     border: none;
     font-size: 17px;
 }
+
+.searchIcon {
+    color: white;
+    padding-left: 1%;
+    position: absolute;
+    margin-top: 0.75%;
+}

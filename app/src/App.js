@@ -11,6 +11,7 @@ import Login, {fakeAuth} from './pages/Welcome';
 import RegistrationPage from './pages/Registration';
 import MyCapsulesPage from './pages/MyCapsules';
 import MyFriends from './pages/Friends';
+import Search from './pages/SearchResult';
 
 class App extends Component {  
   render() {
@@ -45,6 +46,10 @@ class App extends Component {
                   <Route
                     path="/myFriends"
                     component={MyFriends}
+                  />
+                  <Route
+                    path="/searchresult"
+                    component={Search}
                   />
                 </Switch>
               );
