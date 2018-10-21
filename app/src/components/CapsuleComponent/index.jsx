@@ -91,6 +91,10 @@ export default class CapsuleComponent extends Component {
       console.log('Music was not deleted.');
     }
   }
+  handleUpdateMusic = (x, y) => {
+    console.log('Now we update music to');
+    console.log(x + " and " + y);
+  }
   handleAddPhoto = (photo) => {
     // Update personal capsule to have the new photo that was added.
     const photoWithNew = this.state.photoList.concat(photo);
@@ -119,6 +123,10 @@ export default class CapsuleComponent extends Component {
       console.log('Photo was not deleted.');
     }
   }
+  handleUpdatePhoto = (x, y) => {
+    console.log('Now we update photo to');
+    console.log(x + " and " + y);
+  }
   handleAddText = (text) => {
     // Update personal capsule to have the new text that was added.
     const textWithNew = this.state.textList.concat(text);
@@ -139,6 +147,10 @@ export default class CapsuleComponent extends Component {
       console.log('Text was not deleted.');
     }
   }
+  handleUpdateText = (x, y) => {
+    console.log('Now we update text to');
+    console.log(x + " and " + y);
+  }
   handleAddQuote = (quote) => {
     // Update personal capsule to have the new text that was added.
     const quoteWithNew = this.state.quoteList.concat(quote);
@@ -158,6 +170,10 @@ export default class CapsuleComponent extends Component {
     } else {
       console.log('Quote was not deleted.');
     }
+  }
+  handleUpdateQuote = (x, y) => {
+    console.log('Now we update quote to');
+    console.log(x + " and " + y);
   }
 
   handleShowAddCapsule = (show) => {
@@ -255,6 +271,7 @@ export default class CapsuleComponent extends Component {
                       photoObj={photo}
                       handleDeletePhoto={this.handleDeletePhoto}
                       showDelete={this.state.showDelete}
+                      handleUpdatePhoto={this.handleUpdatePhoto}
                   />
               )
             })}
@@ -271,6 +288,7 @@ export default class CapsuleComponent extends Component {
                     music={music}
                     handleDeleteMusic={this.handleDeleteMusic}
                     showDelete={this.state.showDelete}
+                    handleUpdateMusic={this.handleUpdateMusic}
                 />
             )
             })}
@@ -286,6 +304,7 @@ export default class CapsuleComponent extends Component {
                       handleDeleteText={this.handleDeleteText}
                       textObj={text}
                       showDelete={this.state.showDelete}
+                      handleUpdateText={this.handleUpdateText}
                   />
               )
             })}
@@ -301,6 +320,7 @@ export default class CapsuleComponent extends Component {
                       handleDeleteQuote={this.handleDeleteQuote}
                       quoteObj={quote}
                       showDelete={this.state.showDelete}
+                      handleUpdateQuote={this.handleUpdateQuote}
                   />
               )
             })}

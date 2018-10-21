@@ -18,6 +18,18 @@ export default class MusicPlayer extends Component {
         position: 0,
     }
 
+    handleStop = (e) => {
+        console.log(e);
+        console.log(e.clientX);
+        console.log(e.clientY);
+        console.log(e.pageX);
+        console.log(e.pageY);
+        console.log(e.screenX);
+        console.log(e.screenY);
+        console.log("ive been stopped");
+        this.props.handleUpdateMusic(e.clientX, e.clientY);
+    }
+
     render () {
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const DeleteButton = () => {

@@ -10,7 +10,18 @@ export default class PhotoDisplay extends Component {
     //   super(props)
     // }
 
-    handleStart(e, ui){ e.stopPropagation(); } 
+    handleStart = (e, ui) => { e.stopPropagation(); } 
+    handleStop = (e) => {
+        console.log(e);
+        console.log(e.clientX);
+        console.log(e.clientY);
+        console.log(e.pageX);
+        console.log(e.pageY);
+        console.log(e.screenX);
+        console.log(e.screenY);
+        console.log("ive been stopped");
+        this.props.handleUpdatePhoto(e.clientX, e.clientY);
+    }
 
     render () {
         const DeleteButton = () => {
