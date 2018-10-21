@@ -37,7 +37,7 @@ export default class Friends extends Component {
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               </div>
             </div>
-          </div>
+        </div>
       </div>
     );
   };
