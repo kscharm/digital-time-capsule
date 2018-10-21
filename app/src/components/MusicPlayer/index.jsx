@@ -27,7 +27,7 @@ export default class MusicPlayer extends Component {
         console.log(e.screenX);
         console.log(e.screenY);
         console.log("ive been stopped");
-        this.props.handleUpdateMusic(e.clientX, e.clientY);
+        this.props.handleUpdateMusic(e.clientX, e.clientY, this.props.music);
     }
 
     render () {

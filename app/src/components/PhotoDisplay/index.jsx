@@ -20,7 +20,7 @@ export default class PhotoDisplay extends Component {
         console.log(e.screenX);
         console.log(e.screenY);
         console.log("ive been stopped");
-        this.props.handleUpdatePhoto(e.clientX, e.clientY);
+        this.props.handleUpdatePhoto(e.clientX, e.clientY, this.props.photoObj);
     }
 
     render () {

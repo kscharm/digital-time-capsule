@@ -19,7 +19,7 @@ export default class QuoteDisplay extends Component {
         console.log(e.screenX);
         console.log(e.screenY);
         console.log("ive been stopped");
-        this.props.handleUpdateQuote(e.clientX, e.clientY);
+        this.props.handleUpdateQuote(e.clientX, e.clientY, this.props.quoteObj);
     }
 
     render () {

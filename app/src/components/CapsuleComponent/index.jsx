@@ -91,9 +91,10 @@ export default class CapsuleComponent extends Component {
       console.log('Music was not deleted.');
     }
   }
-  handleUpdateMusic = (x, y) => {
+  handleUpdateMusic = (x, y, music) => {
     console.log('Now we update music to');
     console.log(x + " and " + y);
+    console.log(music);
   }
   handleAddPhoto = (photo) => {
     // Update personal capsule to have the new photo that was added.
@@ -123,9 +124,10 @@ export default class CapsuleComponent extends Component {
       console.log('Photo was not deleted.');
     }
   }
-  handleUpdatePhoto = (x, y) => {
+  handleUpdatePhoto = (x, y, photo) => {
     console.log('Now we update photo to');
     console.log(x + " and " + y);
+    console.log(photo);
   }
   handleAddText = (text) => {
     // Update personal capsule to have the new text that was added.
@@ -147,9 +149,10 @@ export default class CapsuleComponent extends Component {
       console.log('Text was not deleted.');
     }
   }
-  handleUpdateText = (x, y) => {
+  handleUpdateText = (x, y, text) => {
     console.log('Now we update text to');
     console.log(x + " and " + y);
+    console.log(text);
   }
   handleAddQuote = (quote) => {
     // Update personal capsule to have the new text that was added.
@@ -171,9 +174,10 @@ export default class CapsuleComponent extends Component {
       console.log('Quote was not deleted.');
     }
   }
-  handleUpdateQuote = (x, y) => {
+  handleUpdateQuote = (x, y, quote) => {
     console.log('Now we update quote to');
     console.log(x + " and " + y);
+    console.log(quote);
   }
 
   handleShowAddCapsule = (show) => {
