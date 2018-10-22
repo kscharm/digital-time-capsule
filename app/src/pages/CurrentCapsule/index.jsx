@@ -39,6 +39,7 @@ export default class CurrentCapsule extends Component {
           user={this.props.username}
           capsule={this.props.currentCapsuleID}
           message={this.state.currentMessage}
+          getSearch={this.props.getSearch}
         />
       </div>
     );

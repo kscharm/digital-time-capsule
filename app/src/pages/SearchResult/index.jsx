@@ -7,7 +7,7 @@ import toBeCapsule from '../../images/addPhoto.png'
 import NavBar from '../../components/NavBar';
 // import AddButton from '../../components/AddButton';
 
-export default class Friends extends Component {
+export default class SearchResult extends Component {
   // constructor(props) {
   //   super(props);
   // }
@@ -18,12 +18,12 @@ export default class Friends extends Component {
   handlePop = (pop) => {
     this.setState({addPop: pop});
   }
-  getUserFriends = (user) => {
-    console.log("I should get the friends for " + user);
+  getSearchResults = (term) => {
+    console.log("I should get the results for " + term);
   }
   componentDidMount = () => {
     //console.log(this.props);
-    this.getUserFriends(this.props.username);
+    this.getSearchResults(this.props.term);
   }
   render() {
 
@@ -35,7 +35,7 @@ export default class Friends extends Component {
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}/>
             <div className='addButton'>
               </div>
-              <h2 style={{margin: '7% 0 0 3%'}}>Friends</h2>
+              <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2>
               <div>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>

@@ -23,7 +23,13 @@ export default class Registration extends Component {
     console.log("CAPSULE BUTTON CLICKED");
   }
 
-
+  getUserCapsules = (user) => {
+    console.log("I should get the capsules for " + user);
+  }
+  componentDidMount = () => {
+    //console.log(this.props);
+    this.getUserCapsules(this.props.username);
+  }
   render() {
 
     return (
@@ -31,7 +37,7 @@ export default class Registration extends Component {
         <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}/>
             <div className='addButton'>
               <AddButton
                 buttonAction={() => { console.log("i dhouls open the add modal")}}
