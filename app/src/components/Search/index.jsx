@@ -25,7 +25,7 @@ export default class Search extends Component {
     }
   }
   updateSearch = (evt) => {
-    this.setState({fileCaption: evt.target.value});
+    this.setState({searchTerm: evt.target.value});
   }
 
   render() {
