@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './style.css';
 
 import {
@@ -9,18 +10,37 @@ import {
   FaSearch,
 } from 'react-icons/fa';
 
-const Search = (props) => {
+export default class Search extends Component {
+  state = {
+    redirectToReferrer2: false,
+  }
 
-  return (
+  handleKeyPress = (e) => {
+    const keyCode = e.keyCode || e.which;
+    if(e.key === 'Enter' || keyCode==='13') {
+      console.log('Searching!');
+      this.setState({redirectToReferrer2: true});
+    }
+  }
+
+  render() {
+    const { from } = { from: { pathname: '/searchresult' } }
+    const { redirectToReferrer2 } = this.state;
+
+    if (redirectToReferrer2) {
+      return (
+        <Redirect to={from} />
+      )
+    }
+    return (
     <div className='search'>
         <div className='search'>
-          <input type="text" placeholder="Search.."/>
-          <Link to="/searchresult" style={{color: 'white'}}>
+          <input type="text" placeholder="Search.." onKeyPress={this.handleKeyPress}/>
+          {/* <Link to="/searchresult" style={{color: 'white'}}>
             <FaSearch className='searchIcon' onClick={() => {console.log("redirecting to search results");}}></FaSearch>
-          </Link>
+          </Link> */}
         </div>
     </div>
-  );
+    );
+  }
 };
-
-export default Search;

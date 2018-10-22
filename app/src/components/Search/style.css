@@ -1,13 +1,13 @@
 /* Style the search box inside the navigation bar */
-input[type=text] {
+.search input[type=text] {
     padding: 6px;
     border: none;
     font-size: 17px;
+    border-radius: .25em;
 }
 
-.searchIcon {
+/* .searchIcon {
     color: white;
-    padding-left: 10px;
     position: absolute;
-    margin-top: 8px;
-}
+    right: 0;
+} */
