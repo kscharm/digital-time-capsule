@@ -104,7 +104,7 @@ export default class NavBar extends Component {
       <div>
         <div className='navBar'>
             <div className='search'>
-                <Search />
+                <Search getSearch={this.props.getSearch}/>
             </div>
             <div className='icons'>
               <Link to="/currentCapsule" style={{color: 'white'}}>

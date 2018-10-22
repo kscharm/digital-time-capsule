@@ -18,7 +18,6 @@ export default class SearchResult extends Component {
   handlePop = (pop) => {
     this.setState({addPop: pop});
   }
-
   getSearchResults = (term) => {
     console.log("I should get the results for " + term);
   }
@@ -33,7 +32,7 @@ export default class SearchResult extends Component {
       <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}/>
             <div className='addButton'>
               </div>
               <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2>

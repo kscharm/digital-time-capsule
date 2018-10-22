@@ -344,7 +344,7 @@ export default class CapsuleComponent extends Component {
             />
           </div>
         </div>
-        <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
+        <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}/>
         {this.state.showAddPhoto ? <AddPhoto 
                                       handleShowAddPhoto={this.handleShowAddPhoto}
                                       handleAddPhoto={this.handleAddPhoto}

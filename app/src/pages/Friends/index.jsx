@@ -32,7 +32,7 @@ export default class Friends extends Component {
       <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} />
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}/>
             <div className='addButton'>
               </div>
               <h2 style={{margin: '7% 0 0 3%'}}>Friends</h2>
