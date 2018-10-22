@@ -23,7 +23,13 @@ export default class Registration extends Component {
     console.log("CAPSULE BUTTON CLICKED");
   }
 
-
+  getUserCapsules = (user) => {
+    console.log("I should get the capsules for " + user);
+  }
+  componentDidMount = () => {
+    //console.log(this.props);
+    this.getUserCapsules(this.props.username);
+  }
   render() {
 
     return (

@@ -18,8 +18,13 @@ export default class Friends extends Component {
   handlePop = (pop) => {
     this.setState({addPop: pop});
   }
-
-
+  getUserFriends = (user) => {
+    console.log("I should get the friends for " + user);
+  }
+  componentDidMount = () => {
+    //console.log(this.props);
+    this.getUserFriends(this.props.username);
+  }
   render() {
 
     return (

@@ -13,14 +13,19 @@ import {
 export default class Search extends Component {
   state = {
     redirectToReferrer2: false,
+    searchTerm: '',
   }
 
   handleKeyPress = (e) => {
     const keyCode = e.keyCode || e.which;
     if(e.key === 'Enter' || keyCode==='13') {
-      console.log('Searching!');
+      console.log('Searching! for ' + this.state.searchTerm);
+      this.props.getSearch(this.state.searchTerm);
       this.setState({redirectToReferrer2: true});
     }
+  }
+  updateSearch = (evt) => {
+    this.setState({fileCaption: evt.target.value});
   }
 
   render() {
@@ -35,10 +40,13 @@ export default class Search extends Component {
     return (
     <div className='search'>
         <div className='search'>
-          <input type="text" placeholder="Search.." onKeyPress={this.handleKeyPress}/>
-          {/* <Link to="/searchresult" style={{color: 'white'}}>
-            <FaSearch className='searchIcon' onClick={() => {console.log("redirecting to search results");}}></FaSearch>
-          </Link> */}
+          <input
+            type="text"
+            placeholder="Search.."
+            onKeyPress={this.handleKeyPress}
+            value={this.state.searchTerm}
+            onChange={evt => this.updateSearch(evt)}
+            />
         </div>
     </div>
     );

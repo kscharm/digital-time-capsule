@@ -19,7 +19,13 @@ export default class SearchResult extends Component {
     this.setState({addPop: pop});
   }
 
-
+  getSearchResults = (term) => {
+    console.log("I should get the results for " + term);
+  }
+  componentDidMount = () => {
+    //console.log(this.props);
+    this.getSearchResults(this.props.term);
+  }
   render() {
 
     return (

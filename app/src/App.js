@@ -52,15 +52,15 @@ class App extends Component {
                   />
                   <Route
                     path="/myCapsules"
-                    component={MyCapsulesPage}
+                    render={(props) => <MyCapsulesPage {...props} username={this.state.username} currentCapsuleID={this.state.currentCapsuleID} changeUsername={this.changeUsername} />}
                   />
                   <Route
                     path="/myFriends"
-                    component={MyFriends}
+                    render={(props) => <MyFriends {...props} username={this.state.username} currentCapsuleID={this.state.currentCapsuleID} changeUsername={this.changeUsername} />}
                   />
                   <Route
                     path="/searchresult"
-                    component={Search}
+                    render={(props) => <Search {...props} username={this.state.username} currentCapsuleID={this.state.currentCapsuleID} changeUsername={this.changeUsername} />}
                   />
                 </Switch>
               );
