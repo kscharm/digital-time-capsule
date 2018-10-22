@@ -24,9 +24,9 @@ import QuoteDisplay from '../../components/QuoteDisplay';
 import axios from 'axios';
 
 export default class CapsuleComponent extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+  }
 
   state = {
     addPop: false,
@@ -40,6 +40,7 @@ export default class CapsuleComponent extends Component {
     quoteList: [],
     showAddCapsule: false,
     showDelete: false,
+    thisCapsuleID: '',
   }
 
   handlePop = (pop) => {
@@ -61,11 +62,6 @@ export default class CapsuleComponent extends Component {
     this.setState({showDelete: show});
   }
 
-  getAllMusic = () => {
-    // Get and display the music for the user
-    console.log('I will get all musics for ' + this.props.user);
-    console.log('and for this capsule which is ' + this.props.capsule);
-  }
   handleAddMusic = (music) => {
     // Update personal capsule to have the new music that was added.
     const musicWithNew = this.state.musicList.concat(music);
@@ -94,10 +90,10 @@ export default class CapsuleComponent extends Component {
       console.log('Music was not deleted.');
     }
   }
-  getAllPhotos = () => {
-    // Get and display the photo for the user
-    console.log('I will get all photos for ' + this.props.user);
-    console.log('and for this capsule which is ' + this.props.capsule);
+  handleUpdateMusic = (x, y, music) => {
+    console.log('Now we update music to');
+    console.log(x + " and " + y);
+    console.log(music);
   }
   handleAddPhoto = (photo) => {
     // Update personal capsule to have the new photo that was added.
@@ -127,9 +123,10 @@ export default class CapsuleComponent extends Component {
       console.log('Photo was not deleted.');
     }
   }
-  getAllText = (user) => {
-    // Get and display the photo for the user
-    console.log('I will get all text for ' + user);
+  handleUpdatePhoto = (x, y, photo) => {
+    console.log('Now we update photo to');
+    console.log(x + " and " + y);
+    console.log(photo);
   }
   handleAddText = (text) => {
     // Update personal capsule to have the new text that was added.
@@ -151,9 +148,10 @@ export default class CapsuleComponent extends Component {
       console.log('Text was not deleted.');
     }
   }
-  getAllQuotes = (user) => {
-    // Get and display the photo for the user
-    console.log('I will get all text for ' + user);
+  handleUpdateText = (x, y, text) => {
+    console.log('Now we update text to');
+    console.log(x + " and " + y);
+    console.log(text);
   }
   handleAddQuote = (quote) => {
     // Update personal capsule to have the new text that was added.
@@ -175,6 +173,11 @@ export default class CapsuleComponent extends Component {
       console.log('Quote was not deleted.');
     }
   }
+  handleUpdateQuote = (x, y, quote) => {
+    console.log('Now we update quote to');
+    console.log(x + " and " + y);
+    console.log(quote);
+  }
 
   handleShowAddCapsule = (show) => {
       this.setState({showAddCapsule: show});
@@ -183,15 +186,28 @@ export default class CapsuleComponent extends Component {
     console.log('handled add capsule');
   }
 
-  componentDidMount() {
-    // When the component has loaded for the first time
-    // Show user data
-    this.getAllMusic();
-    this.getAllPhotos();
+  getAllMedia = (capsule) => {
+    console.log(capsule);
+    console.log(this.props.capsule);
+    axios.get('http://localhost:3001/getMedia?_id=' + this.props.capsule)
+        .then((res) => {
+          // Add each type to their respective arrays
+          console.log(res);
+          this.setState({quoteList: res.data.quotes});
+          this.setState({photoList: res.data.photos});
+          this.setState({textList: res.data.text});
+          this.setState({musicList: res.data.music});
+        })
+        .catch((err) => {
+            alert('Error getting media: ' + err.message);
+        });
+  }
+  componentDidMount = () => {
+    //console.log(this.props);
+    this.getAllMedia(this.props.thisCapsuleID);
   }
 
   render() {
-
     const Add = (props) => {
       let contents = [];
       let icon = '';
@@ -258,6 +274,7 @@ export default class CapsuleComponent extends Component {
                       photoObj={photo}
                       handleDeletePhoto={this.handleDeletePhoto}
                       showDelete={this.state.showDelete}
+                      handleUpdatePhoto={this.handleUpdatePhoto}
                   />
               )
             })}
@@ -274,6 +291,7 @@ export default class CapsuleComponent extends Component {
                     music={music}
                     handleDeleteMusic={this.handleDeleteMusic}
                     showDelete={this.state.showDelete}
+                    handleUpdateMusic={this.handleUpdateMusic}
                 />
             )
             })}
@@ -289,6 +307,7 @@ export default class CapsuleComponent extends Component {
                       handleDeleteText={this.handleDeleteText}
                       textObj={text}
                       showDelete={this.state.showDelete}
+                      handleUpdateText={this.handleUpdateText}
                   />
               )
             })}
@@ -304,6 +323,7 @@ export default class CapsuleComponent extends Component {
                       handleDeleteQuote={this.handleDeleteQuote}
                       quoteObj={quote}
                       showDelete={this.state.showDelete}
+                      handleUpdateQuote={this.handleUpdateQuote}
                   />
               )
             })}

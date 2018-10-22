@@ -10,6 +10,18 @@ export default class TextDisplay extends Component {
     //   super(props)
     // }
 
+    handleStop = (e) => {
+        console.log(e);
+        console.log(e.clientX);
+        console.log(e.clientY);
+        console.log(e.pageX);
+        console.log(e.pageY);
+        console.log(e.screenX);
+        console.log(e.screenY);
+        console.log("ive been stopped");
+        this.props.handleUpdateText(e.clientX, e.clientY, this.props.textObj);
+    }
+
     render () {
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const actualText = this.props.text;
