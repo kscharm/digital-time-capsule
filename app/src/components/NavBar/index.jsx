@@ -31,7 +31,7 @@ const Menu = (props) => {
         clicks = () => {
             console.log('TO MY CAPSULES');
         }
-        toPage = '/myCapsules';
+        toPage = `/myCapsules/${props.user}`;
       } else if (option==='Playlists') {
         icon = <FaMusic/>
       } else if (option==='Friends') {
@@ -39,7 +39,7 @@ const Menu = (props) => {
         clicks = () => {
           console.log('TO MY FRIENDS');
         }
-        toPage = '/myFriends';
+        toPage = `/myFriends/${props.user}`;
       } else if (option==='Logout') {
         icon = <FaSignOutAlt/>
         clicks = () => {
@@ -115,7 +115,7 @@ export default class NavBar extends Component {
               <div className='dropDown'>
                 <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} style={this.state.menuClicked ? {opacity: 1} : {opacity: .75}}/>
                 <div className='dropDown-content' style={this.state.showMenu ? {display: 'block'} : {display: 'none'}} >
-                  {this.state.showMenu ? <Menu options={['Settings', 'Capsules', 'Playlists', 'Friends', 'Logout']} /> : null }
+                  {this.state.showMenu ? <Menu user={this.props.user} options={['Settings', 'Capsules', 'Playlists', 'Friends', 'Logout']} /> : null }
                 </div>
               </div>
             </div>

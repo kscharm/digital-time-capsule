@@ -71,7 +71,7 @@ class App extends Component {
                     component={RegistrationPage}
                   />
                   <Route
-                    path="/myCapsules"
+                    path="/myCapsules/:user"
                     render={(props) => <MyCapsulesPage 
                       {...props} 
                       username={this.state.username}
@@ -82,7 +82,7 @@ class App extends Component {
                       />}
                   />
                   <Route
-                    path="/myFriends"
+                    path="/myFriends/:user"
                     render={(props) => <MyFriends 
                       {...props} 
                       username={this.state.username} 
