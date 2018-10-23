@@ -32,7 +32,8 @@ export default class SearchResult extends Component {
       <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}/>
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
+                    user={this.props.username} capsule={this.props.usercapsule}/>
             <div className='addButton'>
               </div>
               <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2>

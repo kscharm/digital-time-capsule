@@ -35,6 +35,7 @@ class Login extends React.Component {
               this.setState({ capsuleID: user.capsules[0] });
               this.props.changeUsername(this.state.user);
               this.props.changeCapsuleID(user.capsules[0]);
+              this.props.setUserCap(user.capsules[0]);
               this.setState({ redirectToReferrer: true });
             })
           })
@@ -54,7 +55,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: `/currentCapsule` } }
+    const { from } = this.props.location.state || { from: { pathname: `/currentCapsule/${this.state.user}/${this.state.capsuleID}` } }
 
     if (this.state.redirectToReferrer) {
       return (

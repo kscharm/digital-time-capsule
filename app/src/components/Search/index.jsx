@@ -29,7 +29,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { from } = { from: { pathname: '/searchresult' } }
+    const { from } = { from: { pathname: `/searchresult/${this.state.searchTerm}` } }
     const { redirectToReferrer2 } = this.state;
 
     if (redirectToReferrer2) {

@@ -107,7 +107,7 @@ export default class NavBar extends Component {
                 <Search getSearch={this.props.getSearch}/>
             </div>
             <div className='icons'>
-              <Link to="/currentCapsule" style={{color: 'white'}}>
+              <Link to={`/currentCapsule/${this.props.user}/${this.props.capsule}`} style={{color: 'white'}}>
                 <FaHome className='icon' onClick={() => {console.log("redirecting to personal time capsule page"); this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />

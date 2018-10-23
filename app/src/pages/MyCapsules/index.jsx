@@ -37,7 +37,8 @@ export default class Registration extends Component {
         <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}/>
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
+                    user={this.props.username} capsule={this.props.usercapsule}/>
             <div className='addButton'>
               <AddButton
                 buttonAction={() => { console.log("i dhouls open the add modal")}}

@@ -38,6 +38,7 @@ export default class CurrentCapsule extends Component {
           handleUpdateMessage={this.handleUpdateMessage}
           user={this.props.username}
           capsule={this.props.currentCapsuleID}
+          usercapsule={this.props.usercapsule}
           message={this.state.currentMessage}
           getSearch={this.props.getSearch}
         />

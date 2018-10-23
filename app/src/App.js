@@ -18,9 +18,13 @@ class App extends Component {
     username: '',
     currentCapsuleID: '',
     term: '',
+    usercapsule: '',
   }
   changeUsername = (user) => {
     this.setState({username: user});
+  }
+  setUserCap = (capsule) => {
+    this.setState({usercapsule: capsule});
   }
   changeCapsuleID = (id) => {
     this.setState({currentCapsuleID: id});
@@ -45,16 +49,18 @@ class App extends Component {
                     path="/"
                     render={(props) => <Login 
                       {...props} 
-                      changeUsername={this.changeUsername} 
+                      changeUsername={this.changeUsername}
+                      setUserCap={this.setUserCap}
                       changeCapsuleID={this.changeCapsuleID} 
                       />}
                   />
                   <Route
-                    path="/currentCapsule"
+                    path="/currentCapsule/:user/:capsuleID"
                     //component={CurrentCapsule}
                     render={(props) => <CurrentCapsule 
                       {...props} 
                       username={this.state.username} 
+                      usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
                       changeUsername={this.changeUsername} 
                       getSearch={this.getSearch}
@@ -68,7 +74,8 @@ class App extends Component {
                     path="/myCapsules"
                     render={(props) => <MyCapsulesPage 
                       {...props} 
-                      username={this.state.username} 
+                      username={this.state.username}
+                      usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
                       changeUsername={this.changeUsername} 
                       getSearch={this.getSearch}
@@ -79,16 +86,18 @@ class App extends Component {
                     render={(props) => <MyFriends 
                       {...props} 
                       username={this.state.username} 
+                      usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
                       changeUsername={this.changeUsername}
                       getSearch={this.getSearch} 
                       />}
                   />
                   <Route
-                    path="/searchresult"
+                    path="/searchresult/:term"
                     render={(props) => <Search 
                       {...props} 
-                      username={this.state.username} 
+                      username={this.state.username}
+                      usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
                       changeUsername={this.changeUsername} 
                       term={this.state.term}
