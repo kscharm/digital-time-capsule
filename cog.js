@@ -5,9 +5,9 @@ exports.addMusic = function(database, music, callback) {
       console.log('Error inserting music into database: ', err.message);
       return callback(null, err);
     }
-    database.collection("timeCapsules").updateOne({_id:music.capsules[0]}, {$push:{musicArr:{id:music._id}}}, (err, res) => {
+    database.collection("timeCapsules").updateOne({ _id: music.capsules[0] }, { $push: { musicArr: { id: music._id } } }, (err, res) => {
       if (err) {
-        console.log("Error retrieving time capsule", err.message);
+        console.log("Error retrieving time capsule: ", err.message);
         return callback(null, err);
       }
       return callback(music);
@@ -15,14 +15,29 @@ exports.addMusic = function(database, music, callback) {
   });
 }
 
-exports.deleteMusic = function(database, musicId, callback) {
-  database.collection("music").deleteOne(musicId, (err, res) => {
+exports.deleteMusic = function(database, music, callback) {
+  database.collection("music").deleteOne({ _id: music._id }, (err, res) => {
     if (err) {
       console.log('Error deleting music: ', err.message);
       return callback(null, err);
-  }
-    console.log('Music ' + musicId._id + ' deleted');
-    return callback(res);
+    }
+    database.collection("timeCapsules").updateOne({ _id: music.capsules[0] }, { $pull: { musicArr: { id: music._id } } }, (err, res) => {
+      if (err) {
+        console.log("Error retrieving time capsule: ", err.message);
+        return callback(null, err);
+      }
+      return callback(music);
+    });
+  });
+}
+
+exports.updateMusic = function(database, music, callback) {
+  database.collection("music").updateOne({ _id: music._id }, { $set: music.metadata }, (err, res) => {
+    if (err) {
+      console.log('Error updating music: ', err.message);
+      return callback(null, err);
+    }
+    return callback(music);
   });
 }
 

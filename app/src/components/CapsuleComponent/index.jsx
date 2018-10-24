@@ -73,7 +73,7 @@ export default class CapsuleComponent extends Component {
       const index = this.state.musicList.indexOf(music);
       if (index > -1) {
         axios.delete('http://localhost:3001/deleteMusic', {
-          params: { _id: music._id }
+          params: music
         })
         .then((res) => {
           let musicWithOut = this.state.musicList;
@@ -91,9 +91,19 @@ export default class CapsuleComponent extends Component {
     }
   }
   handleUpdateMusic = (x, y, music) => {
-    console.log('Now we update music to');
-    console.log(x + " and " + y);
-    console.log(music);
+    axios.post('http://localhost:3001/updateMusic', {
+      _id: music._id,
+      metadata: {
+          x,
+          y
+      }
+    })
+    .then((res) => {
+        console.log('Update successful!');
+    })
+    .catch((err) => {
+      alert('Error updating music: ' + err.message);
+    });
   }
   handleAddPhoto = (photo) => {
     // Update personal capsule to have the new photo that was added.
