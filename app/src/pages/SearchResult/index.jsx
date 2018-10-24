@@ -27,6 +27,9 @@ export default class SearchResult extends Component {
   }
   render() {
 
+    const title1 = "Capsules";
+    const title2 = "Users";
+
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
       <div>
@@ -36,11 +39,17 @@ export default class SearchResult extends Component {
                     user={this.props.username} capsule={this.props.usercapsule}/>
             <div className='addButton'>
               </div>
-              <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2>
+              <div className={`notepaper-title`} style={{maxWidth: "160px"}}>
+                <p className={`text-title`}>{title1}</p>
+              </div>
+              {/* <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2> */}
               <div>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
+              </div>
+              <div className={`notepaper-title`} style={{maxWidth: "130px"}}>
+                <p className={`text-title`}>{title2}</p>
               </div>
             </div>
         </div>

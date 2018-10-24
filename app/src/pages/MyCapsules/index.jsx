@@ -32,6 +32,8 @@ export default class Registration extends Component {
   }
   render() {
 
+    const title1 = "My Capsules";
+
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div>
@@ -45,7 +47,9 @@ export default class Registration extends Component {
                 buttonType='add'
               />
             </div>
-            <h2 style={{margin: '7% 0 0 3%'}}>My Capsules</h2>
+            <div className={`notepaper-title`} style={{maxWidth: "180px"}}>
+                <p className={`text-title`}>{title1}</p>
+              </div>
             <div>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>

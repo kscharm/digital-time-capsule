@@ -24,9 +24,9 @@ import QuoteDisplay from '../../components/QuoteDisplay';
 import axios from 'axios';
 
 export default class CapsuleComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     addPop: false,
