@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 
-// import {
-//   Link,
-// } from 'react-router-dom';
-
-// import { 
-//   FaSearch,
-// } from 'react-icons/fa';
-
 export default class Search extends Component {
   state = {
     redirectToReferrer2: false,
@@ -23,9 +15,15 @@ export default class Search extends Component {
       if (this.state.searchTerm === '') {
         this.setState({searchTerm: '_'});
       }
-      console.log('Searching! for ' + this.state.searchTerm);
       this.props.getSearch(this.state.searchTerm);
-      this.setState({redirectToReferrer2: true});
+      if (this.props.inSearch) {
+        console.log('in here');
+        //this.setState({redirectToReferrer2: false});
+      } else {
+        console.log('nope');
+        this.setState({redirectToReferrer2: true});
+      }
+      //this.setState({redirectToReferrer2: true});
     }
   }
   updateSearch = (evt) => {
@@ -33,8 +31,8 @@ export default class Search extends Component {
   }
 
   componentDidMount = () => {
-    console.log("componentDidMount, state: " + this.state.redirectToReferrer2);
-    this.setState({redirectToReferrer2: false});    
+    //console.log("componentDidMount, state: " + this.state.redirectToReferrer2);
+    //this.setState({redirectToReferrer2: false});    
   }
 
   render() {
@@ -43,11 +41,9 @@ export default class Search extends Component {
 
     if (redirectToReferrer2) {
       // this.componentDidMount();
-      // this.setState({redirectToReferrer2: false});
-      //in capsule component, there's a func called componentDidMount that goes outside of render. set it to false in that function
+      //this.setState({redirectToReferrer2: false});
       return (
-        <Redirect to={from} />
-        
+        <Redirect to={from} /> 
       )
     }
     return (

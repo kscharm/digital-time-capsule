@@ -21,6 +21,11 @@ export default class SearchResult extends Component {
   getSearchResults = (term) => {
     console.log("I should get the results for " + term);
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.term !== prevProps.term) {
+      this.getSearchResults(this.props.term);
+    }
+  }
   componentDidMount = () => {
     //console.log(this.props);
     this.getSearchResults(this.props.term);
@@ -36,7 +41,8 @@ export default class SearchResult extends Component {
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
-                    user={this.props.username} capsule={this.props.usercapsule}/>
+                    user={this.props.username} capsule={this.props.usercapsule}
+                    inSearch={true}/>
             <div className='addButton'>
               </div>
               <div className={`notepaper-title`} style={{maxWidth: "160px"}}>
