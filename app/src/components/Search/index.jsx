@@ -20,6 +20,10 @@ export default class Search extends Component {
     const keyCode = e.keyCode || e.which;
     if(e.key === 'Enter' || keyCode==='13') {
       console.log('Searching! for ' + this.state.searchTerm);
+      if (this.state.searchTerm === '') {
+        this.state.searchTerm = '_';
+      }
+      console.log('Searching! for ' + this.state.searchTerm);
       this.props.getSearch(this.state.searchTerm);
       this.setState({redirectToReferrer2: true});
     }
