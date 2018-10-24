@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
 import AddButton from '../../components/AddButton';
-
-import toBeCapsule from '../../images/addPhoto.png'
+import toBeCapsule from '../../images/addPhoto.png';
+import AddCapsule from '../../components/Cards/AddCapsule';
 
 import NavBar from '../../components/NavBar';
 
@@ -12,7 +12,8 @@ export default class Registration extends Component {
   //   super(props);
   // }
   state = {
-    addPop: false, 
+    addPop: false,
+    showAddCapsule: false,
   }
 
   handlePop = (pop) => {
@@ -22,6 +23,9 @@ export default class Registration extends Component {
   handleCapsuleButtonClick = () => {
     console.log("CAPSULE BUTTON CLICKED");
   }
+  handleShowAddCapsule = (show) => {
+    this.setState({showAddCapsule: show});
+}
 
   getUserCapsules = (user) => {
     console.log("I should get the capsules for " + user);
@@ -55,6 +59,10 @@ export default class Registration extends Component {
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
             </div>
+            {/* {this.state.showAddCapsule ? <AddCapsule
+                                        handleShowAddCapsule={this.handleShowAddCapsule}
+                                        handleAddCapsule={this.handleAddCapsule}
+                                        user={this.props.user}/> : null} */}
           </div>
         </div>
       </div>
