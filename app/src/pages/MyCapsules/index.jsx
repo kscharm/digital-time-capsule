@@ -47,7 +47,7 @@ export default class Registration extends Component {
                     user={this.props.username} capsule={this.props.usercapsule}/>
             <div className='addButton'>
               <AddButton
-                buttonAction={() => { console.log("i dhouls open the add modal")}}
+                buttonAction={() => {this.setState({showAddCapsule: true})}}
                 buttonType='add'
               />
             </div>
@@ -59,10 +59,10 @@ export default class Registration extends Component {
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
             </div>
-            {/* {this.state.showAddCapsule ? <AddCapsule
+            {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
                                         handleAddCapsule={this.handleAddCapsule}
-                                        user={this.props.user}/> : null} */}
+                                        user={this.props.user}/> : null}
           </div>
         </div>
       </div>
