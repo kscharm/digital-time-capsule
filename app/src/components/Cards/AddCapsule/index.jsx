@@ -35,6 +35,7 @@ export default class AddCapsule extends Component {
     <div className={ `addType addCapsule` }>
         <div className={ `addTypeBack addCapsuleBack` }/>
         <div className={ `addTypeCard addCapsuleCard` }>
+            <div>
             <span className='sectionLabels'> Capsule Name: </span>
             <input 
                 value={this.state.capsuleName}
@@ -51,7 +52,8 @@ export default class AddCapsule extends Component {
                 style={{marginBottom: '1em'}}
                 onChange={evt => this.updateOwnerName(evt)}
             />
-            <div className={ `actionButtons actionButtonsMusic` }>
+            </div>
+            <div className={ `actionButtons` }>
                 <OurButton
                     buttonText='Add'
                     buttonAction={() => {this.saveCapsule()}}
