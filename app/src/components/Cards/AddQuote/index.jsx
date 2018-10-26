@@ -148,7 +148,7 @@ export default class AddQuote extends Component {
                     handleBeforeInput={this._handleBeforeInput}
                     handlePastedText={this._handlePastedText}
                 />
-                <CharCounter editorState={this.state.editorState} limit={200} />
+                <CharCounter editorState={this.state.editorState} limit={200} /> {/* yo this line is making a 0 appear in the quote modal what */}
             </div>
             <span className='sectionLabels' style={{marginTop: '.5em'}}> Quote Author: </span>
             <input
