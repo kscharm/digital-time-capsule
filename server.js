@@ -179,6 +179,28 @@ app.get('/getMedia', (req, res) => {
   })
 })
 
+app.get('/searchUsers', (req, res) => {
+  const query = req.query;
+  cog.searchUsers(database, query.query, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
+app.get('/searchCapsules', (req, res) => {
+  const query = req.query;
+  cog.searchCapsules(database, query.query, query.user, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
 });
