@@ -24,9 +24,9 @@ import QuoteDisplay from '../../components/QuoteDisplay';
 import axios from 'axios';
 
 export default class CapsuleComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     addPop: false,
@@ -177,13 +177,6 @@ export default class CapsuleComponent extends Component {
     console.log('Now we update quote to');
     console.log(x + " and " + y);
     console.log(quote);
-  }
-
-  handleShowAddCapsule = (show) => {
-      this.setState({showAddCapsule: show});
-  }
-  handleAddCapsule = () => {
-    console.log('handled add capsule');
   }
 
   getAllMedia = (capsule) => {
@@ -366,10 +359,6 @@ export default class CapsuleComponent extends Component {
                                       handleAddMusic={this.handleAddMusic}
                                       user={this.props.user}
                                       capsule={this.props.capsule}/> : null}
-        {this.state.showAddCapsule ? <AddCapsule
-                                        handleShowAddCapsule={this.handleShowAddCapsule}
-                                        handleAddCapsule={this.handleAddCapsule}
-                                        user={this.props.user}/> : null}
       </div>
     );
   };
