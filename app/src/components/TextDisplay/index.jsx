@@ -13,8 +13,6 @@ export default class TextDisplay extends Component {
     handleStop = (e) => {
         console.log(e);
         console.log(e.clientX);
-        console.log(e.clientY);
-        console.log(e.pageX);
         console.log(e.pageY);
         console.log(e.screenX);
         console.log(e.screenY);
@@ -37,7 +35,7 @@ export default class TextDisplay extends Component {
         return (
             <Draggable
               bounds= {{left:0, top:0}}
-              defaultPosition={{x: 0, y: 100}}
+              defaultPosition={{x: this.props.xPos, y: this.props.yPos}}
               position={null}
               onStart={this.handleStart}
               onDrag={this.handleDrag}
