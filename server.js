@@ -91,9 +91,21 @@ app.post('/addMusic', (req, res) => {
   });
 });
 
-app.delete('/deleteMusic', (req, res) => {
-  const musicId = req.query;
-  cog.deleteMusic(database, musicId, (data, err) => {
+app.post('/deleteMusic', (req, res) => {
+  const musicId = req.body.musicId;
+  const capsuleId = req.body.capsuleId;
+  cog.deleteMusic(database, musicId, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/updateMusic', (req, res) => {
+  const musicDoc = req.body;
+  cog.updateMusic(database, musicDoc, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -113,9 +125,21 @@ app.post('/addPhoto', (req, res) => {
   });
 });
 
-app.delete('/deletePhoto', (req, res) => {
-  const photoId = req.query;
-  cog.deletePhoto(database, photoId, (data, err) => {
+app.post('/deletePhoto', (req, res) => {
+  const photoId = req.body.photoId;
+  const capsuleId = req.body.capsuleId;
+  cog.deletePhoto(database, photoId, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/updatePhoto', (req, res) => {
+  const photoDoc = req.body;
+  cog.updatePhoto(database, photoDoc, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -135,9 +159,43 @@ app.post('/addText', (req, res) => {
   });
 });
 
+app.post('/deleteText', (req, res) => {
+  const textId = req.body.textId;
+  const capsuleId = req.body.capsuleId;
+  cog.deleteText(database, textId, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/updateText', (req, res) => {
+  const textDoc = req.body;
+  cog.updateText(database, textDoc, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.post('/addCapsule', (req, res) => {
   const capsuleDoc = req.body;
   cog.addTimeCapsule(database, capsuleDoc, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.delete('/deleteCapsule', (req, res) => {
+  const capsuleId = req.query;
+  cog.deleteTimeCapsule(database, capsuleId, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
