@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import OurButton from '../../OurButton';
-
-import './style.css';
 import '../generic.css'
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import '../../../../node_modules/draft-js-counter-plugin/lib/plugin.css';
 import createCounterPlugin from 'draft-js-counter-plugin';
+import './style.css';
 
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
@@ -37,11 +36,14 @@ export default class AddCapsule extends Component {
     });
   };
 
-  onChange = (editorState) => {
-    this.setState({
-        editorState,
-    });
-};
+    onChange = (editorState) => {
+        this.setState({
+            editorState,
+        });
+    };
+    updateTags = (evt) => {
+        this.setState({tags: evt.target.value})
+    }
 _getLengthOfSelectedText = () => {
     const currentSelection = this.state.editorState.getSelection();
     const isCollapsed = currentSelection.isCollapsed();
@@ -115,9 +117,6 @@ focus = () => {
   updateCapsuleName = (evt) => {
       this.setState({capsuleName: evt.target.value})
   }
-  updateOwnerName = (evt) => {
-    this.setState({ownerName: evt.target.value})
-  }
 
   render() {
     return (
@@ -127,9 +126,10 @@ focus = () => {
         {/* title*, description*, private/public check*, relevant majors tag (maybe separate each by comma)? */}
             <div>
             <span className='sectionLabels'> Capsule Name: </span>
-            <input 
+            <input
+                type='text'
                 value={this.state.capsuleName}
-                className='caption-capsule'
+                className='caption'
                 placeholder='Name...'
                 style={{marginBottom: '1em'}}
                 onChange={evt => this.updateCapsuleName(evt)}
@@ -166,11 +166,12 @@ focus = () => {
             <span className='sectionLabelTag'> Capsule Tags: </span>
             <span className='subtext'> Separate tags with commas.</span>
             <input 
-                value={this.state.capsuleName}
-                className='caption-capsule'
+                type='text'
+                value={this.state.tags}
+                className='caption'
                 placeholder='Tag...'
                 style={{marginBottom: '1em'}}
-                onChange={evt => this.updateCapsuleName(evt)}
+                onChange={evt => this.updateTags(evt)}
             />
             </div>
             <div className={ `actionButtons` }>
