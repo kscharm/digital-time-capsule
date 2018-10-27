@@ -139,7 +139,7 @@ export default class AddQuote extends Component {
       <div className={ `addTypeBack addQuoteBack` }/>
         <div className={ `addTypeCard addQuoteCard` }>
             <span className='sectionLabels'> Quote: </span>
-            <div className="quote-editor" onClick={this.focus}>
+            <div className={editorStyles.editor} onClick={this.focus}>
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}
@@ -148,7 +148,7 @@ export default class AddQuote extends Component {
                     handleBeforeInput={this._handleBeforeInput}
                     handlePastedText={this._handlePastedText}
                 />
-                <CharCounter editorState={this.state.editorState} limit={200} /> {/* yo this line is making a 0 appear in the quote modal what */}
+                <CharCounter editorState={this.state.editorState} limit={200} />
             </div>
             <span className='sectionLabels' style={{marginTop: '.5em'}}> Quote Author: </span>
             <input

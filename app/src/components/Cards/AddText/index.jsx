@@ -158,7 +158,7 @@ export default class AddText extends Component {
     <div className={ `addType addText` }>
       <div className={ `addTypeBack addTextBack` }/>
         <div className={ `addTypeCard addTextCard` }>
-            <div className={`${editorStyles.editor} textBoxHeight`} onClick={this.focus} style={{width: '546px'}}>
+            <div className={`${editorStyles.editor} textBoxHeight`} onClick={this.focus}>
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}
