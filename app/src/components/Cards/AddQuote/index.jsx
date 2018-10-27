@@ -138,8 +138,8 @@ export default class AddQuote extends Component {
     <div className={ `addType addQuote` }>
       <div className={ `addTypeBack addQuoteBack` }/>
         <div className={ `addTypeCard addQuoteCard` }>
-            {/* <span className='sectionLabels'> Add Photo: </span> */}
-            <div className={editorStyles.editor} onClick={this.focus}>
+            <span className='sectionLabels'> Quote: </span>
+            <div className="quote-editor" onClick={this.focus}>
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}

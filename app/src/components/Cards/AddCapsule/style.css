@@ -1,0 +1,35 @@
+.caption-capsule {
+    width: -webkit-fill-available;
+    height: 25px;
+}
+
+.options {
+    color: white;
+    display: flex;
+    margin: 0.4em 0px 0.4em 22%;
+}
+
+.public-margin {
+    margin-right: 15%;
+}
+
+.radiobtns {
+    color: white;
+}
+
+.radio1 {
+    margin-right: 13%;
+}
+
+.subtext {
+    color: #E0E0E0;
+    margin-left: 5%;
+    font-size: 13px;
+}
+
+.sectionLabelTag {
+    color: white;
+    display: block;
+    margin-top: .5em;
+}
+  
