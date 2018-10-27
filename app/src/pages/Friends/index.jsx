@@ -27,6 +27,8 @@ export default class Friends extends Component {
   }
   render() {
 
+    const title1 = 'Friends';
+
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
       <div>
@@ -36,7 +38,9 @@ export default class Friends extends Component {
                     user={this.props.username} capsule={this.props.usercapsule}/>
             <div className='addButton'>
               </div>
-              <h2 style={{margin: '7% 0 0 3%'}}>Friends</h2>
+              <div className={`notepaper-title`} style={{maxWidth: "150px"}}>
+                <p className={`text-title`}>{title1}</p>
+              </div>
               <div>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>

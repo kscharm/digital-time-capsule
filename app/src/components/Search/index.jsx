@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 
-import {
-  Link,
-} from 'react-router-dom';
-
-import { 
-  FaSearch,
-} from 'react-icons/fa';
-
 export default class Search extends Component {
   state = {
     redirectToReferrer2: false,
@@ -20,12 +12,27 @@ export default class Search extends Component {
     const keyCode = e.keyCode || e.which;
     if(e.key === 'Enter' || keyCode==='13') {
       console.log('Searching! for ' + this.state.searchTerm);
+      if (this.state.searchTerm === '') {
+        this.setState({searchTerm: '_'});
+      }
       this.props.getSearch(this.state.searchTerm);
-      this.setState({redirectToReferrer2: true});
+      if (this.props.inSearch) {
+        console.log('in here');
+        //this.setState({redirectToReferrer2: false});
+      } else {
+        console.log('nope');
+        this.setState({redirectToReferrer2: true});
+      }
+      //this.setState({redirectToReferrer2: true});
     }
   }
   updateSearch = (evt) => {
     this.setState({searchTerm: evt.target.value});
+  }
+
+  componentDidMount = () => {
+    //console.log("componentDidMount, state: " + this.state.redirectToReferrer2);
+    //this.setState({redirectToReferrer2: false});    
   }
 
   render() {
@@ -33,8 +40,10 @@ export default class Search extends Component {
     const { redirectToReferrer2 } = this.state;
 
     if (redirectToReferrer2) {
+      // this.componentDidMount();
+      //this.setState({redirectToReferrer2: false});
       return (
-        <Redirect to={from} />
+        <Redirect to={from} /> 
       )
     }
     return (
