@@ -9,15 +9,11 @@ export default class QuoteDisplay extends Component {
     // constructor(props) {
     //   super(props)
     // }
-
-    handleStop = (e) => {
-        console.log(e);
-        console.log(e.clientX);
-        console.log(e.pageY);
-        console.log(e.screenX);
-        console.log(e.screenY);
-        console.log("ive been stopped");
-        this.props.handleUpdateQuote(e.clientX, e.clientY, this.props.quoteObj);
+    handleStart = (e, ui) => { e.stopPropagation(); } 
+    handleStop = (e, data) => {
+        const currentX= data.lastX + data.deltaX;
+        const currentY= data.lastY + data.deltaY;
+        this.props.handleUpdateQuote(currentX, currentY, this.props.quoteObj);
     }
 
     render () {
