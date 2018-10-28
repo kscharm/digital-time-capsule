@@ -9,16 +9,11 @@ export default class PhotoDisplay extends Component {
     // constructor(props) {
     //   super(props)
     // }
-
     handleStart = (e, ui) => { e.stopPropagation(); } 
-    handleStop = (e) => {
-        console.log(e);
-        console.log(e.clientX);
-        console.log(e.pageY);
-        console.log(e.screenX);
-        console.log(e.screenY);
-        console.log("ive been stopped");
-        this.props.handleUpdatePhoto(e.clientX, e.clientY, this.props.photoObj);
+    handleStop = (e, data) => {
+        const currentX= data.lastX + data.deltaX;
+        const currentY= data.lastY + data.deltaY;
+        this.props.handleUpdatePhoto(currentX, currentY, this.props.photoObj);
     }
 
     render () {
