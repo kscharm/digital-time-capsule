@@ -6,6 +6,7 @@ import toBeCapsule from '../../images/addPhoto.png';
 import AddCapsule from '../../components/Cards/AddCapsule';
 
 import NavBar from '../../components/NavBar';
+import axios from 'axios';
 
 export default class Registration extends Component {
   // constructor(props) {
@@ -27,11 +28,16 @@ export default class Registration extends Component {
     this.setState({showAddCapsule: show});
 }
 
-  getUserCapsules = (user) => {
-    console.log("I should get the capsules for " + user);
+  getUserCapsules = (username) => {
+    axios.get('http://localhost:3001/getCapsules?username=' + username)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+          alert('Error getting capsules: ' + err.message);
+      });
   }
   componentDidMount = () => {
-    //console.log(this.props);
     this.getUserCapsules(this.props.username);
   }
   render() {
@@ -62,7 +68,7 @@ export default class Registration extends Component {
             {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
                                         handleAddCapsule={this.handleAddCapsule}
-                                        user={this.props.user}/> : null}
+                                        user={this.props.username}/> : null}
           </div>
         </div>
       </div>

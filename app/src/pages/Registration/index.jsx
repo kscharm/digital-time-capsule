@@ -22,6 +22,7 @@ export default class Registration extends Component {
     password: '',
     confirmPass: '',
     capsules: [],
+    friends: [],
     
   }
 
