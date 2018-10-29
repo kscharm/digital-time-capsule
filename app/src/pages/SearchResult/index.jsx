@@ -20,6 +20,18 @@ export default class SearchResult extends Component {
   }
   getSearchResults = (term) => {
     console.log("I should get the results for " + term);
+    // axios.get('http://localhost:3001/searchUsers?_id=' + this.props.capsule)
+    //     .then((res) => {
+    //       // Add each type to their respective arrays
+    //       console.log(res);
+    //       this.setState({quoteList: res.data.quotes});
+    //       this.setState({photoList: res.data.photos});
+    //       this.setState({textList: res.data.text});
+    //       this.setState({musicList: res.data.music});
+    //     })
+    //     .catch((err) => {
+    //         alert('Error getting media: ' + err.message);
+    //     });
   }
   componentDidUpdate(prevProps) {
     if (this.props.term !== prevProps.term) {
