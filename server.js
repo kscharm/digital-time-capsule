@@ -80,7 +80,7 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
   });
 });
 
-app.post('/music', (req, res) => {
+app.post('/addMusic', (req, res) => {
   const musicDoc = req.body;
   cog.addMusic(database, musicDoc, (data, err) => {
     if (err) {
@@ -91,9 +91,166 @@ app.post('/music', (req, res) => {
   });
 });
 
-app.post('/photo', (req, res) => {
+app.post('/deleteMusic', (req, res) => {
+  const musicId = req.body.musicId;
+  const capsuleId = req.body.capsuleId;
+  cog.deleteMusic(database, musicId, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/updateMusic', (req, res) => {
+  const musicDoc = req.body;
+  cog.updateMusic(database, musicDoc, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/addPhoto', (req, res) => {
   const photos = req.body;
   cog.addPhoto(database, photos, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/deletePhoto', (req, res) => {
+  const photoId = req.body.photoId;
+  const capsuleId = req.body.capsuleId;
+  cog.deletePhoto(database, photoId, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/updatePhoto', (req, res) => {
+  const photoDoc = req.body;
+  cog.updatePhoto(database, photoDoc, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/addText', (req, res) => {
+  const textDoc = req.body;
+  cog.addText(database, textDoc, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/deleteText', (req, res) => {
+  const textId = req.body.textId;
+  const capsuleId = req.body.capsuleId;
+  cog.deleteText(database, textId, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/updateText', (req, res) => {
+  const textDoc = req.body;
+  cog.updateText(database, textDoc, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/addCapsule', (req, res) => {
+  const capsuleDoc = req.body;
+  cog.addTimeCapsule(database, capsuleDoc, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.delete('/deleteCapsule', (req, res) => {
+  const capsuleId = req.query;
+  cog.deleteTimeCapsule(database, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/registerUser', (req, res) => {
+  const user = req.body;
+  cog.addUser(database, user, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/validateUser', (req, res) => {
+  const username = req.query;
+  cog.validateUser(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/getCapsules', (req, res) => {
+  const username = req.query;
+  cog.getCapsules(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/getFriends', (req, res) => {
+  const username = req.query;
+  cog.getFriends(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/getMedia', (req, res) => {
+  const capsuleId = req.query;
+  cog.getMedia(database, capsuleId, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -102,27 +259,27 @@ app.post('/photo', (req, res) => {
   })
 })
 
-app.post('/text', (req, res) => {
-  const textDoc = req.body;
-  cog.addText(database, textDoc, (data, err) => {
+app.get('/searchUsers', (req, res) => {
+  const query = req.query;
+  cog.searchUsers(database, query.query, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
   })
-});
+})
 
-app.post('/capsule', (req, res) => {
-  const capsuleDoc = req.body;
-  cog.addTimeCapsule(database,capsuleDoc, (data, err) => {
+app.get('/searchCapsules', (req, res) => {
+  const query = req.query;
+  cog.searchCapsules(database, query.query, query.user, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
   })
-});
+})
 
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);

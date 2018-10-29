@@ -1,3 +1,23 @@
 .textBoxHeight {
     margin-bottom: 1em;
 }
+.tframeImg {
+    height: 6em;
+    margin: .5em;
+}
+
+.text_selected {
+    height: 6em;
+    margin: 1em;
+    border-color: yellow;
+}
+
+.text_notSelected {
+    height: 6em;
+    margin: 1em;
+    border: transparent;
+}
+
+/* div.DraftEditor-root {
+    width: auto;
+} */

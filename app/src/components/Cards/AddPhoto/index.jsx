@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
+import frame1 from '../../../images/frame1.jpg';
+import frame2 from '../../../images/frame2.jpg';
+import frame3 from '../../../images/frame3.jpg'
 import OurButton from '../../OurButton';
 import axios from 'axios';
-import uuidv4 from 'uuid/v4'
+import uuidv4 from 'uuid/v4';
 
 import DropzoneComponent from 'react-dropzone-component';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
@@ -22,17 +24,20 @@ export default class AddPhoto extends Component {
     fileName: '',
     fileCaption: '',
     frame: '',
+    selected_A: false,
+    selected_B: false,
+    selected_C: false,
   }
 
   savePhoto = () => {
     if (this.state.file !== '') {
-        axios.post('http://localhost:3001/photo', {
+        axios.post('http://localhost:3001/addPhoto', {
+            _id: uuidv4(),
             photo: this.state.file,
             frame: this.state.frame,
             title: this.state.fileName,
-            username: "kenny",
-            mediaId: uuidv4(),
-            capsules: ["myCapsule"],
+            username: this.props.user,
+            capsules: [this.props.capsule],
             caption: this.state.fileCaption,
             settings: {
                 privacy: "public"
@@ -59,10 +64,36 @@ export default class AddPhoto extends Component {
   }
 
   updateFileCaption = (evt) => {
-    this.setState({fileCaption: evt.target.value})
+    this.setState({fileCaption: evt.target.value});
+  }
+  updateFrame = (frame) => {
+      this.setState({frame: frame});
+      this.changeColor(frame);
+      console.log(frame);
+  }
+
+  changeColor(frame) {
+      if (frame === 'basicFrame') {
+        this.setState(this.setState({selected_A: !this.state.selected_A}));
+        this.setState(this.setState({selected_B: false}));
+        this.setState(this.setState({selected_C: false}));
+      } else if (frame === 'polarFrame') {
+        this.setState(this.setState({selected_B: !this.state.selected_B}));
+        this.setState(this.setState({selected_A: false}));
+        this.setState(this.setState({selected_C: false}));
+      } else if (frame === 'blackFrame') {
+        this.setState(this.setState({selected_C: !this.state.selected_C}));
+        this.setState(this.setState({selected_B: false}));
+        this.setState(this.setState({selected_A: false}));
+      }
   }
 
   render() {
+
+    let frame_class_A = this.state.selected_A ? "selected" : "notSelected";
+    let frame_class_B = this.state.selected_B ? "selected" : "notSelected";
+    let frame_class_C = this.state.selected_C ? "selected" : "notSelected";
+
     const componentConfig = {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         allowedFiletypes: ['.jpg', '.png', '.gif'],
@@ -98,7 +129,7 @@ export default class AddPhoto extends Component {
         <div className={ `addTypeBack addPhotoBack` }/>
         <div className={ `addTypeCard addPhotoCard` }>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
-            <div className='photo'>
+            <div className='photoThing'>
                 <div className="dropzone">
                 <DropzoneComponent
                     config={componentConfig}
@@ -117,9 +148,9 @@ export default class AddPhoto extends Component {
             />
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className={frame_class_A} src={frame1} alt="" border="5" onClick={() => this.updateFrame('basicFrame')}/>
+                <img className={frame_class_B} src={frame2} alt="" border="5" onClick={() => this.updateFrame('polarFrame')}/>
+                <img className={frame_class_C} src={frame3} alt="" border="5" onClick={() => this.updateFrame('blackFrame')}/>
             </div>
             <div className={ `actionButtons actionButtonsPhoto` }>
                 <OurButton

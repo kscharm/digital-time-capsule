@@ -1,5 +1,9 @@
 # Digital Time Capsule
 
+### Dependencies:
+1. MongoDB
+2. Python 2.x
+
 ### Steps to Install MongoDB:
 1. [Install MongoDB](https://docs.mongodb.com/manual/administration/install-community) and choose the correct distribution (Linux, MacOS, Windows) of MongoDB Community Edition. The following instructions are for Windows hosts.
 2. Start the MongoDB service: ```net start MongoDB```

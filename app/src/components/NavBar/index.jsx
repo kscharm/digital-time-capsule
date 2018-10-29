@@ -28,10 +28,18 @@ const Menu = (props) => {
         icon = <FaCog/>
       } else if (option==='Capsules') {
         icon = <FaArchive/>
+        clicks = () => {
+            console.log('TO MY CAPSULES');
+        }
+        toPage = `/myCapsules/${props.user}`;
       } else if (option==='Playlists') {
         icon = <FaMusic/>
       } else if (option==='Friends') {
         icon = <FaUsers/>
+        clicks = () => {
+          console.log('TO MY FRIENDS');
+        }
+        toPage = `/myFriends/${props.user}`;
       } else if (option==='Logout') {
         icon = <FaSignOutAlt/>
         clicks = () => {
@@ -96,10 +104,10 @@ export default class NavBar extends Component {
       <div>
         <div className='navBar'>
             <div className='search'>
-                <Search />
+                <Search getSearch={this.props.getSearch} inSearch={this.props.inSearch}/>
             </div>
             <div className='icons'>
-              <Link to="/currentCapsule" style={{color: 'white'}}>
+              <Link to={`/currentCapsule/${this.props.user}/${this.props.capsule}`} style={{color: 'white'}}>
                 <FaHome className='icon' onClick={() => {console.log("redirecting to personal time capsule page"); this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
@@ -107,7 +115,7 @@ export default class NavBar extends Component {
               <div className='dropDown'>
                 <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} style={this.state.menuClicked ? {opacity: 1} : {opacity: .75}}/>
                 <div className='dropDown-content' style={this.state.showMenu ? {display: 'block'} : {display: 'none'}} >
-                  {this.state.showMenu ? <Menu options={['Settings', 'Capsules', 'Playlists', 'Friends', 'Logout']} /> : null }
+                  {this.state.showMenu ? <Menu user={this.props.user} options={['Settings', 'Capsules', 'Playlists', 'Friends', 'Logout']} /> : null }
                 </div>
               </div>
             </div>

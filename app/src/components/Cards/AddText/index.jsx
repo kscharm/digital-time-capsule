@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './style.css';
-import '../generic.css'
+import '../generic.css';
 import OurButton from '../../OurButton';
-import addPhotoBase from '../../../images/addPhoto.png'
+import textFrame1 from '../../../images/textFrame1.jpg';
+import textFrame2 from '../../../images/textFrame2.jpg';
+import textFrame3 from '../../../images/textFrame3.jpg';
 import { convertToRaw } from 'draft-js'
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
@@ -51,6 +53,10 @@ export default class AddText extends Component {
 
     state = {
         editorState: createEditorStateWithText(text),
+        frame: 'notepaper',
+        selected_A: false,
+        selected_B: false,
+        selected_C: false,
     };
 
     onChange = (editorState) => {
@@ -66,6 +72,8 @@ export default class AddText extends Component {
     addText = () => {
         var a = this.state.editorState.getCurrentContent();
         var raw = convertToRaw(a);
+        var editor = this.state.editorState.getCurrentContent();
+        var raw = convertToRaw(editor);
         var text = '';
         var styles = [];
         for (var i = 0; i < raw.blocks.length; i++) {
@@ -107,8 +115,6 @@ export default class AddText extends Component {
             })
             .then((res) => {
                 this.closeAddText();
-                const frame='notepaper';
-                res.data["frame"] = frame;
                 this.props.handleAddText(res.data);
             })
             .catch((err) => {
@@ -120,9 +126,35 @@ export default class AddText extends Component {
     closeAddText = () => {
         this.props.handleShowAddText(false);
     }
+    updateFrame = (frame) => {
+        this.setState({frame: frame});
+        this.changeColor(frame);
+        console.log(frame);
+    }
+
+    changeColor(frame) {
+        if (frame === 'notepaper') {
+          this.setState(this.setState({selected_A: !this.state.selected_A}));
+          this.setState(this.setState({selected_B: false}));
+          this.setState(this.setState({selected_C: false}));
+        } else if (frame === 'notepad') {
+          this.setState(this.setState({selected_B: !this.state.selected_B}));
+          this.setState(this.setState({selected_A: false}));
+          this.setState(this.setState({selected_C: false}));
+        } else if (frame === 'postit') {
+          this.setState(this.setState({selected_C: !this.state.selected_C}));
+          this.setState(this.setState({selected_B: false}));
+          this.setState(this.setState({selected_A: false}));
+        }
+    }
 
 
   render() {
+
+    let text_frame_class_A = this.state.selected_A ? "text_selected" : "text_notSelected";
+    let text_frame_class_B = this.state.selected_B ? "text_selected" : "text_notSelected";
+    let text_frame_class_C = this.state.selected_C ? "text_selected" : "text_notSelected";
+
     return (
     <div className={ `addType addText` }>
       <div className={ `addTypeBack addTextBack` }/>
@@ -140,9 +172,9 @@ export default class AddText extends Component {
             </div>
             <span className='sectionLabels'> Choose Frame: </span>
             <div>
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
-                <img className="frameImg" src={addPhotoBase} alt="" />
+                <img className={text_frame_class_A} src={textFrame1} border="5" alt="" onClick={() => this.updateFrame('notepaper')}/>
+                <img className={text_frame_class_B} src={textFrame2} border="5" alt="" onClick={() => this.updateFrame('notepad')}/>
+                <img className={text_frame_class_C} src={textFrame3} border="5" alt="" onClick={() => this.updateFrame('postit')}/>
             </div>
             <div className={ `actionButtons actionButtonsText` }>
                 <OurButton

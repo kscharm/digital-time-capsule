@@ -38,7 +38,8 @@
 div.DraftEditor-root {
     background-color: #fffef7;
     height: 200px;
-    width: 500px;
+    width: 550px;
+    word-break: break-word;
     overflow-y: auto;
     padding:20px;
     font-size: 18px;
@@ -48,6 +49,6 @@ div.DraftEditor-editorContainer {
     margin-top:.5em;
 }
 .frameImg {
-    width: 8em;
+    height: 10em;
     margin: 1em;
 }

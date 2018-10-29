@@ -98,15 +98,17 @@ export default class AddQuote extends Component {
     addQuote = () => {
         var editor = this.state.editorState.getCurrentContent();
         if (editor.getPlainText('') !== '') {
-            axios.post('http://localhost:3001/text', {
-                username: "madison",
-                mediaId: uuidv4(),
-                capsules: ["myCapsule"],
+            axios.post('http://localhost:3001/addText', {
+                _id: uuidv4(),
+                username: this.props.user,
+                capsules: [this.props.capsule],
+                frame:'',
                 text: editor.getPlainText(''),
                 author: this.state.quoteAuthor,
                 settings: {
                     privacy: "public"
                 },
+                styles: [],
                 quote: true,
                 metadata: {
                     x: null,
@@ -136,14 +138,13 @@ export default class AddQuote extends Component {
     <div className={ `addType addQuote` }>
       <div className={ `addTypeBack addQuoteBack` }/>
         <div className={ `addTypeCard addQuoteCard` }>
-            {/* <span className='sectionLabels'> Add Photo: </span> */}
+            <span className='sectionLabels'> Quote: </span>
             <div className={editorStyles.editor} onClick={this.focus}>
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}
                     ref={(element) => { this.editor = element; }}
                     plugins={[counterPlugin]}
-                    placeholder='Quote...'
                     handleBeforeInput={this._handleBeforeInput}
                     handlePastedText={this._handlePastedText}
                 />

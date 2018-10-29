@@ -1,25 +1,17 @@
 {
     "bsonType": "object",
     "required": [
-        "user_id",
         "username",
         "password",
         "university",
         "major",
-        "name",
+        "firstName",
+        "lastName",
         "email",
-        "friends",
-        "photoArr",
-        "textArr",
-        "musicArr",
         "capsules",
-        "metadata"
+        "friends"
     ],
     "properties": {
-        "user_id": {
-            "bsonType": "string",
-            "description": "User id (a uuid)"
-        },
         "username": {
             "bsonType": "string",
             "description": "The username for identification purposes"
@@ -36,9 +28,13 @@
             "bsonType": "string",
             "description": "The major associated with the user"
         },
-        "name": {
+        "firstName": {
             "bsonType": "string",
-            "description": "Name of the user"
+            "description": "First name of the user"
+        },
+        "lastName": {
+            "bsonType": "string",
+            "description": "Last name of the user"
         },
         "email": {
             "bsonType": "string",

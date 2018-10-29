@@ -4,7 +4,6 @@
     "required": [
         "photo",
         "username",
-        "mediaId",
         "capsules",
         "title",
         "settings",
@@ -22,10 +21,6 @@
         "username": {
             "bsonType": "string",
             "description": "must be a string and is required"
-        },
-        "mediaId": {
-            "bsonType": "string",
-            "description": "unique key for media object"
         },
         "capsules": {
             "bsonType": "array",

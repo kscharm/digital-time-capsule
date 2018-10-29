@@ -17,9 +17,28 @@ export default class MusicPlayer extends Component {
         playStatus: Sound.status.STOPPED,
         position: 0,
     }
+    handleStart = (e, ui) => { e.stopPropagation(); } 
+    handleStop = (e, data) => {
+        //console.log(e);
+        //console.log(data);
+        const currentX= data.lastX + data.deltaX;
+        const currentY= data.lastY + data.deltaY;
+        this.props.handleUpdateMusic(currentX, currentY, this.props.music);
+    }
 
     render () {
+        console.log(this.props.xPos);
+        console.log(this.props.yPos);
         //const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        const DeleteButton = () => {
+            return (
+                <button
+                        onClick={() => {this.props.handleDeleteMusic(this.props.music)}}
+                        className='iconButtons'
+                    >
+                        <FaTrash className='testIcon' size={40}/>
+                    </button>
+            )}
         return (
                 <Draggable
                 bounds= {{left:0, top:0}}
@@ -59,12 +78,7 @@ export default class MusicPlayer extends Component {
                     >
                         <FaPauseCircle className='testIcon' size={40}/>
                     </button>
-                    <button
-                        onClick={() => {this.props.handleDeleteMusic(this.props.music)}}
-                        className='iconButtons'
-                    >
-                        <FaTrash className='testIcon' size={40}/>
-                    </button>
+                    {this.props.showDelete ? <DeleteButton/> : null}
                     </div>
                 </div>
                 </Draggable>

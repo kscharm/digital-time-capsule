@@ -3,9 +3,9 @@
     "title": "Text Object schema",
     "required": [
         "username",
-        "mediaId",
         "capsules",
         "text",
+        "frame",
         "settings",
         "metadata"
     ],
@@ -13,10 +13,6 @@
         "username": {
             "bsonType": "string",
             "description": "Must be a string and is required"
-        },
-        "mediaId": {
-            "bsonType": "string",
-            "description": "Unique key for media object"
         },
         "capsules": {
             "bsonType": "array",
@@ -28,6 +24,10 @@
         "text": {
             "bsonType": "string",
             "description": "Content of text object"
+        },
+        "frame": {
+            "bsonType": "string",
+            "description": "Description of the frame"
         },
         "author": {
             "bsonType": "string",
@@ -43,9 +43,9 @@
                 }
             }
         },
-        "style": {
+        "styles": {
             "bsonType": "array",
-            "description": "Array of styles",
+            "description": "array of styles",
             "items": [{
                 "type": "object"
             }]

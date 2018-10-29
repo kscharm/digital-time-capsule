@@ -14,6 +14,11 @@
 }
 .photo {
     margin-bottom: .75em;
+    max-height: 25em;
+    max-width: 25em;
+}
+.photoThing {
+    margin-bottom: .75em;
     max-height: 45em;
     max-width: 45em;
 }
@@ -37,3 +42,15 @@
     color: white;
 }
 .addPhotoCard input:focus { color: white; }
+
+.selected {
+    height: 10em;
+    margin: 1em;
+    border-color: yellow;
+}
+
+.notSelected {
+    height: 10em;
+    margin: 1em;
+    border: transparent;
+}
