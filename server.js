@@ -226,6 +226,28 @@ app.get('/validateUser', (req, res) => {
   });
 });
 
+app.get('/getCapsules', (req, res) => {
+  const username = req.query;
+  cog.getCapsules(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/getFriends', (req, res) => {
+  const username = req.query;
+  cog.getFriends(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.get('/getMedia', (req, res) => {
   const capsuleId = req.query;
   cog.getMedia(database, capsuleId, (data, err) => {

@@ -5,12 +5,10 @@ import './style.css';
 import toBeCapsule from '../../images/addPhoto.png'
 
 import NavBar from '../../components/NavBar';
+import axios from 'axios';
 // import AddButton from '../../components/AddButton';
 
 export default class Friends extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
   state = {
     addPop: false, 
   }
@@ -18,11 +16,16 @@ export default class Friends extends Component {
   handlePop = (pop) => {
     this.setState({addPop: pop});
   }
-  getUserFriends = (user) => {
-    console.log("I should get the friends for " + user);
+  getUserFriends = (username) => {
+    axios.get('http://localhost:3001/getFriends?username=' + username)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+          alert('Error getting capsules: ' + err.message);
+      });
   }
   componentDidMount = () => {
-    //console.log(this.props);
     this.getUserFriends(this.props.username);
   }
   render() {

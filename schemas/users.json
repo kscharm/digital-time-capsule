@@ -8,7 +8,8 @@
         "firstName",
         "lastName",
         "email",
-        "capsules"
+        "capsules",
+        "friends"
     ],
     "properties": {
         "username": {

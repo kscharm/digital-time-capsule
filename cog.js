@@ -337,6 +337,27 @@ exports.getMedia = function(database, capsuleId, callback) {
   })
 }
 
+exports.getFriends = function(database, username, callback) {
+  database.collection("users").findOne(username, (err, user) => {
+    if (err) {
+      console.log("Error getting friends: ", err.message);
+      return callback(null, err);
+    }
+    return callback(user.friends);
+  });
+}
+
+exports.getCapsules = function(database, username, callback) {
+  console.log(username);
+  database.collection("users").findOne(username, (err, user) => {
+    if (err) {
+      console.log("Error getting capsules: ", err.message);
+      return callback(null, err);
+    }
+    return callback(user.capsules);
+  });
+}
+
 exports.searchUsers = function(database, query, callback) {
   database.collection("users").find({}).toArray((err, users) => {
     let returnUsers = [];
@@ -350,7 +371,7 @@ exports.searchUsers = function(database, query, callback) {
 }
 
 exports.searchCapsules = function(database, query, user, callback) {
-  database.collection("users").findOne({username:user}).then((userObj, err) => {
+  database.collection("users").findOne({ username: user }).then((userObj, err) => {
     if (err) {
       console.log("User not found");
       return callback(null, err);
