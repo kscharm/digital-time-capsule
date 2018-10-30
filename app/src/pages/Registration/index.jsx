@@ -53,7 +53,6 @@ export default class Registration extends Component {
           axios.post('http://localhost:3001/registerUser', doc)
             .then((res) => {
                 //change path to login
-                //window.location='/';
                 this.setState({ redirectToReferrer: true });
             })
             .catch((err) => {

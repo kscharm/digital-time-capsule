@@ -25,24 +25,29 @@ class Login extends React.Component {
     user: '',
     pass: '',
   }
-  login = ()=>{
+  login = ()=> {
     axios.get('http://localhost:3001/validateUser?username=' + this.state.user)
       .then((res) => {
         const user = res.data;
-        bcrypt.compare(this.state.pass, user.password)
-          .then((res) => {
+        console.log(this.state.pass);
+        console.log(user.password);
+        bcrypt.compare(this.state.pass, user.password, (err, res) => {
+          if (err) {
+            console.log("Error decrypting: " + err);
+          }
+          if (res) {
             fakeAuth.authenticate(() => {
               this.setState({ capsuleID: user.capsules[0] });
               this.props.changeUsername(this.state.user);
               this.props.changeCapsuleID(user.capsules[0]);
               this.props.setUserCap(user.capsules[0]);
               this.setState({ redirectToReferrer: true });
-            })
-          })
-          .catch((err) => {
+            });
+          } else {
             alert('Invalid username and password combination');
-          });
-        })
+          }
+        });
+      })
       .catch((err) => {
           alert('Error validating user: ' + err.message);
       });

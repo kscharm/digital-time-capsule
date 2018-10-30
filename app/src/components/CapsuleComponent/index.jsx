@@ -240,10 +240,9 @@ export default class CapsuleComponent extends Component {
   }
 
   getAllMedia = (capsule) => {
-    axios.get('http://localhost:3001/getMedia?_id=' + this.props.capsule)
+    axios.get('http://localhost:3001/getMedia?_id=' + capsule)
         .then((res) => {
           // Add each type to their respective arrays
-          console.log(res);
           this.setState({quoteList: res.data.quotes});
           this.setState({photoList: res.data.photos});
           this.setState({textList: res.data.text});
@@ -254,8 +253,7 @@ export default class CapsuleComponent extends Component {
         });
   }
   componentDidMount = () => {
-    //console.log(this.props);
-    this.getAllMedia(this.props.thisCapsuleID);
+    this.getAllMedia(this.props.capsule);
   }
 
   render() {
