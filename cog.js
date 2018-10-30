@@ -332,7 +332,7 @@ exports.getMedia = function(database, capsuleId, callback) {
           }
         }
         return callback(media);
-      });
+      }).catch(err => console.log("Error getting media, " + err));
     }
   })
 }
