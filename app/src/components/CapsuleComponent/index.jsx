@@ -241,17 +241,17 @@ export default class CapsuleComponent extends Component {
 
   getAllMedia = (capsule) => {
     axios.get('http://localhost:3001/getMedia?_id=' + this.props.capsule)
-        .then((res) => {
-          // Add each type to their respective arrays
-          console.log(res);
-          this.setState({quoteList: res.data.quotes});
-          this.setState({photoList: res.data.photos});
-          this.setState({textList: res.data.text});
-          this.setState({musicList: res.data.music});
-        })
-        .catch((err) => {
-            alert('Error getting media: ' + err.message);
-        });
+      .then((res) => {
+        // Add each type to their respective arrays
+        console.log(res);
+        this.setState({quoteList: res.data.quotes});
+        this.setState({photoList: res.data.photos});
+        this.setState({textList: res.data.text});
+        this.setState({musicList: res.data.music});
+      })
+      .catch((err) => {
+          alert('Error getting media: ' + err.message);
+      });
   }
   componentDidMount = () => {
     //console.log(this.props);

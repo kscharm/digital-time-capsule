@@ -260,8 +260,8 @@ app.get('/getMedia', (req, res) => {
 })
 
 app.get('/searchUsers', (req, res) => {
-  const query = req.query;
-  cog.searchUsers(database, query.query, (data, err) => {
+  const params = req.query;
+  cog.searchUsers(database, params.query, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -271,8 +271,8 @@ app.get('/searchUsers', (req, res) => {
 })
 
 app.get('/searchCapsules', (req, res) => {
-  const query = req.query;
-  cog.searchCapsules(database, query.query, query.user, (data, err) => {
+  const params = req.query;
+  cog.searchCapsules(database, params.query, params.user, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
