@@ -4,6 +4,7 @@ import './style.css';
 import AddButton from '../../components/AddButton';
 import toBeCapsule from '../../images/addPhoto.png';
 import AddCapsule from '../../components/Cards/AddCapsule';
+import CapsuleDisplay from '../../components/CapsuleDisplay';
 
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
@@ -15,6 +16,7 @@ export default class Registration extends Component {
   state = {
     addPop: false,
     showAddCapsule: false,
+    capsuleList: [],
   }
 
   handlePop = (pop) => {
@@ -37,6 +39,7 @@ export default class Registration extends Component {
         .then((res2) => {
           // Array of time capsule objects
           console.log(res2.data);
+          this.setState({capsuleList: res2.data});
         })
         .catch((err) => {
           alert('Error getting capsules: ' + err.message);
@@ -70,6 +73,19 @@ export default class Registration extends Component {
                 <p className={`text-title`}>{title1}</p>
               </div>
             <div>
+              {this.state.capsuleList.map((capsule) => {
+                return (
+                  <CapsuleDisplay
+                      title={capsule.title}
+                      id={capsule._id}
+                      description={capsule.description}
+                      style={{display:'inline-block'}}
+                      key={capsule._id}
+                      capsuleObj={capsule}
+                      showDelete={this.state.showDelete}
+                  />
+              )
+            })}
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
@@ -77,6 +93,7 @@ export default class Registration extends Component {
             {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
                                         handleAddCapsule={this.handleAddCapsule}
+                                        userID={this.props.userID}
                                         user={this.props.username}/> : null}
           </div>
         </div>

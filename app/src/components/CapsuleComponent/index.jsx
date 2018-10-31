@@ -254,8 +254,7 @@ export default class CapsuleComponent extends Component {
       });
   }
   componentDidMount = () => {
-    //console.log(this.props);
-    this.getAllMedia(this.props.thisCapsuleID);
+    this.getAllMedia(this.props.capsule);
   }
 
   render() {

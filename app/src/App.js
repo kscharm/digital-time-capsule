@@ -19,9 +19,13 @@ class App extends Component {
     currentCapsuleID: '',
     term: '',
     usercapsule: '',
+    userID: '',
   }
   changeUsername = (user) => {
     this.setState({username: user});
+  }
+  changeUserID = (id) => {
+    this.setState({userID: id});
   }
   setUserCap = (capsule) => {
     this.setState({usercapsule: capsule});
@@ -51,7 +55,8 @@ class App extends Component {
                       {...props} 
                       changeUsername={this.changeUsername}
                       setUserCap={this.setUserCap}
-                      changeCapsuleID={this.changeCapsuleID} 
+                      changeCapsuleID={this.changeCapsuleID}
+                      changeUserID={this.changeUserID} 
                       />}
                   />
                   <Route
@@ -59,10 +64,12 @@ class App extends Component {
                     //component={CurrentCapsule}
                     render={(props) => <CurrentCapsule 
                       {...props} 
-                      username={this.state.username} 
+                      username={this.state.username}
                       usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
-                      changeUsername={this.changeUsername} 
+                      changeUsername={this.changeUsername}
+                      userID={this.state.userID} 
+                      changeUserID={this.changeUserID}
                       getSearch={this.getSearch}
                       />}
                   />
@@ -77,7 +84,9 @@ class App extends Component {
                       username={this.state.username}
                       usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
-                      changeUsername={this.changeUsername} 
+                      changeUsername={this.changeUsername}
+                      userID={this.state.userID} 
+                      changeUserID={this.changeUserID} 
                       getSearch={this.getSearch}
                       />}
                   />
@@ -89,6 +98,8 @@ class App extends Component {
                       usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
                       changeUsername={this.changeUsername}
+                      userID={this.state.userID} 
+                      changeUserID={this.changeUserID}
                       getSearch={this.getSearch} 
                       />}
                   />
@@ -99,7 +110,9 @@ class App extends Component {
                       username={this.state.username}
                       usercapsule={this.state.usercapsule}
                       currentCapsuleID={this.state.currentCapsuleID} 
-                      changeUsername={this.changeUsername} 
+                      changeUsername={this.changeUsername}
+                      userID={this.state.userID} 
+                      changeUserID={this.changeUserID} 
                       term={this.state.term}
                       getSearch={this.getSearch}
                       />}

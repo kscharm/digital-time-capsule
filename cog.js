@@ -282,7 +282,7 @@ exports.getMedia = function(database, capsuleId, callback) {
       if (capsule.textArr.length > 0) {
         for (let i = 0; i < capsule.textArr.length; i++) {
           let textPromise = new Promise((resolve, reject) => {
-           database.collection("text").findOne({ _id: capsule.textArr[i].id }).then((text, err) => {
+           database.collection("text").findOne({ _id: capsule.textArr[i] }).then((text, err) => {
              if (err) {
                reject(err);
              }
@@ -295,7 +295,7 @@ exports.getMedia = function(database, capsuleId, callback) {
       if (capsule.photoArr.length > 0) {
         for (let i = 0; i < capsule.photoArr.length; i++) {
           let photoPromise = new Promise((resolve, reject) => {
-            database.collection("photos").findOne({_id: capsule.photoArr[i].id}).then((photo, err) => {
+            database.collection("photos").findOne({ _id: capsule.photoArr[i] }).then((photo, err) => {
               if (err) {
                 reject(err);
               }
@@ -308,7 +308,7 @@ exports.getMedia = function(database, capsuleId, callback) {
       if (capsule.musicArr.length > 0) {
         for (let i = 0; i < capsule.musicArr.length; i++) {
           let musicPromise = new Promise((resolve, reject) => {
-            database.collection("music").findOne({ _id: capsule.musicArr[i].id }).then((music, err) => {
+            database.collection("music").findOne({ _id: capsule.musicArr[i] }).then((music, err) => {
               if (err) {
                 reject(err);
               }
@@ -334,7 +334,7 @@ exports.getMedia = function(database, capsuleId, callback) {
           }
         }
         return callback(media);
-      });
+      }).catch((err) => console.log("Error getting media: " + err));
     }
   })
 }

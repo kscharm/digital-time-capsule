@@ -42,7 +42,7 @@ export default class QuoteDisplay extends Component {
                 <div className='raised'>
                     <blockquote>
                         {actualText}
-                        <span class="author"><i>{author}</i></span>
+                        <span className="author"><i>{author}</i></span>
                         {this.props.showDelete ? <DeleteButton/> : null}
                     </blockquote>
                 </div>
