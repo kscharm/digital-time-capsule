@@ -5,6 +5,7 @@ import './style.css';
 import toBeCapsule from '../../images/addPhoto.png'
 
 import NavBar from '../../components/NavBar';
+import axios from 'axios';
 // import AddButton from '../../components/AddButton';
 
 export default class SearchResult extends Component {
@@ -19,7 +20,21 @@ export default class SearchResult extends Component {
     this.setState({addPop: pop});
   }
   getSearchResults = (term) => {
-    console.log("I should get the results for " + term);
+    axios.get('http://localhost:3001/searchUsers?query=' + term)
+      .then((res1) => {
+        axios.get('http://localhost:3001/searchCapsules?query=' + term
+          + '&user=' + this.props.username)
+          .then((res2) => {
+            console.log('User matches: ' + res1.data);
+            console.log('Capsule matches: ' + res2.data);
+          })
+          .catch((err) => {
+            console.log('Error searching for: ' + term);
+          });
+      })
+      .catch((err) => {
+          console.log('Error searching for: ' + term);
+      });
   }
   componentDidUpdate(prevProps) {
     if (this.props.term !== prevProps.term) {
