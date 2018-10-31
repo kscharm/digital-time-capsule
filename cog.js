@@ -359,35 +359,40 @@ exports.getCapsules = function(database, username, callback) {
 }
 
 exports.searchUsers = function(database, query, callback) {
-  database.collection("users").find({}).toArray((err, users) => {
-    let returnUsers = [];
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].username.includes(query) || users[i].firstName.includes(query) || users[i].lastName.includes(query)) {
-        returnUsers.push(users[i]);
-      }
+  const exp = new RegExp(query);
+  database.collection("users").find({ $or: [ 
+      { username: { $regex: exp } },
+      { firstName: { $regex: exp } },
+      { lastName: { $regex: exp } }
+    ]}).toArray((err, users) => {
+    if (err) {
+      console.log("Error getting users: ", err.message);
     }
-    return callback(returnUsers);
+    const usernames = users.map((user) => {
+      return user.username;
+    });
+    return callback(usernames);
   });
 }
 
-exports.searchCapsules = function(database, query, user, callback) {
-  database.collection("users").findOne({ username: user }).then((userObj, err) => {
+exports.searchCapsules = function(database, query, username, callback) {
+  database.collection("users").findOne({ username }, (err, user) => {
     if (err) {
-      console.log("User not found");
+      console.log("User " + user + " not found");
       return callback(null, err);
     }
-    database.collection("timeCapsules").find({}).toArray((err, capsules) => {
-      let returnCapsules = [];
-      for (let i = 0; i < capsules.length; i++) {
-        if (capsules[i].title.includes(query)) {
-          if (capsules[i].contributors.includes(userObj._id)) {
-            returnCapsules.push(capsules[i]);
-          } else if (capsules[i].settings.privacy == 'public') {
-            returnCapsules.push(capsules[i]);
-          }
-        }
+    const exp = new RegExp(query);
+    database.collection("timeCapsules").find({ $or: [
+      { title: { $regex: exp } },
+      { contributors: { $elemMatch: { $regex: exp} } }
+    ]}).toArray((err, capsules) => {
+      if (err) {
+        console.log("Error matching time capsules: ", err.message);
       }
-      return callback(returnCapsules);
+      const capsuleIds = capsules.map((capsule) => {
+        return capsule._id;
+      });
+      return callback(capsuleIds);
     });
-  })
+  });
 }
