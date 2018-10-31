@@ -201,8 +201,15 @@ exports.addTimeCapsule = function(database, capsule, callback) {
       console.log('Error creating time capsule in database: ', err.message);
       return callback(null, err);
     }
-    console.log('Time capsule saved');
-    return callback(capsule);
+    database.collection("users").updateOne({ _id: capsule.ownerId }, { $push: { capsules: capsule._id } }, (err, res) => {
+      if (err) {
+        console.log('Error adding capsule to user');
+        return callback(null, err);
+      }
+      console.log('Time capsule saved');
+      return callback(capsule);
+    });
+
   });
 }
 
