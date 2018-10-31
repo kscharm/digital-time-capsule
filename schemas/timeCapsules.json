@@ -70,6 +70,17 @@
         "metadata": {
             "bsonType": "object",
             "description": "All metadata associated with a time capsule"
+        },
+        "description": {
+            "bsonType": "string",
+            "description": "Description of what the time capsule is for"
+        },
+        "tags": {
+            "bsonType": "array",
+            "description": "Array of tags to be used",
+            "items": {
+                "type": "string"
+            }
         }
     }
 }

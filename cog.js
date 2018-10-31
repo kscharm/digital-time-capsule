@@ -144,7 +144,9 @@ exports.addUser = function(database, user, callback) {
             group: user._id,
             privacy: "private",
             theme: {}
-          }
+          },
+          description: 'Personal time capsule',
+          tags: []
         }
         this.addTimeCapsule(database, capsule, (res, err) => {
           if (err) {
