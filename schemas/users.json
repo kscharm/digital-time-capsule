@@ -82,6 +82,10 @@
         "metadata": {
             "bsonType": "object",
             "description": "All metadata associated with a user"
+        },
+        "photo": {
+            "bsonType": "string",
+            "description": "base64 encoding of the music to be uploaded"
         }
     }
 }
