@@ -355,6 +355,9 @@ exports.getCapsules = function(database, username, callback) {
       console.log("Error getting capsules: ", err.message);
       return callback(null, err);
     }
+    if (!user) {
+      return callback([]);
+    }
     return callback(user.capsules);
   });
 }
