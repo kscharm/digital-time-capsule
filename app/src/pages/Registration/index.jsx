@@ -51,7 +51,7 @@ export default class Registration extends Component {
           delete doc.confirmPass;
           doc.photo = addPhoto;
           // Add personal time capsule id to list of capsules
-          doc.capsules.push(doc._id);
+          // doc.capsules.push(doc._id);
           axios.post('http://localhost:3001/registerUser', doc)
             .then((res) => {
                 //change path to login
