@@ -5,6 +5,7 @@ import { /*withRouter,*/ Redirect } from 'react-router-dom';
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
 import bcrypt from 'bcryptjs';
+import addPhoto from '../../images/addPhoto.png'
 
 export default class Registration extends Component {
   // constructor(props) {
@@ -48,6 +49,7 @@ export default class Registration extends Component {
           // Delete unnecessary fields
           delete doc.toCapsule;
           delete doc.confirmPass;
+          doc.photo = addPhoto;
           // Add personal time capsule id to list of capsules
           doc.capsules.push(doc._id);
           axios.post('http://localhost:3001/registerUser', doc)
@@ -91,7 +93,6 @@ export default class Registration extends Component {
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state;
-
     if (redirectToReferrer) {
       return (
         <Redirect to={from} />
