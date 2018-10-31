@@ -16,3 +16,55 @@
 .capsuless {
     opacity: .99;
 }
+
+.notepaper-title {
+    position: relative;
+    padding: 29px 20px 20px 40px;
+    max-width: 210px;
+    line-height: 0px;
+    color: #6a5f49;
+    background-color: #f2f6c1;
+    background-image: -webkit-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    background-image: -moz-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    background-image: -o-repeating-linear-gradient(top, transparent 0%, transparent 29px, rgba(239, 207, 173, 0.7) 29px, rgba(239, 207, 173, 0.7) 30px);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 65px 0px 15px 50px;
+    overflow-wrap: break-word;
+  }
+  
+  .notepaper-title:before, .notepaper-title:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .notepaper-title:before {
+    left: 28px;
+    width: 2px;
+    border: solid #efcfad;
+    border-color: rgba(239, 207, 173, 0.9);
+    border-width: 0 1px;
+  }
+  
+  .notepaper-title:after {
+    z-index: -1;
+    left: 0;
+    right: 0;
+    background: rgba(242, 246, 193, 0.9);
+    border: 1px solid rgba(170, 157, 134, 0.7);
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+  
+  .text-title {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    margin : 0;
+    padding-bottom: .75em;
+  }

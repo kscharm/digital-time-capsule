@@ -93,7 +93,7 @@ class App extends Component {
                       />}
                   />
                   <Route
-                    path="/searchresult/:term"
+                    path={`/searchresult/:term`}
                     render={(props) => <Search 
                       {...props} 
                       username={this.state.username}

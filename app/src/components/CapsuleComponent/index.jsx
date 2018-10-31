@@ -24,9 +24,9 @@ import QuoteDisplay from '../../components/QuoteDisplay';
 import axios from 'axios';
 
 export default class CapsuleComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     addPop: false,
@@ -72,8 +72,9 @@ export default class CapsuleComponent extends Component {
     if (confirmed) {
       const index = this.state.musicList.indexOf(music);
       if (index > -1) {
-        axios.delete('http://localhost:3001/deleteMusic', {
-          params: { _id: music._id }
+        axios.post('http://localhost:3001/deleteMusic', {
+          musicId: music._id,
+          capsuleId: this.props.capsule
         })
         .then((res) => {
           let musicWithOut = this.state.musicList;
@@ -91,9 +92,19 @@ export default class CapsuleComponent extends Component {
     }
   }
   handleUpdateMusic = (x, y, music) => {
-    console.log('Now we update music to');
-    console.log(x + " and " + y);
-    console.log(music);
+    axios.post('http://localhost:3001/updateMusic', {
+      _id: music._id,
+      metadata: {
+          x,
+          y
+      }
+    })
+    .then((res) => {
+        console.log('Update successful!');
+    })
+    .catch((err) => {
+      alert('Error updating music: ' + err.message);
+    });
   }
   handleAddPhoto = (photo) => {
     // Update personal capsule to have the new photo that was added.
@@ -105,8 +116,9 @@ export default class CapsuleComponent extends Component {
     if (confirmed) {
       const index = this.state.photoList.indexOf(photo);
       if (index > -1) {
-        axios.delete('http://localhost:3001/deletePhoto', {
-          params: { _id: photo._id }
+        axios.post('http://localhost:3001/deletePhoto', {
+          photoId: photo._id,
+          capsuleId: this.props.capsule
         })
         .then((res) => {
           let photoWithOut = this.state.photoList;
@@ -124,9 +136,19 @@ export default class CapsuleComponent extends Component {
     }
   }
   handleUpdatePhoto = (x, y, photo) => {
-    console.log('Now we update photo to');
-    console.log(x + " and " + y);
-    console.log(photo);
+    axios.post('http://localhost:3001/updatePhoto', {
+      _id: photo._id,
+      metadata: {
+          x,
+          y
+      }
+    })
+    .then((res) => {
+        console.log('Update successful!');
+    })
+    .catch((err) => {
+      alert('Error updating photo: ' + err.message);
+    });
   }
   handleAddText = (text) => {
     // Update personal capsule to have the new text that was added.
@@ -138,9 +160,18 @@ export default class CapsuleComponent extends Component {
     if (confirmed) {
       const index = this.state.textList.indexOf(text);
       if (index > -1) {
-        let textWithOut = this.state.textList;
-        textWithOut.splice(index, 1);
-        this.setState({textList: textWithOut});
+        axios.post('http://localhost:3001/deleteText', {
+          textId: text._id,
+          capsuleId: this.props.capsule
+        })
+        .then((res) => {
+          let textWithOut = this.state.textList;
+          textWithOut.splice(index, 1);
+          this.setState({textList: textWithOut});
+        })
+        .catch((err) => {
+            alert('Error deleting text: ' + err.message);
+        });
       } else {
         console.log('Error deleting text: this text does not exist.');
       }
@@ -149,9 +180,19 @@ export default class CapsuleComponent extends Component {
     }
   }
   handleUpdateText = (x, y, text) => {
-    console.log('Now we update text to');
-    console.log(x + " and " + y);
-    console.log(text);
+    axios.post('http://localhost:3001/updateText', {
+      _id: text._id,
+      metadata: {
+          x,
+          y
+      }
+    })
+    .then((res) => {
+        console.log('Update successful!');
+    })
+    .catch((err) => {
+      alert('Error updating text: ' + err.message);
+    });
   }
   handleAddQuote = (quote) => {
     // Update personal capsule to have the new text that was added.
@@ -163,9 +204,18 @@ export default class CapsuleComponent extends Component {
     if (confirmed) {
       const index = this.state.quoteList.indexOf(quote);
       if (index > -1) {
-        let quoteWithOut = this.state.quoteList;
-        quoteWithOut.splice(index, 1);
-        this.setState({quoteList: quoteWithOut});
+        axios.post('http://localhost:3001/deleteText', {
+          quoteId: quote._id,
+          capsuleId: this.props.capsule
+        })
+        .then((res) => {
+          let quoteWithOut = this.state.quoteList;
+          quoteWithOut.splice(index, 1);
+          this.setState({quoteList: quoteWithOut});
+        })
+        .catch((err) => {
+            alert('Error deleting text: ' + err.message);
+        });
       } else {
         console.log('Error deleting quote: this quote does not exist.');
       }
@@ -174,33 +224,34 @@ export default class CapsuleComponent extends Component {
     }
   }
   handleUpdateQuote = (x, y, quote) => {
-    console.log('Now we update quote to');
-    console.log(x + " and " + y);
-    console.log(quote);
-  }
-
-  handleShowAddCapsule = (show) => {
-      this.setState({showAddCapsule: show});
-  }
-  handleAddCapsule = () => {
-    console.log('handled add capsule');
+    axios.post('http://localhost:3001/updateText', {
+      _id: quote._id,
+      metadata: {
+          x,
+          y
+      }
+    })
+    .then((res) => {
+        console.log('Update successful!');
+    })
+    .catch((err) => {
+      alert('Error updating quote: ' + err.message);
+    });
   }
 
   getAllMedia = (capsule) => {
-    console.log(capsule);
-    console.log(this.props.capsule);
     axios.get('http://localhost:3001/getMedia?_id=' + this.props.capsule)
-        .then((res) => {
-          // Add each type to their respective arrays
-          console.log(res);
-          this.setState({quoteList: res.data.quotes});
-          this.setState({photoList: res.data.photos});
-          this.setState({textList: res.data.text});
-          this.setState({musicList: res.data.music});
-        })
-        .catch((err) => {
-            alert('Error getting media: ' + err.message);
-        });
+      .then((res) => {
+        // Add each type to their respective arrays
+        console.log(res);
+        this.setState({quoteList: res.data.quotes});
+        this.setState({photoList: res.data.photos});
+        this.setState({textList: res.data.text});
+        this.setState({musicList: res.data.music});
+      })
+      .catch((err) => {
+          alert('Error getting media: ' + err.message);
+      });
   }
   componentDidMount = () => {
     //console.log(this.props);
@@ -366,10 +417,6 @@ export default class CapsuleComponent extends Component {
                                       handleAddMusic={this.handleAddMusic}
                                       user={this.props.user}
                                       capsule={this.props.capsule}/> : null}
-        {this.state.showAddCapsule ? <AddCapsule
-                                        handleShowAddCapsule={this.handleShowAddCapsule}
-                                        handleAddCapsule={this.handleAddCapsule}
-                                        user={this.props.user}/> : null}
       </div>
     );
   };

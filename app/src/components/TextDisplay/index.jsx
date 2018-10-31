@@ -9,17 +9,11 @@ export default class TextDisplay extends Component {
     // constructor(props) {
     //   super(props)
     // }
-
-    handleStop = (e) => {
-        console.log(e);
-        console.log(e.clientX);
-        console.log(e.clientY);
-        console.log(e.pageX);
-        console.log(e.pageY);
-        console.log(e.screenX);
-        console.log(e.screenY);
-        console.log("ive been stopped");
-        this.props.handleUpdateText(e.clientX, e.clientY, this.props.textObj);
+    handleStart = (e, ui) => { e.stopPropagation(); } 
+    handleStop = (e, data) => {
+        const currentX= data.lastX + data.deltaX;
+        const currentY= data.lastY + data.deltaY;
+        this.props.handleUpdateText(currentX, currentY, this.props.textObj);
     }
 
     render () {
@@ -37,7 +31,7 @@ export default class TextDisplay extends Component {
         return (
             <Draggable
               bounds= {{left:0, top:0}}
-              defaultPosition={{x: 0, y: 100}}
+              defaultPosition={{x: this.props.xPos, y: this.props.yPos}}
               position={null}
               onStart={this.handleStart}
               onDrag={this.handleDrag}

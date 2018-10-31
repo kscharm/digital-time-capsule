@@ -9,18 +9,11 @@ export default class PhotoDisplay extends Component {
     // constructor(props) {
     //   super(props)
     // }
-
     handleStart = (e, ui) => { e.stopPropagation(); } 
-    handleStop = (e) => {
-        console.log(e);
-        console.log(e.clientX);
-        console.log(e.clientY);
-        console.log(e.pageX);
-        console.log(e.pageY);
-        console.log(e.screenX);
-        console.log(e.screenY);
-        console.log("ive been stopped");
-        this.props.handleUpdatePhoto(e.clientX, e.clientY, this.props.photoObj);
+    handleStop = (e, data) => {
+        const currentX= data.lastX + data.deltaX;
+        const currentY= data.lastY + data.deltaY;
+        this.props.handleUpdatePhoto(currentX, currentY, this.props.photoObj);
     }
 
     render () {
@@ -38,7 +31,7 @@ export default class PhotoDisplay extends Component {
             <Draggable
               bounds= {{left:0, top:0}}
               handle='.handle2'
-              defaultPosition={{x: 0, y: 100}}
+              defaultPosition={{x: this.props.xPos, y: this.props.yPos}}
               position={null}
               onStart={this.handleStart}
               onDrag={this.handleDrag}
