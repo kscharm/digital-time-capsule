@@ -4,6 +4,7 @@ import './style.css';
 import AddButton from '../../components/AddButton';
 import toBeCapsule from '../../images/addPhoto.png';
 import AddCapsule from '../../components/Cards/AddCapsule';
+import CapsuleDisplay from '../../components/CapsuleDisplay';
 
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
@@ -15,6 +16,7 @@ export default class Registration extends Component {
   state = {
     addPop: false,
     showAddCapsule: false,
+    capsuleList: [],
   }
 
   handlePop = (pop) => {
@@ -32,6 +34,7 @@ export default class Registration extends Component {
     axios.get('http://localhost:3001/getCapsules?username=' + username)
       .then((res) => {
         console.log(res.data);
+        this.setState({capsuleList: res.data});
       })
       .catch((err) => {
           alert('Error getting capsules: ' + err.message);
@@ -61,6 +64,7 @@ export default class Registration extends Component {
                 <p className={`text-title`}>{title1}</p>
               </div>
             <div>
+              {/* <CapsuleDisplay  */}
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
               <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
