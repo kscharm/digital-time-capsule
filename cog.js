@@ -348,13 +348,29 @@ exports.getFriends = function(database, username, callback) {
 }
 
 exports.getCapsules = function(database, username, callback) {
-  console.log(username);
   database.collection("users").findOne(username, (err, user) => {
     if (err) {
       console.log("Error getting capsules: ", err.message);
       return callback(null, err);
     }
     return callback(user.capsules);
+  });
+}
+
+exports.getCapsulesById = function(database, capsuleIds, callback) {
+  database.collection("timeCapsules").find({ _id: { $in: capsuleIds } }).toArray((err, capsules) => {
+    if (err) {
+      console.log("Error matching time capsules: ", err.message);
+    }
+    const returnCapsules = capsules.map((capsule) => {
+      const c = {
+        _id: capsule._id,
+        title: capsule.title,
+        description: capsule.description
+      };
+      return c;
+    });
+    return callback(returnCapsules);
   });
 }
 
@@ -389,10 +405,15 @@ exports.searchCapsules = function(database, query, username, callback) {
       if (err) {
         console.log("Error matching time capsules: ", err.message);
       }
-      const capsuleIds = capsules.map((capsule) => {
-        return capsule._id;
+      const returnCapsules = capsules.map((capsule) => {
+        const c = { 
+          _id: capsule._id,
+          title: capsule.title,
+          description: capsule.description
+        };
+        return c;
       });
-      return callback(capsuleIds);
+      return callback(returnCapsules);
     });
   });
 }

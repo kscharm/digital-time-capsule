@@ -237,6 +237,17 @@ app.get('/getCapsules', (req, res) => {
   });
 });
 
+app.post('/getCapsulesById', (req, res) => {
+  const capsuleIds = req.body.capsuleIds;
+  cog.getCapsulesById(database, capsuleIds, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.get('/getFriends', (req, res) => {
   const username = req.query;
   cog.getFriends(database, username, (data, err) => {
@@ -256,8 +267,8 @@ app.get('/getMedia', (req, res) => {
     } else {
       res.status(200).send(data);
     }
-  })
-})
+  });
+});
 
 app.get('/searchUsers', (req, res) => {
   const params = req.query;
@@ -267,8 +278,8 @@ app.get('/searchUsers', (req, res) => {
     } else {
       res.status(200).send(data);
     }
-  })
-})
+  });
+});
 
 app.get('/searchCapsules', (req, res) => {
   const params = req.query;
@@ -278,8 +289,8 @@ app.get('/searchCapsules', (req, res) => {
     } else {
       res.status(200).send(data);
     }
-  })
-})
+  });
+});
 
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);

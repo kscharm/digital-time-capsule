@@ -30,8 +30,17 @@ export default class Registration extends Component {
 
   getUserCapsules = (username) => {
     axios.get('http://localhost:3001/getCapsules?username=' + username)
-      .then((res) => {
-        console.log(res.data);
+      .then((res1) => {
+        axios.post('http://localhost:3001/getCapsulesById', {
+          capsuleIds: res1.data
+        })
+        .then((res2) => {
+          // Array of time capsule objects
+          console.log(res2.data);
+        })
+        .catch((err) => {
+          alert('Error getting capsules: ' + err.message);
+        });
       })
       .catch((err) => {
           alert('Error getting capsules: ' + err.message);
