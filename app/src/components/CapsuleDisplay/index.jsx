@@ -20,15 +20,18 @@ export default class CapsuleDisplay extends Component {
             </button>
             )}
         return (
+            <div className='capsuleDisplayGroup'>
+            <div className='capsulePiny'></div>
             <div className={`capsuleDisplay`}>
-                <div class='capsulePin'></div>
-                <div class="title-content">
+                {/* <div className='capsulePin'></div> */}
+                <div className="title-content">
                     <h3>{this.props.title}</h3>
                     <hr />
-                    <div class="intro">{this.props.id}</div>
+                    <div className="intro">{this.props.id}</div>
                 </div>
-                <div class="card-info">{this.props.description}</div>
+                <div className="card-info">{this.props.description}</div>
                 {this.props.showDelete ? <DeleteButton/> : null}
+            </div>
             </div>
         );
     }

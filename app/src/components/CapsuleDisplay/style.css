@@ -11,6 +11,10 @@
     opacity: .65;
     min-height: 250px;
   }
+  .capsuleDisplayGroup {
+      text-align: center;
+      display: inline-block;
+    }
   .capsuleDisplay .color-overlay {
     /* Rectangle 11: */
     background: rgba(84, 104, 110, 0.4);
@@ -76,4 +80,18 @@
     width: 20px;
     height: 20px;
     overflow: hidden;
+}
+.capsulePiny {
+  background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 50%, black 100%);
+  background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, black);
+  background-image: radial-gradient(yellow 50%, black 100%);
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  left: 125px;
+    top: 35px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
 }
