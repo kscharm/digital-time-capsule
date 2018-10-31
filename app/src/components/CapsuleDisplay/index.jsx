@@ -21,6 +21,7 @@ export default class CapsuleDisplay extends Component {
             )}
         return (
             <div className={`capsuleDisplay`}>
+                <div class='capsulePin'></div>
                 <div class="color-overlay"></div>
                 <div class="title-content">
                     <h3>{this.props.title}</h3>
