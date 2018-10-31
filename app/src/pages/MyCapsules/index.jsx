@@ -55,6 +55,7 @@ export default class Registration extends Component {
   render() {
 
     const title1 = "My Capsules";
+    const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
@@ -72,7 +73,7 @@ export default class Registration extends Component {
             <div className={`notepaper-title`} style={{maxWidth: "180px"}}>
                 <p className={`text-title`}>{title1}</p>
               </div>
-            <div>
+            <div className='capsulesBlock' style={{width: w}}>
               {this.state.capsuleList.map((capsule) => {
                 return (
                   <CapsuleDisplay
@@ -86,9 +87,6 @@ export default class Registration extends Component {
                   />
               )
             })}
-              <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
-              <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
-              <img src={toBeCapsule} alt="placeholder" style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
             </div>
             {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
