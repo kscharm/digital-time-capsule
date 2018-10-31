@@ -21,19 +21,14 @@ export default class CapsuleDisplay extends Component {
             )}
         return (
             <div className={`capsuleDisplay`}>
-                <div class="title-content">
-                    <h3>SPRING FEVER</h3>
-                    <hr />
-                    <div class="intro">Yllamco laboris nisi ut aliquip ex ea commodo.</div>
-                </div>
-                <div class="card-info">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim. 
-                </div>
-                <p className='title'>This Bitch</p>
-                <p className='description'>This is Bitch</p>
-                {this.props.showDelete ? <DeleteButton/> : null}
-                <div class="gradient-overlay"></div>
                 <div class="color-overlay"></div>
+                <div class="title-content">
+                    <h3>{this.props.title}</h3>
+                    <hr />
+                    <div class="intro">{this.props.id}</div>
+                </div>
+                <div class="card-info">{this.props.description}</div>
+                {this.props.showDelete ? <DeleteButton/> : null}
             </div>
         );
     }
