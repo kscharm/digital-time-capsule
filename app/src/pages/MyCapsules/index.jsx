@@ -93,6 +93,7 @@ export default class Registration extends Component {
             {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
                                         handleAddCapsule={this.handleAddCapsule}
+                                        userID={this.props.userID}
                                         user={this.props.username}/> : null}
           </div>
         </div>

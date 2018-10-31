@@ -29,8 +29,6 @@ class Login extends React.Component {
     axios.get('http://localhost:3001/validateUser?username=' + this.state.user)
       .then((res) => {
         const user = res.data;
-        console.log(this.state.pass);
-        console.log(user.password);
         bcrypt.compare(this.state.pass, user.password, (err, res) => {
           if (err) {
             console.log("Error decrypting: " + err);
@@ -39,6 +37,7 @@ class Login extends React.Component {
             fakeAuth.authenticate(() => {
               this.setState({ capsuleID: user.capsules[0] });
               this.props.changeUsername(this.state.user);
+              this.props.changeUserID(user._id);
               this.props.changeCapsuleID(user.capsules[0]);
               this.props.setUserCap(user.capsules[0]);
               this.setState({ redirectToReferrer: true });

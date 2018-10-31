@@ -107,6 +107,7 @@ focus = () => {
 
   saveCapsule = () => {
     console.log("this should save the capsule");
+    console.log(this.props.userID);
     this.closeAddCapsule();
   }
 
