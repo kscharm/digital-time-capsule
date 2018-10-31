@@ -7,6 +7,8 @@ import editorStyles from 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import '../../../../node_modules/draft-js-counter-plugin/lib/plugin.css';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import './style.css';
+import axios from 'axios'
+import uuidv4 from 'uuid/v4'
 
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
@@ -44,6 +46,11 @@ export default class AddCapsule extends Component {
     updateTags = (evt) => {
         this.setState({tags: evt.target.value})
     }
+    updateDescription = (editorState) => {
+        this.setState({
+            editorState,
+        });
+    };
 _getLengthOfSelectedText = () => {
     const currentSelection = this.state.editorState.getSelection();
     const isCollapsed = currentSelection.isCollapsed();
@@ -106,9 +113,27 @@ focus = () => {
 };
 
   saveCapsule = () => {
-    console.log("this should save the capsule");
-    console.log(this.props.userID);
-    this.closeAddCapsule();
+    let description = this.state.editorState.getCurrentContent().getPlainText();
+    let capsule = {
+        _id: uuidv4(),
+        ownerId: this.props.userID,
+        title: this.state.capsuleName,
+        contributors: [this.props.userID],
+        photoArr: [],
+        textArr: [],
+        musicArr: [],
+        metadata: {},
+        settings: {
+            group: '',
+            privacy: this.state.selectedOption,
+            theme: {}
+        },
+        description: description,
+        tags: this.state.tags.split(',')
+    }
+    axios.post('http://localhost:3001/addCapsule', capsule).then((res) => {
+        this.closeAddCapsule();
+    })
   }
 
   closeAddCapsule = () => {
@@ -156,7 +181,7 @@ focus = () => {
             <div className={editorStyles.editor} onClick={this.focus} style={{width: '350px'}}>
                 <Editor
                     editorState={this.state.editorState}
-                    onChange={this.onChange}
+                    onChange={evt=> this.updateDescription(evt)}
                     ref={(element) => { this.editor = element; }}
                     plugins={[counterPlugin]}
                     handleBeforeInput={this._handleBeforeInput}
