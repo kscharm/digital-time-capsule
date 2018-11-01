@@ -133,6 +133,8 @@ focus = () => {
     }
     axios.post('http://localhost:3001/addCapsule', capsule).then((res) => {
         this.closeAddCapsule();
+        //console.log(res.data);
+        this.props.handleAddCapsule(res.data);
     })
   }
 

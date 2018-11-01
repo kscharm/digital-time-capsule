@@ -55,6 +55,11 @@ export default class Registration extends Component {
           alert('Error getting capsules: ' + err.message);
       });
   }
+  handleAddCapsule = (capsule) => {
+    // Update my capsule to have the new capsule that was added.
+    const capsuleWithNew = this.state.capsuleList.concat(capsule);
+    this.setState({capsuleList: capsuleWithNew});
+  }
   componentDidMount = () => {
     this.getUserCapsules(this.props.username);
   }
@@ -78,12 +83,6 @@ export default class Registration extends Component {
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}/>
-            <div className='addButton'>
-              <AddButton
-                buttonAction={() => {this.setState({showAddCapsule: true})}}
-                buttonType='add'
-              />
-            </div>
             <div className={`notepaper-title`} style={{maxWidth: "180px"}}>
                 <p className={`text-title`}>{title1}</p>
               </div>
@@ -102,6 +101,12 @@ export default class Registration extends Component {
                   />
               )
             })}
+            </div>
+            <div className='addButton'>
+              <AddButton
+                buttonAction={() => {this.setState({showAddCapsule: true})}}
+                buttonType='add'
+              />
             </div>
             {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
