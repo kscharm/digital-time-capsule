@@ -15,6 +15,7 @@ import {
 
 import {
   Link,
+  Redirect,
 } from 'react-router-dom';
 
 const Menu = (props) => {
@@ -77,6 +78,20 @@ export default class NavBar extends Component {
     userClicked:false,
     menuClicked:false,
     addPop: false,
+    redirectToReferrer: false,
+    goHomeBut: '',
+  }
+
+  goHome = () => {
+    this.props.changeCapsuleID(this.props.capsule);
+    // if (this.props.inCapsule) {
+    //   console.log('in capsule');
+    //   this.setState({goHomeBut: this.props.capsule});
+    // } else {
+    //   console.log('not in capsule');
+    //   this.setState({redirectToReferrer: true});
+    // }
+    // this.setState({redirectToReferrer: true});
   }
 
   componentWillReceiveProps (newProps) {
@@ -100,6 +115,13 @@ export default class NavBar extends Component {
   }
 
   render() {
+    const { from } = { from: { pathname: `/currentCapsule/${this.props.user}/${this.props.capsule}` } }
+
+    if (this.state.redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
     return (
       <div>
         <div className='navBar'>
@@ -108,7 +130,7 @@ export default class NavBar extends Component {
             </div>
             <div className='icons'>
               <Link to={`/currentCapsule/${this.props.user}/${this.props.capsule}`} style={{color: 'white'}}>
-                <FaHome className='icon' onClick={() => {console.log("redirecting to personal time capsule page"); this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
+                <FaHome className='icon' onClick={() => {this.goHome() ; this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
               <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />

@@ -60,7 +60,7 @@ class App extends Component {
                       />}
                   />
                   <Route
-                    path="/currentCapsule/:user/:capsuleID"
+                    path={`/currentCapsule/:user/${this.state.currentCapsuleID}`}
                     //component={CurrentCapsule}
                     render={(props) => <CurrentCapsule 
                       {...props} 
@@ -71,6 +71,7 @@ class App extends Component {
                       userID={this.state.userID} 
                       changeUserID={this.changeUserID}
                       getSearch={this.getSearch}
+                      changeCapsuleID={this.changeCapsuleID}
                       />}
                   />
                   <Route
@@ -88,6 +89,7 @@ class App extends Component {
                       userID={this.state.userID} 
                       changeUserID={this.changeUserID} 
                       getSearch={this.getSearch}
+                      changeCapsuleID={this.changeCapsuleID} 
                       />}
                   />
                   <Route
@@ -101,6 +103,7 @@ class App extends Component {
                       userID={this.state.userID} 
                       changeUserID={this.changeUserID}
                       getSearch={this.getSearch} 
+                      changeCapsuleID={this.changeCapsuleID}
                       />}
                   />
                   <Route
@@ -115,6 +118,7 @@ class App extends Component {
                       changeUserID={this.changeUserID} 
                       term={this.state.term}
                       getSearch={this.getSearch}
+                      changeCapsuleID={this.changeCapsuleID}
                       />}
                   />
                 </Switch>

@@ -38,7 +38,8 @@ export default class Friends extends Component {
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
-                    user={this.props.username} capsule={this.props.usercapsule}/>
+                    user={this.props.username} capsule={this.props.usercapsule}
+                    changeCapsuleID={this.props.changeCapsuleID}/>
             <div className='addButton'>
               </div>
               <div className={`notepaper-title`} style={{maxWidth: "150px"}}>
