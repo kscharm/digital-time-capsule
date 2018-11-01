@@ -80,9 +80,6 @@ export default class Registration extends Component {
         <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
-                    user={this.props.username} capsule={this.props.usercapsule}
-                    changeCapsuleID={this.props.changeCapsuleID}/>
             <div className={`notepaper-title`} style={{maxWidth: "180px"}}>
                 <p className={`text-title`}>{title1}</p>
               </div>
@@ -102,6 +99,9 @@ export default class Registration extends Component {
               )
             })}
             </div>
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
+                    user={this.props.username} capsule={this.props.usercapsule}
+                    changeCapsuleID={this.props.changeCapsuleID}/>
             <div className='addButton'>
               <AddButton
                 buttonAction={() => {this.setState({showAddCapsule: true})}}

@@ -6,6 +6,7 @@ import toBeCapsule from '../../images/addPhoto.png'
 
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import UserDisplay from '../../components/UserDisplay';
 import CapsuleDisplay from '../../components/CapsuleDisplay';
@@ -23,6 +24,11 @@ export default class SearchResult extends Component {
 
   handlePop = (pop) => {
     this.setState({addPop: pop});
+  }
+  sendToCapusle = (id) => {
+    this.props.changeCapsuleID(id);
+    this.setState({changeTo: id});
+    this.setState({redirectToReferrer: true});
   }
   getSearchResults = (term) => {
     axios.get('http://localhost:3001/searchUsers?query=' + term)
@@ -58,15 +64,18 @@ export default class SearchResult extends Component {
     const title1 = "Capsules";
     const title2 = "Users";
     const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const { from } = this.props.location.state || { from: { pathname: `/currentCapsule/${this.props.user}/${this.state.changeTo}` } }
 
+    if (this.state.redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
       <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
-                    user={this.props.username} capsule={this.props.usercapsule}
-                    inSearch={true} changeCapsuleID={this.props.changeCapsuleID}/>
             <div className='addButton'>
               </div>
               <div className={`notepaper-title`} style={{maxWidth: "160px"}}>
@@ -107,6 +116,9 @@ export default class SearchResult extends Component {
               )
             })}
             </div>
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
+                    user={this.props.username} capsule={this.props.usercapsule}
+                    inSearch={true} changeCapsuleID={this.props.changeCapsuleID}/>
             </div>
         </div>
       </div>
