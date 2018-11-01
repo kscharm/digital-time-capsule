@@ -36,7 +36,9 @@
 .addCapsuleCard div.DraftEditor-root {
     width: 310px;
 }
-
+.addCapsule {
+    z-index: 11;
+}
 /*For Inputs*/
 .addCapsuleCard input[type="text"] {
     border: 0;
