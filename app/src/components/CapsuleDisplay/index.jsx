@@ -22,7 +22,7 @@ export default class CapsuleDisplay extends Component {
         return (
             <div className='capsuleDisplayGroup'>
             <div className='capsulePiny'></div>
-            <div className={`capsuleDisplay`}>
+            <div className={`capsuleDisplay`} onClick={() => {this.props.sendToCapusle(this.props.id)}}>
                 {/* <div className='capsulePin'></div> */}
                 <div className="title-content">
                     <h3>{this.props.title}</h3>

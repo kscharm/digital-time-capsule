@@ -41,6 +41,7 @@ export default class CurrentCapsule extends Component {
           usercapsule={this.props.usercapsule}
           message={this.state.currentMessage}
           getSearch={this.props.getSearch}
+          changeCapsuleID={this.props.changeCapsuleID}
         />
       </div>
     );

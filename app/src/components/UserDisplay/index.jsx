@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './style.css';
 import {
     FaTrash
 } from 'react-icons/fa';
 
 import toBeCapsule from '../../images/addPhoto.png';
 import AddButton from '../../components/AddButton';
+import './style.css';
 
 export default class UserDisplay extends Component {
     // constructor(props) {
@@ -32,7 +32,7 @@ export default class UserDisplay extends Component {
                     <hr />
                     {/* <div className="intro">{this.props.id}</div> */}
                 </div>
-                <div className='addButton' style={{position: 'absolute;', marginLeft: '19%;'}}>
+                <div className='friendAddButton' style={{position: 'absolute', marginLeft: '19%'}}>
                     <AddButton
                         buttonAction={() => {console.log("add friend button clicked!")}}
                         buttonType='add'

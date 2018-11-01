@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
 import AddButton from '../../components/AddButton';
-import toBeCapsule from '../../images/addPhoto.png';
 import AddCapsule from '../../components/Cards/AddCapsule';
 import CapsuleDisplay from '../../components/CapsuleDisplay';
+import { Redirect } from 'react-router-dom';
 
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
@@ -17,6 +17,8 @@ export default class Registration extends Component {
     addPop: false,
     showAddCapsule: false,
     capsuleList: [],
+    redirectToReferrer: false,
+    changeTo: '',
   }
 
   handlePop = (pop) => {
@@ -28,8 +30,12 @@ export default class Registration extends Component {
   }
   handleShowAddCapsule = (show) => {
     this.setState({showAddCapsule: show});
-}
-
+  }
+  sendToCapusle = (id) => {
+    this.props.changeCapsuleID(id);
+    this.setState({changeTo: id});
+    this.setState({redirectToReferrer: true});
+  }
   getUserCapsules = (username) => {
     axios.get('http://localhost:3001/getCapsules?username=' + username)
       .then((res1) => {
@@ -53,6 +59,13 @@ export default class Registration extends Component {
     this.getUserCapsules(this.props.username);
   }
   render() {
+    const { from } = this.props.location.state || { from: { pathname: `/currentCapsule/${this.props.user}/${this.state.changeTo}` } }
+
+    if (this.state.redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
 
     const title1 = "My Capsules";
     const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -63,7 +76,8 @@ export default class Registration extends Component {
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
-                    user={this.props.username} capsule={this.props.usercapsule}/>
+                    user={this.props.username} capsule={this.props.usercapsule}
+                    changeCapsuleID={this.props.changeCapsuleID}/>
             <div className='addButton'>
               <AddButton
                 buttonAction={() => {this.setState({showAddCapsule: true})}}
@@ -84,6 +98,7 @@ export default class Registration extends Component {
                       key={capsule._id}
                       capsuleObj={capsule}
                       showDelete={this.state.showDelete}
+                      sendToCapusle={this.sendToCapusle}
                   />
               )
             })}

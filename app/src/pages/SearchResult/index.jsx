@@ -30,7 +30,7 @@ export default class SearchResult extends Component {
           .then((res2) => {
             console.log('User matches: ' + res1.data);
             console.log('Capsule matches: ' + res2.data);
-            this.state.userMatches = res1.data;
+            this.setState({userMatches: res1.data});
             console.log(this.state.userMatches);
           })
           .catch((err) => {
@@ -63,7 +63,7 @@ export default class SearchResult extends Component {
           <div className={ `capsuless` }>
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
                     user={this.props.username} capsule={this.props.usercapsule}
-                    inSearch={true}/>
+                    inSearch={true} changeCapsuleID={this.props.changeCapsuleID}/>
             <div className='addButton'>
               </div>
               <div className={`notepaper-title`} style={{maxWidth: "160px"}}>
@@ -86,7 +86,7 @@ export default class SearchResult extends Component {
                       // id={capsule._id}
                       // description={capsule.description}
                       style={{display:'inline-block'}}
-                      // key={capsule._id}
+                      key={user}
                       // capsuleObj={capsule}
                       showDelete={this.state.showDelete}
                   />

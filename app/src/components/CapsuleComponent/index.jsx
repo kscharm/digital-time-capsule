@@ -256,6 +256,11 @@ export default class CapsuleComponent extends Component {
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.capsule !== this.props.capsule) {
+      this.getAllMedia(this.props.capsule);
+    }
+  }
 
   render() {
     const Add = (props) => {
@@ -395,7 +400,8 @@ export default class CapsuleComponent extends Component {
           </div>
         </div>
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
-                user={this.props.user} capsule={this.props.usercapsule}/>
+                user={this.props.user} capsule={this.props.usercapsule}
+                changeCapsuleID={this.props.changeCapsuleID} inCapsule={true}/>
         {this.state.showAddPhoto ? <AddPhoto 
                                       handleShowAddPhoto={this.handleShowAddPhoto}
                                       handleAddPhoto={this.handleAddPhoto}
