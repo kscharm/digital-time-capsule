@@ -8,6 +8,7 @@ import NavBar from '../../components/NavBar';
 import axios from 'axios';
 
 import UserDisplay from '../../components/UserDisplay';
+import CapsuleDisplay from '../../components/CapsuleDisplay';
 // import AddButton from '../../components/AddButton';
 
 export default class SearchResult extends Component {
@@ -17,6 +18,7 @@ export default class SearchResult extends Component {
   state = {
     addPop: false, 
     userMatches: [],
+    capsuleList: [],
   }
 
   handlePop = (pop) => {
@@ -31,7 +33,8 @@ export default class SearchResult extends Component {
             console.log('User matches: ' + res1.data);
             console.log('Capsule matches: ' + res2.data);
             this.setState({userMatches: res1.data});
-            console.log(this.state.userMatches);
+            this.setState({capsuleList: res2.data});
+            // console.log(this.state.userMatches);
           })
           .catch((err) => {
             console.log('Error searching for: ' + term);
@@ -70,10 +73,21 @@ export default class SearchResult extends Component {
                 <p className={`text-title`}>{title1}</p>
               </div>
               {/* <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2> */}
-              <div>
-                <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
-                <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
-                <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
+              <div className='capsulesBlock' style={{width: w}}>
+                {this.state.capsuleList.map((capsule) => {
+                  return (
+                    <CapsuleDisplay
+                        title={capsule.title}
+                        id={capsule._id}
+                        description={capsule.description}
+                        style={{display:'inline-block'}}
+                        key={capsule._id}
+                        capsuleObj={capsule}
+                        showDelete={this.state.showDelete}
+                        sendToCapusle={this.sendToCapusle}
+                    />
+                )
+              })}
               </div>
               <div className={`notepaper-title`} style={{maxWidth: "130px"}}>
                 <p className={`text-title`}>{title2}</p>
