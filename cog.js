@@ -429,3 +429,23 @@ exports.searchCapsules = function(database, query, username, callback) {
     });
   });
 }
+
+exports.checkCapsuleOwner = function(database, capsuleId, callback) {
+  database.collection("timeCapsules").findOne({_id:capsuleId}, (err, capsule) => {
+    if (err) {
+      return callback(null, err);
+    }
+    return callback(capsule.ownerId);
+  });
+}
+
+exports.getCapsuleContributors = function(database, capsuleId, callback) {
+  database.collection("timeCapsules").findOne({_id:capsuleId}, (err, capsule) => {
+    if (err) {
+      return callback(null, err);
+    }
+    return callback(capsule.contributors);
+  })
+}
+
+
