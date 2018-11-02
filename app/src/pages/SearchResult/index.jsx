@@ -82,7 +82,7 @@ export default class SearchResult extends Component {
                 <p className={`text-title`}>{title1}</p>
               </div>
               {/* <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2> */}
-              <div className='capsulesBlock' style={{width: w}}>
+              <div className='capsulesBlock'>
                 {this.state.capsuleList.map((capsule) => {
                   return (
                     <CapsuleDisplay
@@ -94,6 +94,7 @@ export default class SearchResult extends Component {
                         capsuleObj={capsule}
                         showDelete={this.state.showDelete}
                         sendToCapusle={this.sendToCapusle}
+                        userID={this.props.userID}
                     />
                 )
               })}
@@ -101,7 +102,7 @@ export default class SearchResult extends Component {
               <div className={`notepaper-title`} style={{maxWidth: "130px"}}>
                 <p className={`text-title`}>{title2}</p>
               </div>
-              <div className='usersBlock' style={{width: w}}>
+              <div className='usersBlock'>
               {this.state.userMatches.map((user) => {
                 return (
                   <UserDisplay //giving the unique key error and I'm not sure why

@@ -85,10 +85,10 @@
   background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, black);
   background-image: radial-gradient(yellow 50%, black 100%);
   border-radius: 10px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   overflow: hidden;
-  left: 125px;
+  left: 130px;
     top: 35px;
     position: relative;
     z-index: 10;
