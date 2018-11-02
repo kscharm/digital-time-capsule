@@ -14,7 +14,7 @@ import AddPhoto from '../../components/Cards/AddPhoto';
 import AddText from '../../components/Cards/AddText';
 import AddQuote from '../../components/Cards/AddQuote';
 import AddMusic from '../../components/Cards/AddMusic';
-import AddCapsule from '../../components/Cards/AddCapsule';
+import OurButton from '../../components/OurButton';
 
 import MusicPlayer from '../../components/MusicPlayer';
 import PhotoDisplay from '../../components/PhotoDisplay';
@@ -283,6 +283,11 @@ export default class CapsuleComponent extends Component {
           alert('Error getting media: ' + err.message);
       });
   }
+  requestCapsuleAccess = () => {
+    console.log('I should req access for user and capsule:');
+    console.log(this.props.userID);
+    console.log(this.props.capsule);
+  }
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
     this.checkCapsuleOwner(this.props.capsule,this.props.userID);
@@ -438,7 +443,13 @@ export default class CapsuleComponent extends Component {
               />
             </div>
             :
-            null
+            <div className='requestAdd'>
+              <OurButton
+                  buttonAction={() => { this.requestCapsuleAccess() }}
+                  buttonType='primary'
+                  buttonText='Join Capsule'
+              />
+            </div>
           }
         </div>
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}

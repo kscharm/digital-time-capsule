@@ -35,3 +35,9 @@
     margin-top: .15em;
     border:1.5px solid rgb(0, 48, 87);
 } */
+
+.requestAdd {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

@@ -106,12 +106,12 @@ export default class SearchResult extends Component {
               {this.state.userMatches.map((user) => {
                 return (
                   <UserDisplay //giving the unique key error and I'm not sure why
-                      title={user}
-                      // id={capsule._id}
-                      // description={capsule.description}
+                      title={user.username}
+                      id={user._id}
+                      photo={user.photo}
                       style={{display:'inline-block'}}
-                      key={user}
-                      // capsuleObj={capsule}
+                      key={user.username}
+                      university={user.university}
                       showDelete={this.state.showDelete}
                   />
               )
