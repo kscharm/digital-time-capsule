@@ -259,6 +259,30 @@ app.get('/getFriends', (req, res) => {
   });
 });
 
+app.post('/addFriend', (req, res) => {
+  const myUsername = req.body.myUsername;
+  const friendUsername = req.body.friendUsername;
+  cog.addFriend(database, myUsername, friendUsername, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/deleteFriend', (req, res) => {
+  const myUsername = req.body.myUsername;
+  const friendUsername = req.body.friendUsername;
+  cog.deleteFriend(database, myUsername, friendUsername, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.get('/getMedia', (req, res) => {
   const capsuleId = req.query;
   cog.getMedia(database, capsuleId, (data, err) => {

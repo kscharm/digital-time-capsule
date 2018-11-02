@@ -356,6 +356,26 @@ exports.getFriends = function(database, username, callback) {
   });
 }
 
+exports.addFriend = function(database, myUsername, friendUsername, callback) {
+  database.collection("users").updateOne({ username: myUsername },  { $push: { friends: friendUsername } }, (err, user) => {
+    if (err) {
+      console.log("Error adding friend: ", err.message);
+      return callback(null, err);
+    }
+    return callback(user);
+  });
+}
+
+exports.deleteFriend = function(database, myUsername, friendUsername, callback) {
+  database.collection("users").updateOne({ username: myUsername },  { $pull: { friends: friendUsername } }, (err, user) => {
+    if (err) {
+      console.log("Error deleting friend: ", err.message);
+      return callback(null, err);
+    }
+    return callback(user);
+  });
+}
+
 exports.getCapsules = function(database, username, callback) {
   database.collection("users").findOne(username, (err, user) => {
     if (err) {
