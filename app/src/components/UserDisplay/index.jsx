@@ -9,9 +9,6 @@ import './style.css';
 import axios from 'axios';
 
 export default class UserDisplay extends Component {
-    // constructor(props) {
-    //   super(props)
-    // }
     requestAddFriend = (username) => {
         axios.post('http://localhost:3001/addFriend', {
            myUsername: this.props.username,
@@ -23,6 +20,20 @@ export default class UserDisplay extends Component {
         })
         .catch((err) => {
            alert('Error adding friend: ' + err.message);
+        });
+    }
+
+    requestAcceptFriend = (username) => {
+        axios.post('http://localhost:3001/acceptFriend', {
+           myUsername: this.props.username,
+           friendUsername: username
+        })
+        .then((res) => {
+            console.log(res.data);
+            this.props.handleAcceptFriend(res.data);
+        })
+        .catch((err) => {
+           alert('Error accepting friend request: ' + err.message);
         });
     }
 

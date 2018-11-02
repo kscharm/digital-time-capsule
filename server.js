@@ -283,6 +283,18 @@ app.post('/deleteFriend', (req, res) => {
   });
 });
 
+app.post('/acceptFriend', (req, res) => {
+  const myUsername = req.body.myUsername;
+  const friendUsername = req.body.friendUsername;
+  cog.acceptFriend(database, myUsername, friendUsername, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.get('/getMedia', (req, res) => {
   const capsuleId = req.query;
   cog.getMedia(database, capsuleId, (data, err) => {

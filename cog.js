@@ -376,6 +376,19 @@ exports.deleteFriend = function(database, myUsername, friendUsername, callback) 
   });
 }
 
+exports.acceptFriend = function(database, myUsername, friendUsername, callback) {
+  database.collection("users").updateOne({ username: myUsername },  {
+    $pull: { pendingFriends: friendUsername },
+    $push: { friends: friendUsername }
+  }, (err, user) => {
+    if (err) {
+      console.log("Error accepting friend: ", err.message);
+      return callback(null, err);
+    }
+    return callback(user);
+  });
+}
+
 exports.getCapsules = function(database, username, callback) {
   database.collection("users").findOne(username, (err, user) => {
     if (err) {
