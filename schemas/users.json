@@ -9,7 +9,8 @@
         "lastName",
         "email",
         "capsules",
-        "friends"
+        "friends",
+        "pendingFriends"
     ],
     "properties": {
         "username": {
@@ -70,9 +71,9 @@
         },
         "capsules": {
             "bsonType": "array",
-            "description": "Array of time capsule ids user created",
+            "description": "array of time capsule ids user created",
             "items": {
-              "type":"string"
+              "type": "string"
             } 
         },
          "settings": {
@@ -86,6 +87,13 @@
         "photo": {
             "bsonType": "string",
             "description": "base64 encoding of the music to be uploaded"
+        },
+        "pendingFriends": {
+            "bsonType": "array",
+            "description": "array of pending user ids",
+            "items": {
+                "type": "string"
+            }
         }
     }
 }
