@@ -397,7 +397,13 @@ exports.searchUsers = function(database, query, callback) {
       console.log("Error getting users: ", err.message);
     }
     const usernames = users.map((user) => {
-      return user.username;
+      const u = {
+        username: user.username,
+        _id: user._id,
+        photo: user.photo,
+        university: user.university
+      };
+      return u;
     });
     return callback(usernames);
   });
