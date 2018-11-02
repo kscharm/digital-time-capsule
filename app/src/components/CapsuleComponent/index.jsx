@@ -255,22 +255,22 @@ export default class CapsuleComponent extends Component {
           alert('Error getting media: ' + err.message);
       });
   }
-  checkCapsuleOwner = (id) => {
+  checkCapsuleOwner = (capsuleId, id) => {
     console.log('I should check if u r the owner');
   }
-  checkCapsuleContributer = (id) => {
+  checkCapsuleContributer = (capsuleId, id) => {
     console.log('I should check if u r a contributer');
   }
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
-    this.checkCapsuleOwner(this.props.userID);
-    this.checkCapsuleContributer(this.props.userID);
+    this.checkCapsuleOwner(this.props.capsule,this.props.userID);
+    this.checkCapsuleContributer(this.props.capsule,this.props.userID);
   }
   componentDidUpdate(prevProps) {
     if (prevProps.capsule !== this.props.capsule) {
       this.getAllMedia(this.props.capsule);
-      this.checkCapsuleOwner(this.props.userID);
-      this.checkCapsuleContributer(this.props.userID);
+      this.checkCapsuleOwner(this.props.capsule,this.props.userID);
+      this.checkCapsuleContributer(this.props.capsule,this.props.userID);
     }
   }
 
