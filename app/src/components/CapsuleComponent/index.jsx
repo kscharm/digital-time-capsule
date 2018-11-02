@@ -256,10 +256,32 @@ export default class CapsuleComponent extends Component {
       });
   }
   checkCapsuleOwner = (capsuleId, id) => {
-    console.log('I should check if u r the owner');
+    axios.get('http://localhost:3001/capsuleOwner?capsule=' + capsuleId)
+      .then((res) => {
+        // Add each type to their respective arrays
+        if (res.data === id) {
+          this.setState({isOwner: true});
+        }
+      })
+      .catch((err) => {
+          alert('Error getting media: ' + err.message);
+      });
   }
   checkCapsuleContributer = (capsuleId, id) => {
-    console.log('I should check if u r a contributer');
+    axios.get('http://localhost:3001/capsuleContributors?capsule=' + capsuleId)
+      .then((res) => {
+        // Add each type to their respective arrays
+        console.log(res.data);
+        for (let i = 0; i < res.data.length; i ++) {
+          if (res.data[i] === id) {
+            this.setState({isContributer: true});
+            break;
+          }
+        }
+      })
+      .catch((err) => {
+          alert('Error getting media: ' + err.message);
+      });
   }
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
