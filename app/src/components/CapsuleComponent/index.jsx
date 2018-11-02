@@ -417,21 +417,29 @@ export default class CapsuleComponent extends Component {
               )
             })}
             </div>
-          <div className='addButton'>
-            <AddButton
-              buttonAction={() => { this.handlePop(!this.state.addPop) }}
-              buttonType='add'
-            />
-            <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
-              {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
+          {this.state.isContributer ? 
+            <div className='addButton'>
+              <AddButton
+                buttonAction={() => { this.handlePop(!this.state.addPop) }}
+                buttonType='add'
+              />
+              <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
+                {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
+              </div>
             </div>
-          </div>
-          <div className='deleteButton'>
-            <DeleteButton
-              buttonAction={() => { this.handleShowDelete(!this.state.showDelete) }}
-              buttonType='delete'
-            />
-          </div>
+            :
+            null
+          }
+          {this.state.isContributer ?
+            <div className='deleteButton'>
+              <DeleteButton
+                buttonAction={() => { this.handleShowDelete(!this.state.showDelete) }}
+                buttonType='delete'
+              />
+            </div>
+            :
+            null
+          }
         </div>
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
                 user={this.props.user} capsule={this.props.usercapsule}
