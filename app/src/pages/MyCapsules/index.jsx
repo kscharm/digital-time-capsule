@@ -80,13 +80,10 @@ export default class Registration extends Component {
         <div>
           <div className={ `bkgOverlay` }/>
           <div className={ `capsuless` }>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
-                    user={this.props.username} capsule={this.props.usercapsule}
-                    changeCapsuleID={this.props.changeCapsuleID}/>
             <div className={`notepaper-title`} style={{maxWidth: "180px"}}>
                 <p className={`text-title`}>{title1}</p>
               </div>
-            <div className='capsulesBlock' style={{width: w}}>
+            <div className='capsulesBlock'>
               {this.state.capsuleList.map((capsule) => {
                 return (
                   <CapsuleDisplay
@@ -98,10 +95,14 @@ export default class Registration extends Component {
                       capsuleObj={capsule}
                       showDelete={this.state.showDelete}
                       sendToCapusle={this.sendToCapusle}
+                      userID={this.props.userID}
                   />
               )
             })}
             </div>
+            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
+                    user={this.props.username} capsule={this.props.usercapsule}
+                    changeCapsuleID={this.props.changeCapsuleID}/>
             <div className='addButton'>
               <AddButton
                 buttonAction={() => {this.setState({showAddCapsule: true})}}

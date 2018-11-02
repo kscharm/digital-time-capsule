@@ -41,6 +41,8 @@ export default class CapsuleComponent extends Component {
     showAddCapsule: false,
     showDelete: false,
     thisCapsuleID: '',
+    isOwner: false,
+    isContributer: false,
   }
 
   handlePop = (pop) => {
@@ -253,12 +255,44 @@ export default class CapsuleComponent extends Component {
           alert('Error getting media: ' + err.message);
       });
   }
+  checkCapsuleOwner = (capsuleId, id) => {
+    axios.get('http://localhost:3001/capsuleOwner?capsule=' + capsuleId)
+      .then((res) => {
+        // Add each type to their respective arrays
+        if (res.data === id) {
+          this.setState({isOwner: true});
+        }
+      })
+      .catch((err) => {
+          alert('Error getting media: ' + err.message);
+      });
+  }
+  checkCapsuleContributer = (capsuleId, id) => {
+    axios.get('http://localhost:3001/capsuleContributors?capsule=' + capsuleId)
+      .then((res) => {
+        // Add each type to their respective arrays
+        console.log(res.data);
+        for (let i = 0; i < res.data.length; i ++) {
+          if (res.data[i] === id) {
+            this.setState({isContributer: true});
+            break;
+          }
+        }
+      })
+      .catch((err) => {
+          alert('Error getting media: ' + err.message);
+      });
+  }
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
+    this.checkCapsuleOwner(this.props.capsule,this.props.userID);
+    this.checkCapsuleContributer(this.props.capsule,this.props.userID);
   }
   componentDidUpdate(prevProps) {
     if (prevProps.capsule !== this.props.capsule) {
       this.getAllMedia(this.props.capsule);
+      this.checkCapsuleOwner(this.props.capsule,this.props.userID);
+      this.checkCapsuleContributer(this.props.capsule,this.props.userID);
     }
   }
 

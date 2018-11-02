@@ -38,7 +38,7 @@ export default class UserDisplay extends Component {
                         buttonType='add'
                         style={{position: 'absolute;', marginLeft: '19%;'}}
                     />
-                    </div>
+                </div>
                 {/* <div className="card-info">{this.props.description}</div> */}
                 <div>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
