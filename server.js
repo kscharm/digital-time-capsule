@@ -292,6 +292,29 @@ app.get('/searchCapsules', (req, res) => {
   });
 });
 
+app.get('/capsuleOwner', (req, res) => {
+  const params = req.query;
+  cog.checkCapsuleOwner(database, params.capsule, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
+app.get('/capsuleContributors', (req, res) => {
+  const params = req.query;
+  cog.getCapsuleContributors(database, params.capsule, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
+
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
 });
