@@ -23,7 +23,6 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            //this.props.handleAddFriend(res.data);
             alert('Your friend request has been sent.');
         })
         .catch((err) => {
