@@ -111,6 +111,8 @@ export default class SearchResult extends Component {
                       key={user.username}
                       university={user.university}
                       showDelete={this.state.showDelete}
+                      handleAcceptFriend={() => {console.log('I dont do anything');}}
+                      handleDeleteFriend={() => {console.log('I dont do anything');}}
                   />
               )
             })}

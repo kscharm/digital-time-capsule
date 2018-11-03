@@ -35,6 +35,16 @@ export default class Friends extends Component {
   getPending = (username) => {
     this.setState({userPendingFriends: []});
   }
+  handleAcceptFriend = (username) => {
+    const friendsWithNew = this.state.userFriendsMatches.concat(username);
+    this.setState({userFriendsMatches: friendsWithNew});
+  }
+  handleDeleteFriend = (username) => {
+    const index = this.state.userFriendsMatches.indexOf(username);
+    let friendWithOut = this.state.userFriendsMatches;
+    friendWithOut.splice(index, 1);
+    this.setState({userFriendsMatches: friendWithOut});
+  }
   componentDidMount = () => {
     this.getUserFriends(this.props.username);
     this.getUserRequests(this.props.username);
@@ -65,6 +75,8 @@ export default class Friends extends Component {
                         key={user.username}
                         university={user.university}
                         showDelete={this.state.showDelete}
+                        handleAcceptFriend={this.handleAcceptFriend}
+                        handleDeleteFriend={this.handleDeleteFriend}
                     />
                 )
               })}
@@ -83,6 +95,8 @@ export default class Friends extends Component {
                         key={user.username}
                         university={user.university}
                         showDelete={this.state.showDelete}
+                        handleAcceptFriend={this.handleAcceptFriend}
+                        handleDeleteFriend={this.handleDeleteFriend}
                     />
                 )
               })}
@@ -101,6 +115,8 @@ export default class Friends extends Component {
                         key={user.username}
                         university={user.university}
                         showDelete={this.state.showDelete}
+                        handleAcceptFriend={this.handleAcceptFriend}
+                        handleDeleteFriend={this.handleDeleteFriend}
                     />
                 )
               })}

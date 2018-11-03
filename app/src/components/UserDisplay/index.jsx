@@ -38,7 +38,7 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            //this.props.handleAcceptFriend(res.data);
+            this.props.handleAcceptFriend(res.data);
             alert('You have added a friend.');
         })
         .catch((err) => {
@@ -53,7 +53,7 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            //this.props.handleDeleteFriend(res.data);
+            this.props.handleDeleteFriend(res.data);
             alert(`${username} has been removed from your friends.`);
         })
         .catch((err) => {
