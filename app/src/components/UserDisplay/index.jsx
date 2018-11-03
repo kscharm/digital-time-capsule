@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import {
-    FaTrash
+    FaTrash,
+    FaPlus,
+    FaMinus,
 } from 'react-icons/fa';
 
 import toBeCapsule from '../../images/addPhoto.png';
-import AddButton from '../../components/AddButton';
 import './style.css';
 import axios from 'axios';
 
 export default class UserDisplay extends Component {
+
+    state = {
+        isOwner: false,
+        isContributer: false,
+    }
+
     requestAddFriend = (username) => {
         axios.post('http://localhost:3001/addFriend', {
            myUsername: this.props.username,
@@ -52,6 +59,24 @@ export default class UserDisplay extends Component {
     }
 
     render () {
+        const AddButtonUser = () => {
+            return (
+            <button
+                onClick={() => {this.requestCapsuleAccess()}}
+                className='addButtonsUser'
+            >
+                <FaPlus className='addIconsUser' size={20}/>
+            </button>
+            )}
+        const DeleteButtonUser = () => {
+            return (
+            <button
+                onClick={() => {this.requestCapsuleRemoval()}}
+                className='deleteButtonsUser'
+            >
+                <FaMinus className='deleteIconsUser' size={20}/>
+            </button>
+            )}
         const DeleteButton = () => {
             return (
             <button
@@ -71,16 +96,13 @@ export default class UserDisplay extends Component {
                     <hr />
                     {/* <div className="intro">{this.props.id}</div> */}
                 </div>
-                <div className='friendAddButton' style={{position: 'absolute', marginLeft: '19%'}}>
-                    <AddButton
-                        buttonAction={() => {console.log("add friend button clicked!")}}
-                        buttonType='add'
-                        style={{position: 'absolute;', marginLeft: '19%;'}}
-                    />
-                </div>
                 {/* <div className="card-info">{this.props.description}</div> */}
                 <div>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
+                </div>
+                <div>
+                {(this.state.isOwner || this.state.isContributer) ? null : <AddButtonUser/>}
+                {this.state.isOwner ? null : <DeleteButtonUser/>}
                 </div>
 
                 {this.props.showDelete ? <DeleteButton/> : null}
