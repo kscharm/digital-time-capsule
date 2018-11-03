@@ -6,11 +6,14 @@ import toBeCapsule from '../../images/addPhoto.png'
 
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
-// import AddButton from '../../components/AddButton';
+
+import UserDisplay from '../../components/UserDisplay';
+
 
 export default class Friends extends Component {
   state = {
     addPop: false, 
+    userFriendsMatches: [],
   }
 
   handlePop = (pop) => {
@@ -19,6 +22,7 @@ export default class Friends extends Component {
   getUserFriends = (username) => {
     axios.get('http://localhost:3001/getFriends?username=' + username)
       .then((res) => {
+        this.setState({userFriendsMatches: res.data});
         console.log(res.data);
       })
       .catch((err) => {
@@ -40,6 +44,23 @@ export default class Friends extends Component {
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}/>
+
+          <div className='usersBlock'>
+              {this.state.userFriendsMatches.map((user) => {
+                return (
+                  <UserDisplay //giving the unique key error and I'm not sure why
+                      title={user.username}
+                      id={user._id}
+                      photo={user.photo}
+                      style={{display:'inline-block'}}
+                      key={user.username}
+                      university={user.university}
+                      showDelete={this.state.showDelete}
+                  />
+              )
+            })}
+            </div>
+
             <div className='addButton'>
               </div>
               <div className={`notepaper-title`} style={{maxWidth: "150px"}}>

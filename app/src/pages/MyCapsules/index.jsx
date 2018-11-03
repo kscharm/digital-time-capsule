@@ -73,7 +73,7 @@ export default class Registration extends Component {
     }
 
     const title1 = "My Capsules";
-    const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    // const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >

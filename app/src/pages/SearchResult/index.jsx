@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
 
-import toBeCapsule from '../../images/addPhoto.png'
-
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
@@ -63,7 +61,7 @@ export default class SearchResult extends Component {
 
     const title1 = "Capsules";
     const title2 = "Users";
-    const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    // const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const { from } = this.props.location.state || { from: { pathname: `/currentCapsule/${this.props.user}/${this.state.changeTo}` } }
 
     if (this.state.redirectToReferrer) {
