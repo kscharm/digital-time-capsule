@@ -45,6 +45,7 @@ export default class CapsuleComponent extends Component {
     thisCapsuleID: '',
     isOwner: false,
     isContributer: false,
+    contributorList: [],
     showEditUser: false,
   }
 
@@ -278,6 +279,7 @@ export default class CapsuleComponent extends Component {
       .then((res) => {
         // Add each type to their respective arrays
         console.log(res.data);
+        this.setState({contributorList: res.data});
         for (let i = 0; i < res.data.length; i ++) {
           if (res.data[i] === id) {
             this.setState({isContributer: true});
@@ -491,6 +493,7 @@ export default class CapsuleComponent extends Component {
         {this.state.showEditUser ? <EditUser 
                                       handleShowEditUser={this.handleShowEditUser}
                                       user={this.props.user}
+                                      contributorList={this.state.contributorList}
                                       capsule={this.props.capsule}/> : null}
       </div>
     );

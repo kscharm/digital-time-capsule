@@ -11,6 +11,7 @@ export default class AddQuote extends Component {
     // }
 
     state = {
+        requestList: [],
     };
 
     editUser = () => {
@@ -19,17 +20,41 @@ export default class AddQuote extends Component {
     removeUser = () => {
         console.log('I should remove a user from the list');
     }
+    getRequests = () => {
+        console.log("I should get the list of users who want access");
+        this.setState({requestList: []});
+    }
 
     closeEditUser = () => {
         this.props.handleShowEditUser(false);
     }
-
+    componentDidMount = () => {
+        this.getRequests();
+    }
 
   render() {
     return (
     <div className={ `addType editUser` }>
       <div className={ `addTypeBack editUserBack` }/>
         <div className={ `addTypeCard editUserCard` }>
+            <div className='requestList'>
+                <span className='sectionLabels'> Request List: </span>
+                {this.state.requestList.map((requestor) => {
+                    return (
+                    <div>
+                    </div>
+                )
+                })}
+            </div>
+            <div className='userList'>
+                <span className='sectionLabels'> User List: </span>
+                {this.props.contributorList.map((contributor) => {
+                    return (
+                    <div>
+                    </div>
+                )
+                })}
+            </div>
             <div className={ `actionButtons actionButtonsEdit` }>
                 <OurButton
                     buttonText='Add'
