@@ -259,10 +259,21 @@ app.get('/getFriends', (req, res) => {
   });
 });
 
-app.post('/addFriend', (req, res) => {
+app.get('/getPendingRequests', (req, res) => {
+  const username = req.query;
+  cog.getPendingRequests(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/sendFriendRequest', (req, res) => {
   const myUsername = req.body.myUsername;
   const friendUsername = req.body.friendUsername;
-  cog.addFriend(database, myUsername, friendUsername, (data, err) => {
+  cog.sendFriendRequest(database, myUsername, friendUsername, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {

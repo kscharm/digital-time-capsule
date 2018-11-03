@@ -10,7 +10,7 @@ import axios from 'axios';
 
 export default class UserDisplay extends Component {
     requestAddFriend = (username) => {
-        axios.post('http://localhost:3001/addFriend', {
+        axios.post('http://localhost:3001/sendFriendRequest', {
            myUsername: this.props.username,
            friendUsername: username
         })

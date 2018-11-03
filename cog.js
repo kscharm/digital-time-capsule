@@ -356,36 +356,71 @@ exports.getFriends = function(database, username, callback) {
   });
 }
 
-exports.addFriend = function(database, myUsername, friendUsername, callback) {
-  database.collection("users").updateOne({ username: myUsername },  { $push: { friends: friendUsername } }, (err, user) => {
+exports.getPendingRequests = function(database, username, callback) {
+  database.collection("users").findOne(username, (err, user) => {
+    if (err) {
+      console.log("Error getting pending friend requests: ", err.message);
+      return callback(null, err);
+    }
+    return callback(user.pendingFriends);
+  });
+}
+
+exports.sendFriendRequest = function(database, myUsername, friendUsername, callback) {
+  database.collection("users").updateOne({ username: myUsername },  { $push: { pendingFriends: friendUsername } }, (err, me) => {
     if (err) {
       console.log("Error adding friend: ", err.message);
       return callback(null, err);
     }
-    return callback(user);
+    database.collection("users").updateOne({ username: friendUsername },  { $push: { pendingFriends: myUsername } }, (err, friend) => {
+      if (err) {
+        console.log("Error adding friend: ", err.message);
+        return callback(null, err);
+      }
+      return callback(me);
+    });
   });
 }
 
 exports.deleteFriend = function(database, myUsername, friendUsername, callback) {
-  database.collection("users").updateOne({ username: myUsername },  { $pull: { friends: friendUsername } }, (err, user) => {
+  database.collection("users").updateOne({ username: myUsername },  { $pull: { friends: friendUsername } }, (err, me) => {
     if (err) {
       console.log("Error deleting friend: ", err.message);
       return callback(null, err);
     }
-    return callback(user);
+    database.collection("users").updateOne({ username: friendUsername },  { $pull: { friends: myUsername } }, (err, friend) => {
+      if (err) {
+        console.log("Error deleting friend: ", err.message);
+        return callback(null, err);
+      }
+      return callback(me);
+    });
   });
 }
 
 exports.acceptFriend = function(database, myUsername, friendUsername, callback) {
+  // Update my friends list to include the new friend and remove the user from
+  // the pendingFriends list
   database.collection("users").updateOne({ username: myUsername },  {
     $pull: { pendingFriends: friendUsername },
     $push: { friends: friendUsername }
-  }, (err, user) => {
+  }, (err, me) => {
     if (err) {
       console.log("Error accepting friend: ", err.message);
-      return callback(null, err);
+        return callback(null, err);
     }
-    return callback(user);
+    // Update other user's friends list to include my name and remove my
+    // name from their pendingFriends list
+    database.collection("users").updateOne({ username: friendUsername },  {
+      $pull: { pendingFriends: myUsername },
+      $push: { friends: myUsername }
+    }, (err, friend) => {
+      if (err) {
+        console.log("Error accepting friend: ", err.message);
+        return callback(null, err);
+      }
+      return callback(me);
+    });
   });
 }
 
