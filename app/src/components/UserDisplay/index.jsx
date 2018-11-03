@@ -23,7 +23,8 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            this.props.handleAddFriend(res.data);
+            //this.props.handleAddFriend(res.data);
+            alert('Your friend request has been sent.');
         })
         .catch((err) => {
            alert('Error adding friend: ' + err.message);
@@ -37,7 +38,8 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            this.props.handleAcceptFriend(res.data);
+            //this.props.handleAcceptFriend(res.data);
+            alert('You have added a friend.');
         })
         .catch((err) => {
            alert('Error accepting friend request: ' + err.message);
@@ -51,7 +53,8 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            this.props.handleDeleteFriend(res.data);
+            //this.props.handleDeleteFriend(res.data);
+            alert(`${username} has been removed from your friends.`);
         })
         .catch((err) => {
            alert('Error adding friend: ' + err.message);
@@ -62,7 +65,7 @@ export default class UserDisplay extends Component {
         const AddButtonUser = () => {
             return (
             <button
-                onClick={() => {this.requestCapsuleAccess()}}
+                onClick={() => {this.requestAddFriend(this.props.title)}}
                 className='addButtonsUser'
             >
                 <FaPlus className='addIconsUser' size={20}/>
@@ -71,7 +74,7 @@ export default class UserDisplay extends Component {
         const DeleteButtonUser = () => {
             return (
             <button
-                onClick={() => {this.requestCapsuleRemoval()}}
+                onClick={() => {this.requestDeleteFriend(this.props.title)}}
                 className='deleteButtonsUser'
             >
                 <FaMinus className='deleteIconsUser' size={20}/>
@@ -94,9 +97,8 @@ export default class UserDisplay extends Component {
                 <div className="title-content">
                     <h3>{this.props.title}</h3>
                     <hr />
-                    {/* <div className="intro">{this.props.id}</div> */}
+                    <div className="intro">{this.props.university}</div>
                 </div>
-                {/* <div className="card-info">{this.props.description}</div> */}
                 <div>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
                 </div>
