@@ -8,12 +8,14 @@ import {
   FaMusic,
   FaFont,
   FaQuoteLeft,
+  FaUser,
 } from 'react-icons/fa';
 import NavBar from '../../components/NavBar';
 import AddPhoto from '../../components/Cards/AddPhoto';
 import AddText from '../../components/Cards/AddText';
 import AddQuote from '../../components/Cards/AddQuote';
 import AddMusic from '../../components/Cards/AddMusic';
+import EditUser from '../../components/Cards/EditUser';
 import OurButton from '../../components/OurButton';
 
 import MusicPlayer from '../../components/MusicPlayer';
@@ -43,6 +45,7 @@ export default class CapsuleComponent extends Component {
     thisCapsuleID: '',
     isOwner: false,
     isContributer: false,
+    showEditUser: false,
   }
 
   handlePop = (pop) => {
@@ -59,6 +62,9 @@ export default class CapsuleComponent extends Component {
   }
   handleShowAddMusic = (show) => {
     this.setState({showAddMusic: show});
+  }
+  handleShowEditUser = (show) => {
+    this.setState({showEditUser: show});
   }
   handleShowDelete = (show) => {
     this.setState({showDelete: show});
@@ -332,6 +338,12 @@ export default class CapsuleComponent extends Component {
               this.handleShowAddMusic(!this.state.showAddMusic);
               this.handlePop(false);
             };
+          } else if (option==='Edit Users') {
+            icon = <FaUser/>
+            onClicks = () => {
+              this.handleShowEditUser(!this.state.showEditUser);
+              this.handlePop(false);
+            };
           }
           return (
             <div key={option}>
@@ -429,7 +441,8 @@ export default class CapsuleComponent extends Component {
                 buttonType='add'
               />
               <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
-                {this.state.addPop ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
+                {(this.state.addPop && this.state.isOwner) ? <Add options={['Photo', 'Text', 'Quote', 'Music', 'Edit Users']} /> : null }
+                {(this.state.addPop && !this.state.isOwner) ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
               </div>
             </div>
             :
@@ -473,6 +486,10 @@ export default class CapsuleComponent extends Component {
         {this.state.showAddMusic ? <AddMusic 
                                       handleShowAddMusic={this.handleShowAddMusic}
                                       handleAddMusic={this.handleAddMusic}
+                                      user={this.props.user}
+                                      capsule={this.props.capsule}/> : null}
+        {this.state.showEditUser ? <EditUser 
+                                      handleShowEditUser={this.handleShowEditUser}
                                       user={this.props.user}
                                       capsule={this.props.capsule}/> : null}
       </div>
