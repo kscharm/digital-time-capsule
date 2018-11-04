@@ -12,7 +12,8 @@ export default class Friends extends Component {
   state = {
     addPop: false, 
     userFriendsMatches: [],
-    userPendingFriends: [],
+    userSentRequests: [],
+    userReceivedRequests: []
   }
 
   handlePop = (pop) => {
@@ -29,16 +30,26 @@ export default class Friends extends Component {
       });
   }
 
-  getPending = (username) => {
-    axios.get('http://localhost:3001/getPendingRequests?username=' + username)
+  getSentRequests = (username) => {
+    axios.get('http://localhost:3001/getSentRequests?username=' + username)
       .then((res) => {
-        this.setState({userPendingFriends: res.data});
+        this.setState({userSentRequests: res.data});
         console.log(res.data);
       })
       .catch((err) => {
-          alert('Error getting pending friends: ' + err.message);
+          alert('Error getting sent friend requests: ' + err.message);
       });
-    
+  }
+
+  getReceivedRequests = (username) => {
+    axios.get('http://localhost:3001/getReceivedRequests?username=' + username)
+      .then((res) => {
+        this.setState({userReceivedRequests: res.data});
+        console.log(res.data);
+      })
+      .catch((err) => {
+          alert('Error getting received friend requests: ' + err.message);
+      });
   }
   handleAcceptFriend = (friend) => {
     axios.post('http://localhost:3001/acceptFriend', {
@@ -71,7 +82,8 @@ export default class Friends extends Component {
   }
   componentDidMount = () => {
     this.getUserFriends(this.props.username);
-    this.getPending(this.props.username);
+    this.getSentRequests(this.props.username);
+    this.getReceivedRequests(this.props.username);
   }
   render() {
     const title1 = 'Friends';
@@ -104,10 +116,30 @@ export default class Friends extends Component {
               })}
               </div>
               <div className={`notepaper-title`} style={{maxWidth: "300px"}}>
-                <p className={`text-title`}>{'Pending Friend Requests'}</p>
+                <p className={`text-title`}>{'Sent Friend Requests'}</p>
               </div>
               <div className='usersBlock'>
-                {this.state.userPendingFriends.map((user) => {
+                {this.state.userSentRequests.map((user) => {
+                  return (
+                    <UserDisplay //giving the unique key error and I'm not sure why
+                        title={user.username}
+                        id={user._id}
+                        photo={user.photo}
+                        style={{display:'inline-block'}}
+                        key={user.username}
+                        university={user.university}
+                        showDelete={this.state.showDelete}
+                        handleAcceptFriend={this.handleAcceptFriend}
+                        handleDeleteFriend={this.handleDeleteFriend}
+                    />
+                )
+              })}
+              </div>
+              <div className={`notepaper-title`} style={{maxWidth: "300px"}}>
+                <p className={`text-title`}>{'Received Friend Requests'}</p>
+              </div>
+              <div className='usersBlock'>
+                {this.state.userReceivedRequests.map((user) => {
                   return (
                     <UserDisplay //giving the unique key error and I'm not sure why
                         title={user.username}

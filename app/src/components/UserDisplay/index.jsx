@@ -17,6 +17,9 @@ export default class UserDisplay extends Component {
     }
 
     requestAddFriend = (username) => {
+        if (this.props.username === username) {
+            alert("Sorry, you can't be friends with yourself!");
+        }
         axios.post('http://localhost:3001/sendFriendRequest', {
            myUsername: this.props.username,
            friendUsername: username
