@@ -19,18 +19,19 @@ export default class UserDisplay extends Component {
     requestAddFriend = (username) => {
         if (this.props.myUsername === username) {
             alert("Sorry, you can't be friends with yourself!");
+        } else {
+            axios.post('http://localhost:3001/sendFriendRequest', {
+            myUsername: this.props.myUsername,
+            friendUsername: username
+            })
+            .then((res) => {
+                console.log(res.data);
+                alert('Your friend request has been sent.');
+            })
+            .catch((err) => {
+            alert('Error adding friend: ' + err.message);
+            });
         }
-        axios.post('http://localhost:3001/sendFriendRequest', {
-           myUsername: this.props.myUsername,
-           friendUsername: username
-        })
-        .then((res) => {
-            console.log(res.data);
-            alert('Your friend request has been sent.');
-        })
-        .catch((err) => {
-           alert('Error adding friend: ' + err.message);
-        });
     }
 
     requestAcceptFriend = (username) => {
@@ -40,7 +41,13 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            this.props.handleAcceptFriend(res.data);
+            const user = {
+                username: this.props.title,
+                _id: this.props.id,
+                photo: this.props.photo,
+                university: this.props.university,
+            }
+            this.props.handleAcceptFriend(user);
             alert('You have added a friend.');
         })
         .catch((err) => {
@@ -55,12 +62,26 @@ export default class UserDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
-            this.props.handleDeleteFriend(res.data);
+            const user = {
+                username: this.props.title,
+                _id: this.props.id,
+                photo: this.props.photo,
+                university: this.props.university,
+            }
+            this.props.handleDeleteFriend(user);
             alert(`${username} has been removed from your friends.`);
         })
         .catch((err) => {
            alert('Error adding friend: ' + err.message);
         });
+    }
+    decideAddButton = () => {
+        if (this.props.recrequest) {
+            console.log("YEET");
+            this.requestAcceptFriend(this.props.title);
+        } else {
+            this.requestAddFriend(this.props.title);
+        }
     }
 
     render () {
@@ -68,7 +89,7 @@ export default class UserDisplay extends Component {
         const AddButtonUser = () => {
             return (
             <button
-                onClick={() => {this.requestAddFriend(this.props.title)}}
+                onClick={() => {this.decideAddButton()}}
                 className='addButtonsUser'
             >
                 <FaPlus className='addIconsUser' size={20}/>

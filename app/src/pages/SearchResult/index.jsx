@@ -114,6 +114,9 @@ export default class SearchResult extends Component {
                       handleAcceptFriend={() => {console.log('I dont do anything');}}
                       handleDeleteFriend={() => {console.log('I dont do anything');}}
                       myUsername={this.props.username}
+                      areFriends={false}
+                      sentRequest={false}
+                      recrequest={false}
                   />
               )
             })}

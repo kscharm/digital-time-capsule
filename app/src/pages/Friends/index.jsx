@@ -52,33 +52,18 @@ export default class Friends extends Component {
       });
   }
   handleAcceptFriend = (friend) => {
-    axios.post('http://localhost:3001/acceptFriend', {
-      myUsername: this.props.username,
-      friendUsername: friend
-    })
-      .then((res) => {
-        const friendsWithNew = this.state.userFriendsMatches.concat(friend);
-        this.setState({userFriendsMatches: friendsWithNew});
-        console.log(res.data);
-      })
-      .catch((err) => {
-          alert('Error accepting friend request: ' + err.message);
-      });
+    const friendsWithNew = this.state.userFriendsMatches.concat(friend);
+    this.setState({userFriendsMatches: friendsWithNew});
+    const index = this.state.userReceivedRequests.indexOf(friend);
+    let friendWithOut = this.state.userReceivedRequests;
+    friendWithOut.splice(index, 1);
+    this.setState({userReceivedRequests: friendWithOut});
   }
   handleDeleteFriend = (friend) => {
-    axios.post('http://localhost:3001/deleteFriend', {
-      myUsername: this.props.username,
-      friendUsername: friend
-    })
-      .then((res) => {
-        const index = this.state.userFriendsMatches.indexOf(friend);
-        let friendWithOut = this.state.userFriendsMatches;
-        friendWithOut.splice(index, 1);
-        this.setState({userFriendsMatches: friendWithOut});
-      })
-      .catch((err) => {
-          alert('Error deleting friend: ' + err.message);
-      });
+    const index = this.state.userFriendsMatches.indexOf(friend);
+    let friendWithOut = this.state.userFriendsMatches;
+    friendWithOut.splice(index, 1);
+    this.setState({userFriendsMatches: friendWithOut});
   }
   componentDidMount = () => {
     this.getUserFriends(this.props.username);
@@ -112,6 +97,9 @@ export default class Friends extends Component {
                         handleAcceptFriend={this.handleAcceptFriend}
                         handleDeleteFriend={this.handleDeleteFriend}
                         myUsername={this.props.username}
+                        areFriends={true}
+                        sentRequest={false}
+                        recrequest={false}
                     />
                 )
               })}
@@ -133,6 +121,9 @@ export default class Friends extends Component {
                         handleAcceptFriend={this.handleAcceptFriend}
                         handleDeleteFriend={this.handleDeleteFriend}
                         myUsername={this.props.username}
+                        areFriends={false}
+                        sentRequest={true}
+                        recrequest={false}
                     />
                 )
               })}
@@ -154,6 +145,9 @@ export default class Friends extends Component {
                         handleAcceptFriend={this.handleAcceptFriend}
                         handleDeleteFriend={this.handleDeleteFriend}
                         myUsername={this.props.username}
+                        areFriends={false}
+                        sentRequest={false}
+                        recrequest={true}
                     />
                 )
               })}
