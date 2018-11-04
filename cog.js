@@ -362,7 +362,22 @@ exports.getSentRequests = function(database, username, callback) {
       console.log("Error getting sent friend requests: ", err.message);
       return callback(null, err);
     }
-    return callback(user.sentRequests);
+    database.collection("users").find({ username: { $in: user.sentRequests } }).toArray((err, users) => {
+      if (err) {
+        console.log("Error getting sent friend requests: ", err.message);
+        return callback(null, err);
+      }
+      const usernames = users.map((user) => {
+        const u = {
+          username: user.username,
+          _id: user._id,
+          photo: user.photo,
+          university: user.university
+        };
+        return u;
+      });
+      return callback(usernames);
+    });
   });
 }
 
@@ -372,7 +387,22 @@ exports.getReceivedRequests = function(database, username, callback) {
       console.log("Error getting received friend requests: ", err.message);
       return callback(null, err);
     }
-    return callback(user.receivedRequests);
+    database.collection("users").find({ username: { $in: user.receivedRequests } }).toArray((err, users) => {
+      if (err) {
+        console.log("Error getting received friend requests: ", err.message);
+        return callback(null, err);
+      }
+      const usernames = users.map((user) => {
+        const u = {
+          username: user.username,
+          _id: user._id,
+          photo: user.photo,
+          university: user.university
+        };
+        return u;
+      });
+      return callback(usernames);
+    });
   });
 }
 
