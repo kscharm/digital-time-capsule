@@ -111,6 +111,7 @@ export default class Friends extends Component {
                         showDelete={this.state.showDelete}
                         handleAcceptFriend={this.handleAcceptFriend}
                         handleDeleteFriend={this.handleDeleteFriend}
+                        myUsername={this.props.username}
                     />
                 )
               })}
@@ -131,6 +132,7 @@ export default class Friends extends Component {
                         showDelete={this.state.showDelete}
                         handleAcceptFriend={this.handleAcceptFriend}
                         handleDeleteFriend={this.handleDeleteFriend}
+                        myUsername={this.props.username}
                     />
                 )
               })}
@@ -151,6 +153,7 @@ export default class Friends extends Component {
                         showDelete={this.state.showDelete}
                         handleAcceptFriend={this.handleAcceptFriend}
                         handleDeleteFriend={this.handleDeleteFriend}
+                        myUsername={this.props.username}
                     />
                 )
               })}

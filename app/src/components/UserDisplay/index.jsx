@@ -17,11 +17,11 @@ export default class UserDisplay extends Component {
     }
 
     requestAddFriend = (username) => {
-        if (this.props.username === username) {
+        if (this.props.myUsername === username) {
             alert("Sorry, you can't be friends with yourself!");
         }
         axios.post('http://localhost:3001/sendFriendRequest', {
-           myUsername: this.props.username,
+           myUsername: this.props.myUsername,
            friendUsername: username
         })
         .then((res) => {
@@ -35,7 +35,7 @@ export default class UserDisplay extends Component {
 
     requestAcceptFriend = (username) => {
         axios.post('http://localhost:3001/acceptFriend', {
-           myUsername: this.props.username,
+           myUsername: this.props.myUsername,
            friendUsername: username
         })
         .then((res) => {
@@ -50,7 +50,7 @@ export default class UserDisplay extends Component {
 
     requestDeleteFriend = (username) => {
         axios.post('http://localhost:3001/deleteFriend', {
-           myUsername: this.props.username,
+           myUsername: this.props.myUsername,
            friendUsername: username
         })
         .then((res) => {
@@ -64,6 +64,7 @@ export default class UserDisplay extends Component {
     }
 
     render () {
+        console.log(this.props.myUsername);
         const AddButtonUser = () => {
             return (
             <button

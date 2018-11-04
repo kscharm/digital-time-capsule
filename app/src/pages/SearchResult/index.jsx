@@ -113,6 +113,7 @@ export default class SearchResult extends Component {
                       showDelete={this.state.showDelete}
                       handleAcceptFriend={() => {console.log('I dont do anything');}}
                       handleDeleteFriend={() => {console.log('I dont do anything');}}
+                      myUsername={this.props.username}
                   />
               )
             })}
