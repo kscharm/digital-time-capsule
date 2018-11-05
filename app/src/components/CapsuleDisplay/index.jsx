@@ -19,7 +19,7 @@ export default class CapsuleDisplay extends Component {
         console.log(this.props.capsuleContributer);
     }
     requestCapsuleRemoval = () => {
-        console.log('I should req removal for user and capsule:');
+        console.log('I should req to deelete the capsuel');
         console.log(this.props.userID);
         console.log(this.props.id);
     }
@@ -88,7 +88,7 @@ export default class CapsuleDisplay extends Component {
                 </div>
                 <div>
                 {(this.state.isOwner || this.state.isContributer) ? null : <AddButton/>}
-                {this.state.isOwner ? null : <DeleteButton/>}
+                {this.state.isOwner ? <DeleteButton/> : null}
                 </div>
             </div>
             </div>
