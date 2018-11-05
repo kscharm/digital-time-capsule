@@ -214,13 +214,58 @@ exports.addTimeCapsule = function(database, capsule, callback) {
 }
 
 exports.deleteTimeCapsule = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").deleteOne(capsuleId, (err, res) => {
+  database.collection("timeCapsules").findOne(capsuleId, (err, res) => {
     if (err) {
       console.log('Error deleting time capsule: ', err.message);
       return callback(null, err);
-  }
-    console.log('Time capsule ' + capsuleId._id + ' deleted');
-    return callback(res);
+    }
+    database.collection("users").updateOne({ username: res.ownerId },  { $pull: { capsules: capsuleId } }, (err, me) => {
+      if (err) {
+        console.log("Error deleting time capsule: ", err.message);
+        return callback(null, err);
+      }
+    });
+    contributors = res.contributors
+    for (let i = 0; i < contributors.length; i++) {
+      database.collection("users").updateOne({ username: contributors[i] },  { $pull: { capsules: capsuleId } }, (err, me) => {
+        if (err) {
+          console.log("Error deleting time capsule: ", err.message);
+          return callback(null, err);
+        }
+      });
+    }
+    photoArr = res.photoArr
+    for (let i = 0; i < photoArr.length; i++) {
+      this.deletePhoto(database, photoArr[i], capsuleId, (res, err) => {
+        if (err) {
+          return callback(null, err);
+        }
+      })
+    }
+    textArr = res.textArr
+    for (let i = 0; i < textArr.length; i++) {
+      this.deleteText(database, textArr[i], capsuleId, (res, err) => {
+        if (err) {
+          return callback(null, err);
+        }
+      })
+    }
+    musicArr = res.musicArr
+    for (let i = 0; i < musicArr.length; i++) {
+      this.deleteMusic(database, musicArr[i], capsuleId, (res, err) => {
+        if (err) {
+          return callback(null, err);
+        }
+      })
+    }
+    database.collection("timeCapsules").deleteOne(capsuleId, (err, res) => {
+      if (err) {
+        console.log('Error deleting time capsule: ', err.message);
+        return callback(null, err);
+      }
+      console.log('Time capsule ' + capsuleId._id + ' deleted');
+      return callback(res);
+    });
   });
 }
 
