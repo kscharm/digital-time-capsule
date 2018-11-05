@@ -237,40 +237,36 @@ exports.deleteTimeCapsule = function(database, capsuleId, callback) {
     photoArr = res.photoArr
     for (let i = 0; i < photoArr.length; i++) {
       //delete if only in this capsule ?
-      database.collection("photos").updateOne({ _id: photoArr[i] },  { $pull: { capsules: capsuleId } }, (err, me) => {
+      this.deletePhoto(database, photoArr[i], capsuleId, (res, err) => {
         if (err) {
-          console.log("Error deleting time capsule: ", err.message);
           return callback(null, err);
         }
-      });
+      })
     }
     textArr = res.textArr
     for (let i = 0; i < textArr.length; i++) {
-      database.collection("text").updateOne({ _id: textArr[i] },  { $pull: { capsules: capsuleId } }, (err, me) => {
+      this.deleteText(database, textArr[i], capsuleId, (res, err) => {
         if (err) {
-          console.log("Error deleting time capsule: ", err.message);
           return callback(null, err);
         }
-      });
+      })
     }
     musicArr = res.musicArr
     for (let i = 0; i < musicArr.length; i++) {
-      database.collection("music").updateOne({ _id: musicArr[i] },  { $pull: { capsules: capsuleId } }, (err, me) => {
+      this.deleteMusic(database, musicArr[i], capsuleId, (res, err) => {
         if (err) {
-          console.log("Error deleting time capsule: ", err.message);
           return callback(null, err);
         }
-      });
+      })
     }
     database.collection("timeCapsules").deleteOne(capsuleId, (err, res) => {
       if (err) {
         console.log('Error deleting time capsule: ', err.message);
         return callback(null, err);
       }
+      console.log('Time capsule ' + capsuleId._id + ' deleted');
+      return callback(res);
     });
-
-    console.log('Time capsule ' + capsuleId._id + ' deleted');
-    return callback(res);
   });
 }
 
