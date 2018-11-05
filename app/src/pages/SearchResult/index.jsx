@@ -93,6 +93,7 @@ export default class SearchResult extends Component {
                         showDelete={this.state.showDelete}
                         sendToCapusle={this.sendToCapusle}
                         userID={this.props.userID}
+                        handleDeleteCapsule={() => {console.log('I do nothing.')}}
                     />
                 )
               })}
