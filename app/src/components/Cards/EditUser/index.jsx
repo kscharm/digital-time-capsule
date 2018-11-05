@@ -51,6 +51,7 @@ export default class AddQuote extends Component {
                 {this.props.contributorList.map((contributor) => {
                     return (
                     <div>
+                        <p>{contributor}</p>
                     </div>
                 )
                 })}

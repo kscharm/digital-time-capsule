@@ -83,9 +83,15 @@ export default class UserDisplay extends Component {
             this.requestAddFriend(this.props.title);
         }
     }
+    decideDeleteButton = () => {
+        if (!this.props.recrequest) {
+            this.requestDeleteFriend(this.props.title)
+        } else {
+            console.log('I should remove the user from pending and such.');
+        }
+    }
 
     render () {
-        console.log(this.props.myUsername);
         const AddButtonUser = () => {
             return (
             <button
@@ -98,19 +104,10 @@ export default class UserDisplay extends Component {
         const DeleteButtonUser = () => {
             return (
             <button
-                onClick={() => {this.requestDeleteFriend(this.props.title)}}
+                onClick={() => {this.decideDeleteButton()}}
                 className='deleteButtonsUser'
             >
                 <FaMinus className='deleteIconsUser' size={20}/>
-            </button>
-            )}
-        const DeleteButton = () => {
-            return (
-            <button
-                onClick={() => {console.log('We click a delete.')}}
-                className='deleteButton'
-            >
-                <FaTrash className='deleteIcon' size={20}/>
             </button>
             )}
         return (
@@ -127,11 +124,9 @@ export default class UserDisplay extends Component {
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
                 </div>
                 <div>
-                {(this.state.isOwner || this.state.isContributer) ? null : <AddButtonUser/>}
-                {this.state.isOwner ? null : <DeleteButtonUser/>}
+                {(this.props.areFriends || this.props.sentRequest) ? null : <AddButtonUser/>}
+                {this.props.sentRequest ? null : <DeleteButtonUser/>}
                 </div>
-
-                {this.props.showDelete ? <DeleteButton/> : null}
             </div>
             </div>
         );
