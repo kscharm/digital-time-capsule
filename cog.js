@@ -236,7 +236,6 @@ exports.deleteTimeCapsule = function(database, capsuleId, callback) {
     }
     photoArr = res.photoArr
     for (let i = 0; i < photoArr.length; i++) {
-      //delete if only in this capsule ?
       this.deletePhoto(database, photoArr[i], capsuleId, (res, err) => {
         if (err) {
           return callback(null, err);
