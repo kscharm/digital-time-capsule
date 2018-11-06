@@ -266,6 +266,7 @@ export default class CapsuleComponent extends Component {
     axios.get('http://localhost:3001/capsuleOwner?capsule=' + capsuleId)
       .then((res) => {
         // Add each type to their respective arrays
+        console.log(res.data);
         if (res.data === id) {
           this.setState({isOwner: true});
         }
@@ -274,14 +275,14 @@ export default class CapsuleComponent extends Component {
           alert('Error getting media: ' + err.message);
       });
   }
-  checkCapsuleContributer = (capsuleId, id) => {
+  checkCapsuleContributer = (capsuleId, user) => {
     axios.get('http://localhost:3001/capsuleContributors?capsule=' + capsuleId)
       .then((res) => {
         // Add each type to their respective arrays
         console.log(res.data);
         this.setState({contributorList: res.data});
         for (let i = 0; i < res.data.length; i ++) {
-          if (res.data[i] === id) {
+          if (res.data[i] === user) {
             this.setState({isContributer: true});
             break;
           }
@@ -307,13 +308,13 @@ export default class CapsuleComponent extends Component {
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
     this.checkCapsuleOwner(this.props.capsule,this.props.userID);
-    this.checkCapsuleContributer(this.props.capsule,this.props.userID);
+    this.checkCapsuleContributer(this.props.capsule,this.props.user);
   }
   componentDidUpdate(prevProps) {
     if (prevProps.capsule !== this.props.capsule) {
       this.getAllMedia(this.props.capsule);
       this.checkCapsuleOwner(this.props.capsule,this.props.userID);
-      this.checkCapsuleContributer(this.props.capsule,this.props.userID);
+      this.checkCapsuleContributer(this.props.capsule,this.props.user);
     }
   }
 
