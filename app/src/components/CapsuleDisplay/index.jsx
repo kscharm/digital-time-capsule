@@ -22,6 +22,16 @@ export default class CapsuleDisplay extends Component {
         console.log('I should req to deelete the capsuel');
         console.log(this.props.userID);
         console.log(this.props.id);
+    
+        axios.delete('http://localhost:3001/deleteCapsule?capsule=' + this.props.id)
+        .then((res) => {
+            console.log(res.data);
+            alert('Time capsule deleted.');
+        })
+        .catch((err) => {
+        alert('Error deleting time capsule: ' + err.message);
+        });
+        
     }
     checkCapsuleOwner = (capsuleId, id) => {
         axios.get('http://localhost:3001/capsuleOwner?capsule=' + capsuleId)

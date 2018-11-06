@@ -214,58 +214,87 @@ exports.addTimeCapsule = function(database, capsule, callback) {
 }
 
 exports.deleteTimeCapsule = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").findOne(capsuleId, (err, res) => {
+  database.collection("timeCapsules").findOne({ _id : capsuleId }, (err, capsule) => {
+    console.log("deleting....");
+    console.log(capsuleId);
     if (err) {
       console.log('Error deleting time capsule: ', err.message);
-      return callback(null, err);
+      return callback(err);
     }
-    database.collection("users").updateOne({ username: res.ownerId },  { $pull: { capsules: capsuleId } }, (err, me) => {
-      if (err) {
-        console.log("Error deleting time capsule: ", err.message);
-        return callback(null, err);
-      }
-    });
-    contributors = res.contributors
-    for (let i = 0; i < contributors.length; i++) {
-      database.collection("users").updateOne({ username: contributors[i] },  { $pull: { capsules: capsuleId } }, (err, me) => {
+    console.log("deleting from my list");
+    promises = [];
+    owner = capsule.ownerId
+    let ownerPromise = new Promise((resolve, reject) => {
+      database.collection("users").updateOne({ _id: owner},  { $pull: { capsules: capsuleId } }, (err, user) => {
         if (err) {
-          console.log("Error deleting time capsule: ", err.message);
-          return callback(null, err);
+          reject(err);
         }
+        resolve(user);
       });
+    }).catch((err) => console.log("Error deleting capsule: ", err.message));
+    promises.push(ownerPromise);
+    
+    contributors = capsule.contributors
+    for (let i = 0; i < contributors.length; i++) {
+      let contrPromise = new Promise((resolve, reject) => {
+        database.collection("users").updateOne({ _id: contributors[i] },  { $pull: { capsules: capsuleId } }, (err, user) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(user);
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(contrPromise);
     }
-    photoArr = res.photoArr
+    photoArr = capsule.photoArr
     for (let i = 0; i < photoArr.length; i++) {
-      this.deletePhoto(database, photoArr[i], capsuleId, (res, err) => {
-        if (err) {
-          return callback(null, err);
-        }
-      })
+      let photoPromise = new Promise((resolve, reject) => {
+        this.deletePhoto(database, photoArr[i], capsuleId, (res, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res)
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(photoPromise);
     }
-    textArr = res.textArr
+    textArr = capsule.textArr
     for (let i = 0; i < textArr.length; i++) {
-      this.deleteText(database, textArr[i], capsuleId, (res, err) => {
-        if (err) {
-          return callback(null, err);
-        }
-      })
+      let textPromise = new Promise((resolve, reject) => {
+        this.deleteText(database, textArr[i], capsuleId, (res, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res);
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(textPromise);
     }
-    musicArr = res.musicArr
+    musicArr = capsule.musicArr
     for (let i = 0; i < musicArr.length; i++) {
-      this.deleteMusic(database, musicArr[i], capsuleId, (res, err) => {
-        if (err) {
-          return callback(null, err);
-        }
-      })
+      let musicPromise = new Promise((resolve, reject) => {
+        this.deleteMusic(database, musicArr[i], capsuleId, (res, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res);
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(musicPromise);
     }
-    database.collection("timeCapsules").deleteOne(capsuleId, (err, res) => {
+    Promise.all(promises).then((elements, err) => {
       if (err) {
-        console.log('Error deleting time capsule: ', err.message);
         return callback(null, err);
       }
-      console.log('Time capsule ' + capsuleId._id + ' deleted');
-      return callback(res);
-    });
+      database.collection("timeCapsules").deleteOne({ _id : capsuleId }, (err, res) => {
+        if (err) {
+          console.log('Error deleting time capsule: ', err.message);
+          return callback(null, err);
+        }
+        console.log('Time capsule ' + capsuleId.capsule + ' deleted');
+        return callback(res);
+      });
+    }).catch((err) => console.log("Error deleting capsule: ", err.message));
   });
 }
 

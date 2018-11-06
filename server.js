@@ -194,7 +194,7 @@ app.post('/addCapsule', (req, res) => {
 });
 
 app.delete('/deleteCapsule', (req, res) => {
-  const capsuleId = req.query;
+  const capsuleId = req.query.capsule;
   cog.deleteTimeCapsule(database, capsuleId, (data, err) => {
     if (err) {
       res.status(500).send(err);
