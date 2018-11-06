@@ -694,11 +694,21 @@ exports.checkCapsuleOwner = function(database, capsuleId, callback) {
 }
 
 exports.getCapsuleContributors = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").findOne({_id:capsuleId}, (err, capsule) => {
+  database.collection("timeCapsules").findOne({ _id:capsuleId }, (err, capsule) => {
     if (err) {
+      console.log("Error getting time capsule: ", err.message);
       return callback(null, err);
     }
-    return callback(capsule.contributors);
+    database.collection("users").find({ _id: { $in: capsule.contributors } }).toArray((err, users) => {
+      const usernames = users.map((user) => {
+        return user.username;
+      });
+      if (err) {
+        console.log("Error getting users: ", err.message);
+        return callback(null, err);
+      }
+      return callback(usernames);
+    });
   })
 }
 
