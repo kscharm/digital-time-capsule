@@ -324,7 +324,8 @@ exports.addUser = function(database, user, callback) {
             theme: {}
           },
           description: 'Personal time capsule',
-          tags: []
+          tags: [],
+          requestAccess: [],
         }
         this.addTimeCapsule(database, capsule, (res, err) => {
           if (err) {
@@ -568,10 +569,58 @@ exports.getCapsules = function(database, username, callback) {
   });
 }
 
+exports.requestAccess = function(database, capsuleId, userId, callback) {
+  database.collection("timeCapsules").updateOne({ _id: capsuleId },
+    { $push: { requestAccess: userId }
+  }, (err, capsule) => {
+    if (err) {
+      console.log("Error requesting access for time capsule: ", err.message);
+      return callback(null, err);
+    }
+    return callback(userId);
+  });
+}
+
+exports.getRequestAccess = function(database, capsuleId, callback) {
+  database.collection("timeCapsules").findOne({ _id: capsuleId }, (err, capsule) => {
+    if (err) {
+      console.log("Error getting time capsule: ", err.message);
+      return callback(null, err);
+    }
+    return callback(capsule.requestAccess);
+  });
+}
+
+exports.addContributor = function(database, capsuleId, userId, callback) {
+  database.collection("timeCapsules").updateOne({ _id: capsuleId }, {
+    $pull: { requestAccess: userId },
+    $push: { contributors: userId }
+  }, (err, capsule) => {
+    if (err) {
+      console.log("Error requesting access for time capsule: ", err.message);
+      return callback(null, err);
+    }
+    return callback(userId);
+  });
+}
+
+exports.removeContributor = function(database, capsuleId, userId, callback) {
+  database.collection("timeCapsules").updateOne({ _id: capsuleId },
+    { $pull: { contributors: userId }
+  }, (err, capsule) => {
+    if (err) {
+      console.log("Error requesting access for time capsule: ", err.message);
+      return callback(null, err);
+    }
+    return callback(userId);
+  });
+}
+
 exports.getCapsulesById = function(database, capsuleIds, callback) {
   database.collection("timeCapsules").find({ _id: { $in: capsuleIds } }).toArray((err, capsules) => {
     if (err) {
       console.log("Error matching time capsules: ", err.message);
+      return callback(null, err);
     }
     const returnCapsules = capsules.map((capsule) => {
       const c = {

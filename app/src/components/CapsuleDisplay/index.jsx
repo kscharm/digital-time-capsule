@@ -12,11 +12,17 @@ export default class CapsuleDisplay extends Component {
         isContributer: false,
     }
     requestCapsuleAccess = () => {
-        console.log('I should req access for user and capsule:');
-        console.log(this.props.userID);
-        console.log(this.props.id);
-        console.log(this.props.capsuleOwner);
-        console.log(this.props.capsuleContributer);
+        // TODO: Need to change the vaules of capsuleId and userId?
+        axios.post('http://localhost:3001/requestAccess', {
+            capsuleId: this.props.id,
+            userId: this.props.userID
+        })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert('Error requesting access to time capsule: ' + err.message);
+        });
     }
     requestCapsuleRemoval = () => {  
         const confirmed = window.confirm(`Are you sure you want to delete this capsule?`) 
@@ -28,7 +34,7 @@ export default class CapsuleDisplay extends Component {
                 alert('Time capsule deleted.');
             })
             .catch((err) => {
-            alert('Error deleting time capsule: ' + err.message);
+                alert('Error deleting time capsule: ' + err.message);
             });
         }  else {
             alert('Your capsule was not deleted!');

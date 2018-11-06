@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import OurButton from '../../OurButton';
-// import axios from 'axios';
-// import uuidv4 from 'uuid/v4'
+import axios from 'axios';
 
 export default class AddQuote extends Component {
     // constructor(props) {
@@ -15,14 +14,45 @@ export default class AddQuote extends Component {
     };
 
     editUser = () => {
-        console.log('I should Add a user from the list');
+        console.log('I should Add a user to the list');
+        // TODO: Need to change the vaules of capsuleId and userId
+        axios.post('http://localhost:3001/addContributor', {
+            capsuleId: this.props.id,
+            userId: this.props.userID
+        })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert('Error adding user to time capsule: ' + err.message);
+        });
     }
     removeUser = () => {
         console.log('I should remove a user from the list');
+        // TODO: Need to change the vaules of capsuleId and userId
+        axios.post('http://localhost:3001/removeContributor', {
+            capsuleId: this.props.id,
+            userId: this.props.userID
+        })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert('Error removing user from time capsule: ' + err.message);
+        });
     }
     getRequests = () => {
-        console.log("I should get the list of users who want access");
-        this.setState({requestList: []});
+        console.log(this.props);
+        // TODO: Need to change the vaule of capsuleId in the GET request
+        axios.get('http://localhost:3001/getRequestAccess?capsuleId=' + this.props.capsule)
+        .then((res) => {
+            console.log(res.data);
+            this.setState({requestList: res.data});
+        })
+        .catch((err) => {
+            alert('Error getting access list for time capsule: ' + err.message);
+        });
+        
     }
 
     closeEditUser = () => {

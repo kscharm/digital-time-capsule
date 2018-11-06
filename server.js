@@ -352,6 +352,53 @@ app.get('/searchCapsules', (req, res) => {
   });
 });
 
+app.post('/requestAccess', (req, res) => {
+  const capsuleId = req.body.capsuleId;
+  const userId = req.body.userId;
+  cog.requestAccess(database, capsuleId, userId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/getRequestAccess', (req, res) => {
+  const capsuleId = req.query;
+  cog.getRequestAccess(database, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/addContributor', (req, res) => {
+  const capsuleId = req.body.capsuleId;
+  const userId = req.body.userId;
+  cog.addContributor(database, capsuleId, userId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/removeContributor', (req, res) => {
+  const capsuleId = req.body.capsuleId;
+  const userId = req.body.userId;
+  cog.removeContributor(database, capsuleId, userId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.get('/capsuleOwner', (req, res) => {
   const params = req.query;
   cog.checkCapsuleOwner(database, params.capsule, (data, err) => {

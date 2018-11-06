@@ -292,9 +292,17 @@ export default class CapsuleComponent extends Component {
       });
   }
   requestCapsuleAccess = () => {
-    console.log('I should req access for user and capsule:');
-    console.log(this.props.userID);
-    console.log(this.props.capsule);
+    console.log('Capsule:' + this.props.capsule);
+    axios.post('http://localhost:3001/requestAccess', {
+            capsuleId: this.props.capsule,
+            userId: this.props.userID
+        })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert('Error requesting access to time capsule: ' + err.message);
+        });
   }
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
