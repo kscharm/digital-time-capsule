@@ -18,20 +18,21 @@ export default class CapsuleDisplay extends Component {
         console.log(this.props.capsuleOwner);
         console.log(this.props.capsuleContributer);
     }
-    requestCapsuleRemoval = () => {
-        console.log('I should req to deelete the capsuel');
-        console.log(this.props.userID);
-        console.log(this.props.id);
-    
-        axios.delete('http://localhost:3001/deleteCapsule?capsule=' + this.props.id)
-        .then((res) => {
-            console.log(res.data);
-            alert('Time capsule deleted.');
-        })
-        .catch((err) => {
-        alert('Error deleting time capsule: ' + err.message);
-        });
-        
+    requestCapsuleRemoval = () => {  
+        const confirmed = window.confirm(`Are you sure you want to delete this capsule?`) 
+        if (confirmed) {
+            axios.delete('http://localhost:3001/deleteCapsule?capsule=' + this.props.id)
+            .then((res) => {
+                console.log(res.data);
+                this.props.handleDeleteCapsule(res.data);
+                alert('Time capsule deleted.');
+            })
+            .catch((err) => {
+            alert('Error deleting time capsule: ' + err.message);
+            });
+        }  else {
+            alert('Your capsule was not deleted!');
+        }
     }
     checkCapsuleOwner = (capsuleId, id) => {
         axios.get('http://localhost:3001/capsuleOwner?capsule=' + capsuleId)
