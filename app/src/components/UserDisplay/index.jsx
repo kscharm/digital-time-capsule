@@ -1,36 +1,54 @@
 import React, { Component } from 'react';
 import {
-    FaTrash
+    FaTrash,
+    FaPlus,
+    FaMinus,
 } from 'react-icons/fa';
 
 import toBeCapsule from '../../images/addPhoto.png';
-import AddButton from '../../components/AddButton';
 import './style.css';
 import axios from 'axios';
 
 export default class UserDisplay extends Component {
+
+    state = {
+        isOwner: false,
+        isContributer: false,
+    }
+
     requestAddFriend = (username) => {
-        axios.post('http://localhost:3001/sendFriendRequest', {
-           myUsername: this.props.username,
-           friendUsername: username
-        })
-        .then((res) => {
-            console.log(res.data);
-            this.props.handleAddFriend(res.data);
-        })
-        .catch((err) => {
-           alert('Error adding friend: ' + err.message);
-        });
+        if (this.props.myUsername === username) {
+            alert("Sorry, you can't be friends with yourself!");
+        } else {
+            axios.post('http://localhost:3001/sendFriendRequest', {
+            myUsername: this.props.myUsername,
+            friendUsername: username
+            })
+            .then((res) => {
+                console.log(res.data);
+                alert('Your friend request has been sent.');
+            })
+            .catch((err) => {
+            alert('Error adding friend: ' + err.message);
+            });
+        }
     }
 
     requestAcceptFriend = (username) => {
         axios.post('http://localhost:3001/acceptFriend', {
-           myUsername: this.props.username,
+           myUsername: this.props.myUsername,
            friendUsername: username
         })
         .then((res) => {
             console.log(res.data);
-            this.props.handleAcceptFriend(res.data);
+            const user = {
+                username: this.props.title,
+                _id: this.props.id,
+                photo: this.props.photo,
+                university: this.props.university,
+            }
+            this.props.handleAcceptFriend(user);
+            alert('You have added a friend.');
         })
         .catch((err) => {
            alert('Error accepting friend request: ' + err.message);
@@ -39,26 +57,57 @@ export default class UserDisplay extends Component {
 
     requestDeleteFriend = (username) => {
         axios.post('http://localhost:3001/deleteFriend', {
-           myUsername: this.props.username,
+           myUsername: this.props.myUsername,
            friendUsername: username
         })
         .then((res) => {
             console.log(res.data);
-            this.props.handleDeleteFriend(res.data);
+            const user = {
+                username: this.props.title,
+                _id: this.props.id,
+                photo: this.props.photo,
+                university: this.props.university,
+            }
+            this.props.handleDeleteFriend(user);
+            alert(`${username} has been removed from your friends.`);
         })
         .catch((err) => {
            alert('Error adding friend: ' + err.message);
         });
     }
+    decideAddButton = () => {
+        if (this.props.recrequest) {
+            console.log("YEET");
+            this.requestAcceptFriend(this.props.title);
+        } else {
+            this.requestAddFriend(this.props.title);
+        }
+    }
+    decideDeleteButton = () => {
+        if (!this.props.recrequest) {
+            this.requestDeleteFriend(this.props.title);
+        } else {
+            console.log('I should remove the user from pending and such.');
+        }
+    }
 
     render () {
-        const DeleteButton = () => {
+        const AddButtonUser = () => {
             return (
             <button
-                onClick={() => {console.log('We click a delete.')}}
-                className='deleteButton'
+                onClick={() => {this.decideAddButton()}}
+                className='addButtonsUser'
             >
-                <FaTrash className='deleteIcon' size={20}/>
+                <FaPlus className='addIconsUser' size={20}/>
+            </button>
+            )}
+        const DeleteButtonUser = () => {
+            return (
+            <button
+                onClick={() => {this.decideDeleteButton()}}
+                className='deleteButtonsUser'
+            >
+                <FaMinus className='deleteIconsUser' size={20}/>
             </button>
             )}
         return (
@@ -69,21 +118,15 @@ export default class UserDisplay extends Component {
                 <div className="title-content">
                     <h3>{this.props.title}</h3>
                     <hr />
-                    {/* <div className="intro">{this.props.id}</div> */}
+                    <div className="intro">{this.props.university}</div>
                 </div>
-                <div className='friendAddButton' style={{position: 'absolute', marginLeft: '19%'}}>
-                    <AddButton
-                        buttonAction={() => {console.log("add friend button clicked!")}}
-                        buttonType='add'
-                        style={{position: 'absolute;', marginLeft: '19%;'}}
-                    />
-                </div>
-                {/* <div className="card-info">{this.props.description}</div> */}
                 <div>
                 <img src={toBeCapsule} alt='placeholder' style={{zoom: '50%', padding: '20px 30px 0px 20px'}}></img>
                 </div>
-
-                {this.props.showDelete ? <DeleteButton/> : null}
+                <div>
+                {(this.props.areFriends || this.props.sentRequest) ? null : <AddButtonUser/>}
+                {this.props.sentRequest ? null : <DeleteButtonUser/>}
+                </div>
             </div>
             </div>
         );

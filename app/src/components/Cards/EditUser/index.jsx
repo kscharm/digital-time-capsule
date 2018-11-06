@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import OurButton from '../../OurButton';
-import axios from 'axios';
-import uuidv4 from 'uuid/v4'
+// import axios from 'axios';
+// import uuidv4 from 'uuid/v4'
 
 export default class AddQuote extends Component {
     // constructor(props) {
@@ -51,6 +51,7 @@ export default class AddQuote extends Component {
                 {this.props.contributorList.map((contributor) => {
                     return (
                     <div>
+                        <p>{contributor}</p>
                     </div>
                 )
                 })}

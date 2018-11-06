@@ -1,5 +1,5 @@
 .caption-capsule {
-    width: -webkit-fill-available;
+    width: stretch;
     height: 25px;
 }
 

@@ -10,7 +10,8 @@
         "email",
         "capsules",
         "friends",
-        "pendingFriends"
+        "sentRequests",
+        "receivedRequests"
     ],
     "properties": {
         "username": {
@@ -88,9 +89,16 @@
             "bsonType": "string",
             "description": "base64 encoding of the music to be uploaded"
         },
-        "pendingFriends": {
+        "sentRequests": {
             "bsonType": "array",
-            "description": "array of pending user ids",
+            "description": "array of usernames of sent friend requests",
+            "items": {
+                "type": "string"
+            }
+        },
+        "receivedRequests": {
+            "bsonType": "array",
+            "description": "array of usernames of received friend requests",
             "items": {
                 "type": "string"
             }

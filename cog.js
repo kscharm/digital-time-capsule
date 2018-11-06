@@ -214,13 +214,87 @@ exports.addTimeCapsule = function(database, capsule, callback) {
 }
 
 exports.deleteTimeCapsule = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").deleteOne(capsuleId, (err, res) => {
+  database.collection("timeCapsules").findOne({ _id : capsuleId }, (err, capsule) => {
+    console.log("deleting....");
+    console.log(capsuleId);
     if (err) {
       console.log('Error deleting time capsule: ', err.message);
-      return callback(null, err);
-  }
-    console.log('Time capsule ' + capsuleId._id + ' deleted');
-    return callback(res);
+      return callback(err);
+    }
+    console.log("deleting from my list");
+    promises = [];
+    owner = capsule.ownerId
+    let ownerPromise = new Promise((resolve, reject) => {
+      database.collection("users").updateOne({ _id: owner},  { $pull: { capsules: capsuleId } }, (err, user) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(user);
+      });
+    }).catch((err) => console.log("Error deleting capsule: ", err.message));
+    promises.push(ownerPromise);
+    
+    contributors = capsule.contributors
+    for (let i = 0; i < contributors.length; i++) {
+      let contrPromise = new Promise((resolve, reject) => {
+        database.collection("users").updateOne({ _id: contributors[i] },  { $pull: { capsules: capsuleId } }, (err, user) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(user);
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(contrPromise);
+    }
+    photoArr = capsule.photoArr
+    for (let i = 0; i < photoArr.length; i++) {
+      let photoPromise = new Promise((resolve, reject) => {
+        this.deletePhoto(database, photoArr[i], capsuleId, (res, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res)
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(photoPromise);
+    }
+    textArr = capsule.textArr
+    for (let i = 0; i < textArr.length; i++) {
+      let textPromise = new Promise((resolve, reject) => {
+        this.deleteText(database, textArr[i], capsuleId, (res, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res);
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(textPromise);
+    }
+    musicArr = capsule.musicArr
+    for (let i = 0; i < musicArr.length; i++) {
+      let musicPromise = new Promise((resolve, reject) => {
+        this.deleteMusic(database, musicArr[i], capsuleId, (res, err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res);
+        });
+      }).catch((err) => console.log("Error deleting capsule: ", err.message));
+      promises.push(musicPromise);
+    }
+    Promise.all(promises).then((elements, err) => {
+      if (err) {
+        return callback(null, err);
+      }
+      database.collection("timeCapsules").deleteOne({ _id : capsuleId }, (err, res) => {
+        if (err) {
+          console.log('Error deleting time capsule: ', err.message);
+          return callback(null, err);
+        }
+        console.log('Time capsule ' + capsuleId.capsule + ' deleted');
+        return callback(res);
+      });
+    }).catch((err) => console.log("Error deleting capsule: ", err.message));
   });
 }
 
@@ -352,27 +426,82 @@ exports.getFriends = function(database, username, callback) {
       console.log("Error getting friends: ", err.message);
       return callback(null, err);
     }
-    return callback(user.friends);
+    database.collection("users").find({ username: { $in: user.friends } }).toArray((err, users) => {
+      if (err) {
+        console.log("Error getting sent friend requests: ", err.message);
+        return callback(null, err);
+      }
+      const usernames = users.map((user) => {
+        const u = {
+          username: user.username,
+          _id: user._id,
+          photo: user.photo,
+          university: user.university
+        };
+        return u;
+      });
+      return callback(usernames);
+    });
   });
 }
 
-exports.getPendingRequests = function(database, username, callback) {
+exports.getSentRequests = function(database, username, callback) {
   database.collection("users").findOne(username, (err, user) => {
     if (err) {
-      console.log("Error getting pending friend requests: ", err.message);
+      console.log("Error getting sent friend requests: ", err.message);
       return callback(null, err);
     }
-    return callback(user.pendingFriends);
+    database.collection("users").find({ username: { $in: user.sentRequests } }).toArray((err, users) => {
+      if (err) {
+        console.log("Error getting sent friend requests: ", err.message);
+        return callback(null, err);
+      }
+      const usernames = users.map((user) => {
+        const u = {
+          username: user.username,
+          _id: user._id,
+          photo: user.photo,
+          university: user.university
+        };
+        return u;
+      });
+      return callback(usernames);
+    });
+  });
+}
+
+exports.getReceivedRequests = function(database, username, callback) {
+  database.collection("users").findOne(username, (err, user) => {
+    if (err) {
+      console.log("Error getting received friend requests: ", err.message);
+      return callback(null, err);
+    }
+    database.collection("users").find({ username: { $in: user.receivedRequests } }).toArray((err, users) => {
+      if (err) {
+        console.log("Error getting received friend requests: ", err.message);
+        return callback(null, err);
+      }
+      const usernames = users.map((user) => {
+        const u = {
+          username: user.username,
+          _id: user._id,
+          photo: user.photo,
+          university: user.university
+        };
+        return u;
+      });
+      return callback(usernames);
+    });
   });
 }
 
 exports.sendFriendRequest = function(database, myUsername, friendUsername, callback) {
-  database.collection("users").updateOne({ username: myUsername },  { $push: { pendingFriends: friendUsername } }, (err, me) => {
+  database.collection("users").updateOne({ username: myUsername },  { $push: { sentRequests: friendUsername } }, (err, me) => {
     if (err) {
       console.log("Error adding friend: ", err.message);
       return callback(null, err);
     }
-    database.collection("users").updateOne({ username: friendUsername },  { $push: { pendingFriends: myUsername } }, (err, friend) => {
+    database.collection("users").updateOne({ username: friendUsername },  { $push: { receivedRequests: myUsername } }, (err, friend) => {
       if (err) {
         console.log("Error adding friend: ", err.message);
         return callback(null, err);
@@ -400,9 +529,10 @@ exports.deleteFriend = function(database, myUsername, friendUsername, callback) 
 
 exports.acceptFriend = function(database, myUsername, friendUsername, callback) {
   // Update my friends list to include the new friend and remove the user from
-  // the pendingFriends list
+  // the receivedRequests list
   database.collection("users").updateOne({ username: myUsername },  {
-    $pull: { pendingFriends: friendUsername },
+    $pull: { sentRequests: friendUsername },
+    $pull: { receivedRequests: friendUsername },
     $push: { friends: friendUsername }
   }, (err, me) => {
     if (err) {
@@ -410,9 +540,10 @@ exports.acceptFriend = function(database, myUsername, friendUsername, callback) 
         return callback(null, err);
     }
     // Update other user's friends list to include my name and remove my
-    // name from their pendingFriends list
+    // name from their sentRequests list
     database.collection("users").updateOne({ username: friendUsername },  {
-      $pull: { pendingFriends: myUsername },
+      $pull: { receivedRequests: myUsername },
+      $pull: { sentRequests: myUsername },
       $push: { friends: myUsername }
     }, (err, friend) => {
       if (err) {

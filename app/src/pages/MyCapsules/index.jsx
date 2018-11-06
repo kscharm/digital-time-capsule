@@ -60,6 +60,12 @@ export default class Registration extends Component {
     const capsuleWithNew = this.state.capsuleList.concat(capsule);
     this.setState({capsuleList: capsuleWithNew});
   }
+  handleDeleteCapsule = (capsule) => {
+    const index = this.state.capsuleList.indexOf(capsule);
+    let capsuleWithOut = this.state.capsuleList;
+    capsuleWithOut.splice(index, 1);
+    this.setState({capsuleList: capsuleWithOut});
+  }
   componentDidMount = () => {
     this.getUserCapsules(this.props.username);
   }
@@ -73,7 +79,7 @@ export default class Registration extends Component {
     }
 
     const title1 = "My Capsules";
-    const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    // const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     return (
       <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
@@ -96,6 +102,7 @@ export default class Registration extends Component {
                       showDelete={this.state.showDelete}
                       sendToCapusle={this.sendToCapusle}
                       userID={this.props.userID}
+                      handleDeleteCapsule={this.handleDeleteCapsule}
                   />
               )
             })}

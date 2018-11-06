@@ -194,7 +194,7 @@ app.post('/addCapsule', (req, res) => {
 });
 
 app.delete('/deleteCapsule', (req, res) => {
-  const capsuleId = req.query;
+  const capsuleId = req.query.capsule;
   cog.deleteTimeCapsule(database, capsuleId, (data, err) => {
     if (err) {
       res.status(500).send(err);
@@ -259,9 +259,20 @@ app.get('/getFriends', (req, res) => {
   });
 });
 
-app.get('/getPendingRequests', (req, res) => {
+app.get('/getSentRequests', (req, res) => {
   const username = req.query;
-  cog.getPendingRequests(database, username, (data, err) => {
+  cog.getSentRequests(database, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/getReceivedRequests', (req, res) => {
+  const username = req.query;
+  cog.getReceivedRequests(database, username, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -273,6 +284,8 @@ app.get('/getPendingRequests', (req, res) => {
 app.post('/sendFriendRequest', (req, res) => {
   const myUsername = req.body.myUsername;
   const friendUsername = req.body.friendUsername;
+  console.log(myUsername);
+  console.log(friendUsername);
   cog.sendFriendRequest(database, myUsername, friendUsername, (data, err) => {
     if (err) {
       res.status(500).send(err);
