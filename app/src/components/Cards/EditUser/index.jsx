@@ -13,12 +13,11 @@ export default class AddQuote extends Component {
         requestList: [],
     };
 
-    editUser = () => {
-        console.log('I should Add a user to the list');
+    editUser = (user) => {
         // TODO: Need to change the vaules of capsuleId and userId
         axios.post('http://localhost:3001/addContributor', {
             capsuleId: this.props.id,
-            userId: this.props.userID
+            userId: user
         })
         .then((res) => {
             console.log(res.data);
@@ -27,12 +26,12 @@ export default class AddQuote extends Component {
             alert('Error adding user to time capsule: ' + err.message);
         });
     }
-    removeUser = () => {
+    removeUser = (user) => {
         console.log('I should remove a user from the list');
         // TODO: Need to change the vaules of capsuleId and userId
         axios.post('http://localhost:3001/removeContributor', {
             capsuleId: this.props.id,
-            userId: this.props.userID
+            userId: user
         })
         .then((res) => {
             console.log(res.data);
@@ -72,6 +71,7 @@ export default class AddQuote extends Component {
                 {this.state.requestList.map((requestor) => {
                     return (
                     <div>
+                        <p>{requestor}</p>
                     </div>
                 )
                 })}
@@ -89,12 +89,12 @@ export default class AddQuote extends Component {
             <div className={ `actionButtons actionButtonsEdit` }>
                 <OurButton
                     buttonText='Add'
-                    buttonAction={() => {this.editUser()}}
+                    buttonAction={() => {this.editUser('test')}}
                     buttonType='primary'
                 />
                 <OurButton
                     buttonText='Remove'
-                    buttonAction={() => {this.removeUser()}}
+                    buttonAction={() => {this.removeUser('test')}}
                     buttonType='primary'
                 />
                 <OurButton
