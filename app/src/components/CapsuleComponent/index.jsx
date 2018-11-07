@@ -292,6 +292,16 @@ export default class CapsuleComponent extends Component {
           alert('Error getting media: ' + err.message);
       });
   }
+  handleAddUser = (user) => {
+    const contribWithNew = this.state.contributorList.concat(user);
+    this.setState({contributorList: contribWithNew});
+  }
+  handleDeleteUser = (user) => {
+    const index = this.state.contributorList.indexOf(user);
+    let contribWithOut = this.state.contributorList;
+    contribWithOut.splice(index, 1);
+    this.setState({contributorList: contribWithOut});
+  }
   requestCapsuleAccess = () => {
     console.log('Capsule:' + this.props.capsule);
     axios.post('http://localhost:3001/requestAccess', {
@@ -503,7 +513,9 @@ export default class CapsuleComponent extends Component {
                                       handleShowEditUser={this.handleShowEditUser}
                                       user={this.props.user}
                                       contributorList={this.state.contributorList}
-                                      capsule={this.props.capsule}/> : null}
+                                      capsule={this.props.capsule}
+                                      handleAddUser={this.handleAddUser}
+                                      handleDeleteUser={this.handleDeleteUser}/> : null}
       </div>
     );
   };

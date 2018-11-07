@@ -22,6 +22,11 @@ export default class AddQuote extends Component {
         })
         .then((res) => {
             console.log(res.data);
+            const index = this.state.requestList.indexOf(user);
+            let listWithOut = this.state.requestList;
+            listWithOut.splice(index, 1);
+            this.setState({requestList: listWithOut});
+            this.props.handleAddUser(user);
         })
         .catch((err) => {
             alert('Error adding user to time capsule: ' + err.message);
@@ -36,6 +41,7 @@ export default class AddQuote extends Component {
         })
         .then((res) => {
             console.log(res.data);
+            this.props.handleDeleteUser(user);
         })
         .catch((err) => {
             alert('Error removing user from time capsule: ' + err.message);
@@ -43,6 +49,10 @@ export default class AddQuote extends Component {
     }
     removeRequestor = (user) => {
         console.log('I should remove the user from the request list');
+        const index = this.state.requestList.indexOf(user);
+        let listWithOut = this.state.requestList;
+        listWithOut.splice(index, 1);
+        this.setState({requestList: listWithOut});
     }
     getRequests = () => {
         console.log(this.props);
@@ -76,18 +86,22 @@ export default class AddQuote extends Component {
                         return (
                         <li>
                             <label>{requestor}</label>
+                            {this.state.showButtons ? 
                             <button 
                                 className="add"
                                 onClick={()=> {this.editUser(requestor)}}
                             >
                                 Add
                             </button>
+                            : null}
+                            {this.state.showButtons ? 
                             <button 
                                 className="delete"
                                 onClick={()=> {this.removeRequestor(requestor)}}
                             >
                                 Delete
                             </button>
+                            : null}
                         </li>
                     )
                     })}
@@ -100,15 +114,14 @@ export default class AddQuote extends Component {
                         return (
                         <li>
                             <label>{contributor}</label>
-                            <button 
-                                className="delete" 
-                                onClick={()=> {this.removeUser(contributor);}}>
-                            </button>
+                            {this.state.showButtons ? <button className="delete"/> : null }
+                            {this.state.showButtons ?
                             <button 
                                 className="delete" 
                                 onClick={()=> {this.removeUser(contributor);}}>
                                     Delete
                             </button>
+                            : null}
                         </li>
                     )
                     })}
