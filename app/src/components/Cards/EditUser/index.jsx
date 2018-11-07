@@ -10,7 +10,8 @@ export default class AddQuote extends Component {
     // }
 
     state = {
-        requestList: [],
+        requestList: ["FAKE BOHY"],
+        showButtons: false,
     };
 
     editUser = (user) => {
@@ -40,6 +41,9 @@ export default class AddQuote extends Component {
             alert('Error removing user from time capsule: ' + err.message);
         });
     }
+    removeRequestor = (user) => {
+        console.log('I should remove the user from the request list');
+    }
     getRequests = () => {
         console.log(this.props);
         // TODO: Need to change the vaule of capsuleId in the GET request
@@ -51,14 +55,13 @@ export default class AddQuote extends Component {
         .catch((err) => {
             alert('Error getting access list for time capsule: ' + err.message);
         });
-        
     }
 
     closeEditUser = () => {
         this.props.handleShowEditUser(false);
     }
     componentDidMount = () => {
-        this.getRequests();
+        //this.getRequests();
     }
 
   render() {
@@ -66,39 +69,59 @@ export default class AddQuote extends Component {
     <div className={ `addType editUser` }>
       <div className={ `addTypeBack editUserBack` }/>
         <div className={ `addTypeCard editUserCard` }>
-            <div className='requestList'>
-                <span className='sectionLabels'> Request List: </span>
-                {this.state.requestList.map((requestor) => {
-                    return (
-                    <div>
-                        <p>{requestor}</p>
-                    </div>
-                )
-                })}
+            <div className='listDiv'>
+                <h3> Request List: </h3>
+                <ul className='listUL'>
+                    {this.state.requestList.map((requestor) => {
+                        return (
+                        <li>
+                            <label>{requestor}</label>
+                            <button 
+                                className="add"
+                                onClick={()=> {this.editUser(requestor)}}
+                            >
+                                Add
+                            </button>
+                            <button 
+                                className="delete"
+                                onClick={()=> {this.removeRequestor(requestor)}}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    )
+                    })}
+                </ul>
             </div>
-            <div className='userList'>
-                <span className='sectionLabels'> User List: </span>
-                {this.props.contributorList.map((contributor) => {
-                    return (
-                    <div>
-                        <p>{contributor}</p>
-                    </div>
-                )
-                })}
+            <div className='listDiv'>
+                <h3> User List: </h3>
+                <ul className='listUL'>
+                    {this.props.contributorList.map((contributor) => {
+                        return (
+                        <li>
+                            <label>{contributor}</label>
+                            <button 
+                                className="delete" 
+                                onClick={()=> {this.removeUser(contributor);}}>
+                            </button>
+                            <button 
+                                className="delete" 
+                                onClick={()=> {this.removeUser(contributor);}}>
+                                    Delete
+                            </button>
+                        </li>
+                    )
+                    })}
+                </ul>
             </div>
             <div className={ `actionButtons actionButtonsEdit` }>
                 <OurButton
-                    buttonText='Add'
-                    buttonAction={() => {this.editUser('test')}}
+                    buttonText='Edit'
+                    buttonAction={() => {this.setState({showButtons: !this.state.showButtons});}}
                     buttonType='primary'
                 />
                 <OurButton
-                    buttonText='Remove'
-                    buttonAction={() => {this.removeUser('test')}}
-                    buttonType='primary'
-                />
-                <OurButton
-                    buttonText='Cancel'
+                    buttonText='Close'
                     buttonAction={() => {this.closeEditUser()}}
                     buttonType='secondary'
                 />

@@ -1,0 +1,60 @@
+.listDiv ul {
+    margin: 0;
+    padding: 0;
+  }
+.listDiv li {
+    float: left;
+    clear:both;
+    list-style:none;
+  }
+.listDiv h3 {
+    clear:both;
+    list-style:none;
+  }
+.listDiv button {
+    outline: none;
+  }
+.listDiv button {
+    background: none;
+    border: 0px;
+    color: #c0e8ff;
+    font-size: 15px;
+    width: 60px;
+    margin: 10px 0 0;
+    font-family: Lato, sans-serif;
+    cursor: pointer;
+  }
+.listDiv button:hover {
+    color: #333;
+  }
+  /* Heading */
+.listDiv h3 {
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 2px solid #c0e8ff;
+    padding: 30px 0 10px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  
+  /* Task list */
+.listDiv li {
+    display: flex;
+    overflow: hidden;
+    padding-top: 20px;
+    border-bottom: 1px solid #eee;
+    background: rgb(0, 69, 126);
+  }
+.listDiv label {
+    font-size: 18px;
+    line-height: 40px;
+    width: 200px;
+    padding: 0 0 0 11px;
+    color: #c0e8ff;
+  }
+.listDiv li > .delete:hover {
+    color: #CF2323;
+  }
+  .listDiv li > .add:hover {
+    color: rgb(35, 207, 49);
+  }
