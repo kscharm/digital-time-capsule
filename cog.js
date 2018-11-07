@@ -600,7 +600,8 @@ exports.searchUsers = function(database, query, callback) {
         username: user.username,
         _id: user._id,
         photo: user.photo,
-        university: user.university
+        university: user.university,
+        friends: user.friends
       };
       return u;
     });
