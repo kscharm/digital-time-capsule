@@ -5,9 +5,6 @@ import OurButton from '../../OurButton';
 import axios from 'axios';
 
 export default class AddQuote extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
 
     state = {
         requestList: ["FAKE BOHY"],
@@ -16,7 +13,7 @@ export default class AddQuote extends Component {
 
     editUser = (user) => {
         axios.post('http://localhost:3001/addContributor', {
-            capsuleId: this.props.id,
+            capsuleId: this.props.capsule,
             username: user
         })
         .then((res) => {
@@ -33,7 +30,7 @@ export default class AddQuote extends Component {
     }
     removeUser = (user) => {
         axios.post('http://localhost:3001/removeContributor', {
-            capsuleId: this.props.id,
+            capsuleId: this.props.capsule,
             username: user
         })
         .then((res) => {
