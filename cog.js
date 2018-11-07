@@ -496,18 +496,32 @@ exports.getReceivedRequests = function(database, username, callback) {
 }
 
 exports.sendFriendRequest = function(database, myUsername, friendUsername, callback) {
-  database.collection("users").updateOne({ username: myUsername },  { $push: { sentRequests: friendUsername } }, (err, me) => {
-    if (err) {
-      console.log("Error adding friend: ", err.message);
-      return callback(null, err);
+  database.collection('users').findOne({username: myUsername}, (err, myUser) => {
+    if (myUser.friends.includes(friendUsername)) {
+      return callback(null, 'Already friends with user');
     }
-    database.collection("users").updateOne({ username: friendUsername },  { $push: { receivedRequests: myUsername } }, (err, friend) => {
-      if (err) {
-        console.log("Error adding friend: ", err.message);
-        return callback(null, err);
-      }
-      return callback(me);
-    });
+    if (myUser.receivedRequests.includes(friendUsername)) {
+      this.acceptFriend(database, myUsername, friendUsername, (res, err) => {
+        if (err) {
+          return callback(null, err);
+        }
+        return callback(res);
+      });
+    } else {
+      database.collection("users").findOneAndUpdate({ username: myUsername },  { $push: { sentRequests: friendUsername } }, (err, me) => {
+        if (err) {
+          console.log("Error adding friend: ", err.message);
+          return callback(null, err);
+        }
+        database.collection("users").findOneAndUpdate({ username: friendUsername },  { $push: { receivedRequests: myUsername } }, (err, friend) => {
+          if (err) {
+            console.log("Error adding friend: ", err.message);
+            return callback(null, err);
+          }
+          return callback(myUser);
+        });
+      });
+    }
   });
 }
 
