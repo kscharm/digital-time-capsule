@@ -237,7 +237,7 @@ exports.deleteTimeCapsule = function(database, capsuleId, callback) {
     contributors = capsule.contributors
     for (let i = 0; i < contributors.length; i++) {
       let contrPromise = new Promise((resolve, reject) => {
-        database.collection("users").updateOne({ _id: contributors[i] },  { $pull: { capsules: capsuleId } }, (err, user) => {
+        database.collection("users").updateOne({ username: contributors[i] },  { $pull: { capsules: capsuleId } }, (err, user) => {
           if (err) {
             reject(err);
           }
@@ -313,7 +313,7 @@ exports.addUser = function(database, user, callback) {
           ownerId: user._id,
           _id: user._id,
           title: user.firstName + "'s Personal Capsule",
-          contributors: [user._id],
+          contributors: [user.username],
           photoArr: [],
           textArr: [],
           musicArr: [],
@@ -569,15 +569,15 @@ exports.getCapsules = function(database, username, callback) {
   });
 }
 
-exports.requestAccess = function(database, capsuleId, userId, callback) {
+exports.requestAccess = function(database, capsuleId, username, callback) {
   database.collection("timeCapsules").updateOne({ _id: capsuleId },
-    { $push: { requestAccess: userId }
+    { $push: { requestAccess: username }
   }, (err, capsule) => {
     if (err) {
       console.log("Error requesting access for time capsule: ", err.message);
       return callback(null, err);
     }
-    return callback(userId);
+    return callback(username);
   });
 }
 
@@ -591,28 +591,28 @@ exports.getRequestAccess = function(database, capsuleId, callback) {
   });
 }
 
-exports.addContributor = function(database, capsuleId, userId, callback) {
+exports.addContributor = function(database, capsuleId, username, callback) {
   database.collection("timeCapsules").updateOne({ _id: capsuleId }, {
-    $pull: { requestAccess: userId },
-    $push: { contributors: userId }
+    $pull: { requestAccess: username },
+    $push: { contributors: username }
   }, (err, capsule) => {
     if (err) {
       console.log("Error requesting access for time capsule: ", err.message);
       return callback(null, err);
     }
-    return callback(userId);
+    return callback(username);
   });
 }
 
-exports.removeContributor = function(database, capsuleId, userId, callback) {
+exports.removeContributor = function(database, capsuleId, username, callback) {
   database.collection("timeCapsules").updateOne({ _id: capsuleId },
-    { $pull: { contributors: userId }
+    { $pull: { contributors: username }
   }, (err, capsule) => {
     if (err) {
       console.log("Error requesting access for time capsule: ", err.message);
       return callback(null, err);
     }
-    return callback(userId);
+    return callback(username);
   });
 }
 
@@ -699,16 +699,7 @@ exports.getCapsuleContributors = function(database, capsuleId, callback) {
       console.log("Error getting time capsule: ", err.message);
       return callback(null, err);
     }
-    database.collection("users").find({ _id: { $in: capsule.contributors } }).toArray((err, users) => {
-      const usernames = users.map((user) => {
-        return user.username;
-      });
-      if (err) {
-        console.log("Error getting users: ", err.message);
-        return callback(null, err);
-      }
-      return callback(usernames);
-    });
+    return callback(capsule.contributors);
   })
 }
 

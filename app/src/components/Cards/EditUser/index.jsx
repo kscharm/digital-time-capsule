@@ -15,10 +15,9 @@ export default class AddQuote extends Component {
     };
 
     editUser = (user) => {
-        // TODO: Need to change the vaules of capsuleId and userId
         axios.post('http://localhost:3001/addContributor', {
             capsuleId: this.props.id,
-            userId: user
+            username: user
         })
         .then((res) => {
             console.log(res.data);
@@ -33,11 +32,9 @@ export default class AddQuote extends Component {
         });
     }
     removeUser = (user) => {
-        console.log('I should remove a user from the list');
-        // TODO: Need to change the vaules of capsuleId and userId
         axios.post('http://localhost:3001/removeContributor', {
             capsuleId: this.props.id,
-            userId: user
+            username: user
         })
         .then((res) => {
             console.log(res.data);
@@ -48,15 +45,12 @@ export default class AddQuote extends Component {
         });
     }
     removeRequestor = (user) => {
-        console.log('I should remove the user from the request list');
         const index = this.state.requestList.indexOf(user);
         let listWithOut = this.state.requestList;
         listWithOut.splice(index, 1);
         this.setState({requestList: listWithOut});
     }
     getRequests = () => {
-        console.log(this.props);
-        // TODO: Need to change the vaule of capsuleId in the GET request
         axios.get('http://localhost:3001/getRequestAccess?capsuleId=' + this.props.capsule)
         .then((res) => {
             console.log(res.data);
@@ -71,7 +65,7 @@ export default class AddQuote extends Component {
         this.props.handleShowEditUser(false);
     }
     componentDidMount = () => {
-        //this.getRequests();
+        this.getRequests();
     }
 
   render() {

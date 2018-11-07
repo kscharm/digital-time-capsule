@@ -354,8 +354,8 @@ app.get('/searchCapsules', (req, res) => {
 
 app.post('/requestAccess', (req, res) => {
   const capsuleId = req.body.capsuleId;
-  const userId = req.body.userId;
-  cog.requestAccess(database, capsuleId, userId, (data, err) => {
+  const username = req.body.username;
+  cog.requestAccess(database, capsuleId, username, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -365,7 +365,7 @@ app.post('/requestAccess', (req, res) => {
 });
 
 app.get('/getRequestAccess', (req, res) => {
-  const capsuleId = req.query;
+  const capsuleId = req.query.capsuleId;
   cog.getRequestAccess(database, capsuleId, (data, err) => {
     if (err) {
       res.status(500).send(err);
@@ -377,8 +377,8 @@ app.get('/getRequestAccess', (req, res) => {
 
 app.post('/addContributor', (req, res) => {
   const capsuleId = req.body.capsuleId;
-  const userId = req.body.userId;
-  cog.addContributor(database, capsuleId, userId, (data, err) => {
+  const username = req.body.username;
+  cog.addContributor(database, capsuleId, username, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -389,8 +389,8 @@ app.post('/addContributor', (req, res) => {
 
 app.post('/removeContributor', (req, res) => {
   const capsuleId = req.body.capsuleId;
-  const userId = req.body.userId;
-  cog.removeContributor(database, capsuleId, userId, (data, err) => {
+  const username = req.body.username;
+  cog.removeContributor(database, capsuleId, username, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {

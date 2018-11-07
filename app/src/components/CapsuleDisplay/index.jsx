@@ -15,7 +15,7 @@ export default class CapsuleDisplay extends Component {
         // TODO: Need to change the vaules of capsuleId and userId?
         axios.post('http://localhost:3001/requestAccess', {
             capsuleId: this.props.id,
-            userId: this.props.userID
+            username: this.props.user
         })
         .then((res) => {
             console.log(res.data);

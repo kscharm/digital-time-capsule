@@ -306,7 +306,7 @@ export default class CapsuleComponent extends Component {
     console.log('Capsule:' + this.props.capsule);
     axios.post('http://localhost:3001/requestAccess', {
             capsuleId: this.props.capsule,
-            userId: this.props.userID
+            username: this.props.user
         })
         .then((res) => {
             console.log(res.data);

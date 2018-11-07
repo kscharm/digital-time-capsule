@@ -103,6 +103,7 @@ export default class Registration extends Component {
                       sendToCapusle={this.sendToCapusle}
                       userID={this.props.userID}
                       handleDeleteCapsule={this.handleDeleteCapsule}
+                      user={this.props.username}
                   />
               )
             })}
