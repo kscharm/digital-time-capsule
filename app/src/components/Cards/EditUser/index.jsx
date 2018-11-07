@@ -93,7 +93,7 @@ export default class AddQuote extends Component {
                             >
                                 Add
                             </button>
-                            : null}
+                            : <div className="spacerDiv"/>}
                             {this.state.showButtons ? 
                             <button 
                                 className="delete"
@@ -101,7 +101,7 @@ export default class AddQuote extends Component {
                             >
                                 Delete
                             </button>
-                            : null}
+                            : <div className="spacerDiv"/>}
                         </li>
                     )
                     })}
@@ -114,14 +114,14 @@ export default class AddQuote extends Component {
                         return (
                         <li>
                             <label>{contributor}</label>
-                            {this.state.showButtons ? <button className="delete"/> : null }
+                            {this.state.showButtons ? <div className="spacerDiv"/> : <div className="spacerDiv"/> }
                             {this.state.showButtons ?
                             <button 
                                 className="delete" 
                                 onClick={()=> {this.removeUser(contributor);}}>
                                     Delete
                             </button>
-                            : null}
+                            : <div className="spacerDiv"/>}
                         </li>
                     )
                     })}
