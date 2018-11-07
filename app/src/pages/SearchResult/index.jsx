@@ -103,6 +103,14 @@ export default class SearchResult extends Component {
               </div>
               <div className='usersBlock'>
               {this.state.userMatches.map((user) => {
+                let inFriends = false;
+                if (user.friends.includes(this.props.username)) {
+                  console.log("bitch gotem");
+                  inFriends = true;
+                } else {
+                  console.log('nah son aint gotem');
+                  inFriends = false;
+                }
                 return (
                   <UserDisplay //giving the unique key error and I'm not sure why
                       title={user.username}
@@ -115,9 +123,10 @@ export default class SearchResult extends Component {
                       handleAcceptFriend={() => {console.log('I dont do anything');}}
                       handleDeleteFriend={() => {console.log('I dont do anything');}}
                       myUsername={this.props.username}
-                      areFriends={false}
+                      areFriends={inFriends}
                       sentRequest={false}
                       recrequest={false}
+                      searchPage={true}
                   />
               )
             })}

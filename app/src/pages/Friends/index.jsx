@@ -100,6 +100,7 @@ export default class Friends extends Component {
                         areFriends={true}
                         sentRequest={false}
                         recrequest={false}
+                        searchPage={false}
                     />
                 )
               })}
@@ -148,6 +149,7 @@ export default class Friends extends Component {
                         areFriends={false}
                         sentRequest={false}
                         recrequest={true}
+                        searchPage={false}
                     />
                 )
               })}

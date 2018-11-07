@@ -125,7 +125,7 @@ export default class UserDisplay extends Component {
                 </div>
                 <div>
                 {(this.props.areFriends || this.props.sentRequest) ? null : <AddButtonUser/>}
-                {this.props.sentRequest ? null : <DeleteButtonUser/>}
+                {(this.props.sentRequest || this.props.searchPage) ? null : <DeleteButtonUser/>}
                 </div>
             </div>
             </div>
