@@ -71,7 +71,7 @@ export default class AddQuote extends Component {
       <div className={ `addTypeBack editUserBack` }/>
         <div className={ `addTypeCard editUserCard` }>
             <div className='listDiv'>
-                <h3> Request List: </h3>
+                <h3> Contributor Request List: </h3>
                 <ul className='listUL'>
                     {this.state.requestList.map((requestor) => {
                         return (
@@ -99,7 +99,7 @@ export default class AddQuote extends Component {
                 </ul>
             </div>
             <div className='listDiv'>
-                <h3> User List: </h3>
+                <h3> Contributor List: </h3>
                 <ul className='listUL'>
                     {this.props.contributorList.map((contributor) => {
                         return (
