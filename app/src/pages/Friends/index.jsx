@@ -65,6 +65,12 @@ export default class Friends extends Component {
     friendWithOut.splice(index, 1);
     this.setState({userFriendsMatches: friendWithOut});
   }
+  handleRemoveRequest = (friend) => {
+    const index = this.state.userReceivedRequests.indexOf(friend);
+    let friendWithOut = this.state.userReceivedRequests;
+    friendWithOut.splice(index, 1);
+    this.setState({userReceivedRequests: friendWithOut});
+  }
   componentDidMount = () => {
     this.getUserFriends(this.props.username);
     this.getSentRequests(this.props.username);
@@ -150,6 +156,7 @@ export default class Friends extends Component {
                         sentRequest={false}
                         recrequest={true}
                         searchPage={false}
+                        handleRemoveRequest={this.handleRemoveRequest}
                     />
                 )
               })}

@@ -87,7 +87,8 @@ export default class UserDisplay extends Component {
         if (!this.props.recrequest) {
             this.requestDeleteFriend(this.props.title);
         } else {
-            console.log('I should remove the user from pending and such.');
+            console.log('I should remove the user from requests and such.');
+            this.props.handleRemoveRequest(this.props.title);
         }
     }
 
