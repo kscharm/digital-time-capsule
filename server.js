@@ -390,7 +390,8 @@ app.post('/addContributor', (req, res) => {
 app.post('/removeContributor', (req, res) => {
   const capsuleId = req.body.capsuleId;
   const username = req.body.username;
-  cog.removeContributor(database, capsuleId, username, (data, err) => {
+  const userId = req.body.userId;
+  cog.removeContributor(database, capsuleId, username, userId, (data, err) => {
     if (err) {
       res.status(500).send(err);
     } else {

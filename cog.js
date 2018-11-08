@@ -497,7 +497,7 @@ exports.getReceivedRequests = function(database, username, callback) {
 }
 
 exports.sendFriendRequest = function(database, myUsername, friendUsername, callback) {
-  database.collection('users').findOne({username: myUsername}, (err, myUser) => {
+  database.collection('users').findOne({ username: myUsername }, (err, myUser) => {
     if (myUser.friends.includes(friendUsername)) {
       return callback(null, 'Already friends with user');
     }
@@ -585,7 +585,7 @@ exports.getCapsules = function(database, username, callback) {
 
 exports.requestAccess = function(database, capsuleId, username, callback) {
   database.collection("timeCapsules").updateOne({ _id: capsuleId },
-    { $push: { requestAccess: username }
+    { $addToSet: { requestAccess: username }
   }, (err, capsule) => {
     if (err) {
       console.log("Error requesting access for time capsule: ", err.message);
@@ -618,8 +618,11 @@ exports.addContributor = function(database, capsuleId, username, callback) {
   });
 }
 
-exports.removeContributor = function(database, capsuleId, username, callback) {
-  database.collection("timeCapsules").updateOne({ _id: capsuleId },
+exports.removeContributor = function(database, capsuleId, username, userId, callback) {
+  database.collection("timeCapsules").updateOne({ $and:
+    [ { _id: capsuleId },
+      { ownerId: { $ne: userId} }
+    ] },
     { $pull: { contributors: username }
   }, (err, capsule) => {
     if (err) {

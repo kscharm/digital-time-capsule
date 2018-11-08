@@ -31,7 +31,8 @@ export default class AddQuote extends Component {
     removeUser = (user) => {
         axios.post('http://localhost:3001/removeContributor', {
             capsuleId: this.props.capsule,
-            username: user
+            username: user,
+            userId: this.props.userId
         })
         .then((res) => {
             console.log(res.data);
