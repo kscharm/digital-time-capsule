@@ -619,7 +619,7 @@ exports.addContributor = function(database, capsuleId, username, callback) {
 }
 
 exports.removeContributor = function(database, capsuleId, username, callback) {
-  database.collection("users").findOne(username, (err, user) => {
+  database.collection("users").findOne({ username }, (err, user) => {
     if (err) {
       return callback(null, err);
     }
