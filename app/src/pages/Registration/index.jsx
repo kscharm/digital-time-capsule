@@ -59,7 +59,7 @@ export default class Registration extends Component {
                 this.setState({ redirectToReferrer: true });
             })
             .catch((err) => {
-               alert('Error saving user: ' + err.message);
+               alert('Error saving user: ' + err.response.data);
             });
         });
       });

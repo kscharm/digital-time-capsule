@@ -25,10 +25,12 @@ export default class AddQuote extends Component {
             this.props.handleAddUser(user);
         })
         .catch((err) => {
-            alert('Error adding user to time capsule: ' + err.message);
+            alert('Error adding user to time capsule: ' +  err.response.data);
         });
     }
     removeUser = (user) => {
+        const confirm = window.confirm(`Are you sure you want to remove ${user} from this time capsule?`)
+        if (confirm) {
         axios.post('http://localhost:3001/removeContributor', {
             capsuleId: this.props.capsule,
             username: user
@@ -38,8 +40,9 @@ export default class AddQuote extends Component {
             this.props.handleDeleteUser(user);
         })
         .catch((err) => {
-            alert('Error removing user from time capsule: ' + err.message);
+            alert('Error removing user from time capsule: ' + err.response.data);
         });
+        }
     }
     removeRequestor = (user) => {
         const index = this.state.requestList.indexOf(user);
@@ -54,7 +57,7 @@ export default class AddQuote extends Component {
             this.setState({requestList: res.data});
         })
         .catch((err) => {
-            alert('Error getting access list for time capsule: ' + err.message);
+            alert('Error getting access list for time capsule: ' +  err.response.data);
         });
     }
 

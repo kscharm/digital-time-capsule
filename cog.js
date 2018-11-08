@@ -497,7 +497,7 @@ exports.getReceivedRequests = function(database, username, callback) {
 }
 
 exports.sendFriendRequest = function(database, myUsername, friendUsername, callback) {
-  database.collection('users').findOne({username: myUsername}, (err, myUser) => {
+  database.collection('users').findOne({ username: myUsername }, (err, myUser) => {
     if (myUser.friends.includes(friendUsername)) {
       return callback(null, 'Already friends with user');
     }
@@ -585,7 +585,7 @@ exports.getCapsules = function(database, username, callback) {
 
 exports.requestAccess = function(database, capsuleId, username, callback) {
   database.collection("timeCapsules").updateOne({ _id: capsuleId },
-    { $push: { requestAccess: username }
+    { $addToSet: { requestAccess: username }
   }, (err, capsule) => {
     if (err) {
       console.log("Error requesting access for time capsule: ", err.message);
@@ -619,14 +619,25 @@ exports.addContributor = function(database, capsuleId, username, callback) {
 }
 
 exports.removeContributor = function(database, capsuleId, username, callback) {
-  database.collection("timeCapsules").updateOne({ _id: capsuleId },
-    { $pull: { contributors: username }
-  }, (err, capsule) => {
+  database.collection("users").findOne({ username }, (err, user) => {
     if (err) {
-      console.log("Error requesting access for time capsule: ", err.message);
       return callback(null, err);
     }
-    return callback(username);
+    database.collection("timeCapsules").findOne({ $and:
+      [ { _id: capsuleId },
+        { ownerId: { $ne: user._id} }
+      ] }, (err, capsule) => {
+      if (!capsule || err) {
+        return callback(null, "Cannot remove the owner of a capsule");
+      }
+      database.collection("timeCapsules").updateOne({ _id: capsuleId },
+        { $pull: { contributors: username } }, (err, doc) => {
+          if (err) {
+            return callback(null, err);
+          }
+          return callback(username);
+      });
+    });
   });
 }
 
@@ -700,7 +711,7 @@ exports.searchCapsules = function(database, query, username, callback) {
 }
 
 exports.checkCapsuleOwner = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").findOne({_id:capsuleId}, (err, capsule) => {
+  database.collection("timeCapsules").findOne({ _id:capsuleId}, (err, capsule) => {
     if (err) {
       return callback(null, err);
     }
