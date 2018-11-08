@@ -24,6 +24,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((err, req, res, next) => {
+  res.sendStatus(500).json(err);
+});
+
 // Express only serves static assets in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("app/build"));
@@ -80,343 +84,341 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
   });
 });
 
-app.post('/addMusic', (req, res) => {
+app.post('/addMusic', (req, res, next) => {
   const musicDoc = req.body;
   cog.addMusic(database, musicDoc, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/deleteMusic', (req, res) => {
+app.post('/deleteMusic', (req, res, next) => {
   const musicId = req.body.musicId;
   const capsuleId = req.body.capsuleId;
   cog.deleteMusic(database, musicId, capsuleId, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/updateMusic', (req, res) => {
+app.post('/updateMusic', (req, res, next) => {
   const musicDoc = req.body;
   cog.updateMusic(database, musicDoc, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/addPhoto', (req, res) => {
+app.post('/addPhoto', (req, res, next) => {
   const photos = req.body;
   cog.addPhoto(database, photos, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/deletePhoto', (req, res) => {
+app.post('/deletePhoto', (req, res, next) => {
   const photoId = req.body.photoId;
   const capsuleId = req.body.capsuleId;
   cog.deletePhoto(database, photoId, capsuleId, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/updatePhoto', (req, res) => {
+app.post('/updatePhoto', (req, res, next) => {
   const photoDoc = req.body;
   cog.updatePhoto(database, photoDoc, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/addText', (req, res) => {
+app.post('/addText', (req, res, next) => {
   const textDoc = req.body;
   cog.addText(database, textDoc, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/deleteText', (req, res) => {
+app.post('/deleteText', (req, res, next) => {
   const textId = req.body.textId;
   const capsuleId = req.body.capsuleId;
   cog.deleteText(database, textId, capsuleId, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/updateText', (req, res) => {
+app.post('/updateText', (req, res, next) => {
   const textDoc = req.body;
   cog.updateText(database, textDoc, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/addCapsule', (req, res) => {
+app.post('/addCapsule', (req, res, next) => {
   const capsuleDoc = req.body;
   cog.addTimeCapsule(database, capsuleDoc, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.delete('/deleteCapsule', (req, res) => {
+app.delete('/deleteCapsule', (req, res, next) => {
   const capsuleId = req.query.capsule;
   cog.deleteTimeCapsule(database, capsuleId, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/registerUser', (req, res) => {
+app.post('/registerUser', (req, res, next) => {
   const user = req.body;
   cog.addUser(database, user, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/validateUser', (req, res) => {
+app.get('/validateUser', (req, res, next) => {
   const username = req.query;
   cog.validateUser(database, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/getCapsules', (req, res) => {
+app.get('/getCapsules', (req, res, next) => {
   const username = req.query;
   cog.getCapsules(database, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/getCapsulesById', (req, res) => {
+app.post('/getCapsulesById', (req, res, next) => {
   const capsuleIds = req.body.capsuleIds;
   cog.getCapsulesById(database, capsuleIds, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/getFriends', (req, res) => {
+app.get('/getFriends', (req, res, next) => {
   const username = req.query;
   cog.getFriends(database, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/getSentRequests', (req, res) => {
+app.get('/getSentRequests', (req, res, next) => {
   const username = req.query;
   cog.getSentRequests(database, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/getReceivedRequests', (req, res) => {
+app.get('/getReceivedRequests', (req, res, next) => {
   const username = req.query;
   cog.getReceivedRequests(database, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/sendFriendRequest', (req, res) => {
+app.post('/sendFriendRequest', (req, res, next) => {
   const myUsername = req.body.myUsername;
   const friendUsername = req.body.friendUsername;
-  console.log(myUsername);
-  console.log(friendUsername);
   cog.sendFriendRequest(database, myUsername, friendUsername, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/deleteFriend', (req, res) => {
+app.post('/deleteFriend', (req, res, next) => {
   const myUsername = req.body.myUsername;
   const friendUsername = req.body.friendUsername;
   cog.deleteFriend(database, myUsername, friendUsername, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/acceptFriend', (req, res) => {
+app.post('/acceptFriend', (req, res, next) => {
   const myUsername = req.body.myUsername;
   const friendUsername = req.body.friendUsername;
   cog.acceptFriend(database, myUsername, friendUsername, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/getMedia', (req, res) => {
+app.get('/getMedia', (req, res, next) => {
   const capsuleId = req.query;
   cog.getMedia(database, capsuleId, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/searchUsers', (req, res) => {
+app.get('/searchUsers', (req, res, next) => {
   const params = req.query;
   cog.searchUsers(database, params.query, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/searchCapsules', (req, res) => {
+app.get('/searchCapsules', (req, res, next) => {
   const params = req.query;
   cog.searchCapsules(database, params.query, params.user, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/requestAccess', (req, res) => {
+app.post('/requestAccess', (req, res, next) => {
   const capsuleId = req.body.capsuleId;
   const username = req.body.username;
   cog.requestAccess(database, capsuleId, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/getRequestAccess', (req, res) => {
+app.get('/getRequestAccess', (req, res, next) => {
   const capsuleId = req.query.capsuleId;
   cog.getRequestAccess(database, capsuleId, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/addContributor', (req, res) => {
+app.post('/addContributor', (req, res, next) => {
   const capsuleId = req.body.capsuleId;
   const username = req.body.username;
   cog.addContributor(database, capsuleId, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.post('/removeContributor', (req, res) => {
+app.post('/removeContributor', (req, res, next) => {
   const capsuleId = req.body.capsuleId;
   const username = req.body.username;
   cog.removeContributor(database, capsuleId, username, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   });
 });
 
-app.get('/capsuleOwner', (req, res) => {
+app.get('/capsuleOwner', (req, res, next) => {
   const params = req.query;
   cog.checkCapsuleOwner(database, params.capsule, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   })
 })
 
-app.get('/capsuleContributors', (req, res) => {
+app.get('/capsuleContributors', (req, res, next) => {
   const params = req.query;
   cog.getCapsuleContributors(database, params.capsule, (data, err) => {
     if (err) {
-      res.status(500).send(err);
+      return next(err);
     } else {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     }
   })
 })

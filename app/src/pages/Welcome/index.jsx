@@ -48,7 +48,7 @@ class Login extends React.Component {
         });
       })
       .catch((err) => {
-          alert('Error validating user: ' + err.message);
+          alert('Error validating user: ' + err.response.data);
       });
   }
   updateUsername = (evt) => {

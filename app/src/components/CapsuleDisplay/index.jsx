@@ -21,7 +21,7 @@ export default class CapsuleDisplay extends Component {
             console.log(res.data);
         })
         .catch((err) => {
-            alert('Error requesting access to time capsule: ' + err.message);
+            alert('Error requesting access to time capsule: ' + err.response.data);
         });
     }
     requestCapsuleRemoval = () => {  
@@ -34,7 +34,7 @@ export default class CapsuleDisplay extends Component {
                 alert('Time capsule deleted.');
             })
             .catch((err) => {
-                alert('Error deleting time capsule: ' + err.message);
+                alert('Error deleting time capsule: ' + err.response.data);
             });
         }  else {
             alert('Your capsule was not deleted!');
@@ -49,7 +49,7 @@ export default class CapsuleDisplay extends Component {
             }
           })
           .catch((err) => {
-              alert('Error getting media: ' + err.message);
+              alert('Error getting media: ' + err.response.data);
           });
     }
     checkCapsuleContributer = (capsuleId, id) => {
@@ -65,7 +65,7 @@ export default class CapsuleDisplay extends Component {
         }
         })
         .catch((err) => {
-            alert('Error getting media: ' + err.message);
+            alert('Error getting media: ' + err.response.data);
         });
     }
     componentDidMount = () => {

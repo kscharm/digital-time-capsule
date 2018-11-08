@@ -623,20 +623,22 @@ exports.removeContributor = function(database, capsuleId, username, callback) {
     if (err) {
       return callback(null, err);
     }
-    database.collection("timeCapsules").updateOne({ $and:
+    database.collection("timeCapsules").findOne({ $and:
       [ { _id: capsuleId },
         { ownerId: { $ne: user._id} }
-      ] },
-      { $pull: { contributors: username }
-    }, (err, capsule) => {
-      if (err) {
-        console.log("Error requesting access for time capsule: ", err.message);
-        return callback(null, err);
+      ] }, (err, capsule) => {
+      if (!capsule || err) {
+        return callback(null, "Cannot remove the owner of a capsule");
       }
-      return callback(username);
+      database.collection("timeCapsules").updateOne({ _id: capsuleId },
+        { $pull: { contributors: username } }, (err, doc) => {
+          if (err) {
+            return callback(null, err);
+          }
+          return callback(username);
+      });
     });
   });
- 
 }
 
 exports.getCapsulesById = function(database, capsuleIds, callback) {
@@ -709,7 +711,7 @@ exports.searchCapsules = function(database, query, username, callback) {
 }
 
 exports.checkCapsuleOwner = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").findOne({_id:capsuleId}, (err, capsule) => {
+  database.collection("timeCapsules").findOne({ _id:capsuleId}, (err, capsule) => {
     if (err) {
       return callback(null, err);
     }
