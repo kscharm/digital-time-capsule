@@ -19,6 +19,7 @@ export default class CapsuleDisplay extends Component {
         })
         .then((res) => {
             console.log(res.data);
+            alert('Your request was sent!');
         })
         .catch((err) => {
             alert('Error requesting access to time capsule: ' + err.message);
