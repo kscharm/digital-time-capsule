@@ -266,6 +266,7 @@ export default class CapsuleComponent extends Component {
     axios.get('http://localhost:3001/capsuleOwner?capsule=' + capsuleId)
       .then((res) => {
         // Add each type to their respective arrays
+        console.log(res.data);
         if (res.data === id) {
           this.setState({isOwner: true});
         }
@@ -274,14 +275,14 @@ export default class CapsuleComponent extends Component {
           alert('Error getting media: ' + err.message);
       });
   }
-  checkCapsuleContributer = (capsuleId, id) => {
+  checkCapsuleContributer = (capsuleId, user) => {
     axios.get('http://localhost:3001/capsuleContributors?capsule=' + capsuleId)
       .then((res) => {
         // Add each type to their respective arrays
         console.log(res.data);
         this.setState({contributorList: res.data});
         for (let i = 0; i < res.data.length; i ++) {
-          if (res.data[i] === id) {
+          if (res.data[i] === user) {
             this.setState({isContributer: true});
             break;
           }
@@ -291,21 +292,39 @@ export default class CapsuleComponent extends Component {
           alert('Error getting media: ' + err.message);
       });
   }
+  handleAddUser = (user) => {
+    const contribWithNew = this.state.contributorList.concat(user);
+    this.setState({contributorList: contribWithNew});
+  }
+  handleDeleteUser = (user) => {
+    const index = this.state.contributorList.indexOf(user);
+    let contribWithOut = this.state.contributorList;
+    contribWithOut.splice(index, 1);
+    this.setState({contributorList: contribWithOut});
+  }
   requestCapsuleAccess = () => {
-    console.log('I should req access for user and capsule:');
-    console.log(this.props.userID);
-    console.log(this.props.capsule);
+    console.log('Capsule:' + this.props.capsule);
+    axios.post('http://localhost:3001/requestAccess', {
+            capsuleId: this.props.capsule,
+            username: this.props.user
+        })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert('Error requesting access to time capsule: ' + err.message);
+        });
   }
   componentDidMount = () => {
     this.getAllMedia(this.props.capsule);
     this.checkCapsuleOwner(this.props.capsule,this.props.userID);
-    this.checkCapsuleContributer(this.props.capsule,this.props.userID);
+    this.checkCapsuleContributer(this.props.capsule,this.props.user);
   }
   componentDidUpdate(prevProps) {
     if (prevProps.capsule !== this.props.capsule) {
       this.getAllMedia(this.props.capsule);
       this.checkCapsuleOwner(this.props.capsule,this.props.userID);
-      this.checkCapsuleContributer(this.props.capsule,this.props.userID);
+      this.checkCapsuleContributer(this.props.capsule,this.props.user);
     }
   }
 
@@ -494,7 +513,9 @@ export default class CapsuleComponent extends Component {
                                       handleShowEditUser={this.handleShowEditUser}
                                       user={this.props.user}
                                       contributorList={this.state.contributorList}
-                                      capsule={this.props.capsule}/> : null}
+                                      capsule={this.props.capsule}
+                                      handleAddUser={this.handleAddUser}
+                                      handleDeleteUser={this.handleDeleteUser}/> : null}
       </div>
     );
   };

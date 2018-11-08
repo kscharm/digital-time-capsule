@@ -2,27 +2,60 @@ import React, { Component } from 'react';
 import './style.css';
 import '../generic.css'
 import OurButton from '../../OurButton';
-// import axios from 'axios';
-// import uuidv4 from 'uuid/v4'
+import axios from 'axios';
 
 export default class AddQuote extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
 
     state = {
-        requestList: [],
+        requestList: ["FAKE BOHY"],
+        showButtons: false,
     };
 
-    editUser = () => {
-        console.log('I should Add a user from the list');
+    editUser = (user) => {
+        axios.post('http://localhost:3001/addContributor', {
+            capsuleId: this.props.capsule,
+            username: user
+        })
+        .then((res) => {
+            console.log(res.data);
+            const index = this.state.requestList.indexOf(user);
+            let listWithOut = this.state.requestList;
+            listWithOut.splice(index, 1);
+            this.setState({requestList: listWithOut});
+            this.props.handleAddUser(user);
+        })
+        .catch((err) => {
+            alert('Error adding user to time capsule: ' + err.message);
+        });
     }
-    removeUser = () => {
-        console.log('I should remove a user from the list');
+    removeUser = (user) => {
+        axios.post('http://localhost:3001/removeContributor', {
+            capsuleId: this.props.capsule,
+            username: user
+        })
+        .then((res) => {
+            console.log(res.data);
+            this.props.handleDeleteUser(user);
+        })
+        .catch((err) => {
+            alert('Error removing user from time capsule: ' + err.message);
+        });
+    }
+    removeRequestor = (user) => {
+        const index = this.state.requestList.indexOf(user);
+        let listWithOut = this.state.requestList;
+        listWithOut.splice(index, 1);
+        this.setState({requestList: listWithOut});
     }
     getRequests = () => {
-        console.log("I should get the list of users who want access");
-        this.setState({requestList: []});
+        axios.get('http://localhost:3001/getRequestAccess?capsuleId=' + this.props.capsule)
+        .then((res) => {
+            console.log(res.data);
+            this.setState({requestList: res.data});
+        })
+        .catch((err) => {
+            alert('Error getting access list for time capsule: ' + err.message);
+        });
     }
 
     closeEditUser = () => {
@@ -37,38 +70,62 @@ export default class AddQuote extends Component {
     <div className={ `addType editUser` }>
       <div className={ `addTypeBack editUserBack` }/>
         <div className={ `addTypeCard editUserCard` }>
-            <div className='requestList'>
-                <span className='sectionLabels'> Request List: </span>
-                {this.state.requestList.map((requestor) => {
-                    return (
-                    <div>
-                    </div>
-                )
-                })}
+            <div className='listDiv'>
+                <h3> Contributor Request List: </h3>
+                <ul className='listUL'>
+                    {this.state.requestList.map((requestor) => {
+                        return (
+                        <li>
+                            <label>{requestor}</label>
+                            {this.state.showButtons ? 
+                            <button 
+                                className="add"
+                                onClick={()=> {this.editUser(requestor)}}
+                            >
+                                Add
+                            </button>
+                            : <div className="spacerDiv"/>}
+                            {this.state.showButtons ? 
+                            <button 
+                                className="delete"
+                                onClick={()=> {this.removeRequestor(requestor)}}
+                            >
+                                Delete
+                            </button>
+                            : <div className="spacerDiv"/>}
+                        </li>
+                    )
+                    })}
+                </ul>
             </div>
-            <div className='userList'>
-                <span className='sectionLabels'> User List: </span>
-                {this.props.contributorList.map((contributor) => {
-                    return (
-                    <div>
-                        <p>{contributor}</p>
-                    </div>
-                )
-                })}
+            <div className='listDiv'>
+                <h3> Contributor List: </h3>
+                <ul className='listUL'>
+                    {this.props.contributorList.map((contributor) => {
+                        return (
+                        <li>
+                            <label>{contributor}</label>
+                            {this.state.showButtons ? <div className="spacerDiv"/> : <div className="spacerDiv"/> }
+                            {this.state.showButtons ?
+                            <button 
+                                className="delete" 
+                                onClick={()=> {this.removeUser(contributor);}}>
+                                    Delete
+                            </button>
+                            : <div className="spacerDiv"/>}
+                        </li>
+                    )
+                    })}
+                </ul>
             </div>
             <div className={ `actionButtons actionButtonsEdit` }>
                 <OurButton
-                    buttonText='Add'
-                    buttonAction={() => {this.editUser()}}
+                    buttonText='Edit'
+                    buttonAction={() => {this.setState({showButtons: !this.state.showButtons});}}
                     buttonType='primary'
                 />
                 <OurButton
-                    buttonText='Remove'
-                    buttonAction={() => {this.removeUser()}}
-                    buttonType='primary'
-                />
-                <OurButton
-                    buttonText='Cancel'
+                    buttonText='Close'
                     buttonAction={() => {this.closeEditUser()}}
                     buttonType='secondary'
                 />

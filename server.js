@@ -352,6 +352,53 @@ app.get('/searchCapsules', (req, res) => {
   });
 });
 
+app.post('/requestAccess', (req, res) => {
+  const capsuleId = req.body.capsuleId;
+  const username = req.body.username;
+  cog.requestAccess(database, capsuleId, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.get('/getRequestAccess', (req, res) => {
+  const capsuleId = req.query.capsuleId;
+  cog.getRequestAccess(database, capsuleId, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/addContributor', (req, res) => {
+  const capsuleId = req.body.capsuleId;
+  const username = req.body.username;
+  cog.addContributor(database, capsuleId, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/removeContributor', (req, res) => {
+  const capsuleId = req.body.capsuleId;
+  const username = req.body.username;
+  cog.removeContributor(database, capsuleId, username, (data, err) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.get('/capsuleOwner', (req, res) => {
   const params = req.query;
   cog.checkCapsuleOwner(database, params.capsule, (data, err) => {

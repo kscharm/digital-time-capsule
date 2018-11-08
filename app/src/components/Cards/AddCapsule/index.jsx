@@ -129,7 +129,8 @@ focus = () => {
             theme: {}
         },
         description: description,
-        tags: this.state.tags.split(',')
+        tags: this.state.tags.split(','),
+        requestAccess: [],
     }
     axios.post('http://localhost:3001/addCapsule', capsule).then((res) => {
         this.closeAddCapsule();

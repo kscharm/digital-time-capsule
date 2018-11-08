@@ -9,7 +9,8 @@
         "textArr",
         "musicArr",
         "settings",
-        "metadata"
+        "metadata",
+        "requestAccess"
     ],
     "properties": {
        "ownerId": {
@@ -78,6 +79,13 @@
         "tags": {
             "bsonType": "array",
             "description": "Array of tags to be used",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestAccess": {
+            "bsonType": "array",
+            "description": "Array of usernames who have requested access to this capsule",
             "items": {
                 "type": "string"
             }
