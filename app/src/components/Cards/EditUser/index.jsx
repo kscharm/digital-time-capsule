@@ -29,6 +29,8 @@ export default class AddQuote extends Component {
         });
     }
     removeUser = (user) => {
+        const confirm = window.confirm(`Are you sure you want to remove ${user} from this time capsule?`)
+        if (confirm) {
         axios.post('http://localhost:3001/removeContributor', {
             capsuleId: this.props.capsule,
             username: user
@@ -40,6 +42,9 @@ export default class AddQuote extends Component {
         .catch((err) => {
             alert('Error removing user from time capsule: ' + err.message);
         });
+        }else{
+            alert(`${user} was not removed.`);
+        }
     }
     removeRequestor = (user) => {
         const index = this.state.requestList.indexOf(user);
