@@ -618,19 +618,25 @@ exports.addContributor = function(database, capsuleId, username, callback) {
   });
 }
 
-exports.removeContributor = function(database, capsuleId, username, userId, callback) {
-  database.collection("timeCapsules").updateOne({ $and:
-    [ { _id: capsuleId },
-      { ownerId: { $ne: userId} }
-    ] },
-    { $pull: { contributors: username }
-  }, (err, capsule) => {
+exports.removeContributor = function(database, capsuleId, username, callback) {
+  database.collection("users").findOne(username, (err, user) => {
     if (err) {
-      console.log("Error requesting access for time capsule: ", err.message);
       return callback(null, err);
     }
-    return callback(username);
+    database.collection("timeCapsules").updateOne({ $and:
+      [ { _id: capsuleId },
+        { ownerId: { $ne: user._id} }
+      ] },
+      { $pull: { contributors: username }
+    }, (err, capsule) => {
+      if (err) {
+        console.log("Error requesting access for time capsule: ", err.message);
+        return callback(null, err);
+      }
+      return callback(username);
+    });
   });
+ 
 }
 
 exports.getCapsulesById = function(database, capsuleIds, callback) {
