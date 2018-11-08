@@ -310,6 +310,7 @@ export default class CapsuleComponent extends Component {
         })
         .then((res) => {
             console.log(res.data);
+            alert('Your request was sent!');
         })
         .catch((err) => {
             alert('Error requesting access to time capsule: ' + err.message);
@@ -515,8 +516,7 @@ export default class CapsuleComponent extends Component {
                                       contributorList={this.state.contributorList}
                                       capsule={this.props.capsule}
                                       handleAddUser={this.handleAddUser}
-                                      handleDeleteUser={this.handleDeleteUser}
-                                      userID={this.props.userID}/> : null}
+                                      handleDeleteUser={this.handleDeleteUser}/> : null}
       </div>
     );
   };
