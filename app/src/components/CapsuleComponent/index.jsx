@@ -515,7 +515,8 @@ export default class CapsuleComponent extends Component {
                                       contributorList={this.state.contributorList}
                                       capsule={this.props.capsule}
                                       handleAddUser={this.handleAddUser}
-                                      handleDeleteUser={this.handleDeleteUser}/> : null}
+                                      handleDeleteUser={this.handleDeleteUser}
+                                      userID={this.props.userID}/> : null}
       </div>
     );
   };
