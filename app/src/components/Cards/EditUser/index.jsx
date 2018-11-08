@@ -42,8 +42,6 @@ export default class AddQuote extends Component {
         .catch((err) => {
             alert('Error removing user from time capsule: ' + err.message);
         });
-        }else{
-            alert(`${user} was not removed.`);
         }
     }
     removeRequestor = (user) => {

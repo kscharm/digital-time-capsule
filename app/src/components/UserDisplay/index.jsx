@@ -56,6 +56,8 @@ export default class UserDisplay extends Component {
     }
 
     requestDeleteFriend = (username) => {
+        const confirm = window.confirm(`Are you sure you want to unfriend ${username}?`);
+        if (confirm) {
         axios.post('http://localhost:3001/deleteFriend', {
            myUsername: this.props.myUsername,
            friendUsername: username
@@ -74,6 +76,7 @@ export default class UserDisplay extends Component {
         .catch((err) => {
            alert('Error adding friend: ' + err.message);
         });
+    }
     }
     decideAddButton = () => {
         if (this.props.recrequest) {
