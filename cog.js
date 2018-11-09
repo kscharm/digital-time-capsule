@@ -729,4 +729,31 @@ exports.getCapsuleContributors = function(database, capsuleId, callback) {
   })
 }
 
+exports.deleteFriendRequest = function(database, myUsername, friendUsername, callback) {
+  database.collection("users").updateOne({username:myUsername}, 
+    {$pull: {receivedRequests:friendUsername, sentRequests:friendUsername}
+  }, (err, res) => {
+    if (err) {
+      return callback(null, err);
+    }
+    database.collection("users").updateOne({username:myUsername}, 
+      {$pull: {receivedRequests:friendUsername, sentRequests:friendUsername}
+      }, (err, res) => {
+        if (err) {
+          return callback(null, err);
+        }
+        return callback(res);
+      });
+  });
+}
 
+exports.deleteCapsuleRequest = function(database, capsuleId, username, callback) {
+  database.collection("timeCapsules").updateOne({username:username}, 
+    {$pull: {requestAccess:username}
+  }, (err, res) => {
+    if (err) {
+      return callback(null, err);
+    }
+    return callback(res);
+  });
+}

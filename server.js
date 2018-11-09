@@ -389,6 +389,28 @@ app.post('/addContributor', (req, res, next) => {
   });
 });
 
+app.post('/deleteFriendRequest', (req, res, next) => {
+  const body = req.body;
+  cog.deleteFriendRequest(database, body.myUsername, body.friendUsername, (data, err) => {
+    if (err) {
+      return next(err);
+    } else {
+      return res.status(200).send(data);
+    }
+  });
+})
+
+app.post('/deleteCapsuleRequest', (req, res, next) => {
+  const body = req.body;
+  cog.deleteCapsuleRequest(database, body.capsuleId, body.username, (data, err) => {
+    if (err) {
+      return next(err);
+    } else {
+      return res.status(200).send(data);
+    }
+  });
+})
+
 app.post('/removeContributor', (req, res, next) => {
   const capsuleId = req.body.capsuleId;
   const username = req.body.username;
