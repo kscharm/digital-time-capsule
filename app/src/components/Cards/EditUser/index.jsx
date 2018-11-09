@@ -45,10 +45,23 @@ export default class AddQuote extends Component {
         }
     }
     removeRequestor = (user) => {
-        const index = this.state.requestList.indexOf(user);
-        let listWithOut = this.state.requestList;
-        listWithOut.splice(index, 1);
-        this.setState({requestList: listWithOut});
+        const confirm = window.confirm(`Are you sure you want to remove ${user} from your capsule request list?`);
+        if (confirm) {
+            axios.post('http://localhost:3001/deleteCapsuleRequest', {
+            capsuleId: this.props.capsuleId,
+            username: user
+            })
+            .then((res) => {
+                const index = this.state.requestList.indexOf(user);
+                let listWithOut = this.state.requestList;
+                listWithOut.splice(index, 1);
+                this.setState({requestList: listWithOut});
+                alert(`${user} has been removed from your request list.`);
+            })
+            .catch((err) => {
+            alert('Error adding friend: ' + err.message);
+            });
+        }
     }
     getRequests = () => {
         axios.get('http://localhost:3001/getRequestAccess?capsuleId=' + this.props.capsule)
