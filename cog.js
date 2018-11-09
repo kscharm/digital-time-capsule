@@ -608,13 +608,20 @@ exports.getRequestAccess = function(database, capsuleId, callback) {
 exports.addContributor = function(database, capsuleId, username, callback) {
   database.collection("timeCapsules").updateOne({ _id: capsuleId }, {
     $pull: { requestAccess: username },
-    $push: { contributors: username }
+    $addToSet: { contributors: username }
   }, (err, capsule) => {
     if (err) {
       console.log("Error requesting access for time capsule: ", err.message);
       return callback(null, err);
     }
-    return callback(username);
+    database.collection("users").updateOne({ username }, {
+      $addToSet: { capsules: capsuleId }
+    }, (err, user) => {
+      if (err) {
+        return callback(null, err);
+      }
+      return callback(username);
+    });
   });
 }
 
