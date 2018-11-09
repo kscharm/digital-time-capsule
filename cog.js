@@ -626,7 +626,9 @@ exports.addContributor = function(database, capsuleId, username, callback) {
 }
 
 exports.removeContributor = function(database, capsuleId, username, callback) {
-  database.collection("users").findOne({ username }, (err, user) => {
+  database.collection("users").findOneAndUpdate({ username },
+    { $pull: { capsules: capsuleId }
+  }, (err, user) => {
     if (err) {
       return callback(null, err);
     }
