@@ -134,7 +134,8 @@ export default class SearchResult extends Component {
             </div>
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
                     user={this.props.username} capsule={this.props.usercapsule}
-                    inSearch={true} changeCapsuleID={this.props.changeCapsuleID}/>
+                    inSearch={true} changeCapsuleID={this.props.changeCapsuleID}
+                    userID={this.props.userID}/>
             </div>
         </div>
       </div>

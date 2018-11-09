@@ -123,7 +123,7 @@ class App extends Component {
                       />}
                   />
                   <Route
-                    path="/Profile/:user"
+                    path="/profile/:user/:userID"
                     render={(props) => <Profile 
                       {...props} 
                       username={this.state.username} 

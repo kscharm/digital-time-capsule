@@ -137,7 +137,7 @@ export default class NavBar extends Component {
                 <FaHome className='icon' onClick={() => {this.goHome() ; this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
-              <Link to={`/profile/${this.props.user}/${this.props.capsule}`} style={{color: 'white'}}>
+              <Link to={`/profile/${this.props.user}/${this.props.userID}`} style={{color: 'white'}}>
                 <FaUserCircle className='icon' onClick={() => {this.goProfile() ; this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <div className='dropDown'>
