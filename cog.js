@@ -214,14 +214,14 @@ exports.addTimeCapsule = function(database, capsule, callback) {
 }
 
 exports.deleteTimeCapsule = function(database, capsuleId, callback) {
-  database.collection("timeCapsules").findOne({ _id : capsuleId }, (err, capsule) => {
-    console.log("deleting....");
-    console.log(capsuleId);
+  database.collection("timeCapsules").findOne({ _id : capsuleId, ownerId: {$ne: capsuleId} }, (err, capsule) => {
     if (err) {
       console.log('Error deleting time capsule: ', err.message);
       return callback(err);
     }
-    console.log("deleting from my list");
+    if (!capsule) {
+      return callback(null, 'Cannot delete personal time capsule');
+    }
     promises = [];
     owner = capsule.ownerId
     let ownerPromise = new Promise((resolve, reject) => {
