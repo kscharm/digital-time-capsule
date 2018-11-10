@@ -26,6 +26,11 @@ export default class Setting extends Component {
               <div className={`notepaper-title_general`} style={{maxWidth: "300px", width: "240px"}}>
                 <p className={`text-title_general`}>Settings</p>
               </div>
+              <div className='settings'>
+                <p>Site Color</p>
+                <p>Background Theme</p>
+                <p>User Privacy</p>
+              </div>
               <div className='usersBlock'>
               </div>
               <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}

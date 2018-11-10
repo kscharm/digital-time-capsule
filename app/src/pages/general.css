@@ -51,8 +51,6 @@
   
   .notepaper-title_general:after {
     z-index: -1;
-    left: 0;
-    right: 0;
     background: rgba(242, 246, 193, 0.9);
     border: 1px solid rgba(170, 157, 134, 0.7);
     -webkit-transform: rotate(2deg);

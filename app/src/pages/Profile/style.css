@@ -1,0 +1,147 @@
+.register div {
+    background: #fff;
+    padding: 4em 4em 2em;
+    max-width: 400px;
+    box-shadow: 0 0 1em #222;
+    border-radius: 2px;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 10px;
+  }
+  
+  .register h2 {
+      margin:0 0 50px 0;
+      padding: '10px';
+      text-align:center;
+      font-size:30px;
+      color:darken(#e5e5e5, 50%);
+      border-bottom:solid 1px #e5e5e5;
+    }
+  .register p {
+      margin: 0 0 3em 0;
+      position: relative;
+    }
+    
+  .register button {
+      background: rgb(0, 48, 87, 0.7);
+      box-shadow: 0 3px 0 0 darken(rgb(0, 48, 87, 0.7), 10%);
+      border-radius: 2px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: block;
+      font-size: 2em;
+      line-height: 1.6em;
+      margin: 2em 0 0;
+      outline: none;
+      padding: .8em 0;
+      text-shadow: 0 1px #68B25B;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      outline: none;
+      margin:0;
+    }
+  .register button:hover {
+      background: rgb(0, 48, 87, 1);
+      text-shadow:0 1px 3px darken(rgb(0, 48, 87, 0.7), 30%);
+    }
+  
+  .register {
+      /* text-align: center; */
+      position: relative;
+      /* top: 15%; */
+  }
+  
+  .register ul{
+    list-style:none;
+    padding:0;
+    margin:0;   
+  }
+  .register li{
+    display: block;
+    padding: 9px;
+    border:1px solid #DDDDDD;
+    margin-bottom: 30px;
+    border-radius: 3px;
+  }
+  .register li > label{
+    display: block;
+    float: left;
+    margin-top: -19px;
+    background: #FFFFFF;
+    height: 14px;
+    padding: 2px 5px 2px 5px;
+    opacity: .75;
+    font-size: 14px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .register input[type="text"],
+  .register input[type="date"],
+  .register input[type="datetime"],
+  .register input[type="email"],
+  .register input[type="number"],
+  .register input[type="search"],
+  .register input[type="time"],
+  .register input[type="url"],
+  .register input[type="password"],
+  .register textarea,
+  .register select 
+  {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: none;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  .register input[type="text"]:focus,
+  .register input[type="date"]:focus,
+  .register input[type="datetime"]:focus,
+  .register input[type="email"]:focus,
+  .register input[type="number"]:focus,
+  .register input[type="search"]:focus,
+  .register input[type="time"]:focus,
+  .register input[type="url"]:focus,
+  .register input[type="password"]:focus,
+  .register textarea:focus,
+  .register select:focus 
+  {
+  }
+  .register li > span{
+    background: #F3F3F3;
+    display: block;
+    padding: 3px;
+    margin: 0 -9px -9px -9px;
+    text-align: center;
+    color: #C0C0C0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+  }
+  .register textarea{
+    resize:none;
+  }
+  .register input[type="submit"],
+  .register input[type="button"]{
+    background: #2471FF;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 3px solid #5994FF;
+    border-radius: 3px;
+    color: #D2E2FF;
+  }
+  .register input[type="submit"]:hover,
+  .register input[type="button"]:hover{
+    background: #6B9FFF;
+    color:#fff;
+  }
+  
