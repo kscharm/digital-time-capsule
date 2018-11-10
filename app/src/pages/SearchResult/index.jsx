@@ -95,6 +95,7 @@ export default class SearchResult extends Component {
                         userID={this.props.userID}
                         handleDeleteCapsule={() => {console.log('I do nothing.')}}
                         user={this.props.username}
+                        capsulePage={false}
                     />
                 )
               })}

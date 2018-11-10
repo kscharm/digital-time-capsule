@@ -70,8 +70,8 @@ export default class CapsuleDisplay extends Component {
         });
     }
     componentDidMount = () => {
-        this.checkCapsuleOwner(this.props.id,this.props.userID);
-        this.checkCapsuleContributer(this.props.id,this.props.userID);
+        this.checkCapsuleOwner(this.props.id,this.props.user);
+        this.checkCapsuleContributer(this.props.id,this.props.user);
     }
     render () {
         const AddButton = () => {
@@ -105,8 +105,8 @@ export default class CapsuleDisplay extends Component {
                     <div>{this.props.description}</div>
                 </div>
                 <div>
-                {(this.state.isOwner || this.state.isContributer) ? null : <AddButton/>}
-                {this.state.isOwner ? <DeleteButton/> : null}
+                {(this.state.isOwner || this.state.isContributer || this.props.capsulePage) ? null : <AddButton/>}
+                {(this.state.isOwner || this.props.capsulePage) ? <DeleteButton/> : null}
                 </div>
             </div>
             </div>

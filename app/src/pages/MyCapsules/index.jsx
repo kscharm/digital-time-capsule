@@ -104,6 +104,7 @@ export default class Registration extends Component {
                       userID={this.props.userID}
                       handleDeleteCapsule={this.handleDeleteCapsule}
                       user={this.props.username}
+                      capsulePage={true}
                   />
               )
             })}
