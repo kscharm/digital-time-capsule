@@ -94,6 +94,10 @@ export default class NavBar extends Component {
     // this.setState({redirectToReferrer: true});
   }
 
+  goProfile = () => {
+    this.props.changeCapsuleID(this.props.capsule);
+  }
+
   componentWillReceiveProps (newProps) {
     if (newProps.hasOwnProperty('addPop')) {
       this.setState({addPop: newProps.addPop});
@@ -133,7 +137,9 @@ export default class NavBar extends Component {
                 <FaHome className='icon' onClick={() => {this.goHome() ; this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
-              <FaUserCircle className='icon' onClick={() => { this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
+              <Link to={`/profile/${this.props.user}/${this.props.userID}`} style={{color: 'white'}}>
+                <FaUserCircle className='icon' onClick={() => {this.goProfile() ; this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
+              </Link>
               <div className='dropDown'>
                 <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} style={this.state.menuClicked ? {opacity: 1} : {opacity: .75}}/>
                 <div className='dropDown-content' style={this.state.showMenu ? {display: 'block'} : {display: 'none'}} >

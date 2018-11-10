@@ -12,6 +12,7 @@ import RegistrationPage from './pages/Registration';
 import MyCapsulesPage from './pages/MyCapsules';
 import MyFriends from './pages/Friends';
 import Search from './pages/SearchResult';
+import Profile from './pages/Profile';
 
 class App extends Component {
   state = {
@@ -118,6 +119,20 @@ class App extends Component {
                       changeUserID={this.changeUserID} 
                       term={this.state.term}
                       getSearch={this.getSearch}
+                      changeCapsuleID={this.changeCapsuleID}
+                      />}
+                  />
+                  <Route
+                    path="/profile/:user/:userID"
+                    render={(props) => <Profile 
+                      {...props} 
+                      username={this.state.username} 
+                      usercapsule={this.state.usercapsule}
+                      currentCapsuleID={this.state.currentCapsuleID} 
+                      changeUsername={this.changeUsername}
+                      userID={this.state.userID} 
+                      changeUserID={this.changeUserID}
+                      getSearch={this.getSearch} 
                       changeCapsuleID={this.changeCapsuleID}
                       />}
                   />
