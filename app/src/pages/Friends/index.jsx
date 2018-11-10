@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
+import '../general.css';
 
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
@@ -80,14 +81,14 @@ export default class Friends extends Component {
     const title1 = 'Friends';
 
     return (
-      <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
-      <div>
-          <div className={ `bkgOverlay` }/>
-          <div className={ `capsuless` }>
+      <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
+      <div className='holderDiv'>
+          <div className={ `bkgOverlay_general` }/>
+          <div className={ `capsuless_general` }>
             <div className='addButton'>
               </div>
-              <div className={`notepaper-title`} style={{maxWidth: "300px", width: "150px"}}>
-                <p className={`text-title`}>{title1}</p>
+              <div className={`notepaper-title_general`} style={{maxWidth: "300px", width: "150px"}}>
+                <p className={`text-title_general`}>{title1}</p>
               </div>
               <div className='usersBlock'>
                 {this.state.userFriendsMatches.map((user) => {
@@ -111,8 +112,8 @@ export default class Friends extends Component {
                 )
               })}
               </div>
-              <div className={`notepaper-title`} style={{maxWidth: "300px", width: "260px"}}>
-                <p className={`text-title`}>{'Sent Friend Requests'}</p>
+              <div className={`notepaper-title_general`} style={{maxWidth: "300px", width: "260px"}}>
+                <p className={`text-title_general`}>{'Sent Friend Requests'}</p>
               </div>
               <div className='usersBlock'>
                 {this.state.userSentRequests.map((user) => {
@@ -135,8 +136,8 @@ export default class Friends extends Component {
                 )
               })}
               </div>
-              <div className={`notepaper-title`} style={{maxWidth: "300px"}}>
-                <p className={`text-title`}>{'Received Friend Requests'}</p>
+              <div className={`notepaper-title_general`} style={{maxWidth: "300px"}}>
+                <p className={`text-title_general`}>{'Received Friend Requests'}</p>
               </div>
               <div className='usersBlock'>
                 {this.state.userReceivedRequests.map((user) => {

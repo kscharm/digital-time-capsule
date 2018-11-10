@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
+import '../general.css';
 import AddButton from '../../components/AddButton';
 import AddCapsule from '../../components/Cards/AddCapsule';
 import CapsuleDisplay from '../../components/CapsuleDisplay';
@@ -82,12 +83,12 @@ export default class Registration extends Component {
     // const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     return (
-      <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
-        <div>
-          <div className={ `bkgOverlay` }/>
-          <div className={ `capsuless` }>
-            <div className={`notepaper-title`} style={{maxWidth: "180px"}}>
-                <p className={`text-title`}>{title1}</p>
+      <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
+        <div className='holderDiv'>
+          <div className={ `bkgOverlay_general` }/>
+          <div className={ `capsuless_general` }>
+            <div className={`notepaper-title_general`} style={{maxWidth: "180px"}}>
+                <p className={`text-title_general`}>{title1}</p>
               </div>
             <div className='capsulesBlock'>
               {this.state.capsuleList.map((capsule) => {

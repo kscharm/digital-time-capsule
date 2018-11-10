@@ -27,6 +27,7 @@ const Menu = (props) => {
     contents = props.options.map(option => {
       if (option==='Settings') {
         icon = <FaCog/>
+        toPage = `/settings/${props.user}/${props.userID}`;
       } else if (option==='Capsules') {
         icon = <FaArchive/>
         clicks = () => {
