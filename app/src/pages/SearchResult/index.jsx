@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
+import '../general.css';
 
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
@@ -8,7 +9,6 @@ import { Redirect } from 'react-router-dom';
 
 import UserDisplay from '../../components/UserDisplay';
 import CapsuleDisplay from '../../components/CapsuleDisplay';
-// import AddButton from '../../components/AddButton';
 
 export default class SearchResult extends Component {
   // constructor(props) {
@@ -70,14 +70,14 @@ export default class SearchResult extends Component {
       )
     }
     return (
-      <div className='bgDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
-      <div>
-          <div className={ `bkgOverlay` }/>
-          <div className={ `capsuless` }>
+      <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
+      <div className='holderDiv'>
+          <div className={ `bkgOverlay_general` }/>
+          <div className={ `capsuless_general` }>
             <div className='addButton'>
               </div>
-              <div className={`notepaper-title`} style={{maxWidth: "160px"}}>
-                <p className={`text-title`}>{title1}</p>
+              <div className={`notepaper-title_general`} style={{maxWidth: "160px"}}>
+                <p className={`text-title_general`}>{title1}</p>
               </div>
               {/* <h2 style={{margin: '7% 0 0 3%'}}>Search Results...</h2> */}
               <div className='capsulesBlock'>
@@ -100,8 +100,8 @@ export default class SearchResult extends Component {
                 )
               })}
               </div>
-              <div className={`notepaper-title`} style={{maxWidth: "130px"}}>
-                <p className={`text-title`}>{title2}</p>
+              <div className={`notepaper-title_general`} style={{maxWidth: "130px"}}>
+                <p className={`text-title_general`}>{title2}</p>
               </div>
               <div className='usersBlock'>
               {this.state.userMatches.map((user) => {
@@ -133,11 +133,11 @@ export default class SearchResult extends Component {
               )
             })}
             </div>
-            <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
+            </div>
+        <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
                     user={this.props.username} capsule={this.props.usercapsule}
                     inSearch={true} changeCapsuleID={this.props.changeCapsuleID}
                     userID={this.props.userID}/>
-            </div>
         </div>
       </div>
     );
