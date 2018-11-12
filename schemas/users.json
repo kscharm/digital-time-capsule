@@ -11,7 +11,8 @@
         "capsules",
         "friends",
         "sentRequests",
-        "receivedRequests"
+        "receivedRequests",
+        "settings"
     ],
     "properties": {
         "username": {
@@ -77,9 +78,24 @@
               "type": "string"
             } 
         },
-         "settings": {
+        "settings": {
             "bsonType": "object",
-            "description": "Settings associated with the user"
+            "description": "Settings associated with the user",
+            "properties": {
+                "privacy": {
+                    "bsonType": "string",
+                    "enum": ["public", "private"],
+                    "description": "User privacy settings"
+                },
+                "background": {
+                    "bsonType": "string",
+                    "description": "The user's background color"
+                },
+                "theme": {
+                    "bsonType": "object",
+                    "description": "The user's theme"
+                }
+            }
         },
         "metadata": {
             "bsonType": "object",

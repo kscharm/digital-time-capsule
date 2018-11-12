@@ -25,7 +25,12 @@ export default class Registration extends Component {
     capsules: [],
     friends: [],
     sentRequests: [],
-    receivedRequests: [], 
+    receivedRequests: [],
+    settings: {
+      privacy: "private",
+      background: "",
+      theme: {}
+    }
   }
 
   register = (histories) => {
