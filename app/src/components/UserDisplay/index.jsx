@@ -78,6 +78,22 @@ export default class UserDisplay extends Component {
         });
     }
     }
+    removeFriendRequest = (username) => {
+        const confirm = window.confirm(`Are you sure you want to remove ${username} from your friend requests?`);
+        if (confirm) {
+        axios.post('http://localhost:3001/deleteFriendRequest', {
+           myUsername: this.props.myUsername,
+           friendUsername: username
+        })
+        .then((res) => {
+            this.props.handleRemoveRequest(username);
+            alert(`${username} has been removed from your friends.`);
+        })
+        .catch((err) => {
+           alert('Error adding friend: ' + err.message);
+        });
+    }
+    }
     decideAddButton = () => {
         if (this.props.recrequest) {
             console.log("YEET");
@@ -90,8 +106,7 @@ export default class UserDisplay extends Component {
         if (!this.props.recrequest) {
             this.requestDeleteFriend(this.props.title);
         } else {
-            console.log('I should remove the user from requests and such.');
-            this.props.handleRemoveRequest(this.props.title);
+            this.removeFriendRequest(this.props.title);
         }
     }
 
