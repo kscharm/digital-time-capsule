@@ -781,7 +781,7 @@ exports.deleteFriendRequest = function(database, myUsername, friendUsername, cal
 }
 
 exports.deleteCapsuleRequest = function(database, capsuleId, username, callback) {
-  database.collection("timeCapsules").findOneAndUpdate({capsuleId:capsuleId}, 
+  database.collection("timeCapsules").findOneAndUpdate({_id:capsuleId}, 
     {$pull: {requestAccess:username}
   }, (err, res) => {
     if (err) {
