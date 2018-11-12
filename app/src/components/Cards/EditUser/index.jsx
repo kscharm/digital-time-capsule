@@ -48,10 +48,11 @@ export default class AddQuote extends Component {
         const confirm = window.confirm(`Are you sure you want to remove ${user} from your capsule request list?`);
         if (confirm) {
             axios.post('http://localhost:3001/deleteCapsuleRequest', {
-            capsuleId: this.props.capsuleId,
+            capsuleId: this.props.capsule,
             username: user
             })
             .then((res) => {
+                console.log(this.props.capsule);
                 const index = this.state.requestList.indexOf(user);
                 let listWithOut = this.state.requestList;
                 listWithOut.splice(index, 1);
