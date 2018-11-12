@@ -464,7 +464,7 @@ export default class CapsuleComponent extends Component {
               />
               <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
                 {(this.state.addPop && this.state.isContributer) ? <Add options={['Photo', 'Text', 'Quote', 'Music', 'Edit Users']} /> : null }
-                {(this.state.addPop && !this.state.isOwner) ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null }
+                {/* {(this.state.addPop && !this.state.isOwner) ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null } */}
               </div>
             </div>
             :
