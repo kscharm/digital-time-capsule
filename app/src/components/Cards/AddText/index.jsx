@@ -117,7 +117,7 @@ export default class AddText extends Component {
                 this.props.handleAddText(res.data);
             })
             .catch((err) => {
-            alert('Error saving text: ' + err.message);
+            alert('Error saving text: ' + err.response.data);
             });
         }
     }

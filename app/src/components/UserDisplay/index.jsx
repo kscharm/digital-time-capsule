@@ -29,7 +29,7 @@ export default class UserDisplay extends Component {
                 alert('Your friend request has been sent.');
             })
             .catch((err) => {
-            alert('Error adding friend: ' + err.message);
+            alert('Error adding friend: ' + err.response.data);
             });
         }
     }
@@ -51,7 +51,7 @@ export default class UserDisplay extends Component {
             alert('You have added a friend.');
         })
         .catch((err) => {
-           alert('Error accepting friend request: ' + err.message);
+           alert('Error accepting friend request: ' + err.response.data);
         });
     }
 
@@ -74,7 +74,7 @@ export default class UserDisplay extends Component {
             alert(`${username} has been removed from your friends.`);
         })
         .catch((err) => {
-           alert('Error adding friend: ' + err.message);
+           alert('Error adding friend: ' + err.response.data);
         });
     }
     }

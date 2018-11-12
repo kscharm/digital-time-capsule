@@ -120,7 +120,7 @@ export default class AddQuote extends Component {
                 this.props.handleAddQuote(res.data);
             })
             .catch((err) => {
-                alert('Error saving quote: ' + err.message);
+                alert('Error saving quote: ' + err.response.data);
             });
         }
     }

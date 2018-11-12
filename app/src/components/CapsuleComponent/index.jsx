@@ -91,7 +91,7 @@ export default class CapsuleComponent extends Component {
           this.setState({musicList: musicWithOut});
         })
         .catch((err) => {
-            alert('Error deleting music: ' + err.message);
+            alert('Error deleting music: ' + err.response.data);
         });
       } else {
         console.log('Error deleting music: this music does not exist.');
@@ -112,7 +112,7 @@ export default class CapsuleComponent extends Component {
         console.log('Update successful!');
     })
     .catch((err) => {
-      alert('Error updating music: ' + err.message);
+      alert('Error updating music: ' + err.response.data);
     });
   }
   handleAddPhoto = (photo) => {
@@ -135,7 +135,7 @@ export default class CapsuleComponent extends Component {
           this.setState({photoList: photoWithOut});
         })
         .catch((err) => {
-            alert('Error deleting photo: ' + err.message);
+            alert('Error deleting photo: ' + err.response.data);
         });
       } else {
         console.log('Error deleting photo: this photo does not exist.');
@@ -156,7 +156,7 @@ export default class CapsuleComponent extends Component {
         console.log('Update successful!');
     })
     .catch((err) => {
-      alert('Error updating photo: ' + err.message);
+      alert('Error updating photo: ' + err.response.data);
     });
   }
   handleAddText = (text) => {
@@ -179,7 +179,7 @@ export default class CapsuleComponent extends Component {
           this.setState({textList: textWithOut});
         })
         .catch((err) => {
-            alert('Error deleting text: ' + err.message);
+            alert('Error deleting text: ' + err.response.data);
         });
       } else {
         console.log('Error deleting text: this text does not exist.');
@@ -200,7 +200,7 @@ export default class CapsuleComponent extends Component {
         console.log('Update successful!');
     })
     .catch((err) => {
-      alert('Error updating text: ' + err.message);
+      alert('Error updating text: ' + err.response.data);
     });
   }
   handleAddQuote = (quote) => {
@@ -223,7 +223,7 @@ export default class CapsuleComponent extends Component {
           this.setState({quoteList: quoteWithOut});
         })
         .catch((err) => {
-            alert('Error deleting text: ' + err.message);
+            alert('Error deleting text: ' + err.response.data);
         });
       } else {
         console.log('Error deleting quote: this quote does not exist.');
@@ -244,7 +244,7 @@ export default class CapsuleComponent extends Component {
         console.log('Update successful!');
     })
     .catch((err) => {
-      alert('Error updating quote: ' + err.message);
+      alert('Error updating quote: ' + err.response.data);
     });
   }
 
@@ -259,7 +259,7 @@ export default class CapsuleComponent extends Component {
         this.setState({musicList: res.data.music});
       })
       .catch((err) => {
-          alert('Error getting media: ' + err.message);
+          alert('Error getting media: ' + err.response.data);
       });
   }
   checkCapsuleOwner = (capsuleId, id) => {
@@ -272,7 +272,7 @@ export default class CapsuleComponent extends Component {
         }
       })
       .catch((err) => {
-          alert('Error getting media: ' + err.message);
+          alert('Error getting media: ' + err.response.data);
       });
   }
   checkCapsuleContributer = (capsuleId, user) => {
@@ -289,7 +289,7 @@ export default class CapsuleComponent extends Component {
         }
       })
       .catch((err) => {
-          alert('Error getting media: ' + err.message);
+          alert('Error getting media: ' + err.response.data);
       });
   }
   handleAddUser = (user) => {
@@ -313,7 +313,7 @@ export default class CapsuleComponent extends Component {
             alert('Your request was sent!');
         })
         .catch((err) => {
-            alert('Error requesting access to time capsule: ' + err.message);
+            alert('Error requesting access to time capsule: ' + err.response.data);
         });
   }
   componentDidMount = () => {

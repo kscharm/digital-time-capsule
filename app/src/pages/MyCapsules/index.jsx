@@ -49,11 +49,11 @@ export default class Registration extends Component {
           this.setState({capsuleList: res2.data});
         })
         .catch((err) => {
-          alert('Error getting capsules: ' + err.message);
+          alert('Error getting capsules: ' + err.response.data);
         });
       })
       .catch((err) => {
-          alert('Error getting capsules: ' + err.message);
+          alert('Error getting capsules: ' + err.response.data);
       });
   }
   handleAddCapsule = (capsule) => {

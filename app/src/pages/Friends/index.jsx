@@ -27,7 +27,7 @@ export default class Friends extends Component {
         console.log(res.data);
       })
       .catch((err) => {
-          alert('Error getting friends: ' + err.message);
+          alert('Error getting friends: ' + err.response.data);
       });
   }
 
@@ -38,7 +38,7 @@ export default class Friends extends Component {
         console.log(res.data);
       })
       .catch((err) => {
-          alert('Error getting sent friend requests: ' + err.message);
+          alert('Error getting sent friend requests: ' + err.response.data);
       });
   }
 
@@ -49,7 +49,7 @@ export default class Friends extends Component {
         console.log(res.data);
       })
       .catch((err) => {
-          alert('Error getting received friend requests: ' + err.message);
+          alert('Error getting received friend requests: ' + err.response.data);
       });
   }
   handleAcceptFriend = (friend) => {

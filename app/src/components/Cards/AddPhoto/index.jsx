@@ -52,7 +52,7 @@ export default class AddPhoto extends Component {
             this.props.handleAddPhoto(res.data);
         })
         .catch((err) => {
-            alert('Error saving photo: ' + err.message);
+            alert('Error saving photo: ' + err.response.data);
         });
     } else {
         alert('Please select a photo first');
