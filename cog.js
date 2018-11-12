@@ -344,6 +344,9 @@ exports.validateUser = function(database, username, callback) {
     if (err) {
       return callback(null, err);
     }
+    if (!user) {
+      return callback(null, 'Capsule does not exist');
+    }
     return callback(user);
   });
 }
@@ -736,6 +739,9 @@ exports.getCapsuleContributors = function(database, capsuleId, callback) {
     if (err) {
       console.log("Error getting time capsule: ", err.message);
       return callback(null, err);
+    }
+    if (!capsule) {
+      return callback(null, 'Capsule does not exist');
     }
     return callback(capsule.contributors);
   })
