@@ -26,6 +26,9 @@ exports.deleteMusic = function(database, musicId, capsuleId, callback) {
         console.log("Music not found: ", err.message);
         return callback(null, err);
       }
+      if (!res) {
+        return callback(null, 'Music not found');
+      }
       let capArr = [];
       for (let i = 0; i < res.capsules.length; i++) {
         if (res.capsules[i] !== capsuleId) {
@@ -92,6 +95,9 @@ exports.deleteText = function(database, textId, capsuleId, callback) {
         console.log("Text not found: ", err.message);
         return callback(null, err);
       }
+      if (!res) {
+        return callback('Text not found');
+      }
       let capArr = [];
       for (let i = 0; i < res.capsules.length; i++) {
         if (res.capsules[i] != capsuleId) {
@@ -156,6 +162,9 @@ exports.deletePhoto = function(database, photoId, capsuleId, callback) {
       if (err) {
         console.log("Photo not found: ", err.message);
         return callback(null, err);
+      }
+      if (!res) {
+        return callback(null, 'Photo does not exist');
       }
       let capArr = [];
       for (let i = 0; i < res.capsules.length; i++) {
@@ -355,6 +364,9 @@ exports.getMedia = function(database, capsuleId, callback) {
   database.collection("timeCapsules").findOne(capsuleId).then((capsule, err) => {
     if (err) {
       return callback(null, err);
+    }
+    if (!capsule) {
+      return callback(null, 'capsule does not exist');
     }
     let media = {
       text: [],
@@ -604,6 +616,9 @@ exports.getRequestAccess = function(database, capsuleId, callback) {
       console.log("Error getting time capsule: ", err.message);
       return callback(null, err);
     }
+    if (!capsule) {
+      return callback(null, 'capsule does not exist');
+    }
     return callback(capsule.requestAccess);
   });
 }
@@ -771,6 +786,18 @@ exports.deleteCapsuleRequest = function(database, capsuleId, username, callback)
   }, (err, res) => {
     if (err) {
       return callback(null, err);
+    }
+    return callback(res);
+  });
+}
+
+exports.getUserByUsername = function(database, username, callback) {
+  database.collection("users").findOne({username:username}, (err, res) => {
+    if (err) {
+      return callback(null, err);
+    }
+    if (!res) {
+      return callback(null, 'No user with this userna,e');
     }
     return callback(res);
   });

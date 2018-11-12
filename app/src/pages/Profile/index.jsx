@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Background from '../../images/cork.jpg';
 import './style.css';
 import '../general.css';
+import axios from 'axios';
 
 import NavBar from '../../components/NavBar';
 
