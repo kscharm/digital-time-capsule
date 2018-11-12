@@ -110,7 +110,7 @@ export default class AddPhoto extends Component {
         init: (dropzone) => { this.dropzone = dropzone; },
         maxfilesexceeded: (file) => { this.dropzone.removeFile(file) },
         addedfile: (file) => {
-            if (file.type === 'image/jpeg' || file.type === 'image/png') {
+            if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif') {
                 this.setState({ fileName: file.name });
                 const reader = new FileReader();
                 reader.readAsDataURL(file);

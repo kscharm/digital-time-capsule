@@ -724,6 +724,9 @@ exports.checkCapsuleOwner = function(database, capsuleId, callback) {
     if (err) {
       return callback(null, err);
     }
+    if (!capsule) {
+      return callback(null, 'Capsule does not exist');
+    }
     return callback(capsule.ownerId);
   });
 }
