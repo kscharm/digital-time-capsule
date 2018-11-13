@@ -108,6 +108,7 @@ export default class Friends extends Component {
                         sentRequest={false}
                         recrequest={false}
                         searchPage={false}
+                        userSiteColor={this.props.userSiteColor}
                     />
                 )
               })}
@@ -132,6 +133,7 @@ export default class Friends extends Component {
                         areFriends={false}
                         sentRequest={true}
                         recrequest={false}
+                        userSiteColor={this.props.userSiteColor}
                     />
                 )
               })}
@@ -158,13 +160,15 @@ export default class Friends extends Component {
                         recrequest={true}
                         searchPage={false}
                         handleRemoveRequest={this.handleRemoveRequest}
+                        userSiteColor={this.props.userSiteColor}
                     />
                 )
               })}
               </div>
               <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
-                    changeCapsuleID={this.props.changeCapsuleID} userID={this.props.userID}/>
+                    changeCapsuleID={this.props.changeCapsuleID} userID={this.props.userID}
+                    userSiteColor={this.props.userSiteColor}/>
             </div>
         </div>
       </div>

@@ -490,34 +490,39 @@ export default class CapsuleComponent extends Component {
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
                 user={this.props.user} capsule={this.props.usercapsule}
                 changeCapsuleID={this.props.changeCapsuleID} inCapsule={true}
-                userID={this.props.userID}/>
+                userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
         {this.state.showAddPhoto ? <AddPhoto 
                                       handleShowAddPhoto={this.handleShowAddPhoto}
                                       handleAddPhoto={this.handleAddPhoto}
                                       user={this.props.user}
-                                      capsule={this.props.capsule}/> : null}
+                                      capsule={this.props.capsule}
+                                      userSiteColor={this.props.userSiteColor}/> : null}
         {this.state.showAddText ? <AddText 
                                       handleShowAddText={this.handleShowAddText}
                                       handleAddText={this.handleAddText}
                                       user={this.props.user}
-                                      capsule={this.props.capsule}/> : null}
+                                      capsule={this.props.capsule}
+                                      userSiteColor={this.props.userSiteColor}/> : null}
         {this.state.showAddQuote ? <AddQuote
                                       handleShowAddQuote={this.handleShowAddQuote}
                                       handleAddQuote={this.handleAddQuote}
                                       user={this.props.user}
-                                      capsule={this.props.capsule}/> : null}
+                                      capsule={this.props.capsule}
+                                      userSiteColor={this.props.userSiteColor}/> : null}
         {this.state.showAddMusic ? <AddMusic 
                                       handleShowAddMusic={this.handleShowAddMusic}
                                       handleAddMusic={this.handleAddMusic}
                                       user={this.props.user}
-                                      capsule={this.props.capsule}/> : null}
+                                      capsule={this.props.capsule}
+                                      userSiteColor={this.props.userSiteColor}/> : null}
         {this.state.showEditUser ? <EditUser 
                                       handleShowEditUser={this.handleShowEditUser}
                                       user={this.props.user}
                                       contributorList={this.state.contributorList}
                                       capsule={this.props.capsule}
                                       handleAddUser={this.handleAddUser}
-                                      handleDeleteUser={this.handleDeleteUser}/> : null}
+                                      handleDeleteUser={this.handleDeleteUser}
+                                      userSiteColor={this.props.userSiteColor}/> : null}
       </div>
     );
   };

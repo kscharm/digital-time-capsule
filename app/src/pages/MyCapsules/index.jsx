@@ -106,6 +106,7 @@ export default class Registration extends Component {
                       handleDeleteCapsule={this.handleDeleteCapsule}
                       user={this.props.username}
                       capsulePage={true}
+                      userSiteColor={this.props.userSiteColor}
                   />
               )
             })}
@@ -113,7 +114,7 @@ export default class Registration extends Component {
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}
-                    userID={this.props.userID}/>
+                    userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
             <div className='addButton'>
               <AddButton
                 buttonAction={() => {this.setState({showAddCapsule: true})}}
@@ -124,7 +125,8 @@ export default class Registration extends Component {
                                         handleShowAddCapsule={this.handleShowAddCapsule}
                                         handleAddCapsule={this.handleAddCapsule}
                                         userID={this.props.userID}
-                                        user={this.props.username}/> : null}
+                                        user={this.props.username}
+                                        userSiteColor={this.props.userSiteColor}/> : null}
           </div>
         </div>
       </div>

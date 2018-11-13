@@ -123,7 +123,7 @@ export default class Setting extends Component {
               <NavBar handlePop={() => {console.log("nopes")}} addPop={false} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}
-                    userID={this.props.userID}/>
+                    userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
             </div>
         </div>
       </div>

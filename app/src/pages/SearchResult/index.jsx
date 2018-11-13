@@ -96,6 +96,7 @@ export default class SearchResult extends Component {
                         handleDeleteCapsule={() => {console.log('I do nothing.')}}
                         user={this.props.username}
                         capsulePage={false}
+                        userSiteColor={this.props.userSiteColor}
                     />
                 )
               })}
@@ -129,6 +130,7 @@ export default class SearchResult extends Component {
                       sentRequest={false}
                       recrequest={false}
                       searchPage={true}
+                      userSiteColor={this.props.userSiteColor}
                   />
               )
             })}
@@ -137,7 +139,7 @@ export default class SearchResult extends Component {
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
                     user={this.props.username} capsule={this.props.usercapsule}
                     inSearch={true} changeCapsuleID={this.props.changeCapsuleID}
-                    userID={this.props.userID}/>
+                    userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
         </div>
       </div>
     );
