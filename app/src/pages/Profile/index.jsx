@@ -16,6 +16,7 @@ export default class Profile extends Component {
   }
   getUserInfo(username) {
     console.log("I should get all of the user info");
+    console.log(username);
     axios.get('http://localhost:3001/getUserByUsername?username=' + username)
       .then((res) => {
         console.log(res);

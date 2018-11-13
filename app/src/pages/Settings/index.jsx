@@ -10,8 +10,11 @@ export default class Setting extends Component {
   state = {
     addPop: false,
   }
-  
+  getUserSettings = (username) => {
+    console.log("I should get the user settings");
+  }
   componentDidMount = () => {
+    this.getUserSettings(this.props.username);
   }
   render() {
     console.log(this.state.user);
