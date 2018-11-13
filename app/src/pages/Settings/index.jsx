@@ -10,8 +10,11 @@ export default class Setting extends Component {
   state = {
     addPop: false,
   }
-  
+  getUserSettings = (username) => {
+    console.log("I should get the user settings");
+  }
   componentDidMount = () => {
+    this.getUserSettings(this.props.username);
   }
   render() {
     console.log(this.state.user);
@@ -33,7 +36,7 @@ export default class Setting extends Component {
               </div>
               <div className='usersBlock'>
               </div>
-              <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
+              <NavBar handlePop={() => {console.log("nopes")}} addPop={false} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}
                     userID={this.props.userID}/>
