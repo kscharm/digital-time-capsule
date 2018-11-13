@@ -87,13 +87,13 @@
                     "enum": ["public", "private"],
                     "description": "User privacy settings"
                 },
-                "background": {
+                "backgroundImage": {
                     "bsonType": "string",
-                    "description": "The user's background color"
+                    "description": "String encoding of the background image"
                 },
-                "theme": {
-                    "bsonType": "object",
-                    "description": "The user's theme"
+                "siteColor": {
+                    "bsonType": "string",
+                    "description": "The user's website color"
                 }
             }
         },
