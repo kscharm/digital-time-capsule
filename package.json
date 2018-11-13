@@ -7,6 +7,7 @@
     "body-parser": "^1.18.3",
     "express": "4.13.3",
     "mongodb": "^3.1.8",
+    "react-color": "^2.14.1",
     "react-draggable": "^3.0.5",
     "react-dropzone-component": "^3.2.0",
     "react-image-dropzone": "^1.11.0",

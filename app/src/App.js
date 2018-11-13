@@ -22,6 +22,8 @@ class App extends Component {
     term: '',
     usercapsule: '',
     userID: '',
+    userSiteColor: '#003057',
+    userBackgroundImage: '',
   }
   changeUsername = (user) => {
     this.setState({username: user});

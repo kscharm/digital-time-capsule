@@ -71,3 +71,19 @@
     width: 100%;
     min-height: 100vh;
   }
+
+  .postit_general {
+    text-decoration:none;
+    color:#000;
+    background:#f0f5c0;
+    display:block;
+    max-width:10em;
+    padding:1em;
+    margin-bottom: 1em;
+    margin-left: 65px;
+  }
+  .postit_general p{
+    font-size: 1em;
+    font-weight: bolder;
+    text-align: center;
+  }
