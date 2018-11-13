@@ -93,7 +93,7 @@ export default class Profile extends Component {
               </div>
               <div className='usersBlock'>
               </div>
-              <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
+              <NavBar handlePop={() => {console.log("nopes")}} addPop={false} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}
                     userID={this.props.userID}/>
