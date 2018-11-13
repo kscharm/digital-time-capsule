@@ -14,10 +14,20 @@ export default class Profile extends Component {
   saveChanges = () => {
     console.log("I should save the changes the user made");
   }
+  getUserInfo(username) {
+    console.log("I should get all of the user info");
+    axios.get('http://localhost:3001/getUserByUsername?username=' + username)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+          alert('Error getting user data: ' + err.response.data);
+      });
+  }
   componentDidMount = () => {
     // Get all of the user information
     // Then use that information to fill in the sections below.
-    console.log("I should get all of the user info");
+    this.getUserInfo(this.props.username);
   }
   render() {
     const title1 = 'User Information';
