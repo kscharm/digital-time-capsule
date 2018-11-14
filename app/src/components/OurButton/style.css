@@ -18,19 +18,19 @@
 /* Primary Button */
 .our-btn-primary {
     color: white;
-    background-color: #0094d9;
+    background-color: #175764;
     transition: box-shadow .3s ease;
 }
 
 .our-btn-primary:hover {
-    background-color: #0094d9;
+    background-color: #175764;
     transition: box-shadow .3s ease;
     box-shadow: inset -3px -3px 15px 5px rgba(255, 255, 255, 0.25),
     inset 3px 3px 15px 5px rgba(255, 255, 255, 0.25);
 }
 
 .our-btn-primary:active {
-    background-color: #0094d9;
+    background-color: #175764;
     transition: box-shadow .3s ease;
     box-shadow: inset -2px -2px 15px 0 rgba(0, 0, 0, 0.12),
     inset 2px 2px 15px 0 rgba(0, 0, 0, 0.12);
@@ -45,22 +45,22 @@
 
 /* Secondary Button */
 .our-btn-secondary {
-    color: #0094d9;
+    color: #b4c1c4;
     background-color: transparent;
     transition: background-color .3s ease;
-    border: solid 1px #0094d9;
+    border: solid 1px #80989d;
 }
 
 .our-btn-secondary:hover {
     color: white;
-    background-color: #0094d9;
+    background-color: #175764;
     transition: all .3s ease;
-    border: solid 1px #0094d9;
+    border: solid 1px #175764;
 }
 
 .our-btn-secondary:active {
     color: white;
-    background-color: #0094d9;
+    background-color: #175764;
     transition: background-color .3s ease;
     border: 1px solid rgba(0, 0, 0, .12);
     box-shadow: inset -2px -2px 15px 0 rgba(0, 0, 0, 0.12),
@@ -76,21 +76,21 @@
 
 /* Tertiary Button */
 .our-btn-tertiary {
-    color: #0094d9;
+    color: #80989d;
     background-color: transparent;
     transition: background-color .3s ease;
     border: solid 1px transparent;
 }
 
 .our-btn-tertiary:hover {
-    color: #0094d9;
+    color: #175764;
     background-color: rgba(0, 148, 217, 0.12);
     transition: all .3s ease;
     border: solid 1px transparent;
 }
 
 .our-btn-tertiary:active {
-    color: #0094d9;
+    color: #175764;
     background-color: rgba(0, 148, 217, 0.38);
     transition: background-color .3s ease;
     border: 1px solid transparent;

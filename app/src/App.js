@@ -37,6 +37,9 @@ class App extends Component {
   changeCapsuleID = (id) => {
     this.setState({currentCapsuleID: id});
   }
+  changeUserSiteColor = (color) => {
+    this.setState({userSiteColor: color});
+  }
   getSearch = (term) => {
     this.setState({term: term});
   }
@@ -163,6 +166,7 @@ class App extends Component {
                       changeCapsuleID={this.changeCapsuleID}
                       userSiteColor={this.state.userSiteColor}
                       userBackgroundImage={this.state.userBackgroundImage}
+                      changeUserSiteColor={this.changeUserSiteColor}
                       />}
                   />
                 </Switch>
