@@ -137,7 +137,7 @@ export default class AddQuote extends Component {
     return (
     <div className={ `addType addQuote` }>
       <div className={ `addTypeBack addQuoteBack` }/>
-        <div className={ `addTypeCard addQuoteCard` }>
+        <div className={ `addTypeCard addQuoteCard` } style={{backgroundColor: this.props.userSiteColor}}>
             <span className='sectionLabels'> Quote: </span>
             <div className={editorStyles.editor} onClick={this.focus}>
                 <Editor

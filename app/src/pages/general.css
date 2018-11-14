@@ -5,7 +5,6 @@
     position: relative;
 }
 .bkgOverlay_general {
-    background-color: rgb(0, 48, 87);
     opacity: .65;
     position: absolute;
     top: 0;
@@ -70,4 +69,20 @@
     position: absolute;
     width: 100%;
     min-height: 100vh;
+  }
+
+  .postit_general {
+    text-decoration:none;
+    color:#000;
+    background:#f0f5c0;
+    display:block;
+    max-width:10em;
+    padding:1em;
+    margin-bottom: 1em;
+    margin-left: 65px;
+  }
+  .postit_general p{
+    font-size: 1em;
+    font-weight: bolder;
+    text-align: center;
   }

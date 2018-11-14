@@ -19,22 +19,12 @@
 .addPop {
     display: inline-block;
     position: absolute;
-    background-color: rgb(0, 48, 87);
     opacity: .65;
     bottom: 2em;
     margin: .25em;
-    border: 1.5px solid rgb(0, 48, 87);
+    border: 1.5px solid;
     font-size: 30px;
 }
-
-/* .addPop-content {
-    position: absolute;
-    background-color: rgb(0, 48, 87);
-    opacity: .65;
-    right: 0;
-    margin-top: .15em;
-    border:1.5px solid rgb(0, 48, 87);
-} */
 
 .requestAdd {
     position: absolute;

@@ -22,6 +22,8 @@ class App extends Component {
     term: '',
     usercapsule: '',
     userID: '',
+    userSiteColor: '#003057',
+    userBackgroundImage: '',
   }
   changeUsername = (user) => {
     this.setState({username: user});
@@ -74,6 +76,8 @@ class App extends Component {
                       changeUserID={this.changeUserID}
                       getSearch={this.getSearch}
                       changeCapsuleID={this.changeCapsuleID}
+                      userSiteColor={this.state.userSiteColor}
+                      userBackgroundImage={this.state.userBackgroundImage}
                       />}
                   />
                   <Route
@@ -91,7 +95,9 @@ class App extends Component {
                       userID={this.state.userID} 
                       changeUserID={this.changeUserID} 
                       getSearch={this.getSearch}
-                      changeCapsuleID={this.changeCapsuleID} 
+                      changeCapsuleID={this.changeCapsuleID}
+                      userSiteColor={this.state.userSiteColor}
+                      userBackgroundImage={this.state.userBackgroundImage}
                       />}
                   />
                   <Route
@@ -106,6 +112,8 @@ class App extends Component {
                       changeUserID={this.changeUserID}
                       getSearch={this.getSearch} 
                       changeCapsuleID={this.changeCapsuleID}
+                      userSiteColor={this.state.userSiteColor}
+                      userBackgroundImage={this.state.userBackgroundImage}
                       />}
                   />
                   <Route
@@ -121,6 +129,8 @@ class App extends Component {
                       term={this.state.term}
                       getSearch={this.getSearch}
                       changeCapsuleID={this.changeCapsuleID}
+                      userSiteColor={this.state.userSiteColor}
+                      userBackgroundImage={this.state.userBackgroundImage}
                       />}
                   />
                   <Route
@@ -135,6 +145,8 @@ class App extends Component {
                       changeUserID={this.changeUserID}
                       getSearch={this.getSearch} 
                       changeCapsuleID={this.changeCapsuleID}
+                      userSiteColor={this.state.userSiteColor}
+                      userBackgroundImage={this.state.userBackgroundImage}
                       />}
                   />
                   <Route
@@ -149,6 +161,8 @@ class App extends Component {
                       changeUserID={this.changeUserID}
                       getSearch={this.getSearch} 
                       changeCapsuleID={this.changeCapsuleID}
+                      userSiteColor={this.state.userSiteColor}
+                      userBackgroundImage={this.state.userBackgroundImage}
                       />}
                   />
                 </Switch>

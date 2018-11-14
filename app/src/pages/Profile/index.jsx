@@ -37,7 +37,7 @@ export default class Profile extends Component {
     return (
       <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
       <div className='holderDiv'>
-          <div className={ `bkgOverlay_general` }/>
+          <div className={ `bkgOverlay_general` } style={{backgroundColor: this.props.userSiteColor}}/>
           <div className={ `capsuless_general` }>
               <div className={`notepaper-title_general`} style={{maxWidth: "300px", width: "240px"}}>
                 <p className={`text-title_general`}>{title1}</p>
@@ -97,7 +97,7 @@ export default class Profile extends Component {
               <NavBar handlePop={() => {console.log("nopes")}} addPop={false} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}
-                    userID={this.props.userID}/>
+                    userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
             </div>
         </div>
       </div>

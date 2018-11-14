@@ -85,7 +85,7 @@ export default class Registration extends Component {
     return (
       <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div className='holderDiv'>
-          <div className={ `bkgOverlay_general` }/>
+          <div className={ `bkgOverlay_general` } style={{backgroundColor: this.props.userSiteColor}}/>
           <div className={ `capsuless_general` }>
             <div className={`notepaper-title_general`} style={{maxWidth: "180px"}}>
                 <p className={`text-title_general`}>{title1}</p>
@@ -106,6 +106,7 @@ export default class Registration extends Component {
                       handleDeleteCapsule={this.handleDeleteCapsule}
                       user={this.props.username}
                       capsulePage={true}
+                      userSiteColor={this.props.userSiteColor}
                   />
               )
             })}
@@ -113,18 +114,20 @@ export default class Registration extends Component {
             <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}
-                    userID={this.props.userID}/>
+                    userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
             <div className='addButton'>
               <AddButton
                 buttonAction={() => {this.setState({showAddCapsule: true})}}
                 buttonType='add'
+                userSiteColor={this.props.userSiteColor}
               />
             </div>
             {this.state.showAddCapsule ? <AddCapsule
                                         handleShowAddCapsule={this.handleShowAddCapsule}
                                         handleAddCapsule={this.handleAddCapsule}
                                         userID={this.props.userID}
-                                        user={this.props.username}/> : null}
+                                        user={this.props.username}
+                                        userSiteColor={this.props.userSiteColor}/> : null}
           </div>
         </div>
       </div>

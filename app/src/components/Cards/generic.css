@@ -28,8 +28,7 @@
 .addTypeCard {
     /* width: 50%;
     height: 50%; */
-    background-color: rgb(0, 48, 87);
-    opacity: .75;
+    opacity: .85;
     padding: .5em;
     padding-left: 1em;
     padding-right: 1em;
