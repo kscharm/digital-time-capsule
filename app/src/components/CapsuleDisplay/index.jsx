@@ -95,7 +95,7 @@ export default class CapsuleDisplay extends Component {
         return (
             <div className='capsuleDisplayGroup'>
             <div className='capsulePiny'></div>
-            <div className={`capsuleDisplay`}>
+            <div className={`capsuleDisplay`} style={{backgroundColor: this.props.userSiteColor}}>
                 <div className="title-content" onClick={() => {this.props.sendToCapusle(this.props.id)}}>
                     <h3>{this.props.title}</h3>
                     <hr />

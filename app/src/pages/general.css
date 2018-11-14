@@ -5,7 +5,6 @@
     position: relative;
 }
 .bkgOverlay_general {
-    background-color: rgb(0, 48, 87);
     opacity: .65;
     position: absolute;
     top: 0;

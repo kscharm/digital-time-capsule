@@ -86,7 +86,7 @@ export default class AddQuote extends Component {
     return (
     <div className={ `addType editUser` }>
       <div className={ `addTypeBack editUserBack` }/>
-        <div className={ `addTypeCard editUserCard` }>
+        <div className={ `addTypeCard editUserCard` } style={{backgroundColor: this.props.userSiteColor}}>
             <div className='listDiv'>
                 <h3> Contributor Request List: </h3>
                 <ul className='listUL'>

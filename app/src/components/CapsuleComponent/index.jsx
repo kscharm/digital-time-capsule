@@ -420,6 +420,7 @@ export default class CapsuleComponent extends Component {
                     handleDeleteMusic={this.handleDeleteMusic}
                     showDelete={this.state.showDelete}
                     handleUpdateMusic={this.handleUpdateMusic}
+                    userSiteColor={this.props.userSiteColor}
                 />
             )
             })}
@@ -461,8 +462,9 @@ export default class CapsuleComponent extends Component {
               <AddButton
                 buttonAction={() => { this.handlePop(!this.state.addPop) }}
                 buttonType='add'
+                userSiteColor={this.props.userSiteColor}
               />
-              <div className='addPop'  style={this.state.addPop ? {display: 'block'} : {display: 'none'}}>
+              <div className='addPop'  style={this.state.addPop ? {display: 'block', backgroundColor: this.props.userSiteColor, borderColor: this.props.userSiteColor} : {display: 'none'}}>
                 {(this.state.addPop && this.state.isContributer) ? <Add options={['Photo', 'Text', 'Quote', 'Music', 'Edit Users']} /> : null }
                 {/* {(this.state.addPop && !this.state.isOwner) ? <Add options={['Photo', 'Text', 'Quote', 'Music']} /> : null } */}
               </div>

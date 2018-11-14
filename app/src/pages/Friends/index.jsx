@@ -83,7 +83,7 @@ export default class Friends extends Component {
     return (
       <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
       <div className='holderDiv'>
-          <div className={ `bkgOverlay_general` }/>
+          <div className={ `bkgOverlay_general` } style={{backgroundColor: this.props.userSiteColor}}/>
           <div className={ `capsuless_general` }>
             <div className='addButton'>
               </div>

@@ -1,6 +1,5 @@
 .navBar {
     display: block;
-    background-color: rgb(0, 48, 87);
     opacity: .65;
     width: 100%;
     color: white;
@@ -21,11 +20,10 @@
 }
 .dropDown-content {
     position: absolute;
-    background-color: rgb(0, 48, 87);
     opacity: 1;
     right: 0;
     margin-top: .15em;
-    border:1.5px solid rgb(0, 48, 87);
+    border:1.5px solid;
 
     top: 45px;
 }

@@ -48,7 +48,7 @@ export default class MusicPlayer extends Component {
                 onDrag={this.handleDrag}
                 onStop={this.handleStop}
                 >
-                <div className='musicPlayer'>
+                <div className='musicPlayer' style={{backgroundColor: this.props.userSiteColor}}>
                     <Sound
                         url={this.props.song}
                         playStatus={this.state.playStatus}
@@ -69,12 +69,14 @@ export default class MusicPlayer extends Component {
                     <button 
                         onClick={() => {this.setState({playStatus: 'PLAYING'})}}
                         className='iconButtons'
+                        style={{backgroundColor: this.props.userSiteColor}}
                     >
                         <FaPlayCircle className='testIcon' size={40}/>
                     </button>
                     <button
                         onClick={() => {this.setState({playStatus: 'PAUSED'})}}
                         className='iconButtons'
+                        style={{backgroundColor: this.props.userSiteColor}}
                     >
                         <FaPauseCircle className='testIcon' size={40}/>
                     </button>

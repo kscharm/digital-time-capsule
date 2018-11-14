@@ -85,7 +85,7 @@ export default class Registration extends Component {
     return (
       <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
         <div className='holderDiv'>
-          <div className={ `bkgOverlay_general` }/>
+          <div className={ `bkgOverlay_general` } style={{backgroundColor: this.props.userSiteColor}}/>
           <div className={ `capsuless_general` }>
             <div className={`notepaper-title_general`} style={{maxWidth: "180px"}}>
                 <p className={`text-title_general`}>{title1}</p>
@@ -119,6 +119,7 @@ export default class Registration extends Component {
               <AddButton
                 buttonAction={() => {this.setState({showAddCapsule: true})}}
                 buttonType='add'
+                userSiteColor={this.props.userSiteColor}
               />
             </div>
             {this.state.showAddCapsule ? <AddCapsule
