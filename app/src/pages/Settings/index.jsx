@@ -18,6 +18,9 @@ export default class Setting extends Component {
     siteColor: '',
     tempSiteColor: '',
   }
+  revertColor = () => {
+    console.log("I should revert the color to #003057");
+  }
   revertBackground = () => {
     console.log("I should revert the background to the corkboard");
   }
@@ -84,6 +87,13 @@ export default class Setting extends Component {
                         color={ this.state.background }
                         onChangeComplete={ this.handleChangeComplete }
                       />
+                    <div className='resetButton'>
+                      <OurButton
+                        buttonText='Revert to Original'
+                        buttonAction={() => {this.revertColor()}}
+                        buttonType='secondary'
+                      />
+                    </div>
                   </div>
                 </div>
                 <div>
