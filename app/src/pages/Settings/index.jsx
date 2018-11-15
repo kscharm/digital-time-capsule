@@ -44,7 +44,7 @@ export default class Setting extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.userSiteColor !== this.state.userSiteColor) {
       this.setState({ siteColor: nextProps.userSiteColor });
-    }   
+    } 
   }
   handleChangeComplete = (color) => {
     this.setState({ siteColor: color.hex });
@@ -78,10 +78,10 @@ export default class Setting extends Component {
                 this.dropzone.removeFile(file);
             }
         },
-        removedfile: (file) => { this.setState({file: ""}) }
+        removedfile: (file) => { this.setState({file: this.props.userBackgroundImage}) }
     }
     return (
-      <div className='bgDiv_general' style={{background: `url(${this.props.userBackgroundImage})`, overflow:'auto'}} >
+      <div className='bgDiv_general' style={{background: `url(${this.state.file})`, overflow:'auto'}} >
       <div className='holderDiv'>
           <div className={ `bkgOverlay_general` } style={{backgroundColor: this.state.siteColor}}/>
           <div className={ `capsuless_general` }>
@@ -117,6 +117,8 @@ export default class Setting extends Component {
                     <p>Background Image</p>
                   </div>
                   <div className='photoThing_general'>
+                  {this.props.userBackgroundImage !== this.state.file ?
+                      <p className='helperText'>This is a preview, you must save and log out to see your changes sitewide.</p> : null}
                     <div className="dropzone">
                     <DropzoneComponent
                         config={componentConfig}
