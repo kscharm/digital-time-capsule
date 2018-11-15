@@ -9,9 +9,12 @@
     bottom: 1em;
 }
 .resetButton {
-    text-align: center;
 }
 .colorPicker {
     margin-left: 100px;
     margin-bottom: 1em;
+}
+.sketch-picker {
+    margin-right: 0;
+    width: 24em;
 }

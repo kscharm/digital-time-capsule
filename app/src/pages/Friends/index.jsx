@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Background from '../../images/cork.jpg';
 import './style.css';
 import '../general.css';
 
@@ -81,7 +80,7 @@ export default class Friends extends Component {
     const title1 = 'Friends';
 
     return (
-      <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
+      <div className='bgDiv_general' style={{background: `url(${this.props.userBackgroundImage})`, overflow:'auto'}} >
       <div className='holderDiv'>
           <div className={ `bkgOverlay_general` } style={{backgroundColor: this.props.userSiteColor}}/>
           <div className={ `capsuless_general` }>

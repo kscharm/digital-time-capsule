@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Background from '../../images/cork.jpg';
 import './style.css';
 import '../general.css';
 import axios from 'axios';
@@ -10,6 +9,7 @@ import NavBar from '../../components/NavBar';
 export default class Profile extends Component {
   state = {
     addPop: false,
+    userSiteColor: '',
   }
   saveChanges = () => {
     console.log("I should save the changes the user made");
@@ -29,15 +29,16 @@ export default class Profile extends Component {
     // Get all of the user information
     // Then use that information to fill in the sections below.
     this.getUserInfo(this.props.username);
+    this.setState({userSiteColor: this.props.userSiteColor});
   }
   render() {
     const title1 = 'User Information';
     console.log(this.state.user);
 
     return (
-      <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
+      <div className='bgDiv_general' style={{background: `url(${this.props.userBackgroundImage})`, overflow:'auto'}} >
       <div className='holderDiv'>
-          <div className={ `bkgOverlay_general` } style={{backgroundColor: this.props.userSiteColor}}/>
+          <div className={ `bkgOverlay_general` } style={{backgroundColor: this.state.userSiteColor}}/>
           <div className={ `capsuless_general` }>
               <div className={`notepaper-title_general`} style={{maxWidth: "300px", width: "240px"}}>
                 <p className={`text-title_general`}>{title1}</p>
@@ -97,7 +98,7 @@ export default class Profile extends Component {
               <NavBar handlePop={() => {console.log("nopes")}} addPop={false} getSearch={this.props.getSearch}
                     user={this.props.username} capsule={this.props.usercapsule}
                     changeCapsuleID={this.props.changeCapsuleID}
-                    userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
+                    userID={this.props.userID} userSiteColor={this.state.userSiteColor}/>
             </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ import MyFriends from './pages/Friends';
 import Search from './pages/SearchResult';
 import Profile from './pages/Profile';
 import Setting from './pages/Settings';
+import Background from '../src/images/cork.jpg';
 
 class App extends Component {
   state = {
@@ -23,7 +24,7 @@ class App extends Component {
     usercapsule: '',
     userID: '',
     userSiteColor: '#003057',
-    userBackgroundImage: '',
+    userBackgroundImage: Background,
   }
   changeUsername = (user) => {
     this.setState({username: user});
@@ -36,6 +37,12 @@ class App extends Component {
   }
   changeCapsuleID = (id) => {
     this.setState({currentCapsuleID: id});
+  }
+  changeUserSiteColor = (color) => {
+    this.setState({userSiteColor: color});
+  }
+  changeUserBackgroundImage = (image) => {
+    this.setState({userBackgroundImage: image});
   }
   getSearch = (term) => {
     this.setState({term: term});
@@ -163,6 +170,8 @@ class App extends Component {
                       changeCapsuleID={this.changeCapsuleID}
                       userSiteColor={this.state.userSiteColor}
                       userBackgroundImage={this.state.userBackgroundImage}
+                      changeUserSiteColor={this.changeUserSiteColor}
+                      changeUserBackgroundImage={this.changeUserBackgroundImage}
                       />}
                   />
                 </Switch>
