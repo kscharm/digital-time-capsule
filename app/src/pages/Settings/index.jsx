@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Background from '../../images/cork.jpg';
 import '../general.css';
 
 import NavBar from '../../components/NavBar';
@@ -16,7 +15,13 @@ export default class Setting extends Component {
     addPop: false,
     file: '',
     siteColor: '',
+    selectedOption: 'public',
   }
+  handleOptionChange = (changeEvent) => {
+    this.setState({
+      selectedOption: changeEvent.target.value
+    });
+  };
   revertColor = () => {
     console.log("I should revert the color to #003057");
   }
@@ -26,6 +31,7 @@ export default class Setting extends Component {
   saveSettings = () => {
     console.log("I should save the settings");
     this.props.changeUserSiteColor(this.state.siteColor);
+    this.props.changeUserBackgroundImage(this.state.file);
   }
   getUserSettings = (username) => {
     console.log("I should get the user settings");
@@ -33,6 +39,7 @@ export default class Setting extends Component {
   componentDidMount = () => {
     this.getUserSettings(this.props.username);
     this.setState({siteColor: this.props.userSiteColor});
+    this.setState({file: this.props.userBackgroundImage});
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.userSiteColor !== this.state.userSiteColor) {
@@ -74,7 +81,7 @@ export default class Setting extends Component {
         removedfile: (file) => { this.setState({file: ""}) }
     }
     return (
-      <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
+      <div className='bgDiv_general' style={{background: `url(${this.props.userBackgroundImage})`, overflow:'auto'}} >
       <div className='holderDiv'>
           <div className={ `bkgOverlay_general` } style={{backgroundColor: this.state.siteColor}}/>
           <div className={ `capsuless_general` }>
@@ -126,9 +133,25 @@ export default class Setting extends Component {
                     </div>
                   </div>
                 </div>
-                <div className={`postit_general`} style={{width: "240px"}}>
-                  <p>Privacy</p>
-                </div>
+                <div>
+                  <div className={`postit_general`} style={{width: "240px"}}>
+                    <p>Personal Capsule Privacy</p>
+                  </div>
+                  <form className='options'>
+                    <div className="radio1">
+                    <label>
+                        <input type="radio" value="public" onChange={this.handleOptionChange} checked={this.state.selectedOption === 'public'} />
+                        Public
+                    </label>
+                    </div>
+                    <div className="radio2">
+                    <label>
+                        <input type="radio" value="private" onChange={this.handleOptionChange} checked={this.state.selectedOption === 'private'}/>
+                        Private
+                    </label>
+                    </div>
+                </form>
+              </div>
                 <div className='settingsButton'>
                   <OurButton
                       buttonText='Save Changes'

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AddButton from '../../components/AddButton';
 import DeleteButton from '../../components/DeleteButton';
-import Background from '../../images/cork.jpg';
 import './style.css';
 import {
   FaCamera,
@@ -384,7 +383,7 @@ export default class CapsuleComponent extends Component {
 
     return (
       <div id='capsulePage'>
-        <div className='capsuleDiv' style={{background: `url(${Background})`, overflow:'auto'}} >
+        <div className='capsuleDiv' style={{background: `url(${this.props.userBackgroundImage})`, overflow:'auto'}} >
             <div style={{height:'50px'}}/>
             <div style={{fontSize: '100px'}}> {this.props.message} </div>
             <div>
