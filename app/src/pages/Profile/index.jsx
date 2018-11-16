@@ -10,9 +10,50 @@ export default class Profile extends Component {
   state = {
     addPop: false,
     editing: false,
+    firstName: '',
+    lastName: '',
+    email:'',
+    university: '',
+    major: '',
+    username: '',
+    password: '',
+    confirmPass: '',
+    capsules: [],
+    friends: [],
+    sentRequests: [],
+    receivedRequests: [],
+    settings: {
+      privacy: "private",
+      background: "",
+      theme: {}
+    }
   }
   saveChanges = () => {
     console.log("I should save the changes the user made");
+  }
+  updateFirst = (evt) => {
+    this.setState({firstName: evt.target.value})
+  }
+  updateLast = (evt) => {
+    this.setState({lastName: evt.target.value})
+  }
+  updateEmail = (evt) => {
+    this.setState({email: evt.target.value})
+  }
+  updateUniversity = (evt) => {
+    this.setState({university: evt.target.value})
+  }
+  updateMajor = (evt) => {
+    this.setState({major: evt.target.value})
+  }
+  updateConfirmPass = (evt) => {
+    this.setState({confirmPass: evt.target.value})
+  }
+  updateUsername = (evt) => {
+    this.setState({username: evt.target.value})
+  }
+  updatePass = (evt) => {
+    this.setState({password: evt.target.value})
   }
   getUserInfo(username) {
     console.log("I should get all of the user info");
@@ -47,43 +88,38 @@ export default class Profile extends Component {
       <ul>
         <li>
             <label for="firstName"> First Name</label>
-            <p type="text" id='firstName' name="firstName" style={{fontSize: "13px"}}>Stephanie</p>
+            <p id='firstName' name="firstName" style={{fontSize: "13px"}}>Stephanie</p>
             <span>Your first name</span>
         </li>
         <li>
             <label for="lastName"> Last Name</label>
-            <input type="text" id='lastName' name="lastName" maxLength="100" onChange={evt => this.updateLast(evt)}/>
-            <span>Enter your last name</span>
+            <p id='lastName' name="lastName" style={{fontSize: "13px"}}>Stephanie</p>
+            <span>Your last name</span>
         </li>
         <li>
             <label for="email"> Email</label>
-            <input type="text" id='email' name="email" maxLength="100" onChange={evt => this.updateEmail(evt)}/>
-            <span>Enter your email</span>
+            <p id='email' name="email" style={{fontSize: "13px"}}>Stephanie</p>
+            <span>Your email</span>
         </li>
         <li>
             <label for="university"> University</label>
-            <input type="text" id='university' name="university" maxLength="100" onChange={evt => this.updateUniversity(evt)}/>
-            <span>Enter your university</span>
+            <p id='university' name="university">Steph</p>
+            <span>Your university</span>
         </li>
         <li>
             <label for="major"> Major</label>
-            <input type="text" id='major' name="major" maxLength="100" onChange={evt => this.updateMajor(evt)}/>
-            <span>Enter your major</span>
+            <p id='major' name="major">Steph</p>
+            <span>Your major</span>
         </li>
         <li>
             <label for="username"> Username</label>
-            <input type="text" id='username' name="username" maxLength="100" onChange={evt => this.updateUsername(evt)}/>
-            <span>Enter your username</span>
+            <p id='username' name="username">S</p>
+            <span>Your username</span>
         </li>
         <li>
             <label for="pass1"> Password</label>
-            <input type="password" id='pass1' name="pass1" maxLength="100" onChange={evt => this.updatePass(evt)}/>
-            <span>Enter your password</span>
-        </li>
-        <li>
-            <label for="pass2"> Confirm Password</label>
-            <input type="password" id='pass2' name="pass2" maxLength="100" onChange={evt => this.updateConfirmPass(evt)}/>
-            <span>Confirm your password</span>
+            <p id='pass1' name="pass1">HEy</p>
+            <span>Your password</span>
         </li>
       </ul>
       <p>
