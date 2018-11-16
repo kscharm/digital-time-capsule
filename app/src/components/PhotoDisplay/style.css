@@ -91,3 +91,17 @@
     bottom: 1em;
     right: .5em;
   }
+  .userPiny_photo {
+    background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 50%, black 100%);
+    background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, black);
+    background-image: radial-gradient(yellow 50%, black 100%);
+    border-radius: 10px;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    left: 50%;
+    top: 15px;
+      position: relative;
+      z-index: 10;
+      box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
+  }

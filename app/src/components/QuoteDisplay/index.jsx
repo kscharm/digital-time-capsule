@@ -39,6 +39,7 @@ export default class QuoteDisplay extends Component {
               onStop={this.handleStop}
               >
               <div>
+              <div className='userPiny_quote'></div>
                 <div className='raised'>
                     <blockquote>
                         {actualText}

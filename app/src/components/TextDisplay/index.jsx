@@ -37,9 +37,12 @@ export default class TextDisplay extends Component {
               onDrag={this.handleDrag}
               onStop={this.handleStop}
               >
+              <div>
+              <div className='userPiny_text'></div>
               <div className={`textSpace ${this.props.frame}`}>
                 <p className={`text`}>{actualText}</p>
                 {this.props.showDelete ? <DeleteButton/> : null}
+              </div>
               </div>
             </Draggable>
         );
