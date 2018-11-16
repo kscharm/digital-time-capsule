@@ -48,6 +48,8 @@ export default class MusicPlayer extends Component {
                 onDrag={this.handleDrag}
                 onStop={this.handleStop}
                 >
+                <div>
+                <div className='userPiny_music'></div>
                 <div className='musicPlayer' style={{backgroundColor: this.props.userSiteColor}}>
                     <Sound
                         url={this.props.song}
@@ -82,6 +84,7 @@ export default class MusicPlayer extends Component {
                     </button>
                     {this.props.showDelete ? <DeleteButton/> : null}
                     </div>
+                </div>
                 </div>
                 </Draggable>
         );
