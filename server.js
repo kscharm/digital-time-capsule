@@ -445,7 +445,7 @@ app.get('/capsuleContributors', (req, res, next) => {
   })
 })
 
-app.get('/getUser', (req, res, next) => {
+app.get('/getUserByUsername', (req, res, next) => {
   const params = req.query;
   cog.getUserByUsername(database, params.username, (data, err) => {
     if (err) {

@@ -15,11 +15,9 @@ export default class Profile extends Component {
     console.log("I should save the changes the user made");
   }
   getUserInfo(username) {
-    console.log("I should get all of the user info");
-    console.log(username);
     axios.get('http://localhost:3001/getUserByUsername?username=' + username)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
       })
       .catch((err) => {
           alert('Error getting user data: ' + err.response.data);
@@ -33,7 +31,7 @@ export default class Profile extends Component {
   }
   render() {
     const title1 = 'User Information';
-    console.log(this.state.user);
+    console.log(this.state.user); // This does not work
 
     return (
       <div className='bgDiv_general' style={{background: `url(${this.props.userBackgroundImage})`, overflow:'auto'}} >
