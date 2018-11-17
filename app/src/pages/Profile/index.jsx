@@ -9,6 +9,14 @@ export default class Profile extends Component {
   state = {
     addPop: false,
     userSiteColor: '',
+
+    firstName: '',
+    lastName: '',
+    email: '',
+    university: '',
+    major: '',
+    username: '',
+    password: '',
   }
   saveChanges = () => {
     console.log("I should save the changes the user made");
@@ -40,7 +48,15 @@ export default class Profile extends Component {
   getUserInfo(username) {
     axios.get('http://localhost:3001/getUserByUsername?username=' + username)
       .then((res) => {
-        console.log(res.data);
+        this.setState({firstname: res.data.firstName});
+        this.setState({lastName: res.data.lastName});
+        this.setState({email: res.data.email});
+        this.setState({university: res.data.university});
+        this.setState({major: res.data.major});
+        this.setState({username: res.data.username});
+        this.setState({password: res.data.password});
+          // console.log("user data:");
+          // console.log(res.data);
       })
       .catch((err) => {
           alert('Error getting user data: ' + err.response.data);
@@ -66,42 +82,42 @@ export default class Profile extends Component {
     const DisplayUserInfo = () => {
       return (
       <div>
-      <h2>User Information (This one is a display)</h2>
+      <h2>Your User Information</h2>
       <ul>
-        <li>
+        <li className='viewLi'>
             <label for="firstName"> First Name</label>
-            <p id='firstName' name="firstName" style={{fontSize: "13px"}}>Stephanie</p>
-            <span>Your first name</span>
+            <p id='firstName' className='viewP' name="firstName">{this.state.firstname}</p>
+            <span className='viewSpan'>Your first name</span>
         </li>
-        <li>
+        <li className='viewLi'>
             <label for="lastName"> Last Name</label>
-            <p id='lastName' name="lastName" style={{fontSize: "13px"}}>Stephanie</p>
-            <span>Your last name</span>
+            <p id='lastName' className='viewP' name="lastName">{this.state.lastName}</p>
+            <span className='viewSpan'>Your last name</span>
         </li>
-        <li>
+        <li className='viewLi'>
             <label for="email"> Email</label>
-            <p id='email' name="email" style={{fontSize: "13px"}}>Stephanie</p>
-            <span>Your email</span>
+            <p id='email' className='viewP' name="email">{this.state.email}</p>
+            <span className='viewSpan'>Your email</span>
         </li>
-        <li>
+        <li className='viewLi'>
             <label for="university"> University</label>
-            <p id='university' name="university">Steph</p>
-            <span>Your university</span>
+            <p id='university' className='viewP' name="university">{this.state.university}</p>
+            <span className='viewSpan'>Your university</span>
         </li>
-        <li>
+        <li className='viewLi'>
             <label for="major"> Major</label>
-            <p id='major' name="major">Steph</p>
-            <span>Your major</span>
+            <p id='major' className='viewP' name="major">{this.state.major}</p>
+            <span className='viewSpan'>Your major</span>
         </li>
-        <li>
+        <li className='viewLi'>
             <label for="username"> Username</label>
-            <p id='username' name="username">S</p>
-            <span>Your username</span>
+            <p id='username' className='viewP' name="username">{this.state.username}</p>
+            <span className='viewSpan'>Your username</span>
         </li>
-        <li>
+        <li className='viewLi'>
             <label for="pass1"> Password</label>
-            <p id='pass1' name="pass1">HEy</p>
-            <span>Your password</span>
+            <p id='pass1' className='viewP' name="pass1">{this.state.password}</p>
+            <span className='viewSpan'>Your password</span>
         </li>
       </ul>
       <p>
@@ -113,8 +129,9 @@ export default class Profile extends Component {
     const EditableUserInfo = () => {
       return (
       <div>
-        <h2>User Information (This one is a form)</h2>
+        <h2>Edit Your User Information</h2>
         <ul>
+          {/*I would love to have placeholders in these, but for some reason, {this.state.firstname} will not appear when set as a placeholder :( */}
           <li>
               <label for="firstName"> First Name</label>
               <input type="text" id='firstName' name="firstName" maxLength="100" onChange={evt => this.updateFirst(evt)}/>
@@ -164,7 +181,6 @@ export default class Profile extends Component {
     }
     
     const title1 = 'User Information';
-    console.log(this.state.user); // This does not work
 
     let UserInfo;
 
