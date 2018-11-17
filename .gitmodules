@@ -1,6 +1,3 @@
 [submodule "auth-server"]
 	path = auth-server
 	url = https://github.com/spotify/web-api-auth-examples.git
-[submodule "spotify_auth/auth-server"]
-	path = spotify_auth/auth-server
-	url = https://github.com/spotify/web-api-auth-examples.git

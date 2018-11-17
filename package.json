@@ -18,7 +18,7 @@
     "start": "concurrently \"npm run server\" \"npm run app\" \"npm run spotify_auth\" ",
     "server": "node server.js",
     "app": "node launchApp.js",
-    "spotify_auth": "node spotify_auth\\auth-server\\authorization_code\\app.js",
+    "spotify_auth": "node auth-server\\authorization_code\\app.js",
     "lint": "eslint ."
   },
   "devDependencies": {
