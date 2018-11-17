@@ -127,7 +127,7 @@ export default class AddPhoto extends Component {
     return (
     <div className={ `addType addPhoto` }>
         <div className={ `addTypeBack addPhotoBack` }/>
-        <div className={ `addTypeCard addPhotoCard` }>
+        <div className={ `addTypeCard addPhotoCard` } style={{backgroundColor: this.props.userSiteColor}}>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
             <div className='photoThing'>
                 <div className="dropzone">

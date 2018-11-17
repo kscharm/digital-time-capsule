@@ -28,8 +28,8 @@ export default class Registration extends Component {
     receivedRequests: [],
     settings: {
       privacy: "private",
-      background: "",
-      theme: {}
+      backgroundImage: "",
+      siteColor: ""
     }
   }
 

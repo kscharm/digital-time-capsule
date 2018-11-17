@@ -151,7 +151,7 @@ focus = () => {
     return (
     <div className={ `addType addCapsule` }>
         <div className={ `addTypeBack addCapsuleBack` }/>
-        <div className={ `addTypeCard addCapsuleCard` }>
+        <div className={ `addTypeCard addCapsuleCard` } style={{backgroundColor: this.props.userSiteColor}}>
         {/* title*, description*, private/public check*, relevant majors tag (maybe separate each by comma)? */}
             <div>
             <span className='sectionLabels'> Capsule Name: </span>

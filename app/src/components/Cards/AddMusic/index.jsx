@@ -96,7 +96,7 @@ export default class AddMusic extends Component {
     return (
     <div className={ `addType addMusic` }>
         <div className={ `addTypeBack addMusicBack` }/>
-        <div className={ `addTypeCard addMusicCard` }>
+        <div className={ `addTypeCard addMusicCard` } style={{backgroundColor: this.props.userSiteColor}}>
             {/* <span className='sectionLabels'> Add Photo: </span> */}
             <div className='music'>
                 <div className="dropzone">

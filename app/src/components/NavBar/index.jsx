@@ -17,56 +17,9 @@ import {
   Link,
   Redirect,
 } from 'react-router-dom';
+import { timingSafeEqual } from 'crypto';
 
-const Menu = (props) => {
-  let contents = [];
-  let icon = '';
-  let clicks = () => {};
-  let toPage = '#';
-  if (props.options) {
-    contents = props.options.map(option => {
-      if (option==='Settings') {
-        icon = <FaCog/>
-        toPage = `/settings/${props.user}/${props.userID}`;
-      } else if (option==='Capsules') {
-        icon = <FaArchive/>
-        clicks = () => {
-            console.log('TO MY CAPSULES');
-        }
-        toPage = `/myCapsules/${props.user}`;
-      } else if (option==='Playlists') {
-        icon = <FaMusic/>
-      } else if (option==='Friends') {
-        icon = <FaUsers/>
-        clicks = () => {
-          console.log('TO MY FRIENDS');
-        }
-        toPage = `/myFriends/${props.user}`;
-      } else if (option==='Logout') {
-        icon = <FaSignOutAlt/>
-        clicks = () => {
-          console.log('IM LOGGING OUT');
-        }
-        toPage = '/';
-      }
-      return (
-        <div key={option}>
-          <Link to={toPage} style={{color: 'white', textDecoration: 'none'}}>
-            <span className="menuItem" key={option} onClick={clicks} >
-              {icon} {option}
-            </span>
-          </Link>
-        </div>
-      );
-    });
-  }
 
-  return (
-      <div>
-        {contents}
-      </div>
-  );
-};
 
 export default class NavBar extends Component {
   // constructor(props) {
@@ -120,6 +73,55 @@ export default class NavBar extends Component {
   }
 
   render() {
+    const Menu = (props) => {
+      let contents = [];
+      let icon = '';
+      let clicks = () => {};
+      let toPage = '#';
+      if (props.options) {
+        contents = props.options.map(option => {
+          if (option==='Settings') {
+            icon = <FaCog/>
+            toPage = `/settings/${props.user}/${props.userID}`;
+          } else if (option==='Capsules') {
+            icon = <FaArchive/>
+            clicks = () => {
+                console.log('TO MY CAPSULES');
+            }
+            toPage = `/myCapsules/${props.user}`;
+          } else if (option==='Playlists') {
+            icon = <FaMusic/>
+          } else if (option==='Friends') {
+            icon = <FaUsers/>
+            clicks = () => {
+              console.log('TO MY FRIENDS');
+            }
+            toPage = `/myFriends/${props.user}`;
+          } else if (option==='Logout') {
+            icon = <FaSignOutAlt/>
+            clicks = () => {
+              console.log('IM LOGGING OUT');
+            }
+            toPage = '/';
+          }
+          return (
+            <div key={option}>
+              <Link to={toPage} style={{color: 'white', textDecoration: 'none'}} userSiteColor={this.props.userSiteColor}>
+                <span className="menuItem" key={option} onClick={clicks} >
+                  {icon} {option}
+                </span>
+              </Link>
+            </div>
+          );
+        });
+      }
+  
+      return (
+          <div>
+            {contents}
+          </div>
+      );
+    };
     const { from } = { from: { pathname: `/currentCapsule/${this.props.user}/${this.props.capsule}` } }
 
     if (this.state.redirectToReferrer) {
@@ -129,21 +131,21 @@ export default class NavBar extends Component {
     }
     return (
       <div>
-        <div className='navBar'>
+        <div className='navBar' style={{backgroundColor: this.props.userSiteColor}}>
             <div className='search'>
                 <Search getSearch={this.props.getSearch} inSearch={this.props.inSearch}/>
             </div>
             <div className='icons'>
-              <Link to={`/currentCapsule/${this.props.user}/${this.props.capsule}`} style={{color: 'white'}}>
+              <Link to={`/currentCapsule/${this.props.user}/${this.props.capsule}`} style={{color: 'white'}} userSiteColor={this.props.userSiteColor}>
                 <FaHome className='icon' onClick={() => {this.goHome() ; this.dropMenu('home');}} style={this.state.homeClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <FaCloudUploadAlt className='icon' onClick={() => { this.dropMenu('cloud')}} />
-              <Link to={`/profile/${this.props.user}/${this.props.userID}`} style={{color: 'white'}}>
+              <Link to={`/profile/${this.props.user}/${this.props.userID}`} style={{color: 'white'}} userSiteColor={this.props.userSiteColor}>
                 <FaUserCircle className='icon' onClick={() => {this.goProfile() ; this.dropMenu('user')}} style={this.state.userClicked ? {opacity: 1} : {opacity: .75}} />
               </Link>
               <div className='dropDown'>
                 <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} style={this.state.menuClicked ? {opacity: 1} : {opacity: .75}}/>
-                <div className='dropDown-content' style={this.state.showMenu ? {display: 'block'} : {display: 'none'}} >
+                <div className='dropDown-content' style={this.state.showMenu ? {display: 'block', backgroundColor: this.props.userSiteColor, borderColor: this.props.userSiteColor} : {display: 'none'}} >
                   {this.state.showMenu ? <Menu user={this.props.user} options={['Settings', 'Capsules', 'Playlists', 'Friends', 'Logout']} /> : null }
                 </div>
               </div>

@@ -43,6 +43,8 @@ export default class CurrentCapsule extends Component {
           getSearch={this.props.getSearch}
           changeCapsuleID={this.props.changeCapsuleID}
           userID={this.props.userID}
+          userSiteColor={this.props.userSiteColor}
+          userBackgroundImage={this.props.userBackgroundImage}
         />
       </div>
     );

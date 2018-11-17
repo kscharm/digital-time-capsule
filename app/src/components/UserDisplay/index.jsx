@@ -132,7 +132,7 @@ export default class UserDisplay extends Component {
         return (
             <div className='userDisplayGroup'>
             <div className='userPiny'></div>
-            <div className={`userDisplay`}>
+            <div className={`userDisplay`} style={{backgroundColor: this.props.userSiteColor}}>
                 {/* <div className='userPin'></div> */}
                 <div className="title-content">
                     <h3>{this.props.title}</h3>

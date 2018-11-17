@@ -1,5 +1,4 @@
 .reactLink-default {
-    background-color: #003057;
     box-shadow: 0 5px 0 #F9F6E5;
     color: white;
     padding: 1em 1.5em;
@@ -10,6 +9,7 @@
 
 .reactLink-default:hover {
     background-color: #002233;
+    opacity: .7;
     cursor: pointer;
 }
 

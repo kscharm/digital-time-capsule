@@ -7,7 +7,6 @@
     display: inline-block;
     overflow-wrap: break-word;
     margin: 1em;
-    background-color: rgb(0, 48, 87);
     opacity: .65;
     min-height: 250px;
   }

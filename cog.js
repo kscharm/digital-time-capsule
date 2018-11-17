@@ -781,8 +781,8 @@ exports.deleteFriendRequest = function(database, myUsername, friendUsername, cal
 }
 
 exports.deleteCapsuleRequest = function(database, capsuleId, username, callback) {
-  database.collection("timeCapsules").findOneAndUpdate({_id:capsuleId}, 
-    {$pull: {requestAccess:username}
+  database.collection("timeCapsules").findOneAndUpdate({ _id: capsuleId }, 
+    {$pull: { requestAccess: username }
   }, (err, res) => {
     if (err) {
       return callback(null, err);
@@ -792,13 +792,13 @@ exports.deleteCapsuleRequest = function(database, capsuleId, username, callback)
 }
 
 exports.getUserByUsername = function(database, username, callback) {
-  database.collection("users").findOne({username:username}, (err, res) => {
+  database.collection("users").findOne({ username: username }, (err, user) => {
     if (err) {
       return callback(null, err);
     }
-    if (!res) {
-      return callback(null, 'No user with this userna,e');
+    if (!user) {
+      return callback(null, 'No user with this username: ' + user);
     }
-    return callback(res);
+    return callback(user);
   });
 }

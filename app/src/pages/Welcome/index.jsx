@@ -73,7 +73,7 @@ class Login extends React.Component {
             <div className="login-form">
               <div className='welcomeMessage'>
                 <span className='mainMessage'> Welcome! </span>
-                <span className='subMessage'> Go Jackets! </span>
+                <span className='subMessage'> Log on to create! </span>
               </div>
               <ul>
                 <li>

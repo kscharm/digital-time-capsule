@@ -38,6 +38,7 @@ export default class PhotoDisplay extends Component {
               onStop={this.handleStop}
               >
               <div className="handle2" >
+              <div className='userPiny_photo'></div>
                 <div className={`base ${this.props.frame}`}>
                     <img className="photo" src={this.props.photo} alt={this.props.title} />
                     <p className='caption'>{this.props.caption}</p>

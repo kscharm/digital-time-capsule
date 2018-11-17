@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Background from '../../images/cork.jpg';
 import './style.css';
 import '../general.css';
 
@@ -70,9 +69,9 @@ export default class SearchResult extends Component {
       )
     }
     return (
-      <div className='bgDiv_general' style={{background: `url(${Background})`, overflow:'auto'}} >
+      <div className='bgDiv_general' style={{background: `url(${this.props.userBackgroundImage})`, overflow:'auto'}} >
       <div className='holderDiv'>
-          <div className={ `bkgOverlay_general` }/>
+          <div className={ `bkgOverlay_general` } style={{backgroundColor: this.props.userSiteColor}}/>
           <div className={ `capsuless_general` }>
             <div className='addButton'>
               </div>
@@ -96,6 +95,7 @@ export default class SearchResult extends Component {
                         handleDeleteCapsule={() => {console.log('I do nothing.')}}
                         user={this.props.username}
                         capsulePage={false}
+                        userSiteColor={this.props.userSiteColor}
                     />
                 )
               })}
@@ -129,6 +129,7 @@ export default class SearchResult extends Component {
                       sentRequest={false}
                       recrequest={false}
                       searchPage={true}
+                      userSiteColor={this.props.userSiteColor}
                   />
               )
             })}
@@ -137,7 +138,7 @@ export default class SearchResult extends Component {
         <NavBar handlePop={this.handlePop} addPop={this.state.addPop} getSearch={this.props.getSearch} 
                     user={this.props.username} capsule={this.props.usercapsule}
                     inSearch={true} changeCapsuleID={this.props.changeCapsuleID}
-                    userID={this.props.userID}/>
+                    userID={this.props.userID} userSiteColor={this.props.userSiteColor}/>
         </div>
       </div>
     );
