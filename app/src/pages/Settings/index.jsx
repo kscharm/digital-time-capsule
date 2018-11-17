@@ -9,6 +9,7 @@ import OurButton from '../../components/OurButton';
 import { SketchPicker } from 'react-color';
 import './style.css';
 
+import SpotifyWebApi from 'spotify-web-api-js';
 
 export default class Setting extends Component {
   state = {
@@ -16,26 +17,36 @@ export default class Setting extends Component {
     file: '',
     siteColor: '',
     selectedOption: 'public',
+    spotifyToken: "",
   }
+
   handleOptionChange = (changeEvent) => {
     this.setState({
       selectedOption: changeEvent.target.value
     });
   };
+
   revertColor = () => {
     console.log("I should revert the color to #003057");
   }
+
   revertBackground = () => {
     console.log("I should revert the background to the corkboard");
   }
+
   saveSettings = () => {
     console.log("I should save the settings");
     this.props.changeUserSiteColor(this.state.siteColor);
     this.props.changeUserBackgroundImage(this.state.file);
   }
+
   getUserSettings = (username) => {
     console.log("I should get the user settings");
   }
+  authorizeSpofity = () => {
+    
+  }
+
   componentDidMount = () => {
     this.getUserSettings(this.props.username);
     this.setState({siteColor: this.props.userSiteColor});
@@ -158,6 +169,13 @@ export default class Setting extends Component {
                   <OurButton
                       buttonText='Save Changes'
                       buttonAction={() => {this.saveSettings()}}
+                      buttonType='primary'
+                  />
+                </div>
+                <div className='spotifyButton'>
+                  <OurButton
+                      buttonText='Authorize Spofity'
+                      buttonAction={() => {this.authorizeSpofity()}}
                       buttonType='primary'
                   />
                 </div>

@@ -54,6 +54,10 @@ export default class AddMusic extends Component {
     }
   }
 
+  getPlaylists = () => {
+
+  }
+
   closeAddMusic = () => {
     this.props.handleShowAddMusic(false);
   }

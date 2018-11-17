@@ -15,9 +15,10 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run app\"",
+    "start": "concurrently \"npm run server\" \"npm run app\" \"npm run spotify_auth\" ",
     "server": "node server.js",
     "app": "node launchApp.js",
+    "spotify_auth": "node spotify_auth\\auth-server\\authorization_code\\app.js",
     "lint": "eslint ."
   },
   "devDependencies": {
