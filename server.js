@@ -17,7 +17,11 @@ app.use(bodyParser.urlencoded({ limit: '16mb', extended: true }))
 app.use(bodyParser.json( {limit: '16mb'} ))
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const allowedOrigins = ['http://localhost:3000', 'http://localhost:8888'];
+  const origin = req.headers.origin;
+  if(allowedOrigins.indexOf(origin) > -1){
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-*, X-Requested-With, Content-Type');
   res.setHeader('Access-Control-Allow-Credentials', true);

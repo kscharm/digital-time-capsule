@@ -9,7 +9,7 @@ import OurButton from '../../components/OurButton';
 import { SketchPicker } from 'react-color';
 import './style.css';
 
-import SpotifyWebApi from 'spotify-web-api-js';
+import axios from 'axios';
 
 export default class Setting extends Component {
   state = {
@@ -44,7 +44,13 @@ export default class Setting extends Component {
     console.log("I should get the user settings");
   }
   authorizeSpofity = () => {
-    
+    axios.get('http://localhost:8888/login')
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+          alert('Error authorizing: ' + err.response.data);
+      });
   }
 
   componentDidMount = () => {
