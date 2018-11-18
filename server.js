@@ -456,6 +456,16 @@ app.get('/getUserByUsername', (req, res, next) => {
   })
 })
 
+app.get('/getUserSettings', (req, res, next) => {
+  const params = req.query;
+  cog.getUserSettings(database, params.username, (data, err) => {
+    if (err) {
+      return next(err);
+    } else {
+      return res.status(200).send(data);
+    }
+  })
+})
 
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
