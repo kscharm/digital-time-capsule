@@ -5,6 +5,10 @@ import axios from 'axios';
 
 import NavBar from '../../components/NavBar';
 
+import DropzoneComponent from 'react-dropzone-component';
+import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
+import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
+
 export default class Profile extends Component {
   state = {
     addPop: false,
@@ -77,6 +81,37 @@ export default class Profile extends Component {
   }
 
   render() {
+
+    const componentConfig = {
+      iconFiletypes: ['.jpg', '.png', '.gif'],
+      allowedFiletypes: ['.jpg', '.png', '.gif'],
+      showFiletypeIcon: true,
+      postUrl: 'no-url',
+  };
+  const djsConfig = {
+      maxFiles: 1,
+      addRemoveLinks: true,
+      autoProcessQueue: false,
+      uploadMultiple: false,
+  };
+  const eventHandlers = {
+      init: (dropzone) => { this.dropzone = dropzone; },
+      maxfilesexceeded: (file) => { this.dropzone.removeFile(file) },
+      addedfile: (file) => {
+          if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif') {
+              this.setState({ fileName: file.name });
+              const reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = () => {
+                  this.setState({file: reader.result});
+              }
+          } else {
+              this.dropzone.removeFile(file);
+          }
+      },
+      removedfile: (file) => { this.setState({file: ""}) }
+  }
+
     const DisplayUserInfo = () => {
       return (
       <div>
@@ -129,7 +164,13 @@ export default class Profile extends Component {
       return (
       <div>
         <h2>Edit Your User Information</h2>
-        <img src={require('../../images/addPhoto.png')} style={{backgroundColor: "black", marginLeft: "auto", marginRight: "auto", display: "block"}} />
+        <div className='photoDropZone'>
+              <DropzoneComponent
+                  config={componentConfig}
+                  djsConfig={djsConfig}
+                  eventHandlers={eventHandlers}
+              />
+            </div>
         <ul>
           {/*I would love to have placeholders in these, but for some reason, {this.state.firstname} will not appear when set as a placeholder :( */}
           <li>
@@ -173,9 +214,9 @@ export default class Profile extends Component {
               <span>Confirm your password</span>
           </li>
         </ul>
-        <p>
-        <button onClick={() => {this.saveChanges()}}>Save Changes</button>
-        <button onClick={() => {this.handleButtonClick()}}>Cancel</button>
+        <p className='buttonsP'>
+        <button className='btn' onClick={() => {this.saveChanges()}}>Save Changes</button>
+        <button className='btn' onClick={() => {this.handleButtonClick()}}>Cancel</button>
         </p>
         </div>);
     }
