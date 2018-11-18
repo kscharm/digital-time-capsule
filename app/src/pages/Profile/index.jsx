@@ -55,8 +55,6 @@ export default class Profile extends Component {
         this.setState({major: res.data.major});
         this.setState({username: res.data.username});
         this.setState({password: res.data.password});
-          // console.log("user data:");
-          // console.log(res.data);
       })
       .catch((err) => {
           alert('Error getting user data: ' + err.response.data);
@@ -83,39 +81,40 @@ export default class Profile extends Component {
       return (
       <div>
       <h2>Your User Information</h2>
+      <img src={require('../../images/addPhoto.png')} style={{backgroundColor: "black", marginLeft: "auto", marginRight: "auto", display: "block"}} />
       <ul>
         <li className='viewLi'>
-            <label for="firstName"> First Name</label>
+            <label htmlFor="firstName"> First Name</label>
             <p id='firstName' className='viewP' name="firstName">{this.state.firstname}</p>
             <span className='viewSpan'>Your first name</span>
         </li>
         <li className='viewLi'>
-            <label for="lastName"> Last Name</label>
+            <label htmlFor="lastName"> Last Name</label>
             <p id='lastName' className='viewP' name="lastName">{this.state.lastName}</p>
             <span className='viewSpan'>Your last name</span>
         </li>
         <li className='viewLi'>
-            <label for="email"> Email</label>
+            <label htmlFor="email"> Email</label>
             <p id='email' className='viewP' name="email">{this.state.email}</p>
             <span className='viewSpan'>Your email</span>
         </li>
         <li className='viewLi'>
-            <label for="university"> University</label>
+            <label htmlFor="university"> University</label>
             <p id='university' className='viewP' name="university">{this.state.university}</p>
             <span className='viewSpan'>Your university</span>
         </li>
         <li className='viewLi'>
-            <label for="major"> Major</label>
+            <label htmlFor="major"> Major</label>
             <p id='major' className='viewP' name="major">{this.state.major}</p>
             <span className='viewSpan'>Your major</span>
         </li>
         <li className='viewLi'>
-            <label for="username"> Username</label>
+            <label htmlFor="username"> Username</label>
             <p id='username' className='viewP' name="username">{this.state.username}</p>
             <span className='viewSpan'>Your username</span>
         </li>
         <li className='viewLi'>
-            <label for="pass1"> Password</label>
+            <label htmlFor="pass1"> Password</label>
             <p id='pass1' className='viewP' name="pass1">{this.state.password}</p>
             <span className='viewSpan'>Your password</span>
         </li>
@@ -130,6 +129,7 @@ export default class Profile extends Component {
       return (
       <div>
         <h2>Edit Your User Information</h2>
+        <img src={require('../../images/addPhoto.png')} style={{backgroundColor: "black", marginLeft: "auto", marginRight: "auto", display: "block"}} />
         <ul>
           {/*I would love to have placeholders in these, but for some reason, {this.state.firstname} will not appear when set as a placeholder :( */}
           <li>
