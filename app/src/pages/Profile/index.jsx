@@ -150,7 +150,7 @@ export default class Profile extends Component {
         </li>
         <li className='viewLi'>
             <label htmlFor="pass1"> Password</label>
-            <p id='pass1' className='viewP' name="pass1">{this.state.password}</p>
+            <p id='pass1' className='viewP' name="pass1">...</p>
             <span className='viewSpan'>Your password</span>
         </li>
       </ul>
