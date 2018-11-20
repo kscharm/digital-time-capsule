@@ -6,8 +6,8 @@ import axios from 'axios';
 import NavBar from '../../components/NavBar';
 
 import DropzoneComponent from 'react-dropzone-component';
-import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
-import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
+import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
+import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 
 export default class Profile extends Component {
   state = {
@@ -21,6 +21,8 @@ export default class Profile extends Component {
     major: '',
     username: '',
     password: '',
+
+    file: '',
   }
   saveChanges = () => {
     console.log("I should save the changes the user made");
@@ -81,36 +83,34 @@ export default class Profile extends Component {
   }
 
   render() {
-
     const componentConfig = {
       iconFiletypes: ['.jpg', '.png', '.gif'],
       allowedFiletypes: ['.jpg', '.png', '.gif'],
       showFiletypeIcon: true,
       postUrl: 'no-url',
-  };
-  const djsConfig = {
-      maxFiles: 1,
-      addRemoveLinks: true,
-      autoProcessQueue: false,
-      uploadMultiple: false,
-  };
-  const eventHandlers = {
-      init: (dropzone) => { this.dropzone = dropzone; },
-      maxfilesexceeded: (file) => { this.dropzone.removeFile(file) },
-      addedfile: (file) => {
-          if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif') {
-              this.setState({ fileName: file.name });
-              const reader = new FileReader();
-              reader.readAsDataURL(file);
-              reader.onload = () => {
-                  this.setState({file: reader.result});
-              }
-          } else {
-              this.dropzone.removeFile(file);
-          }
-      },
-      removedfile: (file) => { this.setState({file: ""}) }
-  }
+    };
+    const djsConfig = {
+        maxFiles: 1,
+        addRemoveLinks: true,
+        autoProcessQueue: false,
+        uploadMultiple: false,
+    };
+    const eventHandlers = {
+        init: (dropzone) => { this.dropzone = dropzone; },
+        maxfilesexceeded: (file) => { this.dropzone.removeFile(file) },
+        addedfile: (file) => {
+            if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif') {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    this.setState({file: reader.result});
+                }
+            } else {
+                this.dropzone.removeFile(file);
+            }
+        },
+        removedfile: (file) => { this.setState({file: ''}) }
+    }
 
     const DisplayUserInfo = () => {
       return (
@@ -162,15 +162,15 @@ export default class Profile extends Component {
     
     const EditableUserInfo = () => {
       return (
-      <div>
+      <div className='headDiv'>
         <h2>Edit Your User Information</h2>
-        <div className='photoDropZone'>
-              <DropzoneComponent
-                  config={componentConfig}
-                  djsConfig={djsConfig}
-                  eventHandlers={eventHandlers}
-              />
-            </div>
+        <div className="drop">
+        <DropzoneComponent
+            config={componentConfig}
+            djsConfig={djsConfig}
+            eventHandlers={eventHandlers}
+        />
+        </div>
         <ul>
           {/*I would love to have placeholders in these, but for some reason, {this.state.firstname} will not appear when set as a placeholder :( */}
           <li>
@@ -239,7 +239,7 @@ export default class Profile extends Component {
               <div className={`notepaper-title_general`} style={{maxWidth: "300px", width: "240px"}}>
                 <p className={`text-title_general`}>{title1}</p>
               </div>
-              <div className='register'>
+              <div className='profile'>
                 {UserInfo}
               </div>
               <div className='usersBlock'>
