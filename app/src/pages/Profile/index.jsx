@@ -26,8 +26,17 @@ export default class Profile extends Component {
     file: '',
     editing: false,
   }
+  handleButtonClick = () => {
+    console.log("Editing: " + this.state.editing);
+    if (this.state.editing) {
+      this.setState({editing: false});
+    } else {
+      this.setState({editing: true});
+    }
+  }
   saveChanges = () => {
     console.log("I should save the changes the user made");
+    this.handleButtonClick();
   }
   updateFirst = (evt) => {
     console.log('we in here now');
@@ -75,15 +84,6 @@ export default class Profile extends Component {
     // Then use that information to fill in the sections below.
     this.getUserInfo(this.props.username);
     this.setState({userSiteColor: this.props.userSiteColor});
-  }
-
-  handleButtonClick = () => {
-    console.log("Editing: " + this.state.editing);
-    if (this.state.editing) {
-      this.setState({editing: false});
-    } else {
-      this.setState({editing: true});
-    }
   }
 
   render() {
@@ -136,7 +136,7 @@ export default class Profile extends Component {
                     eventHandlers={eventHandlers}
                 />
                 </div>
-                : <img src={require('../../images/addPhoto.png')} style={{backgroundColor: "black", marginLeft: "auto", marginRight: "auto", display: "block"}} />}
+                : <img src={this.props.userPhoto} style={{backgroundColor: "black", marginLeft: "auto", marginRight: "auto", display: "block"}} />}
                 <ul>
                   {this.state.editing ? 
                     <li className='viewLi'>

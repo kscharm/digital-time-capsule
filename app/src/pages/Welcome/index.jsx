@@ -40,6 +40,9 @@ class Login extends React.Component {
               this.props.changeUserID(user._id);
               this.props.changeCapsuleID(user.capsules[0]);
               this.props.setUserCap(user.capsules[0]);
+              this.props.changeUserSiteColor(user.settings.siteColor);
+              this.props.changeUserBackgroundImage(user.settings.backgroundImage);
+              this.props.setUserPhoto(user.photo);
               this.setState({ redirectToReferrer: true });
             });
           } else {
