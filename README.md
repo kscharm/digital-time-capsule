@@ -1,7 +1,7 @@
 # Digital Time Capsule
 
-### Release Notes for Version 1.0:
-#### New Software Features:
+## Release Notes for Version 1.0:
+### New Software Features:
 * Created new friends page.
 * Created new search page.
 * Created new settings page.
@@ -10,14 +10,14 @@
 * Can add and remove contributors from a capsule.
 * Can now delete capsules.
 * Can change settings.
-#### Bug Fixes:
+### Bug Fixes:
 * Fixed issues with adding friends.
 * Fixed issues with adding new capsules.
 * After adding a new contributor to a capsule, the add button no longer duplicates the options in the dropdown.
 * Blue overlay on subpages is no longer set to a fixed size.
 * Media positions (x,y) on the webpage are now saved.
 * Fixed z-index issues on the MyCapsules and Search pages.
-#### Known Bugs and Defects:
+### Known Bugs and Defects:
 * You cannot press the enter key to log into the application on the welcome page.
 * Refreshing breaks the backend calls to get user information.
 * Not connected through Georgia Tech login.
