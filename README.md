@@ -14,21 +14,21 @@
 * Fixed issues with adding friends.
 * Fixed issues with adding new capsules.
 * After adding a new contributor to a capsule, the add button no longer duplicates the options in the dropdown.
-* Known Bugs and Defects
+#### Known Bugs and Defects
 * You cannot press the enter key to log into the application on the welcome page
 * Refreshing breaks the backend calls to get user information.
 * Not connected through Georgia Tech login
-* Can’t upload same media in multiple capsules (?)
+* Can’t upload same media in multiple capsules
 
 ## Install Guide:
 
 ### Pre-requisites:
 [Install Node.js 6.X or higher](https://nodejs.org/en/download/) on your machine.
-If using a production build, create a virtual machine to host the application. We suggest Amazon Web Services: [AWS ec2 instance](https://aws.amazon.com/ec2/instance-types/). Note that the requirements for the virtual machine (# vCPUs, memory, storage) may change depending on the number of users.
+If using a production build, create a virtual machine to host the application. We suggest Amazon Web Services: [AWS EC2 instance](https://aws.amazon.com/ec2/instance-types/). Note that the requirements for the virtual machine (# vCPUs, memory, storage) may change depending on the number of users.
 
 ### Dependencies:
 1. [MongoDB](https://www.mongodb.com/)
-2. [Python 2.x](https://www.python.org/downloads/)
+2. [Python 2.X](https://www.python.org/downloads/)
 
 #### Steps to Install MongoDB:
 1. [Install MongoDB](https://docs.mongodb.com/manual/administration/install-community) and choose the correct distribution (Linux, MacOS, Windows) of MongoDB Community Edition. Please follow the corresponding instructions for your distribution. The following instructions are for Windows hosts. 
@@ -49,7 +49,7 @@ Remove the line ```proxy: http://localhost:3001``` from the ```app/package.json`
 In the root directory, run the command: ```npm run build```. This will build the app for production in the ```build``` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
 
 ### Production Installation Guide
-Follow [this guide](https://www.youtube.com/watch?v=GKIIL743Gjo&t=3s) to deploy this application to an AWS ec2 instance with SSL & Nginx.
+Follow [this guide](https://www.youtube.com/watch?v=GKIIL743Gjo&t=3s) to deploy our application to an AWS EC2 instance with SSL & Nginx.
 
 
 ### Steps to Run:
