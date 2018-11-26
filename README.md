@@ -15,11 +15,14 @@
 * Fixed issues with adding new capsules.
 * After adding a new contributor to a capsule, the add button no longer duplicates the options in the dropdown.
 * Blue overlay on subpages is no longer set to a fixed size.
+* Media positions (x,y) on the webpage are now saved.
+* Fixed z-index issues on the MyCapsules and Search pages.
 #### Known Bugs and Defects:
 * You cannot press the enter key to log into the application on the welcome page.
 * Refreshing breaks the backend calls to get user information.
 * Not connected through Georgia Tech login.
 * Cannot upload same media instance to multiple capsules simultaneously.
+* Playlist option in the "Add Music" modal does not do anything.
 
 ## Install Guide:
 
