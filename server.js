@@ -431,8 +431,8 @@ app.get('/capsuleOwner', (req, res, next) => {
     } else {
       return res.status(200).send(data);
     }
-  })
-})
+  });
+});
 
 app.get('/capsuleContributors', (req, res, next) => {
   const params = req.query;
@@ -442,8 +442,8 @@ app.get('/capsuleContributors', (req, res, next) => {
     } else {
       return res.status(200).send(data);
     }
-  })
-})
+  });
+});
 
 app.get('/getUserByUsername', (req, res, next) => {
   const params = req.query;
@@ -453,8 +453,21 @@ app.get('/getUserByUsername', (req, res, next) => {
     } else {
       return res.status(200).send(data);
     }
-  })
-})
+  });
+});
+
+app.post('/saveProfile', (req, res, next) => {
+  const username = req.body.username;
+  const profile = req.body.profile;
+  cog.saveProfile(database, username, profile, (data, err) => {
+    if (err) {
+      return next(err);
+    } else {
+      return res.status(200).send(data);
+    }
+  });
+});
+
 
 
 app.listen(app.get("port"), () => {
