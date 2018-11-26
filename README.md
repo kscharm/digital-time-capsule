@@ -50,12 +50,12 @@ Clone this repository into a new directory using: ```git clone https://github.co
 4. ```cd ..``` and run ```npm start``` to launch the application. This will run the application server, authorization server, and client simultaneously.
 
 ### Build Instructions
-This is for production builds only. If you are running this application locally, skip this step.
+This is for production builds only; If you are running this application locally, skip this step.
 This app is still in the development phase. In order to create a production-ready application, you will have to change a few things:
-Purchase a domain name through a service such as GoDaddy.
-Replace every instance of ```http://localhost:3001``` in the source code with the domain name you want to use.
-Remove the line ```proxy: http://localhost:3001``` from the ```app/package.json``` file
-In the root directory, run the command: ```npm run build```. This will build the app for production in the ```build``` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Purchase a domain name through a service such as GoDaddy.
+2. Replace every instance of ```http://localhost:3001``` in the source code with the domain name you want to use.
+3. Remove the line ```proxy: http://localhost:3001``` from the ```app/package.json``` file
+4. In the root directory, run the command: ```npm run build```. This will build the app for production in the ```build``` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
 
 ### Production Installation Guide
 Follow [this guide](https://www.youtube.com/watch?v=GKIIL743Gjo&t=3s) to deploy our application to an AWS EC2 instance with SSL & Nginx.
