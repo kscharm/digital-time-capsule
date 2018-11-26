@@ -108,6 +108,7 @@ export default class Friends extends Component {
                         recrequest={false}
                         searchPage={false}
                         userSiteColor={this.props.userSiteColor}
+                        userPhoto={this.props.userPhoto}
                     />
                 )
               })}
@@ -133,6 +134,7 @@ export default class Friends extends Component {
                         sentRequest={true}
                         recrequest={false}
                         userSiteColor={this.props.userSiteColor}
+                        userPhoto={this.props.userPhoto}
                     />
                 )
               })}
@@ -160,6 +162,7 @@ export default class Friends extends Component {
                         searchPage={false}
                         handleRemoveRequest={this.handleRemoveRequest}
                         userSiteColor={this.props.userSiteColor}
+                        userPhoto={this.props.userPhoto}
                     />
                 )
               })}

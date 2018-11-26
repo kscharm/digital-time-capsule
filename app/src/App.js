@@ -128,6 +128,7 @@ class App extends Component {
                       changeCapsuleID={this.changeCapsuleID}
                       userSiteColor={this.state.userSiteColor}
                       userBackgroundImage={this.state.userBackgroundImage}
+                      userPhoto={this.state.userPhoto}
                       />}
                   />
                   <Route
@@ -145,6 +146,7 @@ class App extends Component {
                       changeCapsuleID={this.changeCapsuleID}
                       userSiteColor={this.state.userSiteColor}
                       userBackgroundImage={this.state.userBackgroundImage}
+                      userPhoto={this.state.userPhoto}
                       />}
                   />
                   <Route
