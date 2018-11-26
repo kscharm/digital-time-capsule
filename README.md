@@ -15,10 +15,10 @@
 * Fixed issues with adding new capsules.
 * After adding a new contributor to a capsule, the add button no longer duplicates the options in the dropdown.
 #### Known Bugs and Defects
-* You cannot press the enter key to log into the application on the welcome page
+* You cannot press the enter key to log into the application on the welcome page.
 * Refreshing breaks the backend calls to get user information.
-* Not connected through Georgia Tech login
-* Can’t upload same media in multiple capsules
+* Not connected through Georgia Tech login.
+* Can’t upload same media instance to multiple capsules simultaneously.
 
 ## Install Guide:
 
