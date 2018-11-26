@@ -37,7 +37,7 @@ If using a production build, create a virtual machine to host the application. W
 
 ### Download Instructions
 
-Clone this repository into a new directory using: ```git clone https://github.com/kscharm/digital-time-capsule.git```.
+Clone this repository into a new directory using: ```git clone https://github.com/kscharm/digital-time-capsule.git```
 
 
 ### Build Instructions
