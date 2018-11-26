@@ -43,6 +43,11 @@ If using a production build, create a virtual machine to host the application. W
 
 Clone this repository into a new directory using: ```git clone https://github.com/kscharm/digital-time-capsule.git```
 
+### Steps to Run Dev Build:
+1. Run ```npm i``` in the root directory to install all server dependencies.
+2. ```cd app``` and run ```npm i``` to install all application dependencies.
+3. ```cd ../auth-server``` and run  ```npm i``` to install all authorization server dependencies.
+4. ```cd ..``` and run ```npm start``` to launch the application. This will run the application server, authorization server, and client simultaneously.
 
 ### Build Instructions
 This is for production builds only. If you are running this application locally, skip this step.
@@ -54,11 +59,4 @@ In the root directory, run the command: ```npm run build```. This will build the
 
 ### Production Installation Guide
 Follow [this guide](https://www.youtube.com/watch?v=GKIIL743Gjo&t=3s) to deploy our application to an AWS EC2 instance with SSL & Nginx.
-
-
-### Steps to Run:
-1. Run ```npm i``` in the root directory to install all server dependencies.
-2. ```cd app``` and run ```npm i``` to install all application dependencies.
-3. ```cd ../auth-server``` and run  ```npm i``` to install all authorization server dependencies.
-4. ```cd ..``` and run ```npm start``` to launch the application. This will run the application server, authorization server, and client simultaneously.
 
