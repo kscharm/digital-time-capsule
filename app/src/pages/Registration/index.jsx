@@ -5,7 +5,7 @@ import { /*withRouter,*/ Redirect } from 'react-router-dom';
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
 import bcrypt from 'bcryptjs';
-import addPhoto from '../../images/addPhoto.png'
+import BasePhoto from '../../images/addPhoto.png';
 
 export default class Registration extends Component {
   // constructor(props) {
@@ -28,8 +28,8 @@ export default class Registration extends Component {
     receivedRequests: [],
     settings: {
       privacy: "private",
-      backgroundImage: "",
-      siteColor: ""
+      backgroundImage: Background,
+      siteColor: "#003057"
     }
   }
 
@@ -55,7 +55,7 @@ export default class Registration extends Component {
           // Delete unnecessary fields
           delete doc.toCapsule;
           delete doc.confirmPass;
-          doc.photo = addPhoto;
+          doc.photo = BasePhoto;
           // Add personal time capsule id to list of capsules
           // doc.capsules.push(doc._id);
           axios.post('http://localhost:3001/registerUser', doc)

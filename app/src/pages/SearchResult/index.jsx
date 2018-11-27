@@ -130,6 +130,7 @@ export default class SearchResult extends Component {
                       recrequest={false}
                       searchPage={true}
                       userSiteColor={this.props.userSiteColor}
+                      userPhoto={this.props.userPhoto}
                   />
               )
             })}

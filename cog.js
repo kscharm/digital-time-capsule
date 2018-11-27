@@ -782,7 +782,7 @@ exports.deleteFriendRequest = function(database, myUsername, friendUsername, cal
 
 exports.deleteCapsuleRequest = function(database, capsuleId, username, callback) {
   database.collection("timeCapsules").findOneAndUpdate({ _id: capsuleId }, 
-    {$pull: { requestAccess: username }
+    { $pull: { requestAccess: username }
   }, (err, res) => {
     if (err) {
       return callback(null, err);
@@ -812,5 +812,19 @@ exports.getUserSettings = function(database, username, callback) {
       return callback(null, 'No user with this username: ' + user);
     }
     return callback(user.settings);
+  });
+}
+
+exports.saveProfile = function(database, username, profile, callback) {
+  database.collection("users").findOneAndUpdate({ username },
+    { $set: profile }, 
+    (err, user) => {
+    if (err) {
+      return callback(null, err);
+    }
+    if (!user.value) {
+      return callback(null, 'No user with this username: ' + user);
+    }
+    return callback(user.value);
   });
 }

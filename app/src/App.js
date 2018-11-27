@@ -23,8 +23,9 @@ class App extends Component {
     term: '',
     usercapsule: '',
     userID: '',
-    userSiteColor: '#003057',
-    userBackgroundImage: Background,
+    userSiteColor: '',
+    userBackgroundImage: '',
+    userPhoto: '',
   }
   changeUsername = (user) => {
     this.setState({username: user});
@@ -34,6 +35,9 @@ class App extends Component {
   }
   setUserCap = (capsule) => {
     this.setState({usercapsule: capsule});
+  }
+  setUserPhoto = (photo) => {
+    this.setState({userPhoto: photo});
   }
   changeCapsuleID = (id) => {
     this.setState({currentCapsuleID: id});
@@ -67,7 +71,10 @@ class App extends Component {
                       changeUsername={this.changeUsername}
                       setUserCap={this.setUserCap}
                       changeCapsuleID={this.changeCapsuleID}
-                      changeUserID={this.changeUserID} 
+                      changeUserID={this.changeUserID}
+                      changeUserBackgroundImage={this.changeUserBackgroundImage}
+                      changeUserSiteColor={this.changeUserSiteColor} 
+                      setUserPhoto={this.setUserPhoto}
                       />}
                   />
                   <Route
@@ -121,6 +128,7 @@ class App extends Component {
                       changeCapsuleID={this.changeCapsuleID}
                       userSiteColor={this.state.userSiteColor}
                       userBackgroundImage={this.state.userBackgroundImage}
+                      userPhoto={this.state.userPhoto}
                       />}
                   />
                   <Route
@@ -138,6 +146,7 @@ class App extends Component {
                       changeCapsuleID={this.changeCapsuleID}
                       userSiteColor={this.state.userSiteColor}
                       userBackgroundImage={this.state.userBackgroundImage}
+                      userPhoto={this.state.userPhoto}
                       />}
                   />
                   <Route
@@ -154,6 +163,7 @@ class App extends Component {
                       changeCapsuleID={this.changeCapsuleID}
                       userSiteColor={this.state.userSiteColor}
                       userBackgroundImage={this.state.userBackgroundImage}
+                      userPhoto={this.state.userPhoto}
                       />}
                   />
                   <Route
