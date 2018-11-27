@@ -803,6 +803,18 @@ exports.getUserByUsername = function(database, username, callback) {
   });
 }
 
+exports.getUserSettings = function(database, username, callback) {
+  database.collection("users").findOne({ username: username }, (err, user) => {
+    if (err) {
+      return callback(null, err);
+    }
+    if (!user) {
+      return callback(null, 'No user with this username: ' + user);
+    }
+    return callback(user.settings);
+  });
+}
+
 exports.saveProfile = function(database, username, profile, callback) {
   database.collection("users").findOneAndUpdate({ username },
     { $set: profile }, 

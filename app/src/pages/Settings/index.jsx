@@ -8,7 +8,7 @@ import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 import OurButton from '../../components/OurButton';
 import { SketchPicker } from 'react-color';
 import './style.css';
-
+import axios from 'axios';
 
 export default class Setting extends Component {
   state = {
@@ -35,6 +35,14 @@ export default class Setting extends Component {
   }
   getUserSettings = (username) => {
     console.log("I should get the user settings");
+    axios.get('http://localhost:3001/getUserSettings?username=' + username)
+      .then((res) => {
+        // do something with the settings....
+        console.log(res.data);
+      })
+      .catch((err) => {
+          alert('Error getting settings: ' + err.response.data);
+      });
   }
   componentDidMount = () => {
     this.getUserSettings(this.props.username);
