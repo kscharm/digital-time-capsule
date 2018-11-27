@@ -156,7 +156,7 @@ export default class Profile extends Component {
                     eventHandlers={eventHandlers}
                 />
                 </div>
-                : <img src={this.props.userPhoto} style={{backgroundColor: "black", marginLeft: "auto", marginRight: "auto", display: "block"}} />}
+                : <img src={this.props.userPhoto} style={{backgroundColor: "black", marginLeft: "auto", marginRight: "auto", display: "block", maxWidth: "40em", maxHeight: "30em", marginBottom: "2em"}} />}
                 <ul>
                   {this.state.editing ? 
                     <li className='viewLi'>

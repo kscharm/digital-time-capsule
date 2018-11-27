@@ -139,7 +139,7 @@ export default class UserDisplay extends Component {
                     <div className="intro">{this.props.university}</div>
                 </div>
                 <div>
-                <img className='userDisplayImage' src={this.props.userPhoto} alt='placeholder' style={{zoom: '60%', padding: '20px 30px 0px 20px'}}></img>
+                <img className='userDisplayImage' src={this.props.userPhoto} alt='placeholder' style={{maxWidth: "14em", maxHeight: "11em", marginTop: ".5em", marginBottom: ".5em"}}></img>
                 </div>
                 <div>
                 {(this.props.areFriends || this.props.sentRequest) ? null : <AddButtonUser/>}
