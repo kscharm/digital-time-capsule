@@ -250,6 +250,12 @@ export default class Profile extends Component {
                     </li>
                     : null
                   }
+                  {this.state.editing ? 
+                    <li className='viewLi'>
+                    <p id='warning' className='viewP' name="warning" style={{color: "red", textAlign: "center"}}>You won't see your changes until you save and logout!</p>
+                    </li>
+                    : null
+                  }
                 </ul>
                 {this.state.editing ?
                 <p className='buttonsP'>
