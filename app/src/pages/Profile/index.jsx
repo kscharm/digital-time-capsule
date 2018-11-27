@@ -44,6 +44,7 @@ export default class Profile extends Component {
           university: this.state.university,
           major: this.state.major,
           password: this.state.password,
+          photo: this.state.file,
         };
         axios.post('http://localhost:3001/saveProfile', {
           username: this.state.username,
@@ -78,9 +79,6 @@ export default class Profile extends Component {
   updateConfirmPass = (evt) => {
     this.setState({confirmPass: evt.target.value});
   }
-  updateUsername = (evt) => {
-    this.setState({username: evt.target.value});
-  }
   updatePass = (evt) => {
     this.setState({password: evt.target.value});
   }
@@ -105,6 +103,7 @@ export default class Profile extends Component {
     // Then use that information to fill in the sections below.
     this.getUserInfo(this.props.username);
     this.setState({userSiteColor: this.props.userSiteColor});
+    this.setState({file: this.props.userPhoto});
   }
 
   render() {
@@ -221,9 +220,9 @@ export default class Profile extends Component {
                   }
                   {this.state.editing ? 
                     <li className='viewLi'>
-                    <label for="username"> Username</label>
-                    <input type="text" value={this.state.username} id='username' name="username" maxLength="100" onChange={evt => this.updateUsername(evt)}/>
-                    <span>Enter your username</span>
+                    <label htmlFor="username"> Username</label>
+                    <p id='username' className='viewP' name="username">{this.state.username}</p>
+                    <span className='viewSpan'>Your username is permanent</span>
                     </li> : 
                     <li className='viewLi'>
                       <label htmlFor="username"> Username</label>
