@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import '../general.css';
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
 import NavBar from '../../components/NavBar';
 
@@ -13,7 +14,6 @@ export default class Profile extends Component {
   state = {
     addPop: false,
     userSiteColor: '',
-
     firstName: '',
     lastName: '',
     email: '',
@@ -22,12 +22,10 @@ export default class Profile extends Component {
     username: '',
     password: '',
     pass2: '',
-
     file: '',
     editing: false,
   }
   handleButtonClick = () => {
-    console.log("Editing: " + this.state.editing);
     if (this.state.editing) {
       this.setState({editing: false});
     } else {
@@ -35,33 +33,54 @@ export default class Profile extends Component {
     }
   }
   saveChanges = () => {
-    console.log("I should save the changes the user made");
-    this.handleButtonClick();
+    // Generate password hash for safe storage
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(this.state.password, salt, (err, hash) => {
+        this.setState({password: hash});
+        const profile = {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          university: this.state.university,
+          major: this.state.major,
+          password: this.state.password,
+          photo: this.state.file,
+        };
+        axios.post('http://localhost:3001/saveProfile', {
+          username: this.state.username,
+          profile
+        })
+          .then((res) => {
+            console.log(res.data);
+            this.handleButtonClick();
+          })
+          .catch((err) => {
+              alert('Error saving profile: ' + err.response.data);
+          });
+      });
+    });
+    
   }
   updateFirst = (evt) => {
-    console.log('we in here now');
-    this.setState({firstName: evt.target.value})
+    this.setState({firstName: evt.target.value});
   }
   updateLast = (evt) => {
-    this.setState({lastName: evt.target.value})
+    this.setState({lastName: evt.target.value});
   }
   updateEmail = (evt) => {
-    this.setState({email: evt.target.value})
+    this.setState({email: evt.target.value});
   }
   updateUniversity = (evt) => {
-    this.setState({university: evt.target.value})
+    this.setState({university: evt.target.value});
   }
   updateMajor = (evt) => {
-    this.setState({major: evt.target.value})
+    this.setState({major: evt.target.value});
   }
   updateConfirmPass = (evt) => {
-    this.setState({confirmPass: evt.target.value})
-  }
-  updateUsername = (evt) => {
-    this.setState({username: evt.target.value})
+    this.setState({confirmPass: evt.target.value});
   }
   updatePass = (evt) => {
-    this.setState({password: evt.target.value})
+    this.setState({password: evt.target.value});
   }
   getUserInfo(username) {
     axios.get('http://localhost:3001/getUserByUsername?username=' + username)
@@ -84,6 +103,7 @@ export default class Profile extends Component {
     // Then use that information to fill in the sections below.
     this.getUserInfo(this.props.username);
     this.setState({userSiteColor: this.props.userSiteColor});
+    this.setState({file: this.props.userPhoto});
   }
 
   render() {
@@ -200,9 +220,9 @@ export default class Profile extends Component {
                   }
                   {this.state.editing ? 
                     <li className='viewLi'>
-                    <label for="username"> Username</label>
-                    <input type="text" value={this.state.username} id='username' name="username" maxLength="100" onChange={evt => this.updateUsername(evt)}/>
-                    <span>Enter your username</span>
+                    <label htmlFor="username"> Username</label>
+                    <p id='username' className='viewP' name="username">{this.state.username}</p>
+                    <span className='viewSpan'>Your username is permanent</span>
                     </li> : 
                     <li className='viewLi'>
                       <label htmlFor="username"> Username</label>
