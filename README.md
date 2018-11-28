@@ -43,11 +43,10 @@ If using a production build, create a virtual machine to host the application. W
 
 Clone this repository into a new directory using: ```git clone https://github.com/kscharm/digital-time-capsule.git```
 
-### Steps to Run Dev Build:
+### Steps to Run Development Build:
 1. Run ```npm i``` in the root directory to install all server dependencies.
 2. ```cd app``` and run ```npm i``` to install all application dependencies.
-3. ```cd ../auth-server``` and run  ```npm i``` to install all authorization server dependencies.
-4. ```cd ..``` and run ```npm start``` to launch the application. This will run the application server, authorization server, and client simultaneously.
+3. ```cd ..``` and run ```npm start``` to launch the application in development mode. This will run the application server and client simultaneously.
 
 ### Build Instructions
 This is for production builds only; If you are running this application locally, skip this step.
