@@ -5,7 +5,7 @@ import {FaTrash} from 'react-icons/fa';
 const AddButton = (props) => {
   return (
       <div className='delete2'>     
-        <button onClick={props.buttonAction} className={ `our-btn-${props.buttonType}` }>
+        <button onClick={props.buttonAction} className={ `our-btn-${props.buttonType}` } style={{backgroundColor: props.userSiteColor}}>
           <FaTrash className='deleteIcon2' size={25}/>
         </button>
       </div>

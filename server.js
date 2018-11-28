@@ -468,7 +468,6 @@ app.post('/saveProfile', (req, res, next) => {
   });
 });
 
-
 app.get('/getUserSettings', (req, res, next) => {
   const params = req.query;
   cog.getUserSettings(database, params.username, (data, err) => {
@@ -477,8 +476,20 @@ app.get('/getUserSettings', (req, res, next) => {
     } else {
       return res.status(200).send(data);
     }
-  })
-})
+  });
+});
+
+app.post('/saveUserSettings', (req, res, next) => {
+  const username = req.body.username;
+  const settings = req.body.settings;
+  cog.saveUserSettings(database, username, settings, (data, err) => {
+    if (err) {
+      return next(err);
+    } else {
+      return res.status(200).send(data);
+    }
+  });
+});
 
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);

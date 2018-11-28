@@ -10,6 +10,7 @@ import OurButton from '../../components/OurButton';
 import { SketchPicker } from 'react-color';
 import './style.css';
 import axios from 'axios';
+import Background from '../../images/cork.jpg';
 
 export default class Setting extends Component {
   state = {
@@ -25,15 +26,38 @@ export default class Setting extends Component {
   };
   revertColor = () => {
     console.log("I should revert the color to #003057");
+    this.setState({siteColor: '#003057'});
   }
   revertBackground = () => {
     console.log("I should revert the background to the corkboard");
+    this.setState({file: Background});
   }
+
   saveSettings = () => {
     console.log("I should save the settings");
     this.props.changeUserSiteColor(this.state.siteColor);
     this.props.changeUserBackgroundImage(this.state.file);
+    const settingsInfo = {
+      privacy: this.state.selectedOption,
+      backgroundImage: this.state.file,
+      siteColor: this.state.siteColor,
+    };
+    const settings = {
+      settings: settingsInfo
+    };
+    axios.post('http://localhost:3001/saveUserSettings', {
+      username: this.props.username,
+      settings
+    }) 
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+        alert('Error saving settings: ' + err.response.data);
+    });
+   
   }
+
   getUserSettings = (username) => {
     console.log("I should get the user settings");
     axios.get('http://localhost:3001/getUserSettings?username=' + username)
@@ -114,8 +138,6 @@ export default class Setting extends Component {
                     <p>Site Color</p>
                   </div>
                   <div className='colorPicker'>
-                    {this.props.userSiteColor !== this.state.siteColor ?
-                      <p className='helperText'>This is a preview, you must save and log out to see your changes sitewide.</p> : null}
                     <SketchPicker
                         color={ this.state.siteColor }
                         onChangeComplete={ this.handleChangeComplete }
@@ -135,8 +157,6 @@ export default class Setting extends Component {
                     <p>Background Image</p>
                   </div>
                   <div className='photoThing_general'>
-                  {this.props.userBackgroundImage !== this.state.file ?
-                      <p className='helperText'>This is a preview, you must save and log out to see your changes sitewide.</p> : null}
                     <div className="dropzone">
                     <DropzoneComponent
                         config={componentConfig}
