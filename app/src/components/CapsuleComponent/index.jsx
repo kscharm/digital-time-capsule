@@ -476,6 +476,7 @@ export default class CapsuleComponent extends Component {
               <DeleteButton
                 buttonAction={() => { this.handleShowDelete(!this.state.showDelete) }}
                 buttonType='delete'
+                userSiteColor={this.props.userSiteColor}
               />
             </div>
             :
