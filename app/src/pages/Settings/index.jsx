@@ -28,11 +28,32 @@ export default class Setting extends Component {
   revertBackground = () => {
     console.log("I should revert the background to the corkboard");
   }
+
   saveSettings = () => {
     console.log("I should save the settings");
     this.props.changeUserSiteColor(this.state.siteColor);
     this.props.changeUserBackgroundImage(this.state.file);
+    const settingsInfo = {
+      privacy: this.state.selectedOption,
+      backgroundImage: this.state.file,
+      siteColor: this.state.siteColor,
+    };
+    const settings = {
+      settings: settingsInfo
+    };
+    axios.post('http://localhost:3001/saveUserSettings', {
+      username: this.props.username,
+      settings
+    }) 
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+        alert('Error saving settings: ' + err.response.data);
+    });
+   
   }
+
   getUserSettings = (username) => {
     console.log("I should get the user settings");
     axios.get('http://localhost:3001/getUserSettings?username=' + username)
