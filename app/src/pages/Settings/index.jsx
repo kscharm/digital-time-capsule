@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import '../general.css';
 
 import NavBar from '../../components/NavBar';
@@ -58,6 +59,15 @@ export default class Setting extends Component {
     this.setState({ siteColor: color.hex });
   }
   render() {
+    // const { from } = { from: { pathname: `/` } }
+    // if (performance.navigation.type == 1) {
+    //   console.info( "This page is reloaded" );
+    //   return (
+    //     <Redirect to={from} />
+    //   )
+    // } else {
+    //   console.info( "This page is not reloaded");
+    // }
     console.log(this.state.user);
     const componentConfig = {
       iconFiletypes: ['.jpg', '.png', '.gif'],
