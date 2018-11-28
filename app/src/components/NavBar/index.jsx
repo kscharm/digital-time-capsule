@@ -146,7 +146,7 @@ export default class NavBar extends Component {
               <div className='dropDown'>
                 <FaBars className='icon' onClick={() => {this.dropMenu('menu')}} style={this.state.menuClicked ? {opacity: 1} : {opacity: .75}}/>
                 <div className='dropDown-content' style={this.state.showMenu ? {display: 'block', backgroundColor: this.props.userSiteColor, borderColor: this.props.userSiteColor} : {display: 'none'}} >
-                  {this.state.showMenu ? <Menu user={this.props.user} options={['Settings', 'Capsules', 'Friends', 'Logout']} /> : null }
+                  {this.state.showMenu ? <Menu user={this.props.user} userID={this.props.userID} options={['Settings', 'Capsules', 'Friends', 'Logout']} /> : null }
                 </div>
               </div>
             </div>
