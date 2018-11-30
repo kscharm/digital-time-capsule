@@ -23,6 +23,7 @@
 * Not connected through Georgia Tech login.
 * Cannot upload same media instance to multiple capsules simultaneously.
 * Playlist option in the "Add Music" modal does not do anything.
+* The password in the profile page does not have dots to obscure the text.
 
 ## Install Guide:
 
